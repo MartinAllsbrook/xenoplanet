@@ -1,15 +1,28 @@
 
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class TerrainGenerator : MonoBehaviour
 {
-    public int width = 256;
-    public int length = 256;
+    public int width;
+    public int length;
 
-    public int depth = 20;
+    public int depth;
+
+    public float macroScale;
+    public float microScale;
+
+    private float _macroOffset;
+    private float _microOffset;
 
     private void Start()
+    {
+        _macroOffset = Random.Range(0f, 9999f);
+        _microOffset = Random.Range(0f, 9999f);
+    }
+
+    private void Update()
     {
         Terrain terrain = GetComponent<Terrain>();
         terrain.terrainData = GenerateTerrain(terrain.terrainData);
@@ -17,7 +30,9 @@ public class TerrainGenerator : MonoBehaviour
 
     TerrainData GenerateTerrain(TerrainData terrainData)
     {
-        terrainData.size = new Vector3(width, length, depth);
+        terrainData.heightmapResolution = width;
+        
+        terrainData.size = new Vector3(width, depth, length);
         
         terrainData.SetHeights(0,0, GenerateHeights());
 
@@ -41,9 +56,14 @@ public class TerrainGenerator : MonoBehaviour
 
     float CalculateNoise(int x, int y)
     {
-        float xNorm = x / width;
-        float yNorm = y / length;
-
-        return Mathf.PerlinNoise(xNorm, yNorm);
+        float xMicro = (float) x / width * microScale + _microOffset;
+        float yMicro = (float) y / length * microScale + _microOffset;
+        
+        float xMacro = (float) x / width * macroScale + _macroOffset;
+        float yMacro = (float) y / length * macroScale + _macroOffset;
+        
+        var noiseMicro = Mathf.PerlinNoise(xMicro, yMicro);
+        var noiseMacro = Mathf.PerlinNoise(xMacro, yMacro);
+        return (noiseMacro + noiseMicro) / 2;
     }
 }
