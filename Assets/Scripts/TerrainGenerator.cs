@@ -64,6 +64,8 @@ public class TerrainGenerator : MonoBehaviour
         
         var noiseMicro = Mathf.PerlinNoise(xMicro, yMicro);
         var noiseMacro = Mathf.PerlinNoise(xMacro, yMacro);
-        return (noiseMacro + noiseMicro) / 2;
+        return noiseMacro * 0.75f + noiseMicro * 0.25f;
+
+        // return noiseMacro;
     }
 }
