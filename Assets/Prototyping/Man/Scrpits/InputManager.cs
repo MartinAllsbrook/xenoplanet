@@ -43,7 +43,6 @@ public class InputManager : MonoBehaviour
         
         //Press RightStick (Control) - Crouch
         float crouch = _playerControls.Player.Crouch.ReadValue<float>();
-        Debug.Log(crouch);
 
         //Move LeftStick (WASD) – Move
         _moveDirection = _playerControls.Player.Movement.ReadValue<Vector2>();
