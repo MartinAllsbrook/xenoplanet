@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     public void Jump()
     {
         Debug.Log("Jump");
-        _rigidbody.velocity += Vector3.up * PlayerJumpForce;
+        _rigidbody.velocity += new Vector3(_rigidbody.velocity.x, PlayerJumpForce, _rigidbody.velocity.z);
     }
 
     public void Move(Vector2 direction, float sprint, float crouch)
@@ -44,20 +44,20 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
             
             //Move
-            Vector3 camDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            
+            Vector3 camDirection = Quaternion.Euler(0f, targetAngle, 0f) * new Vector3(0f, _rigidbody.velocity.y, PlayerSpeed);
+
             //Move Type
             if(sprint == 0 && crouch == 0)
-                _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity,  camDirection.normalized * PlayerSpeed, ref currVelocity, 0.1f);
-            else if (sprint == 1)
-                _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity,  camDirection.normalized * PlayerSprintSpeed, ref currVelocity, 0.1f);
-            else if (crouch == 1)
-            {
-                _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity,  camDirection.normalized * PlayerCrouchSpeed, ref currVelocity, 0.1f);
-            }
+                _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity,  camDirection.normalized, ref currVelocity, 0.1f);
+            // else if (sprint == 1)
+            //     _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity,  camDirection.normalized * PlayerSprintSpeed, ref currVelocity, 0.1f);
+            // else if (crouch == 1)
+            // {
+            //     _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity,  camDirection.normalized * PlayerCrouchSpeed, ref currVelocity, 0.1f);
+            // }
         }
-        else
-            _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity,  Vector3.zero, ref currVelocity, 0.1f);
+        // else
+        //     _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity,  Vector3.zero, ref currVelocity, 0.1f);
     }
 
     public void CameraControl(Vector2 direction)
@@ -68,3 +68,5 @@ public class PlayerMovement : MonoBehaviour
 
     
 }
+
+
