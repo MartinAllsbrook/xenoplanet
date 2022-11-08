@@ -12,10 +12,10 @@ public class PlayerMovement : MonoBehaviour
     private float turnVelocity;
 
     //Move Factors
-    [Range(1, 10)] [SerializeField] private float PlayerSpeed;
-    [Range(1, 10)] [SerializeField] private float PlayerSprintSpeed;
-    [Range(1, 10)] [SerializeField] private float PlayerCrouchSpeed;
-    [Range(1, 50)] [SerializeField] private float PlayerJumpForce;
+    [Range(1, 5000)] [SerializeField] private float PlayerSpeed;
+    [Range(1, 5000)] [SerializeField] private float PlayerSprintSpeed;
+    [Range(1, 5000)] [SerializeField] private float PlayerCrouchSpeed;
+    [Range(1, 5000)] [SerializeField] private float PlayerJumpForce;
     
     //Camera Reference
     [SerializeField] private CinemachineFreeLook thridPersonCamera;
@@ -28,11 +28,13 @@ public class PlayerMovement : MonoBehaviour
     
     public void Jump()
     {
-        Debug.Log("Jump");
-        _rigidbody.velocity += Vector3.up * PlayerJumpForce;
+        // _rigidbody.velocity += Vector3.up * PlayerJumpForce;
+        _rigidbody.AddForce(Vector3.up * PlayerJumpForce);
+        Debug.Log(Vector3.up * PlayerJumpForce);
+
     }
 
-    public void Move(Vector2 direction, float sprint, float crouch)
+    /* public void Move(Vector2 direction, float sprint, float crouch)
     {
         if(direction.magnitude >= 0.1f)
         {
@@ -58,6 +60,36 @@ public class PlayerMovement : MonoBehaviour
         }
         else
             _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity,  Vector3.zero, ref currVelocity, 0.1f);
+    } */
+    
+    
+    public void Move(Vector2 direction, float sprint, float crouch)
+    {
+        if(direction.magnitude >= 0.1f)
+        {
+            //code adapted from Brackeys
+            
+            //Rotate
+            float targetAngle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnVelocity, 0.1f) ;
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            
+            //Move
+            Vector3 camDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            
+            //Move Type
+            if(sprint == 0 && crouch == 0)
+                _rigidbody.AddForce(camDirection.normalized * PlayerSpeed );
+            else if (sprint == 1)
+                _rigidbody.AddForce(camDirection.normalized * PlayerSpeed );
+            else if (crouch == 1)
+            {
+                _rigidbody.AddForce(camDirection.normalized * PlayerSpeed );
+
+            }
+        }
+        // else
+            // _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity,  Vector3.zero, ref currVelocity, 0.1f);
     }
 
     public void CameraControl(Vector2 direction)
