@@ -10,6 +10,8 @@ public class TerrainGenerator : MonoBehaviour
 
     public int depth;
 
+    [SerializeField] private TerrainPainter terrainPainter;
+
     public float macroScale;
     public float microScale;
 
@@ -20,12 +22,11 @@ public class TerrainGenerator : MonoBehaviour
     {
         _macroOffset = Random.Range(0f, 9999f);
         _microOffset = Random.Range(0f, 9999f);
-    }
-
-    private void Update()
-    {
+        
         Terrain terrain = GetComponent<Terrain>();
         terrain.terrainData = GenerateTerrain(terrain.terrainData);
+        
+        terrainPainter.PaintTerrain();
     }
 
     TerrainData GenerateTerrain(TerrainData terrainData)
