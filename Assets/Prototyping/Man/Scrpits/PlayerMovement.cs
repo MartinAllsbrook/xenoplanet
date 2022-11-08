@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [Range(1, 5000)] [SerializeField] private float PlayerSprintSpeed;
     [Range(1, 5000)] [SerializeField] private float PlayerCrouchSpeed;
     [Range(1, 5000)] [SerializeField] private float PlayerJumpForce;
-    
+
     //Camera Reference
     [SerializeField] private CinemachineFreeLook thridPersonCamera;
     [SerializeField] private Camera mainCamera;
@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
     }
-    
+
     public void Jump()
     {
         // _rigidbody.velocity += Vector3.up * PlayerJumpForce;
@@ -39,44 +39,44 @@ public class PlayerMovement : MonoBehaviour
         if(direction.magnitude >= 0.1f)
         {
             //code adapted from Brackeys
-            
+
             //Rotate
             float targetAngle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnVelocity, 0.1f) ;
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
-            
+
             //Move
-            Vector3 camDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            
+            Vector3 camDirection = Quaternion.Euler(0f, targetAngle, 0f) * new Vector3(0f, _rigidbody.velocity.y, PlayerSpeed);
+
             //Move Type
             if(sprint == 0 && crouch == 0)
-                _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity,  camDirection.normalized * PlayerSpeed, ref currVelocity, 0.1f);
-            else if (sprint == 1)
-                _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity,  camDirection.normalized * PlayerSprintSpeed, ref currVelocity, 0.1f);
-            else if (crouch == 1)
-            {
-                _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity,  camDirection.normalized * PlayerCrouchSpeed, ref currVelocity, 0.1f);
-            }
+                _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity,  camDirection.normalized, ref currVelocity, 0.1f);
+            // else if (sprint == 1)
+            //     _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity,  camDirection.normalized * PlayerSprintSpeed, ref currVelocity, 0.1f);
+            // else if (crouch == 1)
+            // {
+            //     _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity,  camDirection.normalized * PlayerCrouchSpeed, ref currVelocity, 0.1f);
+            // }
         }
         else
             _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity,  Vector3.zero, ref currVelocity, 0.1f);
     } */
-    
-    
+
+
     public void Move(Vector2 direction, float sprint, float crouch)
     {
         if(direction.magnitude >= 0.1f)
         {
             //code adapted from Brackeys
-            
+
             //Rotate
             float targetAngle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnVelocity, 0.1f) ;
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
-            
+
             //Move
             Vector3 camDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            
+
             //Move Type
             if(sprint == 0 && crouch == 0)
                 _rigidbody.AddForce(camDirection.normalized * PlayerSpeed );
@@ -98,5 +98,5 @@ public class PlayerMovement : MonoBehaviour
         thridPersonCamera.m_YAxis.m_InputAxisValue = -direction.y;
     }
 
-    
+
 }
