@@ -1311,10 +1311,6 @@ PrefabInstance:
       propertyPath: thridPersonCamera
       value: 
       objectReference: {fileID: 301311948}
-    - target: {fileID: 5871221131373447271, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
-      propertyPath: m_Mass
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 5871221131373447293, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_Name
       value: Player

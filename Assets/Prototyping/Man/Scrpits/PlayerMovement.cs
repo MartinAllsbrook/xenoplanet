@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using Cinemachine;
+using Cinemachine.Utility;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -12,11 +14,12 @@ public class PlayerMovement : MonoBehaviour
     private float turnVelocity;
 
     //Move Factors
-    [Range(1, 5000)] [SerializeField] private float PlayerSpeed;
-    [Range(1, 5000)] [SerializeField] private float PlayerSprintSpeed;
-    [Range(1, 5000)] [SerializeField] private float PlayerCrouchSpeed;
-    [Range(1, 5000)] [SerializeField] private float PlayerJumpForce;
-
+    [Range(1, 5000)] [SerializeField] private float PlayerBaseSpeed;
+    [Range(0, 2)] [SerializeField] private float PlayerSprintMultiplier;
+    [Range(0, 2)] [SerializeField] private float PlayerCrouchMultiplier;
+    [Range(1, 100000)] [SerializeField] private float PlayerJumpForce;
+    [Range(1, 100)] [SerializeField] private float maxVelocity;
+    [Range(1, 5000)] [SerializeField] private float stationaryDrag;
     //Camera Reference
     [SerializeField] private CinemachineFreeLook thridPersonCamera;
     [SerializeField] private Camera mainCamera;
@@ -77,19 +80,32 @@ public class PlayerMovement : MonoBehaviour
             //Move
             Vector3 camDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
-            //Move Type
-            if(sprint == 0 && crouch == 0)
-                _rigidbody.AddForce(camDirection.normalized * PlayerSpeed );
-            else if (sprint == 1)
-                _rigidbody.AddForce(camDirection.normalized * PlayerSpeed );
-            else if (crouch == 1)
-            {
-                _rigidbody.AddForce(camDirection.normalized * PlayerSpeed );
+            // Calculate forces to add
+            Debug.Log(_rigidbody.velocity.magnitude);
+            Vector3 forceToAdd;
+            var horizontalVelocity = _rigidbody.velocity.ProjectOntoPlane(new Vector3(0, 1, 0));
+            var parallelVelocity = Vector3.Project(horizontalVelocity, camDirection);
 
+            forceToAdd = camDirection.normalized * PlayerBaseSpeed *  (1 - parallelVelocity.magnitude/maxVelocity);
+ 
+
+            //Move Type
+            if (sprint == 0 && crouch == 0)
+            {
+                
             }
+            else if (sprint == 1)
+                forceToAdd *= PlayerSprintMultiplier;
+            else if (crouch == 1)
+                forceToAdd *= PlayerCrouchMultiplier;
+
+            _rigidbody.AddForce(forceToAdd);
+
         }
-        // else
-            // _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity,  Vector3.zero, ref currVelocity, 0.1f);
+        else
+        {
+            _rigidbody.AddForce(-_rigidbody.velocity.normalized * stationaryDrag);
+        }
     }
 
     public void CameraControl(Vector2 direction)
