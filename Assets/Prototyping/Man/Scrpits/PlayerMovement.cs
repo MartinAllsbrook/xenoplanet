@@ -36,41 +36,12 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log(Vector3.up * PlayerJumpForce);
 
     }
-
-    /* public void Move(Vector2 direction, float sprint, float crouch)
-    {
-        if(direction.magnitude >= 0.1f)
-        {
-            //code adapted from Brackeys
-
-            //Rotate
-            float targetAngle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnVelocity, 0.1f) ;
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
-
-            //Move
-            Vector3 camDirection = Quaternion.Euler(0f, targetAngle, 0f) * new Vector3(0f, _rigidbody.velocity.y, PlayerSpeed);
-
-            //Move Type
-            if(sprint == 0 && crouch == 0)
-                _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity,  camDirection.normalized, ref currVelocity, 0.1f);
-            // else if (sprint == 1)
-            //     _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity,  camDirection.normalized * PlayerSprintSpeed, ref currVelocity, 0.1f);
-            // else if (crouch == 1)
-            // {
-            //     _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity,  camDirection.normalized * PlayerCrouchSpeed, ref currVelocity, 0.1f);
-            // }
-        }
-        else
-            _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity,  Vector3.zero, ref currVelocity, 0.1f);
-    } */
-
-
+    
     public void Move(Vector2 direction, float sprint, float crouch)
     {
         if(direction.magnitude >= 0.1f)
         {
-            //code adapted from Brackeys
+            // Code adapted from Brackeys 
 
             //Rotate
             float targetAngle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
@@ -88,7 +59,6 @@ public class PlayerMovement : MonoBehaviour
 
             forceToAdd = camDirection.normalized * PlayerBaseSpeed *  (1 - parallelVelocity.magnitude/maxVelocity);
  
-
             //Move Type
             if (sprint == 0 && crouch == 0)
             {
@@ -104,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            _rigidbody.AddForce(-_rigidbody.velocity.normalized * stationaryDrag);
+            _rigidbody.AddForce(-_rigidbody.velocity.normalized.ProjectOntoPlane(new Vector3(0, 1, 0)) * stationaryDrag);
         }
     }
 
