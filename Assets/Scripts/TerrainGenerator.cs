@@ -15,7 +15,8 @@ public class TerrainGenerator : MonoBehaviour
     private float _tempSeed;
     private void Start()
     {
-        _tempSeed = Random.Range(0, 9999f);
+        _tempSeed = 0;
+        // _tempSeed = Random.Range(0, 9999f);
         // TerrainCollider tc = GetComponent<TerrainCollider>();
         // terrain.terrainData = Instantiate(terrain.terrainData);
         // tc.terrainData = terrain.terrainData;
@@ -24,7 +25,8 @@ public class TerrainGenerator : MonoBehaviour
 
         terrain.terrainData = Instantiate(baseTerrainData);
         terrain.terrainData = GenerateTerrain(terrain.terrainData);
-        
+        TerrainCollider terrainCollider = GetComponent<TerrainCollider>();
+        terrainCollider.terrainData = terrain.terrainData;
         terrainPainter.PaintTerrain(terrain.terrainData);
     }
 
@@ -41,7 +43,6 @@ public class TerrainGenerator : MonoBehaviour
 
     float[,] GenerateHeights()
     {
-        
         float[,] heights = new float[width, length];
 
         for (int x = 0; x < width; x++)
@@ -59,8 +60,8 @@ public class TerrainGenerator : MonoBehaviour
     float CalculateNoise(int x, int y, float seed, float scale)
     {
         var position = transform.position;
-        float xNorm = (float) x / width * scale + seed + position.x;
-        float yNorm = (float) y / length * scale + seed + position.y;
+        float xNorm = (float) (x + position.z - (position.z / 513)) / width * scale + seed ;
+        float yNorm = (float) (y + position.x - (position.x / 513)) / length * scale + seed ;
         
         return Mathf.PerlinNoise(xNorm, yNorm);
     }
