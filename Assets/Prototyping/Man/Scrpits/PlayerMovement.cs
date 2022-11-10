@@ -36,7 +36,6 @@ public class PlayerMovement : MonoBehaviour
     {
         // _rigidbody.velocity += Vector3.up * PlayerJumpForce;
         _rigidbody.AddForce(Vector3.up * PlayerJumpForce);
-        Debug.Log(Vector3.up * PlayerJumpForce);
 
     }
     

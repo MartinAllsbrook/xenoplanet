@@ -865,7 +865,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 652905764}
-  m_LocalRotation: {x: 0.005236717, y: -0.00031911812, z: 0.0000016711539, w: 0.99998623}
+  m_LocalRotation: {x: 0.005236715, y: -0.0003191181, z: 0.0000016711532, w: 0.99998623}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1037,10 +1037,6 @@ PrefabInstance:
     - target: {fileID: 8700995294294666482, guid: 15d2f62750e99cc4b8f5ba6776c7fb92, type: 3}
       propertyPath: m_Name
       value: Terrain
-      objectReference: {fileID: 0}
-    - target: {fileID: 8700995294294666482, guid: 15d2f62750e99cc4b8f5ba6776c7fb92, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8700995294294666486, guid: 15d2f62750e99cc4b8f5ba6776c7fb92, type: 3}
       propertyPath: m_RootOrder
@@ -1274,13 +1270,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1926235618}
   - component: {fileID: 1926235617}
+  - component: {fileID: 1926235619}
   m_Layer: 0
   m_Name: Terrain Loader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1926235617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1293,10 +1290,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f04aac9349d244c448ced74b464c2454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seed: 1.1235813e+9
+  seed: 1000
+  width: 0
+  length: 0
+  depth: 0
+  macroScale: 0
   terrain: {fileID: 8700995294294666482, guid: 15d2f62750e99cc4b8f5ba6776c7fb92, type: 3}
-  loadDistance: 0
-  player: {fileID: 706081366}
 --- !u!4 &1926235618
 Transform:
   m_ObjectHideFlags: 0
@@ -1312,6 +1311,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1926235619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926235616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c57eeff68f5b04d839bc6c2b82edc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splatHeights: []
 --- !u!1 &1968523702
 GameObject:
   m_ObjectHideFlags: 0

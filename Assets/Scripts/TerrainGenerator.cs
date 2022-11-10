@@ -10,22 +10,22 @@ public class TerrainGenerator : MonoBehaviour
     public int depth;
 
     [SerializeField] private TerrainPainter terrainPainter;
-
+    [SerializeField] private TerrainData baseTerrainData;
     public float macroScale;
-    public float microScale;
-
-    private float _macroOffset;
-    private float _microOffset;
-
+    private float _tempSeed;
     private void Start()
     {
-        _macroOffset = Random.Range(0f, 9999f);
-        _microOffset = Random.Range(0f, 9999f);
+        _tempSeed = Random.Range(0, 9999f);
+        // TerrainCollider tc = GetComponent<TerrainCollider>();
+        // terrain.terrainData = Instantiate(terrain.terrainData);
+        // tc.terrainData = terrain.terrainData;
         
         Terrain terrain = GetComponent<Terrain>();
+
+        terrain.terrainData = Instantiate(baseTerrainData);
         terrain.terrainData = GenerateTerrain(terrain.terrainData);
         
-        terrainPainter.PaintTerrain();
+        terrainPainter.PaintTerrain(terrain.terrainData);
     }
 
     TerrainData GenerateTerrain(TerrainData terrainData)
@@ -41,32 +41,27 @@ public class TerrainGenerator : MonoBehaviour
 
     float[,] GenerateHeights()
     {
+        
         float[,] heights = new float[width, length];
 
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < length; y++)
             {
-                heights[x, y] = CalculateNoise(x,y);
+                // heights[x, y] = CalculateNoise(x, y, TerrainLoader.Instance.seed, macroScale);
+                heights[x, y] = CalculateNoise(x, y, _tempSeed, macroScale);
             }
         }
 
         return heights;
     }
 
-    float CalculateNoise(int x, int y)
+    float CalculateNoise(int x, int y, float seed, float scale)
     {
-
-        // float xMicro = (float) x / width * microScale + _microOffset;
-        // float yMicro = (float) y / length * microScale + _microOffset;
+        var position = transform.position;
+        float xNorm = (float) x / width * scale + seed + position.x;
+        float yNorm = (float) y / length * scale + seed + position.y;
         
-        float xMacro = (float) x / width * macroScale + _macroOffset;
-        float yMacro = (float) y / length * macroScale + _macroOffset;
-        
-        // var noiseMicro = Mathf.PerlinNoise(xMicro, yMicro);
-        var noiseMacro = Mathf.PerlinNoise(xMacro, yMacro);
-        // return noiseMacro * 0.75f + noiseMicro * 0.25f;
-
-        return noiseMacro;
+        return Mathf.PerlinNoise(xNorm, yNorm);
     }
 }

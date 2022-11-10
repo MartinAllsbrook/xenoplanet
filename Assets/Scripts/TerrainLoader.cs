@@ -1,39 +1,82 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TerrainLoader : MonoBehaviour
 {
+    public static TerrainLoader Instance;
+    public float seed;
+    
+    
+    public int width;
+    public int length;
+    public int depth;
+    
+    public float macroScale;
 
-    public GameObject[,] loadedChunks;
-
-    [SerializeField] private float seed;
+    
+    // public GameObject[,] loadedChunks;
     [SerializeField] private GameObject terrain;
+    // [SerializeField] private int loadDistance;
+    // [SerializeField] private Transform player;
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+    }
 
-    [SerializeField] private int loadDistance;
-
-    [SerializeField] private Transform player;
-    // Start is called before the first frame update
     void Start()
     {
-        for (var i = 0; i < 3; i++)
+        for (var i = 0; i < 2; i++)
         {
-            for (var j = 0; j < 3; j++)
+            for (var j = 0; j < 2; j++)
             {
                 Instantiate(terrain, new Vector3(i*513f, 0, j*513f), new Quaternion(0,0,0,0));
-                // newChunk.GetComponent<TerrainGenerator>().Generate(i*50000);
-                // loadedChunks[i, j] = newChunk;
             }
         }
     }
+    
+    // void GenerateTerrain(int x, int y)
+    // {
+    //     TerrainData terrainData = new TerrainData();
+    //     // terrainData.size = new Vector3(512,512,512);
+    //     terrainData.size = new Vector3(width, depth, length);
+    //     terrainData.heightmapResolution = width;
+    //     terrainData.SetHeights(0,0, GenerateHeights());
+    //     Terrain.CreateTerrainGameObject(terrainData);
+    // }
+    //
+    // float[,] GenerateHeights()
+    // {
+    //     float[,] heights = new float[width, length];
+    //
+    //     for (int x = 0; x < width; x++)
+    //     {
+    //         for (int y = 0; y < length; y++)
+    //         {
+    //             heights[x, y] = CalculateNoise(x,y,TerrainLoader.Instance.seed,macroScale);
+    //         }
+    //     }
+    //
+    //     return heights;
+    // }
+    //
+    // float CalculateNoise(int x, int y, float seed, float scale)
+    // {
+    //     var position = transform.position;
+    //     float xNorm = (float) x / width * scale + seed + position.x;
+    //     float yNorm = (float) y / length * scale + seed + position.y;
+    //     
+    //     return Mathf.PerlinNoise(xNorm, yNorm);
+    // }
 
     // Update is called once per frame
-    void Update()
-    {
-        // Set position to the same position as the player
-        var playerPosition = player.position;
-        transform.position = new Vector3(playerPosition.x, 0, playerPosition.z);
-        
-        
-    }
+    // void Update()
+    // {
+    //     // Set position to the same position as the player
+    //     var playerPosition = player.position;
+    //     transform.position = new Vector3(playerPosition.x, 0, playerPosition.z);
+    //     
+    //     
+    // }
 }
