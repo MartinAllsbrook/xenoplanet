@@ -1,4 +1,3 @@
-
 using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -57,16 +56,17 @@ public class TerrainGenerator : MonoBehaviour
 
     float CalculateNoise(int x, int y)
     {
-        float xMicro = (float) x / width * microScale + _microOffset;
-        float yMicro = (float) y / length * microScale + _microOffset;
+
+        // float xMicro = (float) x / width * microScale + _microOffset;
+        // float yMicro = (float) y / length * microScale + _microOffset;
         
         float xMacro = (float) x / width * macroScale + _macroOffset;
         float yMacro = (float) y / length * macroScale + _macroOffset;
         
-        var noiseMicro = Mathf.PerlinNoise(xMicro, yMicro);
+        // var noiseMicro = Mathf.PerlinNoise(xMicro, yMicro);
         var noiseMacro = Mathf.PerlinNoise(xMacro, yMacro);
-        return noiseMacro * 0.75f + noiseMicro * 0.25f;
+        // return noiseMacro * 0.75f + noiseMicro * 0.25f;
 
-        // return noiseMacro;
+        return noiseMacro;
     }
 }

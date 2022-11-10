@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    // public static PlayerMovement Instance;
+    
     //components
     private Rigidbody _rigidbody;
 
@@ -26,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        // if (Instance == null) Instance = this;
         _rigidbody = GetComponent<Rigidbody>();
     }
 
@@ -52,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
             Vector3 camDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
             // Calculate forces to add
-            Debug.Log(_rigidbody.velocity.magnitude);
+            // Debug.Log(_rigidbody.velocity.magnitude);
             Vector3 forceToAdd;
             var horizontalVelocity = _rigidbody.velocity.ProjectOntoPlane(new Vector3(0, 1, 0));
             var parallelVelocity = Vector3.Project(horizontalVelocity, camDirection);
