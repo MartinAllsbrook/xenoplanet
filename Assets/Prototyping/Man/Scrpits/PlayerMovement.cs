@@ -45,45 +45,13 @@ public class PlayerMovement : MonoBehaviour
         
         CheckGrounded();
     }
-
-<<<<<<< Updated upstream
+    
     #region Movment
     
         public void Jump()
         {
             _rigidbody.velocity += Vector3.up * PlayerJumpForce;
             // isJump = true;
-=======
-    // public void Move(Vector3 direction, float sprint, float crouch)
-    // {
-    //     if(direction.magnitude >= 0.1f)
-    //     {
-    //         //code adapted from Brackeys
-    //     
-    //         // //Rotate
-    //         float targetAngle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
-    //         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnVelocity, 0.1f) ;
-    //         transform.rotation = Quaternion.Euler(0f, angle, 0f);
-    //         
-    //         //Move
-    //         Vector3 camDirection = Quaternion.Euler(0f, targetAngle, 0f) * new Vector3(0f, _rigidbody.velocity.y, PlayerBaseSpeed);
-    //     
-    //         //Move Type
-    //         // if(sprint == 0 && crouch == 0)
-    //         //     _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity,  camDirection.normalized, ref currVelocity, 0.1f);
-    //         // else if (sprint == 1)
-    //         //     _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity,  camDirection.normalized * PlayerSprintSpeed, ref currVelocity, 0.1f);
-    //         // else if (crouch == 1)
-    //         // {
-    //         //     _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity,  camDirection.normalized * PlayerCrouchSpeed, ref currVelocity, 0.1f);
-    //         // }
-    //         
-    //     }
-    //     // else
-    //         // _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity,  new Vector3(0f, _rigidbody.velocity.y, 0f), ref currVelocity, 0.1f);
-    // }
->>>>>>> Stashed changes
-
             // _rigidbody.AddForce(Vector3.up * PlayerJumpForce);
             // Debug.Log(Vector3.up * PlayerJumpForce);
         }
@@ -131,31 +99,7 @@ public class PlayerMovement : MonoBehaviour
 
         public void Move(Vector2 direction)
         {
-<<<<<<< Updated upstream
             if (isGrounded)
-=======
-            //code adapted from Brackeys
-    
-            //Rotate
-            float targetAngle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnVelocity, 0.1f) ;
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
-    
-            //Move
-            Vector3 camDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-    
-            // Calculate forces to add
-            Debug.Log(_rigidbody.velocity.magnitude);
-            Vector3 forceToAdd;
-            var horizontalVelocity = _rigidbody.velocity.ProjectOntoPlane(new Vector3(0, 1, 0));
-            var parallelVelocity = Vector3.Project(horizontalVelocity, camDirection);
-    
-            forceToAdd = camDirection.normalized * PlayerBaseSpeed *  (1 - parallelVelocity.magnitude/maxVelocity);
-    
-    
-            //Move Type
-            if (sprint == 0 && crouch == 0)
->>>>>>> Stashed changes
             {
                 float targetAngle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
                 float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnVelocity, 0.1f) ;
@@ -173,16 +117,6 @@ public class PlayerMovement : MonoBehaviour
                     _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, Vector3.zero, ref currVelocity, 0.2f);
                 }
             }
-<<<<<<< Updated upstream
-=======
-            else if (sprint == 1)
-                forceToAdd *= PlayerSprintMultiplier;
-            else if (crouch == 1)
-                forceToAdd *= PlayerCrouchMultiplier;
-    
-            _rigidbody.AddForce(forceToAdd);
-    
->>>>>>> Stashed changes
         }
         
         
