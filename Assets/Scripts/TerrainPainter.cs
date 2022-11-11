@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class TerrainPainter : MonoBehaviour
 {
+    
     [System.Serializable]
     public class SplatHeights
     {
@@ -13,9 +14,9 @@ public class TerrainPainter : MonoBehaviour
     }
 
     public SplatHeights[] splatHeights;
-    public void PaintTerrain()
+    public void PaintTerrain(TerrainData terrainData)
     {
-        TerrainData terrainData = Terrain.activeTerrain.terrainData;
+        // TerrainData terrainData = Terrain.activeTerrain.terrainData;
         float[, ,] splatmapData = new float[terrainData.alphamapWidth, terrainData.alphamapHeight, terrainData.alphamapLayers];
 
         for (int y = 0; y < terrainData.alphamapHeight; y++)

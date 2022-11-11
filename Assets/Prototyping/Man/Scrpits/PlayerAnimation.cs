@@ -23,7 +23,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Update()
     {
-       _animation.SetFloat(XVelocity, _rigidbody.velocity.x);
+       _animation.SetFloat(XVelocity, _rigidbody.velocity.magnitude);
         // _animation.SetFloat(YVelocity, _rigidbody.velocity.y);
         
     }
