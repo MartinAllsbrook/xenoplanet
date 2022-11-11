@@ -66,7 +66,11 @@ public class TerrainGenerator : MonoBehaviour
         
         float mountainsArea = Mathf.Pow(CalculateNoise(x, y, biomeScale), 4f);
         mountainsArea *= oceansArea;
-        float mountains = CalculateNoise(x, y, TerrainLoader.Instance.macroScale) * mountainsArea;
+        float mountains = CalculateNoise(x, y, TerrainLoader.Instance.macroScale);
+        float mountainNoise = CalculateNoise(x, y, TerrainLoader.Instance.hfScale/6, _seed) / 25;
+        mountainNoise += CalculateNoise(x, y, TerrainLoader.Instance.hfScale/2, _seed) / 75;
+        mountains += mountainNoise;
+        mountains *= mountainsArea;
         height += mountains;
 
         float highFrequencyNoise = (CalculateNoise(x, y, TerrainLoader.Instance.hfScale, _seed + 1000) + CalculateNoise(x, y, TerrainLoader.Instance.hfScale, _seed + 2000)) / TerrainLoader.Instance.hfSize;
