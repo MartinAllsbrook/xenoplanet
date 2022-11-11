@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8700995294294666483}
   - component: {fileID: 8700995294294666487}
   - component: {fileID: 8700995294294666484}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 7942777306102283279}
   - component: {fileID: 4089175527011399126}
   - component: {fileID: 5364974254210635821}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ Transform:
   m_GameObject: {fileID: 9104272002991114866}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 256, y: 50, z: 256}
-  m_LocalScale: {x: 51.13, y: 51.13, z: 51.13}
+  m_LocalScale: {x: 51.500004, y: 51.500004, z: 51.500004}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8700995294294666486}

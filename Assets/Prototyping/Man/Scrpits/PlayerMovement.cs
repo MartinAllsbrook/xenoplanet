@@ -56,46 +56,46 @@ public class PlayerMovement : MonoBehaviour
             // Debug.Log(Vector3.up * PlayerJumpForce);
         }
         
-        // public void Move(Vector2 direction, float sprint, float crouch)
-        // {
-        //     if(direction.magnitude >= 0.1f)
-        //     {
-        //         // Code adapted from Brackeys 
-        //
-        //         //Rotate
-        //         float targetAngle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
-        //         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnVelocity, 0.1f) ;
-        //         transform.rotation = Quaternion.Euler(0f, angle, 0f);
-        //
-        //         //Move
-        //         Vector3 camDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-        //
-        //         // Calculate forces to add
-        //         Debug.Log(_rigidbody.velocity.magnitude);
-        //         Vector3 forceToAdd;
-        //         var horizontalVelocity = _rigidbody.velocity.ProjectOntoPlane(new Vector3(0, 1, 0));
-        //         var parallelVelocity = Vector3.Project(horizontalVelocity, camDirection);
-        //
-        //         forceToAdd = camDirection.normalized * PlayerBaseSpeed *  (1 - parallelVelocity.magnitude/maxVelocity);
-        //
-        //         //Move Type
-        //         if (sprint == 0 && crouch == 0)
-        //         {
-        //             
-        //         }
-        //         else if (sprint == 1)
-        //             forceToAdd *= PlayerSprintMultiplier;
-        //         else if (crouch == 1)
-        //             forceToAdd *= PlayerCrouchMultiplier;
-        //
-        //         _rigidbody.AddForce(forceToAdd);
-        //
-        //     }
-        //     else
-        //     {
-        //         _rigidbody.AddForce(-_rigidbody.velocity.normalized.ProjectOntoPlane(new Vector3(0, 1, 0)) * stationaryDrag);
-        //     }
-        // }
+        /*public void Move(Vector2 direction, float sprint, float crouch)
+        {
+            if(direction.magnitude >= 0.1f)
+            {
+                // Code adapted from Brackeys 
+        
+                //Rotate
+                float targetAngle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
+                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnVelocity, 0.1f) ;
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+        
+                //Move
+                Vector3 camDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+        
+                // Calculate forces to add
+                Debug.Log(_rigidbody.velocity.magnitude);
+                Vector3 forceToAdd;
+                var horizontalVelocity = _rigidbody.velocity.ProjectOntoPlane(new Vector3(0, 1, 0));
+                var parallelVelocity = Vector3.Project(horizontalVelocity, camDirection);
+        
+                forceToAdd = camDirection.normalized * PlayerBaseSpeed *  (1 - parallelVelocity.magnitude/maxVelocity);
+        
+                //Move Type
+                if (sprint == 0 && crouch == 0)
+                {
+                    
+                }
+                else if (sprint == 1)
+                    forceToAdd *= PlayerSprintMultiplier;
+                else if (crouch == 1)
+                    forceToAdd *= PlayerCrouchMultiplier;
+        
+                _rigidbody.AddForce(forceToAdd);
+        
+            }
+            else
+            {
+                _rigidbody.AddForce(-_rigidbody.velocity.normalized.ProjectOntoPlane(new Vector3(0, 1, 0)) * stationaryDrag);
+            }
+        }*/
 
         public void Move(Vector2 direction)
         {
