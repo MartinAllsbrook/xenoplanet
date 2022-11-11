@@ -1,4 +1,3 @@
-
 using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -7,26 +6,25 @@ public class TerrainGenerator : MonoBehaviour
 {
     public int width;
     public int length;
-
     public int depth;
 
     [SerializeField] private TerrainPainter terrainPainter;
-
-    public float macroScale;
-    public float microScale;
-
-    private float _macroOffset;
-    private float _microOffset;
+    [SerializeField] private TerrainData baseTerrainData;
+    
+    private float _seed;
 
     private void Start()
     {
-        _macroOffset = Random.Range(0f, 9999f);
-        _microOffset = Random.Range(0f, 9999f);
-        
+        _seed = TerrainLoader.Instance.seed;
+
         Terrain terrain = GetComponent<Terrain>();
+        terrain.terrainData = Instantiate(baseTerrainData);
         terrain.terrainData = GenerateTerrain(terrain.terrainData);
         
-        terrainPainter.PaintTerrain();
+        TerrainCollider terrainCollider = GetComponent<TerrainCollider>();
+        terrainCollider.terrainData = terrain.terrainData;
+        
+        terrainPainter.PaintTerrain(terrain.terrainData);
     }
 
     TerrainData GenerateTerrain(TerrainData terrainData)
@@ -48,25 +46,32 @@ public class TerrainGenerator : MonoBehaviour
         {
             for (int y = 0; y < length; y++)
             {
-                heights[x, y] = CalculateNoise(x,y);
+                heights[x, y] = CompileNoise(x, y);
+                // heights[x, y] = CalculateNoise(x, y, _tempSeed, macroScale);
             }
         }
 
         return heights;
     }
 
-    float CalculateNoise(int x, int y)
+    float CompileNoise(int x, int y)
     {
-        float xMicro = (float) x / width * microScale + _microOffset;
-        float yMicro = (float) y / length * microScale + _microOffset;
-        
-        float xMacro = (float) x / width * macroScale + _macroOffset;
-        float yMacro = (float) y / length * macroScale + _macroOffset;
-        
-        var noiseMicro = Mathf.PerlinNoise(xMicro, yMicro);
-        var noiseMacro = Mathf.PerlinNoise(xMacro, yMacro);
-        return noiseMacro * 0.75f + noiseMicro * 0.25f;
+        float height;
 
-        // return noiseMacro;
+        float mountains = CalculateNoise(x, y, TerrainLoader.Instance.biomeScale);
+        mountains *= mountains;
+        
+        height = CalculateNoise(x, y, TerrainLoader.Instance.macroScale) * mountains;
+        
+        return height;
+    }
+
+    float CalculateNoise(int x, int y, float scale)
+    {
+        var position = transform.position;
+        float xNorm = (float) (x + position.z - (position.z / 513)) / width * scale + _seed ;
+        float yNorm = (float) (y + position.x - (position.x / 513)) / length * scale + _seed ;
+        
+        return Mathf.PerlinNoise(xNorm, yNorm);
     }
 }
