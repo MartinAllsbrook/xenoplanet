@@ -6,27 +6,24 @@ public class TerrainGenerator : MonoBehaviour
 {
     public int width;
     public int length;
-
     public int depth;
 
     [SerializeField] private TerrainPainter terrainPainter;
     [SerializeField] private TerrainData baseTerrainData;
-    public float macroScale;
-    private float _tempSeed;
+    
+    private float _seed;
+
     private void Start()
     {
-        _tempSeed = 0;
-        // _tempSeed = Random.Range(0, 9999f);
-        // TerrainCollider tc = GetComponent<TerrainCollider>();
-        // terrain.terrainData = Instantiate(terrain.terrainData);
-        // tc.terrainData = terrain.terrainData;
-        
-        Terrain terrain = GetComponent<Terrain>();
+        _seed = TerrainLoader.Instance.seed;
 
+        Terrain terrain = GetComponent<Terrain>();
         terrain.terrainData = Instantiate(baseTerrainData);
         terrain.terrainData = GenerateTerrain(terrain.terrainData);
+        
         TerrainCollider terrainCollider = GetComponent<TerrainCollider>();
         terrainCollider.terrainData = terrain.terrainData;
+        
         terrainPainter.PaintTerrain(terrain.terrainData);
     }
 
@@ -49,19 +46,31 @@ public class TerrainGenerator : MonoBehaviour
         {
             for (int y = 0; y < length; y++)
             {
-                // heights[x, y] = CalculateNoise(x, y, TerrainLoader.Instance.seed, macroScale);
-                heights[x, y] = CalculateNoise(x, y, _tempSeed, macroScale);
+                heights[x, y] = CompileNoise(x, y);
+                // heights[x, y] = CalculateNoise(x, y, _tempSeed, macroScale);
             }
         }
 
         return heights;
     }
 
-    float CalculateNoise(int x, int y, float seed, float scale)
+    float CompileNoise(int x, int y)
+    {
+        float height;
+
+        float mountains = CalculateNoise(x, y, TerrainLoader.Instance.biomeScale);
+        mountains *= mountains;
+        
+        height = CalculateNoise(x, y, TerrainLoader.Instance.macroScale) * mountains;
+        
+        return height;
+    }
+
+    float CalculateNoise(int x, int y, float scale)
     {
         var position = transform.position;
-        float xNorm = (float) (x + position.z - (position.z / 513)) / width * scale + seed ;
-        float yNorm = (float) (y + position.x - (position.x / 513)) / length * scale + seed ;
+        float xNorm = (float) (x + position.z - (position.z / 513)) / width * scale + _seed ;
+        float yNorm = (float) (y + position.x - (position.x / 513)) / length * scale + _seed ;
         
         return Mathf.PerlinNoise(xNorm, yNorm);
     }

@@ -14,11 +14,12 @@ public class TerrainLoader : MonoBehaviour
     public int depth;
     
     public float macroScale;
+    public float biomeScale;
 
     
     // public GameObject[,] loadedChunks;
     [SerializeField] private GameObject terrain;
-    // [SerializeField] private int loadDistance;
+    [SerializeField] private int loadDistance;
     // [SerializeField] private Transform player;
     private void Awake()
     {
@@ -27,9 +28,9 @@ public class TerrainLoader : MonoBehaviour
 
     void Start()
     {
-        for (var i = 0; i < 2; i++)
+        for (var i = 0; i < loadDistance; i++)
         {
-            for (var j = 0; j < 2; j++)
+            for (var j = 0; j < loadDistance; j++)
             {
                 Instantiate(terrain, new Vector3(i*513f, 0, j*513f), new Quaternion(0,0,0,0));
             }

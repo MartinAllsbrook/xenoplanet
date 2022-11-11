@@ -83,10 +83,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 513
   length: 513
-  depth: 200
+  depth: 513
   terrainPainter: {fileID: 8700995294294666487}
   baseTerrainData: {fileID: 15600000, guid: 587f7452108b19e45819d2b2999857c2, type: 2}
-  macroScale: 2
 --- !u!114 &8700995294294666487
 MonoBehaviour:
   m_ObjectHideFlags: 0
