@@ -46,7 +46,8 @@ public class InputManager : MonoBehaviour
 
         //Move LeftStick (WASD) – Move
         _moveDirection = _playerControls.Player.Movement.ReadValue<Vector2>();
-        _playerMovement.Move(_moveDirection, sprint, crouch);
+        _playerMovement.Move(_moveDirection);
+        Debug.Log(_moveDirection);
         
         //Move RightStick (Mouse) – Camera
         _playerControls.Player.Camera.performed += context =>
