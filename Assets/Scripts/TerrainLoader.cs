@@ -9,13 +9,11 @@ public class TerrainLoader : MonoBehaviour
     public float seed;
     
     
-    public int width;
-    public int length;
-    public int depth;
     
     public float macroScale;
     public float biomeScale;
-
+    public float hfScale;
+    public float hfSize;
     
     // public GameObject[,] loadedChunks;
     [SerializeField] private GameObject terrain;

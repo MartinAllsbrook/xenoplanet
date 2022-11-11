@@ -4,10 +4,10 @@ using Random = UnityEngine.Random;
 
 public class TerrainGenerator : MonoBehaviour
 {
-    public int width;
-    public int length;
-    public int depth;
-
+    [SerializeField] private int width;
+    [SerializeField] private int length;
+    [SerializeField] private int depth;
+    
     [SerializeField] private TerrainPainter terrainPainter;
     [SerializeField] private TerrainData baseTerrainData;
     
@@ -69,7 +69,8 @@ public class TerrainGenerator : MonoBehaviour
         float mountains = CalculateNoise(x, y, TerrainLoader.Instance.macroScale) * mountainsArea;
         height += mountains;
 
-
+        float highFrequencyNoise = (CalculateNoise(x, y, TerrainLoader.Instance.hfScale, _seed + 1000) + CalculateNoise(x, y, TerrainLoader.Instance.hfScale, _seed + 2000)) / TerrainLoader.Instance.hfSize;
+        height += highFrequencyNoise;
         
         return height;
     }
@@ -82,4 +83,14 @@ public class TerrainGenerator : MonoBehaviour
         
         return Mathf.PerlinNoise(xNorm, yNorm);
     }
+    
+    float CalculateNoise(int x, int y, float scale, float seed)
+    {
+        var position = transform.position;
+        float xNorm = (float) (x + position.z - (position.z / 513)) / width * scale + seed ;
+        float yNorm = (float) (y + position.x - (position.x / 513)) / length * scale + seed ;
+        
+        return Mathf.PerlinNoise(xNorm, yNorm);
+    }
+    
 }
