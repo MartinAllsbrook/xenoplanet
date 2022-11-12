@@ -33,6 +33,18 @@ public class InputManager : MonoBehaviour
         _playerControls.Player.Disable();
     }
 
+    private void Start()
+    {
+        // _moveDirection = _playerControls.Player.Movement.ReadValue<Vector2>();
+        // _playerMovement.Move(_moveDirection);
+        
+        // _playerControls.Player.Movement.performed += context =>
+        // { 
+        //     _moveDirection = _playerControls.Player.Movement.ReadValue<Vector2>();
+        //     _playerMovement.Move(_moveDirection);
+        // };
+    }
+
     private void FixedUpdate()
     {
         //Press A (Space) – Jump
