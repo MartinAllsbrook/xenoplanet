@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8700995294294666483}
   - component: {fileID: 8700995294294666487}
   - component: {fileID: 8700995294294666484}
+  - component: {fileID: 2726080781050656292}
   m_Layer: 6
   m_Name: Terrain
   m_TagString: Untagged
@@ -87,6 +88,7 @@ MonoBehaviour:
   depth: 513
   terrainPainter: {fileID: 8700995294294666487}
   baseTerrainData: {fileID: 15600000, guid: 587f7452108b19e45819d2b2999857c2, type: 2}
+  terrainScatter: {fileID: 2726080781050656292}
 --- !u!114 &8700995294294666487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,6 +121,20 @@ TerrainCollider:
   m_Enabled: 1
   m_TerrainData: {fileID: 0}
   m_EnableTreeColliders: 1
+--- !u!114 &2726080781050656292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8700995294294666482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fc3c9855f9d2234abe1b37c00a759ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scatter:
+  - {fileID: 9124157745091716997, guid: eaacf1de2871fe849bb1068f5c428111, type: 3}
 --- !u!1 &9104272002991114866
 GameObject:
   m_ObjectHideFlags: 0

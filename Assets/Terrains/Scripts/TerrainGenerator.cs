@@ -10,21 +10,24 @@ public class TerrainGenerator : MonoBehaviour
     
     [SerializeField] private TerrainPainter terrainPainter;
     [SerializeField] private TerrainData baseTerrainData;
-    
+    [SerializeField] private TerrainScatter terrainScatter;
     private float _seed;
 
     private void Start()
     {
         _seed = TerrainLoader.Instance.seed;
 
+        
         Terrain terrain = GetComponent<Terrain>();
         terrain.terrainData = Instantiate(baseTerrainData);
         terrain.terrainData = GenerateTerrain(terrain.terrainData);
         
         TerrainCollider terrainCollider = GetComponent<TerrainCollider>();
         terrainCollider.terrainData = terrain.terrainData;
-        
+
+        terrain.treeBillboardDistance = 1000;
         terrainPainter.PaintTerrain(terrain.terrainData);
+        terrainScatter.ScatterFoliage(terrain);
     }
 
     TerrainData GenerateTerrain(TerrainData terrainData)

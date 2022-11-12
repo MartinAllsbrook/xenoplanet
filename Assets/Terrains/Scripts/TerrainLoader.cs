@@ -7,9 +7,7 @@ public class TerrainLoader : MonoBehaviour
 {
     public static TerrainLoader Instance;
     public float seed;
-    
-    
-    
+
     public float macroScale;
     public float biomeScale;
     public float hfScale;
