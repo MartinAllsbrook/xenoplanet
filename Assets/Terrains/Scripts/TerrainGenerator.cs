@@ -4,27 +4,30 @@ using Random = UnityEngine.Random;
 
 public class TerrainGenerator : MonoBehaviour
 {
-    public int width;
-    public int length;
-    public int depth;
-
+    [SerializeField] private int width;
+    [SerializeField] private int length;
+    [SerializeField] private int depth;
+    
     [SerializeField] private TerrainPainter terrainPainter;
     [SerializeField] private TerrainData baseTerrainData;
-    
+    [SerializeField] private TerrainScatter terrainScatter;
     private float _seed;
 
     private void Start()
     {
         _seed = TerrainLoader.Instance.seed;
 
+        
         Terrain terrain = GetComponent<Terrain>();
         terrain.terrainData = Instantiate(baseTerrainData);
         terrain.terrainData = GenerateTerrain(terrain.terrainData);
         
         TerrainCollider terrainCollider = GetComponent<TerrainCollider>();
         terrainCollider.terrainData = terrain.terrainData;
-        
+
+        terrain.treeBillboardDistance = 1000;
         terrainPainter.PaintTerrain(terrain.terrainData);
+        terrainScatter.ScatterFoliage(terrain);
     }
 
     TerrainData GenerateTerrain(TerrainData terrainData)
@@ -66,10 +69,15 @@ public class TerrainGenerator : MonoBehaviour
         
         float mountainsArea = Mathf.Pow(CalculateNoise(x, y, biomeScale), 4f);
         mountainsArea *= oceansArea;
-        float mountains = CalculateNoise(x, y, TerrainLoader.Instance.macroScale) * mountainsArea;
+        float mountains = CalculateNoise(x, y, TerrainLoader.Instance.macroScale);
+        float mountainNoise = CalculateNoise(x, y, TerrainLoader.Instance.hfScale/6, _seed) / 25;
+        mountainNoise += CalculateNoise(x, y, TerrainLoader.Instance.hfScale/2, _seed) / 75;
+        mountains += mountainNoise;
+        mountains *= mountainsArea;
         height += mountains;
 
-
+        float highFrequencyNoise = (CalculateNoise(x, y, TerrainLoader.Instance.hfScale, _seed + 1000) + CalculateNoise(x, y, TerrainLoader.Instance.hfScale, _seed + 2000)) / TerrainLoader.Instance.hfSize;
+        height += highFrequencyNoise;
         
         return height;
     }
@@ -82,4 +90,14 @@ public class TerrainGenerator : MonoBehaviour
         
         return Mathf.PerlinNoise(xNorm, yNorm);
     }
+    
+    float CalculateNoise(int x, int y, float scale, float seed)
+    {
+        var position = transform.position;
+        float xNorm = (float) (x + position.z - (position.z / 513)) / width * scale + seed ;
+        float yNorm = (float) (y + position.x - (position.x / 513)) / length * scale + seed ;
+        
+        return Mathf.PerlinNoise(xNorm, yNorm);
+    }
+    
 }
