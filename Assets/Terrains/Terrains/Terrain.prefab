@@ -135,6 +135,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scatter:
   - {fileID: 9124157745091716997, guid: eaacf1de2871fe849bb1068f5c428111, type: 3}
+  treeCount: 50
+  maxOffset: 0.62
 --- !u!1 &9104272002991114866
 GameObject:
   m_ObjectHideFlags: 0

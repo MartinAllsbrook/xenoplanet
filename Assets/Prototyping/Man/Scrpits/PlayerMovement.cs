@@ -15,12 +15,12 @@ public class PlayerMovement : MonoBehaviour
     private float turnVelocity;
 
     //Move Factors
-    [Range(1, 5000)] [SerializeField] private float PlayerBaseSpeed;
+    [Range(1, 100)] [SerializeField] private float PlayerBaseSpeed;
     [Range(0, 2)] [SerializeField] private float PlayerSprintMultiplier;
     [Range(0, 2)] [SerializeField] private float PlayerCrouchMultiplier;
-    [Range(1, 100000)] [SerializeField] private float PlayerJumpForce;
-    [Range(1, 100)] [SerializeField] private float maxVelocity;
-    [Range(1, 5000)] [SerializeField] private float stationaryDrag;
+    [Range(1, 1000)] [SerializeField] private float PlayerJumpForce;
+    // [Range(1, 100)] [SerializeField] private float maxVelocity;
+    // [Range(1, 5000)] [SerializeField] private float stationaryDrag;
     
     //Camera Reference
     [SerializeField] private CinemachineFreeLook thridPersonCamera;
