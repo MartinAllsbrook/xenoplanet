@@ -12,7 +12,7 @@ public class TerrainScatter : MonoBehaviour
     {
         
         
-        int grassDensity = 1000;
+        int grassDensity = 100;
         int patchDetail = 100;
         terrain.terrainData.SetDetailResolution(grassDensity, patchDetail);
   
