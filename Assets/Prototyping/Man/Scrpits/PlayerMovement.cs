@@ -36,12 +36,12 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        Debug.Log(_rigidbody.velocity);
+        // Debug.Log(_rigidbody.velocity);
     }
 
     private void Update()
     {
-        Debug.Log(isJump);
+        // Debug.Log(isJump);
         
         CheckGrounded();
     }
