@@ -50,7 +50,10 @@ public class PlayerMovement : MonoBehaviour
     
         public void Jump()
         {
-            _rigidbody.velocity += Vector3.up * PlayerJumpForce;
+            if (isGrounded)
+            {
+                _rigidbody.velocity += Vector3.up * PlayerJumpForce;
+            }
             // isJump = true;
             // _rigidbody.AddForce(Vector3.up * PlayerJumpForce);
             // Debug.Log(Vector3.up * PlayerJumpForce);
@@ -135,7 +138,10 @@ public class PlayerMovement : MonoBehaviour
     private void CheckGrounded()
     {
         if (Physics.CheckSphere(groundCheck.position, 0.1f, WhatIsGround))
+        {
+            Debug.Log("walkable");
             isGrounded = true;
+        }
         else
             isGrounded = false;
     }
