@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8700995294294666486}
   - component: {fileID: 8700995294294666485}
   - component: {fileID: 8700995294294666483}
-  - component: {fileID: 8700995294294666487}
   - component: {fileID: 8700995294294666484}
   - component: {fileID: 2726080781050656292}
+  - component: {fileID: -6355049622709052411}
   m_Layer: 6
   m_Name: Terrain
   m_TagString: Untagged
@@ -62,7 +62,7 @@ Terrain:
   m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_ReflectionProbeUsage: 1
-  m_MaterialTemplate: {fileID: 2100000, guid: b972a210fef754ae9af30ac6a023e4db, type: 2}
+  m_MaterialTemplate: {fileID: 2100000, guid: e0bdd802dec204a178a9ae0506625a96, type: 2}
   m_BakeLightProbesForTrees: 1
   m_PreserveTreePrototypeLayers: 0
   m_DeringLightProbesForTrees: 1
@@ -83,33 +83,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db5d1502396eed240adc255f3d44d3fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 513
-  length: 513
-  depth: 513
-  terrainPainter: {fileID: 8700995294294666487}
+  width: 1000
+  length: 1000
+  depth: 1000
+  terrainPainter: {fileID: -6355049622709052411}
   baseTerrainData: {fileID: 15600000, guid: 587f7452108b19e45819d2b2999857c2, type: 2}
   terrainScatter: {fileID: 2726080781050656292}
---- !u!114 &8700995294294666487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8700995294294666482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48c57eeff68f5b04d839bc6c2b82edc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  splatHeights:
-  - textureIndex: 0
-    startingHeight: 0
-  - textureIndex: 1
-    startingHeight: 50
-  - textureIndex: 2
-    startingHeight: 100
-  - textureIndex: 3
-    startingHeight: 150
 --- !u!154 &8700995294294666484
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -137,6 +116,27 @@ MonoBehaviour:
   - {fileID: 9124157745091716997, guid: eaacf1de2871fe849bb1068f5c428111, type: 3}
   treeCount: 50
   maxOffset: 0.62
+--- !u!114 &-6355049622709052411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8700995294294666482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c57eeff68f5b04d839bc6c2b82edc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splatHeights:
+  - textureIndex: 0
+    startingHeight: 0
+  - textureIndex: 1
+    startingHeight: 30
+  - textureIndex: 2
+    startingHeight: 60
+  - textureIndex: 3
+    startingHeight: 90
 --- !u!1 &9104272002991114866
 GameObject:
   m_ObjectHideFlags: 0

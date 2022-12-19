@@ -29,6 +29,9 @@
         },
         {
             "m_Id": "cd919956ae284a9ca41ed5dcc949d6e2"
+        },
+        {
+            "m_Id": "80f3bbfa3c2a4a3b8744f888f98d075d"
         }
     ],
     "m_Keywords": [],
@@ -624,8 +627,8 @@
     ],
     "m_VertexContext": {
         "m_Position": {
-            "x": 1625.0001220703125,
-            "y": -926.0
+            "x": 1719.5,
+            "y": -875.0
         },
         "m_Blocks": [
             {
@@ -641,8 +644,8 @@
     },
     "m_FragmentContext": {
         "m_Position": {
-            "x": 1625.0001220703125,
-            "y": -670.5
+            "x": 1719.5,
+            "y": -644.5
         },
         "m_Blocks": [
             {
@@ -667,7 +670,7 @@
     },
     "m_PreviewData": {
         "serializedMesh": {
-            "m_SerializedMesh": "{\"mesh\":{\"instanceID\":0}}",
+            "m_SerializedMesh": "{\"mesh\":{\"fileID\":-2068146084287345230,\"guid\":\"4f48d0d7f91923a45824a34918262f47\",\"type\":3}}",
             "m_Guid": ""
         },
         "preventRotation": false
@@ -903,9 +906,9 @@
         "m_Position": {
             "serializedVersion": "2",
             "x": -803.0,
-            "y": 233.0,
+            "y": 233.00006103515626,
             "width": 208.0,
-            "height": 326.0
+            "height": 325.9998779296875
         }
     },
     "m_Slots": [
@@ -1247,6 +1250,9 @@
         },
         {
             "m_Id": "cd919956ae284a9ca41ed5dcc949d6e2"
+        },
+        {
+            "m_Id": "80f3bbfa3c2a4a3b8744f888f98d075d"
         }
     ]
 }
@@ -1805,9 +1811,9 @@
         "m_Position": {
             "serializedVersion": "2",
             "x": -721.0,
-            "y": 128.0,
-            "width": 149.99993896484376,
-            "height": 34.0
+            "y": 128.00006103515626,
+            "width": 150.0001220703125,
+            "height": 33.99993896484375
         }
     },
     "m_Slots": [
@@ -2054,10 +2060,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 34.0,
+            "x": 34.0001220703125,
             "y": 199.0,
-            "width": 208.0,
-            "height": 302.0
+            "width": 207.9998779296875,
+            "height": 302.00006103515627
         }
     },
     "m_Slots": [
@@ -2532,9 +2538,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -164.00003051757813,
-            "y": 374.5000305175781,
-            "width": 131.00003051757813,
+            "x": -164.0,
+            "y": 374.50006103515627,
+            "width": 131.0001220703125,
             "height": 34.0
         }
     },
@@ -2792,6 +2798,28 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.BooleanShaderProperty",
+    "m_ObjectId": "80f3bbfa3c2a4a3b8744f888f98d075d",
+    "m_Guid": {
+        "m_GuidSerialized": "d23d65c4-bdb5-4bfe-804f-aebbd47f58dc"
+    },
+    "m_Name": "TerrainCompatible",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "TerrainCompatible",
+    "m_DefaultReferenceName": "_TerrainCompatible",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": true
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "815acc187a844b19a8cfe89d603bec73",
     "m_Id": 0,
@@ -2935,10 +2963,10 @@
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.GroupData",
     "m_ObjectId": "9357361b79d643b78bd3b2a17cb9a88d",
-    "m_Title": "Grass Texture",
+    "m_Title": "Rock Texture",
     "m_Position": {
-        "x": -828.0000610351563,
-        "y": 42.0000114440918
+        "x": -828.0,
+        "y": 41.99993896484375
     }
 }
 
@@ -2954,10 +2982,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -436.499755859375,
+            "x": -436.5,
             "y": 100.5,
             "width": 208.0,
-            "height": 434.0
+            "height": 433.99993896484377
         }
     },
     "m_Slots": [
