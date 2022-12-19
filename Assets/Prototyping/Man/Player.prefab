@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 5871221131373447266}
   - component: {fileID: 5871221131373447271}
   - component: {fileID: 5871221131373447270}
+  - component: {fileID: 1379201983}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -107,12 +108,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67e21035d9b0f4db2af763d2be0e2573, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerBaseSpeed: 6
+  PlayerBaseSpeed: 10
   PlayerSprintMultiplier: 1.5
   PlayerCrouchMultiplier: 0.5
-  PlayerJumpForce: 5
-  maxVelocity: 50
-  stationaryDrag: 2178
+  PlayerJumpForce: 7
   thridPersonCamera: {fileID: 0}
   mainCamera: {fileID: 0}
   WhatIsGround:
@@ -184,7 +183,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!136 &5871221131373447270
 CapsuleCollider:
@@ -200,6 +199,21 @@ CapsuleCollider:
   m_Height: 1.5374144
   m_Direction: 1
   m_Center: {x: 0, y: 0.78129274, z: 0}
+--- !u!114 &1379201983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5871221131373447293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3838c86b5396a494484cb587beb44726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrow: {fileID: 8552387443009401812, guid: eeb0ec5fde229a148a41b776d4a0c62d, type: 3}
+  camera: {fileID: 0}
+  thirdPersonCamera: {fileID: 0}
 --- !u!1001 &5871221131203088582
 PrefabInstance:
   m_ObjectHideFlags: 0
