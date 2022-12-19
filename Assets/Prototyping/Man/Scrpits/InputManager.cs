@@ -48,7 +48,7 @@ public class InputManager : MonoBehaviour
         // };
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         //Press A (Space) – Jump
         _playerControls.Player.Jump.performed += context => _playerMovement.Jump();

@@ -10,7 +10,7 @@ public class Arrow : MonoBehaviour
     void Start()
     {
         Debug.Log(Vector3.forward);
-        // arrowRigidbody.velocity = Vector3.forward * 10;
+        arrowRigidbody.AddForce(transform.up * 4000);
     }
 
     // Update is called once per frame
