@@ -5,17 +5,10 @@ using UnityEngine;
 public class Arrow : MonoBehaviour
 {
     [SerializeField] private Rigidbody arrowRigidbody;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        Debug.Log(Vector3.forward);
-        arrowRigidbody.AddForce(transform.up * 4000);
-    }
 
-    // Update is called once per frame
-    void Update()
+    public void Fire(float strength)
     {
-        // transform.LookAt(arrowRigidbody.velocity);
+        arrowRigidbody.AddForce(strength * 5000 * transform.forward);
+        transform.LookAt(transform.position + arrowRigidbody.velocity.normalized);
     }
 }

@@ -73,13 +73,12 @@ public class InputManager : MonoBehaviour
 
         if (_playerControls.Player.Fire.IsInProgress())
         {
-            _fireStrength += Time.deltaTime;
+            _playerActions.ChargeArrow();
         }
 
         if (_playerControls.Player.Fire.WasReleasedThisFrame())
         {
-            _playerActions.FireArrow(_fireStrength);
-            _fireStrength = 0;
+            _playerActions.FireArrow();
         }
         
 
