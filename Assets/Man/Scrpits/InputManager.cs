@@ -71,16 +71,23 @@ public class InputManager : MonoBehaviour
             _playerMovement.CameraControl(_cameraDirection);
         };
 
+        // RT / LMB => Hold to charge arrow
         if (_playerControls.Player.Fire.IsInProgress())
         {
             _playerActions.ChargeArrow();
         }
-
+        
+        // RT / LMB => Release to fire arrow
         if (_playerControls.Player.Fire.WasReleasedThisFrame())
         {
             _playerActions.FireArrow();
         }
         
+        // Y / Q => Cycle arrows
+        if (_playerControls.Player.CycleArrows.WasPressedThisFrame())
+        {
+            _playerActions.CycleArrow();
+        }
 
         // I dont know what this does
         _playerControls.Player.Movement.canceled += context => _cameraDirection = Vector2.zero;
