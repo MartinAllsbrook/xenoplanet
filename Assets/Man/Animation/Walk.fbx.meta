@@ -536,13 +536,13 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Alpha_Surface
       parentName: Man(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      position: {x: -0, y: 0.9795343, z: 0.00072098424}
+      rotation: {x: 0.008536965, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Alpha_Joints
       parentName: Man(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      position: {x: -0, y: 0.099235, z: -0.012273001}
+      rotation: {x: -0.05904525, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:Hips
       parentName: Man(Clone)
@@ -842,7 +842,7 @@ ModelImporter:
     - name: mixamorig:LeftToe_End
       parentName: mixamorig:LeftToeBase
       position: {x: -1.7763568e-17, y: 0.099999994, z: 4.8907472e-11}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      rotation: {x: -0.19408372, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:RightUpLeg
       parentName: mixamorig:Hips

@@ -28,4 +28,9 @@ public class PlayerActions : MonoBehaviour
         strength = 0;
         chargeTime = 0;
     }
+
+    public void AimArrow()
+    {
+        
+    }
 }
