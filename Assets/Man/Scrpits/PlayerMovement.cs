@@ -18,7 +18,12 @@ public class PlayerMovement : MonoBehaviour
     [Range(1, 100)] [SerializeField] private float PlayerBaseSpeed;
     [Range(0, 2)] [SerializeField] private float PlayerSprintMultiplier;
     [Range(0, 2)] [SerializeField] private float PlayerCrouchMultiplier;
-    [Range(1, 1000)] [SerializeField] private float PlayerJumpForce;
+    [Range(0, 100)] [SerializeField] private float PlayerJumpForce;
+    [Range(0, 100)] [SerializeField] private float PlayerFallForce;
+    [SerializeField] private bool SecondJump;
+    private Vector3 PlayerDirection;
+    private float PlayerJump;
+
     // [Range(1, 100)] [SerializeField] private float maxVelocity;
     // [Range(1, 5000)] [SerializeField] private float stationaryDrag;
     
@@ -42,84 +47,83 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         // Debug.Log(isJump);
+        Move();
+        Jump();
         
         CheckGrounded();
     }
+
+    public void PlayerInput(Vector3 PlayerDirInput, float PlayerJumpInput)
+    {
+        PlayerDirection = PlayerDirInput;
+        PlayerJump = PlayerJumpInput;
+    }
+    
+    
+    
     
     #region Movment
     
         public void Jump()
         {
-            if (isGrounded)
+            //if you can jump (isgrounded and input)
+            if (isGrounded && PlayerJump == 1)
             {
-                _rigidbody.velocity += Vector3.up * PlayerJumpForce;
+                //jump
+                _rigidbody.velocity += Vector3.up * (PlayerJumpForce * Time.deltaTime);
+            }
+            
+            //if falling
+            if (!isGrounded && _rigidbody.velocity.y < 0)
+            {
+                //can second jump
+                if (SecondJump && PlayerJump == 1)
+                {
+                    //zero out velocity before jumping
+                    _rigidbody.velocity = Vector3.zero;
+                    // _rigidbody.velocity += Vector3.up * (PlayerJumpForce * Time.deltaTime * 50);
+                    float temp = (PlayerJumpForce * Time.deltaTime * 50);
+                    _rigidbody.velocity += new Vector3(PlayerDirection.x, temp, PlayerDirection.y);
+                    SecondJump = false;
+                }
+                
+                else
+                {
+                    _rigidbody.velocity += Vector3.down * (PlayerFallForce * Time.deltaTime);
+                }
             }
         }
-        
-        /*public void Move(Vector2 direction, float sprint, float crouch)
-        {
-            if(direction.magnitude >= 0.1f)
-            {
-                // Code adapted from Brackeys 
-        
-                //Rotate
-                float targetAngle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
-                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnVelocity, 0.1f) ;
-                transform.rotation = Quaternion.Euler(0f, angle, 0f);
-        
-                //Move
-                Vector3 camDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-        
-                // Calculate forces to add
-                Debug.Log(_rigidbody.velocity.magnitude);
-                Vector3 forceToAdd;
-                var horizontalVelocity = _rigidbody.velocity.ProjectOntoPlane(new Vector3(0, 1, 0));
-                var parallelVelocity = Vector3.Project(horizontalVelocity, camDirection);
-        
-                forceToAdd = camDirection.normalized * PlayerBaseSpeed *  (1 - parallelVelocity.magnitude/maxVelocity);
-        
-                //Move Type
-                if (sprint == 0 && crouch == 0)
-                {
-                    
-                }
-                else if (sprint == 1)
-                    forceToAdd *= PlayerSprintMultiplier;
-                else if (crouch == 1)
-                    forceToAdd *= PlayerCrouchMultiplier;
-        
-                _rigidbody.AddForce(forceToAdd);
-        
-            }
-            else
-            {
-                _rigidbody.AddForce(-_rigidbody.velocity.normalized.ProjectOntoPlane(new Vector3(0, 1, 0)) * stationaryDrag);
-            }
-        }*/
 
-        public void Move(Vector2 direction)
+        public void Move()
         {
             if (isGrounded)
             {
-                float targetAngle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
-                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnVelocity, 0.1f) ;
-                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+                //Calculate direction to move
+                float targetAngle = Mathf.Atan2(PlayerDirection.x, PlayerDirection.y) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
+                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnVelocity, 0.1f);
 
                 //Move
                 Vector3 camDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
-                if (direction.magnitude > 0.1f)
+                //if input then turn and move
+                if (PlayerDirection.magnitude > 0.1f)
                 {
-                    _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, camDirection * (PlayerBaseSpeed * direction.magnitude), ref currVelocity, 0.2f);
+                    transform.rotation = Quaternion.Euler(0f, angle, 0f);
+                    _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, camDirection * (PlayerBaseSpeed * PlayerDirection.magnitude), ref currVelocity, 0.3f);
                 }
+                //if no input 0 velocity (prevents sliding)
                 else
                 {
                     _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, Vector3.zero, ref currVelocity, 0.2f);
                 }
             }
+
+            //AirControl??
+            if (!isGrounded)
+            {
+                
+            }
         }
-        
-        
 
         public void CameraControl(Vector2 direction)
         {
@@ -139,6 +143,7 @@ public class PlayerMovement : MonoBehaviour
         {
             // Debug.Log("walkable");
             isGrounded = true;
+            SecondJump = true;
         }
         else
             isGrounded = false;
