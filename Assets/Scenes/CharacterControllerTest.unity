@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18238667, g: 0.22809671, b: 0.3072912, a: 1}
+  m_IndirectSpecularColor: {r: 0.18238738, g: 0.22809762, b: 0.30729336, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -201,7 +201,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 151084023}
-  m_LocalRotation: {x: 0.041557286, y: -0.00031940234, z: 0.000013284972, w: 0.9991361}
+  m_LocalRotation: {x: 0.041557252, y: -0.0003193769, z: 0.000013283903, w: 0.9991361}
   m_LocalPosition: {x: 0, y: 1.93, z: -6.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -616,8 +616,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661514882}
-  m_LocalRotation: {x: -0.016936205, y: -0.0003379401, z: -0.0000057242423, w: 0.99985653}
-  m_LocalPosition: {x: 0, y: -0.708874, z: 0.33337784}
+  m_LocalRotation: {x: 0.041557252, y: -0.00031937042, z: 0.000013283634, w: 0.9991361}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -911,8 +911,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 861661902}
-  m_LocalRotation: {x: 0.04155726, y: -0.00031937257, z: 0.000013283725, w: 0.9991361}
-  m_LocalPosition: {x: 0, y: 0.00000011920929, z: 0}
+  m_LocalRotation: {x: 0.04155725, y: -0.00031937473, z: 0.000013283811, w: 0.9991361}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1100,45 +1100,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1229185689}
-  m_LocalRotation: {x: 0.005236272, y: -0.0003196443, z: 0.0000016737667, w: 0.9999863}
-  m_LocalPosition: {x: 0, y: 0.00000011920929, z: 0}
+  m_LocalRotation: {x: 0.0052362597, y: -0.00031966157, z: 0.0000016738541, w: 0.99998623}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1689569322}
   m_Father: {fileID: 301311949}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1505611184
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1505611185}
-  m_Layer: 0
-  m_Name: GroundCheck
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1505611185
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505611184}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 808596947}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1689569321
 GameObject:
@@ -1401,10 +1370,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1505611185, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 5871221131373447265, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1454,29 +1419,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 151084025}
     - target: {fileID: 5871221131373447267, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
-      propertyPath: groundCheck
-      value: 
-      objectReference: {fileID: 1505611185}
-    - target: {fileID: 5871221131373447267, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
-      propertyPath: PlayerBaseSpeed
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5871221131373447267, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
-      propertyPath: PlayerFallForce
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5871221131373447267, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
-      propertyPath: PlayerJumpForce
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 5871221131373447267, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: thridPersonCamera
       value: 
       objectReference: {fileID: 301311948}
-    - target: {fileID: 5871221131373447267, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
-      propertyPath: WhatIsGround.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
     - target: {fileID: 5871221131373447293, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_Name
       value: Player

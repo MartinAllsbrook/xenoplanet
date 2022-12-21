@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
             if (isGrounded && PlayerJump == 1)
             {
                 //jump
-                _rigidbody.velocity += Vector3.up * (PlayerJumpForce * Time.deltaTime);
+                _rigidbody.velocity += Vector3.up * (PlayerJumpForce);
             }
             
             //if falling
@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
                     //zero out velocity before jumping
                     _rigidbody.velocity = Vector3.zero;
                     // _rigidbody.velocity += Vector3.up * (PlayerJumpForce * Time.deltaTime * 50);
-                    float temp = (PlayerJumpForce * Time.deltaTime * 50);
+                    float temp = (PlayerJumpForce * 20f);
                     _rigidbody.velocity += new Vector3(PlayerDirection.x, temp, PlayerDirection.y);
                     SecondJump = false;
                 }
