@@ -89,6 +89,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Use"",
+                    ""type"": ""Button"",
+                    ""id"": ""ef03ca22-0a15-4a5a-a7b3-fe7639c97113"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -289,6 +298,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""CycleArrows"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cf272040-427e-45b4-a0a9-18d93e68ab4d"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Use"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5240bbb9-b169-4e3e-bf8c-13347965e442"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Use"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -321,6 +352,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_Sprinting = m_Player.FindAction("Sprinting", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_CycleArrows = m_Player.FindAction("CycleArrows", throwIfNotFound: true);
+        m_Player_Use = m_Player.FindAction("Use", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -387,6 +419,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Sprinting;
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_CycleArrows;
+    private readonly InputAction m_Player_Use;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -398,6 +431,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Sprinting => m_Wrapper.m_Player_Sprinting;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @CycleArrows => m_Wrapper.m_Player_CycleArrows;
+        public InputAction @Use => m_Wrapper.m_Player_Use;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -428,6 +462,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @CycleArrows.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCycleArrows;
                 @CycleArrows.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCycleArrows;
                 @CycleArrows.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCycleArrows;
+                @Use.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUse;
+                @Use.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUse;
+                @Use.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUse;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -453,6 +490,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @CycleArrows.started += instance.OnCycleArrows;
                 @CycleArrows.performed += instance.OnCycleArrows;
                 @CycleArrows.canceled += instance.OnCycleArrows;
+                @Use.started += instance.OnUse;
+                @Use.performed += instance.OnUse;
+                @Use.canceled += instance.OnUse;
             }
         }
     }
@@ -484,5 +524,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnSprinting(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnCycleArrows(InputAction.CallbackContext context);
+        void OnUse(InputAction.CallbackContext context);
     }
 }

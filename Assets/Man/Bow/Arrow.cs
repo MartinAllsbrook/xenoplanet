@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    [SerializeField] private Rigidbody arrowRigidbody;
+    [SerializeField] protected Rigidbody arrowRigidbody;
     [SerializeField] private float baseDamage;
     [SerializeField] private float baseForce;
     [SerializeField] private string arrowName;

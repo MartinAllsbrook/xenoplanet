@@ -7,18 +7,35 @@ using UnityEngine;
 
 public class PlayerActions : MonoBehaviour
 {
+    public static PlayerActions Instance;
     [SerializeField] private GameObject[] arrows;
     [SerializeField] private GameObject camera;
     [SerializeField] private GameObject thirdPersonCamera;
+    [SerializeField] private Rigidbody playerRigidBody;
+
     private float chargeTime = 0;
     private float strength = 0;
-
     private int selectedArrow = 0;
-
     private float chargeMultiplier = 3;
-
-    private void Start()
+    
+    private bool hooked = false;
+    public bool Hooked
     {
+        get { return hooked; }
+        set { hooked = value; }
+    }
+
+    private Vector3 hookPosition;
+    public Vector3 HookPosition
+    {
+        get { return hookPosition; }
+        set { hookPosition = value; }
+    }
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
     }
 
     public void CycleArrow()
@@ -56,8 +73,13 @@ public class PlayerActions : MonoBehaviour
         chargeTime = 0;
     }
 
-    public void AimArrow()
+    public void Pull()
     {
-        
+        Debug.Log("Pulling");
+        if (hooked)
+        {
+            Debug.Log("Hooked");
+            playerRigidBody.AddForce((hookPosition - transform.position).normalized * 1000);
+        }
     }
 }

@@ -102,6 +102,12 @@ public class InputManager : MonoBehaviour
         {
             _playerActions.CycleArrow();
         }
+        
+        // LT / RMB => Hold to pull
+        if (_playerControls.Player.Use.IsInProgress())
+        {
+            _playerActions.Pull();
+        }
 
         // I dont know what this does
         // _playerControls.Player.Movement.canceled += context => _cameraDirection = Vector2.zero;
