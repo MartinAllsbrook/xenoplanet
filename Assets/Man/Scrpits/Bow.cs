@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class PlayerActions : MonoBehaviour
+public class Bow : MonoBehaviour
 {
-    public static PlayerActions Instance;
+    public static Bow Instance;
     [SerializeField] private GameObject[] arrows;
     [SerializeField] private GameObject camera;
     [SerializeField] private GameObject thirdPersonCamera;
@@ -17,6 +18,8 @@ public class PlayerActions : MonoBehaviour
     private float strength = 0;
     private int selectedArrow = 0;
     private float chargeMultiplier = 3;
+
+    public UnityEvent unHook;
     
     private bool hooked = false;
     public bool Hooked
@@ -34,17 +37,23 @@ public class PlayerActions : MonoBehaviour
 
     private void Awake()
     {
+        // Create singleton
         if (Instance == null)
             Instance = this;
+        
+        // Create unHook event
+        if (unHook == null)
+            unHook = new UnityEvent();
     }
 
     public void CycleArrow()
     {
+        // Cycle through arrows
         selectedArrow++;
         if (selectedArrow >= arrows.Length)
-        {
             selectedArrow = 0;
-        }
+        
+        // Update hud
         HUDController.Instance.SetArrow(arrows[selectedArrow].GetComponent<Arrow>().ArrowName);
     }
 
@@ -71,15 +80,25 @@ public class PlayerActions : MonoBehaviour
         thirdPersonCamera.GetComponent<CinemachineFreeLook>().m_Lens.FieldOfView = 45;
         strength = 0;
         chargeTime = 0;
+        
+        // If shooting a grapple arrow unhook
+        if (arrows[selectedArrow].name == "grapple")
+            UnHook();
     }
 
+    // Pull on graple
     public void Pull()
     {
-        Debug.Log("Pulling");
+        // If the player is hooked pull on the grapple
         if (hooked)
-        {
-            Debug.Log("Hooked");
             playerRigidBody.AddForce((hookPosition - transform.position).normalized * 1000);
-        }
+    }
+
+    public void UnHook()
+    {
+        // Invoke unhook unity event for arrow
+        unHook.Invoke();
+        // Reset var
+        hooked = false;
     }
 }

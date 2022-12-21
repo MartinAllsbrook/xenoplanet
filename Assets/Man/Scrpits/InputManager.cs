@@ -6,9 +6,11 @@ using UnityEngine.EventSystems;
 
 public class InputManager : MonoBehaviour
 {
+    public static InputManager Instance;
+    
     private PlayerControls _playerControls;
     private PlayerMovement _playerMovement;
-    private PlayerActions _playerActions;
+    private Bow _bow;
 
     private Vector2 _moveDirection;
     private Vector2 _cameraDirection;
@@ -20,9 +22,11 @@ public class InputManager : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance == null)
+            Instance = this;
         _playerControls = new PlayerControls();
         _playerMovement = GetComponent<PlayerMovement>();
-        _playerActions = GetComponent<PlayerActions>();
+        _bow = GetComponent<Bow>();
         _fireStrength = 0;
     }
 
@@ -58,8 +62,6 @@ public class InputManager : MonoBehaviour
     //
     // }
 
-
-
     private void Update()
     {
         //Press A (Space) – Jump
@@ -78,7 +80,7 @@ public class InputManager : MonoBehaviour
         //_____Call Movement_____
         _playerMovement.PlayerInput(_moveDirection, jump);
 
-            //Move RightStick (Mouse) – Camera
+        //Move RightStick (Mouse) – Camera
         if (_playerControls.Player.Camera.IsInProgress())
         {
             _cameraDirection = _playerControls.Player.Camera.ReadValue<Vector2>();
@@ -88,25 +90,31 @@ public class InputManager : MonoBehaviour
         // RT / LMB => Hold to charge arrow
         if (_playerControls.Player.Fire.IsInProgress())
         {
-            _playerActions.ChargeArrow();
+            _bow.ChargeArrow();
         }
 
         // RT / LMB => Release to fire arrow
         if (_playerControls.Player.Fire.WasReleasedThisFrame())
         {
-            _playerActions.FireArrow();
+            _bow.FireArrow();
         }
         
         // Y / Q => Cycle arrows
         if (_playerControls.Player.CycleArrows.WasPressedThisFrame())
         {
-            _playerActions.CycleArrow();
+            _bow.CycleArrow();
         }
         
         // LT / RMB => Hold to pull
         if (_playerControls.Player.Use.IsInProgress())
         {
-            _playerActions.Pull();
+            _bow.Pull();
+        }
+        
+        // LT / RMB => Release to delete grapple
+        if (_playerControls.Player.Use.WasReleasedThisFrame())
+        {
+            _bow.UnHook();
         }
 
         // I dont know what this does

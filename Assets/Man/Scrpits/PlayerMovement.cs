@@ -63,8 +63,7 @@ public class PlayerMovement : MonoBehaviour
     
     
     #region Movment
-    
-        public void Jump()
+    public void Jump()
         {
             //if you can jump (isgrounded and input)
             if (isGrounded && PlayerJump == 1)
