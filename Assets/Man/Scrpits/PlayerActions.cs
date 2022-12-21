@@ -28,6 +28,7 @@ public class PlayerActions : MonoBehaviour
         {
             selectedArrow = 0;
         }
+        HUDController.Instance.SetArrow(arrows[selectedArrow].GetComponent<Arrow>().ArrowName);
     }
 
     // "Charge" arrow based on how long the player is holding the trigger

@@ -243,6 +243,7 @@ MonoBehaviour:
   arrowRigidbody: {fileID: -43158751508159289}
   baseDamage: 10
   baseForce: 500
+  arrowName: Normal
 --- !u!54 &-43158751508159289
 Rigidbody:
   m_ObjectHideFlags: 0

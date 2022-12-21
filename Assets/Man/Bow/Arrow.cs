@@ -8,6 +8,13 @@ public class Arrow : MonoBehaviour
     [SerializeField] private Rigidbody arrowRigidbody;
     [SerializeField] private float baseDamage;
     [SerializeField] private float baseForce;
+    [SerializeField] private string arrowName;
+
+    public string ArrowName
+    {
+        get { return this.arrowName; }
+        private set {}
+    }
     
     // Arrow damage var and prop to be accessed by target
     private float damage = 0;

@@ -104,6 +104,6 @@ public class InputManager : MonoBehaviour
         }
 
         // I dont know what this does
-        _playerControls.Player.Movement.canceled += context => _cameraDirection = Vector2.zero;
+        // _playerControls.Player.Movement.canceled += context => _cameraDirection = Vector2.zero;
     }
 }

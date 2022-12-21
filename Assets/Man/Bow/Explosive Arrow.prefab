@@ -4944,6 +4944,7 @@ MonoBehaviour:
   arrowRigidbody: {fileID: 5966821036017870168}
   baseDamage: 20
   baseForce: 400
+  arrowName: Explosive
   explodeParticles: {fileID: 5065590562593492601, guid: 6689370d9bf0f6343a0a9b040326513a, type: 3}
 --- !u!1 &7913777044700160860
 GameObject:
