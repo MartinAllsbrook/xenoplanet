@@ -28,6 +28,13 @@ public class Bow : MonoBehaviour
         set { hooked = value; }
     }
 
+    private void OnEnable()
+    {
+        // Create singleton
+        if (Instance == null)
+            Instance = this;
+    }
+
     private Vector3 hookPosition;
     public Vector3 HookPosition
     {
@@ -37,10 +44,6 @@ public class Bow : MonoBehaviour
 
     private void Awake()
     {
-        // Create singleton
-        if (Instance == null)
-            Instance = this;
-        
         // Create unHook event
         if (unHook == null)
             unHook = new UnityEvent();

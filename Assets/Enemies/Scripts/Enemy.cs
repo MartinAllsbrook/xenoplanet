@@ -5,36 +5,26 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private float health;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] protected float health;
+    [SerializeField] protected float range;
+    [SerializeField] protected LayerMask visible;
+    // [SerializeField] protected LayerMask player;
 
-    // Update is called once per frame
-    void Update()
+    protected virtual void OnCollisionEnter(Collision collision)
     {
-        
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        // If the enemy collides with an arrow
+        // If the enemy collided with an arrow
         if (collision.gameObject.CompareTag("Arrow"))
         {
+            // Get arrow script, and arrow damage from script
             Arrow arrow = collision.gameObject.GetComponent<Arrow>();
             float damage = arrow.Damage;
                 
             // Loose health
             health -= damage;
-            Debug.Log(health);
             
             // If enemy has no more health destroy it
             if (health <= 0)
-            {
                 Destroy(gameObject);
-            }
         }
     }
 }

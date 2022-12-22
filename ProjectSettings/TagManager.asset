@@ -5,15 +5,17 @@ TagManager:
   serializedVersion: 2
   tags:
   - Arrow
+  - Environment
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Walkable
-  - 
+  - Enemy
   - 
   - 
   - 
