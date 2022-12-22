@@ -143,8 +143,9 @@ MonoBehaviour:
   PlayerBaseSpeed: 6
   PlayerSprintMultiplier: 1.5
   PlayerCrouchMultiplier: 0.5
-  PlayerJumpForce: 80
-  PlayerFallForce: 10
+  PlayerJumpForce: 5
+  doubbleJumpMultiplier: 1.75
+  PlayerFallForce: 80
   SecondJump: 0
   thridPersonCamera: {fileID: 0}
   mainCamera: {fileID: 0}
@@ -198,6 +199,18 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 3280773a-8bb7-4d40-b87c-a7513bf5b940
     m_ActionName: Player/Sprinting
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cfca7ff1-e9a5-4c66-8a18-92023bd3a3b6
+    m_ActionName: Player/Fire[/XInputControllerWindows/rightTrigger,/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 452f3474-9ff5-4c03-bcae-da1207dd9872
+    m_ActionName: Player/CycleArrows[/XInputControllerWindows/buttonNorth,/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ef03ca22-0a15-4a5a-a7b3-fe7639c97113
+    m_ActionName: Player/Use[/XInputControllerWindows/leftTrigger,/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
