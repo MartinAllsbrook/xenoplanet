@@ -18,7 +18,8 @@ public class InputManager : MonoBehaviour
     private bool _isJumping;
     private bool _isCrouching;
 
-    float _fireStrength;
+    private bool readyToJump = false;
+    private float _fireStrength;
 
     private void Awake()
     {
@@ -66,7 +67,9 @@ public class InputManager : MonoBehaviour
     {
         //Press A (Space) – Jump
         // _playerControls.Player.Jump.performed += context => _playerMovement.Jump();
-        float jump = _playerControls.Player.Jump.ReadValue<float>();
+        
+        // When player is presses jump
+        bool jump = _playerControls.Player.Jump.WasPressedThisFrame();
 
         //Press LeftStick (Shift) - Sprint
         float sprint = _playerControls.Player.Sprinting.ReadValue<float>();

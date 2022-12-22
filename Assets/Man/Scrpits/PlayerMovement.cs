@@ -18,11 +18,12 @@ public class PlayerMovement : MonoBehaviour
     [Range(1, 100)] [SerializeField] private float PlayerBaseSpeed;
     [Range(0, 2)] [SerializeField] private float PlayerSprintMultiplier;
     [Range(0, 2)] [SerializeField] private float PlayerCrouchMultiplier;
-    [Range(0, 100)] [SerializeField] private float PlayerJumpForce;
+    [Range(0, 20)] [SerializeField] private float PlayerJumpForce;
+    [Range(0, 4)] [SerializeField] private float doubbleJumpMultiplier;
     [Range(0, 100)] [SerializeField] private float PlayerFallForce;
     [SerializeField] private bool SecondJump;
     private Vector3 PlayerDirection;
-    private float PlayerJump;
+    private bool PlayerJump;
 
     // [Range(1, 100)] [SerializeField] private float maxVelocity;
     // [Range(1, 5000)] [SerializeField] private float stationaryDrag;
@@ -53,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
         CheckGrounded();
     }
 
-    public void PlayerInput(Vector3 PlayerDirInput, float PlayerJumpInput)
+    public void PlayerInput(Vector3 PlayerDirInput, bool PlayerJumpInput)
     {
         PlayerDirection = PlayerDirInput;
         PlayerJump = PlayerJumpInput;
@@ -64,71 +65,72 @@ public class PlayerMovement : MonoBehaviour
     
     #region Movment
     public void Jump()
+    {
+        // If the player jumped this update
+        if (PlayerJump)
         {
-            //if you can jump (isgrounded and input)
-            if (isGrounded && PlayerJump == 1)
+            // If the player is on the ground jump
+            if (isGrounded)
+                _rigidbody.velocity += Vector3.up * PlayerJumpForce;
+
+            // If the player is in the air
+            // if (!isGrounded)
+            else
             {
-                //jump
-                _rigidbody.velocity += Vector3.up * (PlayerJumpForce);
-            }
-            
-            //if falling
-            if (!isGrounded && _rigidbody.velocity.y < 0)
-            {
-                //can second jump
-                if (SecondJump && PlayerJump == 1)
+                // If the player has a 2nd jump double jump
+                if (SecondJump)
                 {
-                    //zero out velocity before jumping
-                    _rigidbody.velocity = Vector3.zero;
+                    // _rigidbody.velocity = Vector3.zero; // zero out velocity before jumping
                     // _rigidbody.velocity += Vector3.up * (PlayerJumpForce * Time.deltaTime * 50);
-                    float temp = (PlayerJumpForce * 20f);
-                    _rigidbody.velocity += new Vector3(PlayerDirection.x, temp, PlayerDirection.y);
+                    // float temp = (PlayerJumpForce * 20f);
+                    // _rigidbody.velocity += new Vector3(PlayerDirection.x, temp, PlayerDirection.y);
+                    _rigidbody.velocity += Vector3.up * (PlayerJumpForce * doubbleJumpMultiplier);
+                    Debug.Log("DoubbleJump");
                     SecondJump = false;
                 }
-                
+                // Else fall faster
                 else
-                {
                     _rigidbody.velocity += Vector3.down * (PlayerFallForce * Time.deltaTime);
-                }
             }
         }
+    }
 
-        public void Move()
+    public void Move()
+    {
+        if (isGrounded)
         {
-            if (isGrounded)
+            //Calculate direction to move
+            float targetAngle = Mathf.Atan2(PlayerDirection.x, PlayerDirection.y) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnVelocity, 0.1f);
+
+            //Move
+            Vector3 camDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+
+            //if input then turn and move
+            if (PlayerDirection.magnitude > 0.1f)
             {
-                //Calculate direction to move
-                float targetAngle = Mathf.Atan2(PlayerDirection.x, PlayerDirection.y) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
-                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnVelocity, 0.1f);
-
-                //Move
-                Vector3 camDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-
-                //if input then turn and move
-                if (PlayerDirection.magnitude > 0.1f)
-                {
-                    transform.rotation = Quaternion.Euler(0f, angle, 0f);
-                    _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, camDirection * (PlayerBaseSpeed * PlayerDirection.magnitude), ref currVelocity, 0.3f);
-                }
-                //if no input 0 velocity (prevents sliding)
-                else
-                {
-                    _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, Vector3.zero, ref currVelocity, 0.2f);
-                }
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+                _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, camDirection * (PlayerBaseSpeed * PlayerDirection.magnitude), ref currVelocity, 0.3f);
             }
-
-            //AirControl??
-            if (!isGrounded)
+            //if no input 0 velocity (prevents sliding)
+            else
             {
-                
+                _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, Vector3.zero, ref currVelocity, 0.2f);
             }
         }
 
-        public void CameraControl(Vector2 direction)
+        //AirControl??
+        if (!isGrounded)
         {
-            thridPersonCamera.m_XAxis.m_InputAxisValue = -direction.x;
-            thridPersonCamera.m_YAxis.m_InputAxisValue = -direction.y;
+            
         }
+    }
+
+    public void CameraControl(Vector2 direction)
+    {
+        thridPersonCamera.m_XAxis.m_InputAxisValue = -direction.x;
+        thridPersonCamera.m_YAxis.m_InputAxisValue = -direction.y;
+    }
         
     #endregion
 
