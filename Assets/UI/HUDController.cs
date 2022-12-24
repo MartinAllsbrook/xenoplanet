@@ -28,7 +28,7 @@ public class HUDController : MonoBehaviour
     // Set health bar width
     public void SetHealth(float health)
     {
-        Debug.Log("Health: " + health);
+        // Debug.Log("Health: " + health);
         var width = health * 5;
         healthBar.sizeDelta = new Vector2(width, healthBar.sizeDelta.y);
     }

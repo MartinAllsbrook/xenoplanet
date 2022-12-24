@@ -2,15 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyTurret : Enemy
 {
     [SerializeField] private float chargeMultiplier;
     [SerializeField] private float roatationSpeed;
+    
     private GameObject cannon;
     private LineRenderer _laserBeam;
 
-    private float _lasercharge = 0;
+    private float _laserCharge = 0;
     private bool _canSeePlayer = false;
     private Quaternion _targetRotation;
     private Vector3 _transformPosition;
@@ -58,23 +60,24 @@ public class EnemyTurret : Enemy
         _laserBeam.SetPositions(positions);
         
         // Set line renderer's width
-        _lasercharge += Time.deltaTime * chargeMultiplier;
-        _laserBeam.widthMultiplier = _lasercharge;
+        _laserCharge += (1 - _laserCharge) * Time.deltaTime * chargeMultiplier;
+        Debug.Log("Laser Charge: " + _laserCharge);
+        _laserBeam.widthMultiplier = _laserCharge * 2 * Random.Range(0.85f, 1.0f);
         
         // If laser hit's the player deal damage
         GameObject objectHit = laserHit.transform.gameObject;
         if (objectHit.CompareTag("Player"))
         {
             PlayerStats playerStats = objectHit.GetComponent<PlayerStats>();
-            playerStats.DealDamage(_lasercharge);
+            playerStats.DealDamage(_laserCharge);
         }
     }
 
     private void StopLaser()
     {
         // Set laser charge
-        _lasercharge = 0;
-        _laserBeam.widthMultiplier = _lasercharge;
+        _laserCharge = 0;
+        _laserBeam.widthMultiplier = _laserCharge;
     }
 
     protected override void OnCollisionEnter(Collision collision)

@@ -176,7 +176,7 @@ SphereCollider:
   m_GameObject: {fileID: 7416700644622255189}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -405,7 +405,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 7416700645033415984}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -420,6 +420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7416700645137342091}
   - component: {fileID: 1578908117}
+  - component: {fileID: 1184297579}
   m_Layer: 7
   m_Name: Basic Turret
   m_TagString: Enemy
@@ -462,5 +463,18 @@ MonoBehaviour:
   visible:
     serializedVersion: 2
     m_Bits: 72
-  chargeMultiplier: 0.05
+  chargeMultiplier: 0.1
   roatationSpeed: 0.2
+--- !u!135 &1184297579
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7416700645137342092}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
