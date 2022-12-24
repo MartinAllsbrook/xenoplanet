@@ -78,11 +78,11 @@ public class EnemyTurret : Enemy
         _laserBeam.widthMultiplier = _lasercharge;
     }
 
-    private void OnDrawGizmos()
-    {
-        Ray ray = new Ray(transform.position, Bow.Instance.transform.position - transform.position);
-        Gizmos.DrawRay(ray);    
-    }
+    // private void OnDrawGizmos()
+    // {
+    //     Ray ray = new Ray(transform.position, Bow.Instance.transform.position - transform.position);
+    //     Gizmos.DrawRay(ray);    
+    // }
 
     protected override void OnCollisionEnter(Collision collision)
     {

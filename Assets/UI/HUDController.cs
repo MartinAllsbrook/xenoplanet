@@ -10,6 +10,7 @@ public class HUDController : MonoBehaviour
     public static HUDController Instance;
 
     [SerializeField] private TextMeshProUGUI arrowDisplay;
+    [SerializeField] private RectTransform healthBar;
     private void Awake()
     {
         // Create singleton
@@ -24,5 +25,11 @@ public class HUDController : MonoBehaviour
         arrowDisplay.text = arrow;
     }
 
- 
+    // Set health bar width
+    public void SetHealth(float health)
+    {
+        Debug.Log("Health: " + health);
+        var width = health * 5;
+        healthBar.sizeDelta = new Vector2(width, healthBar.sizeDelta.y);
+    }
 }

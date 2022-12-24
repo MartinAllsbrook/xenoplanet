@@ -8,7 +8,8 @@ public class PlayerStats : MonoBehaviour
 
     public void DealDamage(float damage)
     {
-        Debug.Log("Damage: " + damage);
+        // Debug.Log("Damage: " + damage);
         health -= damage;
+        HUDController.Instance.SetHealth(health);
     }
 }
