@@ -21,7 +21,7 @@ public class EnemyTurret : Enemy
     {
         cannon = transform.GetChild(0).gameObject;
         _laserBeam = cannon.GetComponent<LineRenderer>();
-        _transformPosition = transform.position;
+        _transformPosition = cannon.transform.position;
     }
 
     private void FixedUpdate()

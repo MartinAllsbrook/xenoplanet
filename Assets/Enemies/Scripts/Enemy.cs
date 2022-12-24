@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float health;
     [SerializeField] protected float range;
     [SerializeField] protected LayerMask visible;
+    [SerializeField] private GameObject deathParticles;
     // [SerializeField] protected LayerMask player;
 
     protected virtual void OnCollisionEnter(Collision collision)
@@ -24,7 +25,13 @@ public class Enemy : MonoBehaviour
             
             // If enemy has no more health destroy it
             if (health <= 0)
-                Destroy(gameObject);
+                Die();
         }
+    }
+
+    protected virtual void Die()
+    {
+        Instantiate(deathParticles, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 }
