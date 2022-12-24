@@ -28,7 +28,6 @@ public class EnemyTurret : Enemy
         Ray ray = new Ray(_transformPosition, direction);
         if (Physics.Raycast(ray, out RaycastHit hit, range, visible))
         {
-            Debug.Log(hit.transform.gameObject.tag);
             if (hit.transform.gameObject.CompareTag("Player"))
             {
                 _targetRotation = Quaternion.LookRotation(direction);
@@ -36,8 +35,8 @@ public class EnemyTurret : Enemy
                 FireLaser(cannon.transform.forward);
                 return;
             }
-            else
-                StopLaser();
+            // else (because of return)
+            StopLaser();
         }
 
         if (cannon.transform.rotation != _targetRotation)
@@ -78,14 +77,9 @@ public class EnemyTurret : Enemy
         _laserBeam.widthMultiplier = _lasercharge;
     }
 
-    // private void OnDrawGizmos()
-    // {
-    //     Ray ray = new Ray(transform.position, Bow.Instance.transform.position - transform.position);
-    //     Gizmos.DrawRay(ray);    
-    // }
-
     protected override void OnCollisionEnter(Collision collision)
     {
         base.OnCollisionEnter(collision);
+        Debug.Log("Turret Collided");
     }
 }
