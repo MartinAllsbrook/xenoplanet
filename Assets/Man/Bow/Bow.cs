@@ -20,30 +20,29 @@ public class Bow : MonoBehaviour
     private float chargeMultiplier = 3;
 
     public UnityEvent unHook;
-    
-    private bool hooked = false;
-    public bool Hooked
-    {
-        get { return hooked; }
-        set { hooked = value; }
-    }
 
-    private void OnEnable()
+    #region Properties
+        private bool hooked = false;
+        public bool Hooked
+        {
+            get { return hooked; }
+            set { hooked = value; }
+        }
+
+        private Vector3 hookPosition;
+        public Vector3 HookPosition
+        {
+            get { return hookPosition; }
+            set { hookPosition = value; }
+        }
+    #endregion
+    
+    private void Awake()
     {
         // Create singleton
         if (Instance == null)
             Instance = this;
-    }
-
-    private Vector3 hookPosition;
-    public Vector3 HookPosition
-    {
-        get { return hookPosition; }
-        set { hookPosition = value; }
-    }
-
-    private void Awake()
-    {
+        
         // Create unHook event
         if (unHook == null)
             unHook = new UnityEvent();

@@ -24,7 +24,7 @@ public class GrappleArrow : Arrow
         // Set postitions 0 => arrow, 1 => player
         Vector3[] postitions = new Vector3[2];
         postitions[0] = transform.position;
-        postitions[1] = Bow.Instance.transform.position + new Vector3(0, 1.5f, 0);
+        postitions[1] = Bow.Instance.transform.position;
         
         // Render rope between player and arrow
         ropeLineRenderer.SetPositions(postitions);

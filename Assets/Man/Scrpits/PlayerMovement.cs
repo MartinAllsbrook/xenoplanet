@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool SecondJump;
     private Vector3 PlayerDirection;
     private bool PlayerJump;
+    
 
     // [Range(1, 100)] [SerializeField] private float maxVelocity;
     // [Range(1, 5000)] [SerializeField] private float stationaryDrag;

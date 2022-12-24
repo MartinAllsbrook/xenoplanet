@@ -26,7 +26,7 @@ public class EnemyTurret : Enemy
 
     private void FixedUpdate()
     {
-        Vector3 direction = Bow.Instance.transform.position + new Vector3(0, 1, 0) - _transformPosition;
+        Vector3 direction = Player.Instance.transform.position + new Vector3(0, 1, 0) - _transformPosition;
         Ray ray = new Ray(_transformPosition, direction);
         if (Physics.Raycast(ray, out RaycastHit hit, range, visible))
         {
@@ -68,7 +68,7 @@ public class EnemyTurret : Enemy
         GameObject objectHit = laserHit.transform.gameObject;
         if (objectHit.CompareTag("Player"))
         {
-            PlayerStats playerStats = objectHit.GetComponent<PlayerStats>();
+            Player playerStats = objectHit.GetComponent<Player>();
             playerStats.DealDamage(_laserCharge);
         }
     }

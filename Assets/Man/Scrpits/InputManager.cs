@@ -10,7 +10,7 @@ public class InputManager : MonoBehaviour
     
     private PlayerControls _playerControls;
     private PlayerMovement _playerMovement;
-    private Bow _bow;
+    [SerializeField] private Bow _bow;
 
     private Vector2 _moveDirection;
     private Vector2 _cameraDirection;
@@ -27,7 +27,7 @@ public class InputManager : MonoBehaviour
             Instance = this;
         _playerControls = new PlayerControls();
         _playerMovement = GetComponent<PlayerMovement>();
-        _bow = GetComponent<Bow>();
+        // _bow = GetComponent<Bow>();
         _fireStrength = 0;
     }
 
