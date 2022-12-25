@@ -6,6 +6,9 @@ using UnityEngine.Events;
 
 public class Grapple : MonoBehaviour
 {
+    [Range(0,1)] [SerializeField] private float initialGrappleLength;
+    [SerializeField] private float grappleRateOfChange;
+    
     public static Grapple Instance;
     
     private GameObject _player;
@@ -19,6 +22,7 @@ public class Grapple : MonoBehaviour
         // Create singleton
         if (Instance == null)
             Instance = this;
+
     }
 
     private void Start()
@@ -50,7 +54,7 @@ public class Grapple : MonoBehaviour
 
         float distanceFromPoint = Vector3.Distance(_player.transform.position, _grapplePoint);
 
-        _joint.maxDistance = distanceFromPoint * 0.3f;
+        _joint.maxDistance = distanceFromPoint * initialGrappleLength;
         _joint.minDistance = 0;
 
         _joint.spring = 30f;
@@ -61,15 +65,27 @@ public class Grapple : MonoBehaviour
     }
 
     // Pull on grapple
-    public void Pull()
+    public void ChangeGrappleLength(bool shrink)
     {
+        if (_joint)
+        {
+            var grappleLength = _joint.maxDistance;
+            
+            if (shrink) 
+                grappleLength -= Time.deltaTime * grappleRateOfChange;
+            else
+                grappleLength += Time.deltaTime * grappleRateOfChange;
+            
+            _joint.maxDistance = grappleLength;
+        }
         
     }
 
     public void Unhook()
     {
         _ropeRenderer.positionCount = 0;
-        if (_joint) Destroy(_joint);
+        if (_joint) 
+            Destroy(_joint);
         
     }
 

@@ -108,12 +108,14 @@ public class InputManager : MonoBehaviour
             _bow.CycleArrow();
         }
         
-        // LT / RMB => Hold to pull
-        if (_playerControls.Player.Use.IsInProgress())
-        {
-            _grapple.Pull();
-        }
-        
+        // D-Pad Up => Shrink Grapple
+        if (_playerControls.Player.PadUp.IsInProgress())
+            _grapple.ChangeGrappleLength(true);
+
+        // D-Pad Down => Lengthen Grapple
+        if (_playerControls.Player.PadDown.IsInProgress())
+            _grapple.ChangeGrappleLength(false);
+
         // LT / RMB => Release to delete grapple
         if (_playerControls.Player.Use.WasPressedThisFrame())
         {

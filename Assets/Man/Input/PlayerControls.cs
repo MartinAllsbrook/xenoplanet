@@ -98,6 +98,24 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PadUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""e867ffd0-9b9a-42de-8719-8b6e8dc27efd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PadDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""2a402f53-dc60-46c8-8ecb-0d00e7fee535"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -320,6 +338,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Use"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3b1e78a5-e377-4bf7-bc7f-af0826817ce3"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PadUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1780d0a9-c0c6-44d3-a2a3-f6650034f4fc"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PadDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -353,6 +393,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_CycleArrows = m_Player.FindAction("CycleArrows", throwIfNotFound: true);
         m_Player_Use = m_Player.FindAction("Use", throwIfNotFound: true);
+        m_Player_PadUp = m_Player.FindAction("PadUp", throwIfNotFound: true);
+        m_Player_PadDown = m_Player.FindAction("PadDown", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -420,6 +462,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_CycleArrows;
     private readonly InputAction m_Player_Use;
+    private readonly InputAction m_Player_PadUp;
+    private readonly InputAction m_Player_PadDown;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -432,6 +476,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @CycleArrows => m_Wrapper.m_Player_CycleArrows;
         public InputAction @Use => m_Wrapper.m_Player_Use;
+        public InputAction @PadUp => m_Wrapper.m_Player_PadUp;
+        public InputAction @PadDown => m_Wrapper.m_Player_PadDown;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -465,6 +511,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Use.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUse;
                 @Use.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUse;
                 @Use.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUse;
+                @PadUp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPadUp;
+                @PadUp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPadUp;
+                @PadUp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPadUp;
+                @PadDown.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPadDown;
+                @PadDown.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPadDown;
+                @PadDown.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPadDown;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -493,6 +545,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Use.started += instance.OnUse;
                 @Use.performed += instance.OnUse;
                 @Use.canceled += instance.OnUse;
+                @PadUp.started += instance.OnPadUp;
+                @PadUp.performed += instance.OnPadUp;
+                @PadUp.canceled += instance.OnPadUp;
+                @PadDown.started += instance.OnPadDown;
+                @PadDown.performed += instance.OnPadDown;
+                @PadDown.canceled += instance.OnPadDown;
             }
         }
     }
@@ -525,5 +583,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnCycleArrows(InputAction.CallbackContext context);
         void OnUse(InputAction.CallbackContext context);
+        void OnPadUp(InputAction.CallbackContext context);
+        void OnPadDown(InputAction.CallbackContext context);
     }
 }
