@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool SecondJump;
     private Vector3 PlayerDirection;
     private bool PlayerJump;
+    private bool PlayerSprint;
+    private bool PlayerCrouch;
     
 
     // [Range(1, 100)] [SerializeField] private float maxVelocity;
@@ -55,10 +57,13 @@ public class PlayerMovement : MonoBehaviour
         CheckGrounded();
     }
 
-    public void PlayerInput(Vector3 PlayerDirInput, bool PlayerJumpInput)
+    public void PlayerInput(Vector3 PlayerDirInput, bool PlayerJumpInput, bool PlayerSprintInput, bool PlayerCrouchInput)
     {
         PlayerDirection = PlayerDirInput;
         PlayerJump = PlayerJumpInput;
+        PlayerSprint = PlayerSprintInput;
+        PlayerCrouch = PlayerCrouchInput;
+        Debug.Log(PlayerSprint);
     }
     
     
@@ -81,7 +86,8 @@ public class PlayerMovement : MonoBehaviour
                 // If the player has a 2nd jump double jump
                 if (SecondJump)
                 {
-                    // _rigidbody.velocity = Vector3.zero; // zero out velocity before jumping
+                    //without this double jump on falling is too small
+                    _rigidbody.velocity = Vector3.zero; // zero out velocity before jumping
                     // _rigidbody.velocity += Vector3.up * (PlayerJumpForce * Time.deltaTime * 50);
                     // float temp = (PlayerJumpForce * 20f);
                     // _rigidbody.velocity += new Vector3(PlayerDirection.x, temp, PlayerDirection.y);
@@ -111,7 +117,12 @@ public class PlayerMovement : MonoBehaviour
             if (PlayerDirection.magnitude > 0.1f)
             {
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
-                _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, camDirection * (PlayerBaseSpeed * PlayerDirection.magnitude), ref currVelocity, 0.3f);
+                if(PlayerSprint)
+                    _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, camDirection * (PlayerBaseSpeed * PlayerSprintMultiplier * PlayerDirection.magnitude), ref currVelocity, 0.3f);
+                if(PlayerCrouch)
+                    _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, camDirection * (PlayerBaseSpeed * PlayerCrouchMultiplier * PlayerDirection.magnitude), ref currVelocity, 0.3f);
+                else
+                    _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, camDirection * (PlayerBaseSpeed * PlayerDirection.magnitude), ref currVelocity, 0.3f);
             }
             //if no input 0 velocity (prevents sliding)
             else
@@ -150,6 +161,7 @@ public class PlayerMovement : MonoBehaviour
         else
             isGrounded = false;
     }
+    
 
     #endregion
 
