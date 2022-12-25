@@ -38,7 +38,7 @@ public class Arrow : MonoBehaviour
         transform.LookAt(transform.position + arrowRigidbody.velocity.normalized);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    protected virtual void OnCollisionEnter(Collision collision)
     {
         // On collision destroy arrow
         Destroy(gameObject);

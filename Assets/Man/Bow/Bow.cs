@@ -12,40 +12,19 @@ public class Bow : MonoBehaviour
     [SerializeField] private GameObject[] arrows;
     [SerializeField] private GameObject camera;
     [SerializeField] private GameObject thirdPersonCamera;
-    [SerializeField] private Rigidbody playerRigidBody;
 
     private float chargeTime = 0;
     private float strength = 0;
     private int selectedArrow = 0;
     private float chargeMultiplier = 3;
 
-    public UnityEvent unHook;
-
-    #region Properties
-        private bool hooked = false;
-        public bool Hooked
-        {
-            get { return hooked; }
-            set { hooked = value; }
-        }
-
-        private Vector3 hookPosition;
-        public Vector3 HookPosition
-        {
-            get { return hookPosition; }
-            set { hookPosition = value; }
-        }
-    #endregion
+    
     
     private void Awake()
     {
         // Create singleton
         if (Instance == null)
             Instance = this;
-        
-        // Create unHook event
-        if (unHook == null)
-            unHook = new UnityEvent();
     }
 
     public void CycleArrow()
@@ -73,7 +52,7 @@ public class Bow : MonoBehaviour
     {
         // Use camera rotation to aim the arrow
         Vector3 rotation = camera.transform.rotation.eulerAngles;
-        var arrowInstance = Instantiate(arrows[selectedArrow], transform.position + new Vector3(0, 2, 0), Quaternion.Euler(rotation));
+        var arrowInstance = Instantiate(arrows[selectedArrow], transform.position + transform.forward, Quaternion.Euler(rotation));
         
         // Add force to the arrow equal to strength
         arrowInstance.GetComponent<Arrow>().Fire(strength);
@@ -83,24 +62,11 @@ public class Bow : MonoBehaviour
         strength = 0;
         chargeTime = 0;
         
-        // If shooting a grapple arrow unhook
-        if (arrows[selectedArrow].name == "grapple")
-            UnHook();
+        // TODO: SEE IF THIS IS EVEN NESSECESSARY
+        // // If shooting a grapple arrow unhook
+        // if (arrows[selectedArrow].name == "grapple")
+        //     UnHook();
     }
 
-    // Pull on graple
-    public void Pull()
-    {
-        // If the player is hooked pull on the grapple
-        if (hooked)
-            playerRigidBody.AddForce((hookPosition - transform.position).normalized * 1000);
-    }
 
-    public void UnHook()
-    {
-        // Invoke unhook unity event for arrow
-        unHook.Invoke();
-        // Reset var
-        hooked = false;
-    }
 }

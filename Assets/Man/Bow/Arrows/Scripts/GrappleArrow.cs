@@ -6,41 +6,10 @@ using UnityEngine.Events;
 
 public class GrappleArrow : Arrow
 {
-    private LineRenderer ropeLineRenderer;
-
-    private UnityEvent unHook;
-    // Start is called before the first frame update
-    void Start()
+    protected override void OnCollisionEnter(Collision collision)
     {
-        // Find unhook event and subscribe
-        unHook = Bow.Instance.unHook;
-        unHook.AddListener(UnHook);
-        ropeLineRenderer = gameObject.GetComponent<LineRenderer>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // Set postitions 0 => arrow, 1 => player
-        Vector3[] postitions = new Vector3[2];
-        postitions[0] = transform.position;
-        postitions[1] = Bow.Instance.transform.position;
-        
-        // Render rope between player and arrow
-        ropeLineRenderer.SetPositions(postitions);
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        // Set bow as hooked;
-        Bow.Instance.Hooked = true;
-        Bow.Instance.HookPosition = transform.position;
-        arrowRigidbody.constraints = RigidbodyConstraints.FreezeAll;
-    }
-
-    private void UnHook()
-    {
-        Debug.Log("Destroy arrow");
-        Destroy(gameObject);
+        // Set grapple as hooked
+        Grapple.Instance.Hook(transform.position);
+        base.OnCollisionEnter(collision);
     }
 }

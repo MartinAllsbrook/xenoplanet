@@ -11,7 +11,8 @@ public class InputManager : MonoBehaviour
     private PlayerControls _playerControls;
     private PlayerMovement _playerMovement;
     [SerializeField] private Bow _bow;
-
+    [SerializeField] private Grapple _grapple;
+    
     private Vector2 _moveDirection;
     private Vector2 _cameraDirection;
     private bool _isSprinting;
@@ -27,7 +28,6 @@ public class InputManager : MonoBehaviour
             Instance = this;
         _playerControls = new PlayerControls();
         _playerMovement = GetComponent<PlayerMovement>();
-        // _bow = GetComponent<Bow>();
         _fireStrength = 0;
     }
 
@@ -111,13 +111,13 @@ public class InputManager : MonoBehaviour
         // LT / RMB => Hold to pull
         if (_playerControls.Player.Use.IsInProgress())
         {
-            _bow.Pull();
+            _grapple.Pull();
         }
         
         // LT / RMB => Release to delete grapple
-        if (_playerControls.Player.Use.WasReleasedThisFrame())
+        if (_playerControls.Player.Use.WasPressedThisFrame())
         {
-            _bow.UnHook();
+            _grapple.Unhook();
         }
 
         // I dont know what this does
