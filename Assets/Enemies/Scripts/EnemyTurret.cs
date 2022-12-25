@@ -49,28 +49,33 @@ public class EnemyTurret : Enemy
 
     private void FireLaser(Vector3 direction)
     {
+        // Create vector3 to store the position the laser should end
+        Vector3 laserEnd;
+
         // Cast ray for laser
         Ray laserRay = new Ray(_transformPosition, direction);
-        Physics.Raycast(laserRay, out RaycastHit laserHit, range, visible);
-        
+        if (Physics.Raycast(laserRay, out RaycastHit laserHit, range, visible))
+        {
+            // If laser hit's the player deal damage
+            GameObject objectHit = laserHit.transform.gameObject;
+            if (objectHit.CompareTag("Player"))
+            {
+                Player playerStats = objectHit.GetComponent<Player>();
+                playerStats.DealDamage(_laserCharge);
+            }
+
+            laserEnd = laserHit.point; // Laser ends at hit position of ray
+        }
+        else
+            laserEnd = _transformPosition + (direction.normalized * range);
+
         // Set line renderer's positions
-        Vector3[] positions = new Vector3[2];
-        positions[0] = _transformPosition; // Laser starts at the turret's location
-        positions[1] = laserHit.point; // Laser ends at hit position of ray
-        _laserBeam.SetPositions(positions);
+        _laserBeam.SetPosition(0, _transformPosition);
+        _laserBeam.SetPosition(1, laserEnd);
         
         // Set line renderer's width
         _laserCharge += (1 - _laserCharge) * Time.deltaTime * chargeMultiplier;
-        Debug.Log("Laser Charge: " + _laserCharge);
         _laserBeam.widthMultiplier = _laserCharge * 2 * Random.Range(0.85f, 1.0f);
-        
-        // If laser hit's the player deal damage
-        GameObject objectHit = laserHit.transform.gameObject;
-        if (objectHit.CompareTag("Player"))
-        {
-            Player playerStats = objectHit.GetComponent<Player>();
-            playerStats.DealDamage(_laserCharge);
-        }
     }
 
     private void StopLaser()

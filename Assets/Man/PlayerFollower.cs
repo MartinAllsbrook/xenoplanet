@@ -17,7 +17,6 @@ public class PlayerFollower : MonoBehaviour
     void Update()
     {
         transform.position = playerTransform.position;
-        Debug.Log(mainCameraTransform.rotation.eulerAngles.y);
         transform.rotation = Quaternion.Euler(0, mainCameraTransform.rotation.eulerAngles.y, 0);
     }
 }

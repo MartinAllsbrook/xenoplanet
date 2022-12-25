@@ -30,7 +30,7 @@ public class PlayerAnimation : MonoBehaviour
        _animation.SetFloat(YVelocity, _rigidbody.velocity.y);
        _animation.SetBool(IsGrounded, _playerMovement.isGrounded);
        
-       Debug.Log("poop" + _playerMovement.isGrounded);   
+       // Debug.Log("poop" + _playerMovement.isGrounded);   
 
     }
     
