@@ -12,7 +12,8 @@ public class Bow : MonoBehaviour
     [SerializeField] private GameObject[] arrows;
     [SerializeField] private GameObject camera;
     [SerializeField] private GameObject thirdPersonCamera;
-
+    [SerializeField] private Transform arrowSpawnPosition;
+    
     private float chargeTime = 0;
     private float strength = 0;
     private int selectedArrow = 0;
@@ -52,7 +53,7 @@ public class Bow : MonoBehaviour
     {
         // Use camera rotation to aim the arrow
         Vector3 rotation = camera.transform.rotation.eulerAngles;
-        var arrowInstance = Instantiate(arrows[selectedArrow], transform.position + transform.forward, Quaternion.Euler(rotation));
+        var arrowInstance = Instantiate(arrows[selectedArrow], arrowSpawnPosition.position, Quaternion.Euler(rotation));
         
         // Add force to the arrow equal to strength
         arrowInstance.GetComponent<Arrow>().Fire(strength);
@@ -61,12 +62,5 @@ public class Bow : MonoBehaviour
         thirdPersonCamera.GetComponent<CinemachineFreeLook>().m_Lens.FieldOfView = 45;
         strength = 0;
         chargeTime = 0;
-        
-        // TODO: SEE IF THIS IS EVEN NESSECESSARY
-        // // If shooting a grapple arrow unhook
-        // if (arrows[selectedArrow].name == "grapple")
-        //     UnHook();
     }
-
-
 }

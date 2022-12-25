@@ -7,14 +7,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //components
+    // Components
     private Rigidbody _rigidbody;
 
-    //Move smooth
+    // Move smooth
     private Vector3 currVelocity;
     private float turnVelocity;
 
-    //Move Factors
+    // Move Factors
     [Range(1, 100)] [SerializeField] private float PlayerBaseSpeed;
     [Range(0, 2)] [SerializeField] private float PlayerSprintMultiplier;
     [Range(0, 2)] [SerializeField] private float PlayerCrouchMultiplier;

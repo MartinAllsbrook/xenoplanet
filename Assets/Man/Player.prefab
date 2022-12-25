@@ -214,6 +214,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: ef03ca22-0a15-4a5a-a7b3-fe7639c97113
     m_ActionName: Player/Use[/XInputControllerWindows/leftTrigger,/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e867ffd0-9b9a-42de-8719-8b6e8dc27efd
+    m_ActionName: Player/PadUp[/XInputControllerWindows/dpad/up]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2a402f53-dc60-46c8-8ecb-0d00e7fee535
+    m_ActionName: Player/PadDown[/XInputControllerWindows/dpad/down]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -269,6 +277,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5871221131373447265}
     m_Modifications:
+    - target: {fileID: 746001878644346662, guid: fa9334d76319ca844a4575858a7e1b2b, type: 3}
+      propertyPath: initialGrappleLength
+      value: 0.291
+      objectReference: {fileID: 0}
     - target: {fileID: 2551837241359621135, guid: fa9334d76319ca844a4575858a7e1b2b, type: 3}
       propertyPath: m_RootOrder
       value: 3
