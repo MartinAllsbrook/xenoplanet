@@ -57,12 +57,7 @@ public class InputManager : MonoBehaviour
         //     _playerMovement.Move(_moveDirection);
         // }
     }
-
-    // private void OnMove(InputAction.CallbackContext value)
-    // {
-    //
-    // }
-
+    
     private void Update()
     {
         //Press A (Space) – Jump

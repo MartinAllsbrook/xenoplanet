@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     //Checks
     [SerializeField] private LayerMask WhatIsGround;
     [SerializeField] private Transform groundCheck;
-    private bool isGrounded;
+    public bool isGrounded;
     
     public bool isJump;
 
@@ -55,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
         Jump();
         
         CheckGrounded();
+        // Debug.Log(isGrounded);
     }
 
     public void PlayerInput(Vector3 PlayerDirInput, bool PlayerJumpInput, bool PlayerSprintInput, bool PlayerCrouchInput)
@@ -63,12 +64,9 @@ public class PlayerMovement : MonoBehaviour
         PlayerJump = PlayerJumpInput;
         PlayerSprint = PlayerSprintInput;
         PlayerCrouch = PlayerCrouchInput;
-        Debug.Log(PlayerSprint);
+        // Debug.Log(PlayerSprint);
     }
-    
-    
-    
-    
+
     #region Movment
     public void Jump()
     {
@@ -80,14 +78,13 @@ public class PlayerMovement : MonoBehaviour
                 _rigidbody.velocity += Vector3.up * PlayerJumpForce;
 
             // If the player is in the air
-            // if (!isGrounded)
             else
             {
                 // If the player has a 2nd jump double jump
                 if (SecondJump)
                 {
                     //without this double jump on falling is too small
-                    _rigidbody.velocity = Vector3.zero; // zero out velocity before jumping
+                    _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, 0f, _rigidbody.velocity.z); // zero out velocity before jumping
                     // _rigidbody.velocity += Vector3.up * (PlayerJumpForce * Time.deltaTime * 50);
                     // float temp = (PlayerJumpForce * 20f);
                     // _rigidbody.velocity += new Vector3(PlayerDirection.x, temp, PlayerDirection.y);
@@ -116,6 +113,7 @@ public class PlayerMovement : MonoBehaviour
             //if input then turn and move
             if (PlayerDirection.magnitude > 0.1f)
             {
+                //apply camera rotation
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
                 if(PlayerSprint)
                     _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, camDirection * (PlayerBaseSpeed * PlayerSprintMultiplier * PlayerDirection.magnitude), ref currVelocity, 0.3f);
