@@ -1,14 +1,8 @@
 fileFormatVersion: 2
-guid: c0e22ea043a78486f8e37e03361e59ad
+guid: c8634060511e4492b8a5581ab58f4a83
 ModelImporter:
   serializedVersion: 21300
-  internalIDToNameTable:
-  - first:
-      74: -203655887218126122
-    second: mixamo.com
-  - first:
-      74: 1802554740891359813
-    second: Running-2
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -22,8 +16,7 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 1
     motionNodeName: 
-    rigImportErrors: "Invalid copied Avatar Rig Configuration:\n\tNo human bone found.
-      Ensure both rig type match\n"
+    rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -40,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Running-2
+      name: mixamo.com
       takeName: mixamo.com
-      internalID: 0
+      internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 19
+      lastFrame: 21
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

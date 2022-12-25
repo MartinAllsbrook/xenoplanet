@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
-    private PlayerMovement _player;
+    PlayerMovement _playerMovement;
     
     //Components
     [SerializeField] private Animator _animation;
@@ -15,28 +15,23 @@ public class PlayerAnimation : MonoBehaviour
     //Animator Parameters
     private static readonly int XVelocity = Animator.StringToHash("xVelocity");
     private static readonly int YVelocity = Animator.StringToHash("yVelocity");
-    private static readonly int IsJump = Animator.StringToHash("isJump");
+    private static readonly int IsGrounded = Animator.StringToHash("isGrounded");
     
     private void Awake()
     {
+        _playerMovement = GetComponent<PlayerMovement>();
         _rigidbody = GetComponent<Rigidbody>();
         _material = GetComponent<Material>();
     }
 
-    private void Start()
-    {
-        SpawnAnimation();
-    }
-
     private void Update()
     {
-       _animation.SetFloat(XVelocity, _rigidbody.velocity.magnitude);
-       // _animation.SetBool(IsJump, _player.isJump);
+       _animation.SetFloat(XVelocity, new Vector3(_rigidbody.velocity.x, 0, _rigidbody.velocity.z).magnitude);
+       _animation.SetFloat(YVelocity, _rigidbody.velocity.y);
+       _animation.SetBool(IsGrounded, _playerMovement.isGrounded);
+       
+       Debug.Log("poop" + _playerMovement.isGrounded);   
+
     }
     
-    private IEnumerator SpawnAnimation()
-    {
-        _material.SetFloat("_Dissolve", 0.5f);
-        yield return new WaitForSeconds(0.1f);
-    }
 }

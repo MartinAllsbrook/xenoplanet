@@ -57,12 +57,7 @@ public class InputManager : MonoBehaviour
         //     _playerMovement.Move(_moveDirection);
         // }
     }
-
-    // private void OnMove(InputAction.CallbackContext value)
-    // {
-    //
-    // }
-
+    
     private void Update()
     {
         //Press A (Space) – Jump
@@ -72,16 +67,16 @@ public class InputManager : MonoBehaviour
         bool jump = _playerControls.Player.Jump.WasPressedThisFrame();
 
         //Press LeftStick (Shift) - Sprint
-        float sprint = _playerControls.Player.Sprinting.ReadValue<float>();
+        bool sprint = _playerControls.Player.Sprinting.IsInProgress();
 
         //Press RightStick (Control) - Crouch
-        float crouch = _playerControls.Player.Crouch.ReadValue<float>();
+        bool crouch = _playerControls.Player.Crouch.IsInProgress();
 
         //Move LeftStick (WASD) – Move
         _moveDirection = _playerControls.Player.Movement.ReadValue<Vector2>();
 
         //_____Call Movement_____
-        _playerMovement.PlayerInput(_moveDirection, jump);
+        _playerMovement.PlayerInput(_moveDirection, jump, sprint, crouch);
 
         //Move RightStick (Mouse) – Camera
         if (_playerControls.Player.Camera.IsInProgress())
