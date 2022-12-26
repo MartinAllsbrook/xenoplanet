@@ -34,4 +34,16 @@ public class Enemy : MonoBehaviour
         Instantiate(deathParticles, transform.position, transform.rotation);
         Destroy(gameObject);
     }
+
+    /*protected virtual RaycastHit Look()
+    {
+        Vector3 direction = Player.Instance.transform.position + new Vector3(0, 1, 0) - transform.position;
+        Ray ray = new Ray(transform.position, direction);
+        if (Physics.Raycast(ray, out RaycastHit hit, range, visible))
+        {
+            return hit;
+        }
+    
+        return ;
+    }*/
 }
