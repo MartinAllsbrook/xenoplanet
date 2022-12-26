@@ -156,6 +156,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   groundCheck: {fileID: 1505611185}
+  isGrounded: 0
   isJump: 0
 --- !u!114 &5871221131373447266
 MonoBehaviour:

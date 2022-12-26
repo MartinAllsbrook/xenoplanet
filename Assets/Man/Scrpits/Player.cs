@@ -18,8 +18,14 @@ public class Player : MonoBehaviour
 
     public void DealDamage(float damage)
     {
-        // Debug.Log("Damage: " + damage);
-        health -= damage;
+        if (health > 0)
+            health -= damage;
+        else
+            health = 0;
+        
+        // Communicate new health
         HUDController.Instance.SetHealth(health);
+        PostFXController.Instance.SetVignette(100 - health);
+        PostFXController.Instance.SetChromaticAberration(100 - health);
     }
 }

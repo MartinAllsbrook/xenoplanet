@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Image = UnityEngine.UIElements.Image;
 
 public class HUDController : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class HUDController : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI arrowDisplay;
     [SerializeField] private RectTransform healthBar;
+    [SerializeField] private GameObject hitmarker;
+    
     private void Awake()
     {
         // Create singleton
@@ -31,5 +34,18 @@ public class HUDController : MonoBehaviour
         // Debug.Log("Health: " + health);
         var width = health * 5;
         healthBar.sizeDelta = new Vector2(width, healthBar.sizeDelta.y);
+    }
+
+    public void PlayHitMarker()
+    {
+        StartCoroutine(HitMarker());
+    }
+
+    IEnumerator HitMarker()
+    {
+        hitmarker.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        hitmarker.SetActive(false);
+        yield return null;
     }
 }

@@ -3,14 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Arrow : MonoBehaviour
 {
     [SerializeField] protected Rigidbody arrowRigidbody;
     [SerializeField] private float baseDamage;
     [SerializeField] private float baseForce;
+    
     [SerializeField] private string arrowName;
-
     public string ArrowName
     {
         get { return this.arrowName; }
@@ -40,6 +41,11 @@ public class Arrow : MonoBehaviour
 
     protected virtual void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            HUDController.Instance.PlayHitMarker();
+        }
+        
         // On collision destroy arrow
         Destroy(gameObject);
     }

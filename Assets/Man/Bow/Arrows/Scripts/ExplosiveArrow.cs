@@ -8,9 +8,9 @@ public class ExplosiveArrow : Arrow
 {
     [SerializeField] private GameObject explodeParticles;
 
-    private void OnCollisionEnter(Collision other)
+    protected override void OnCollisionEnter(Collision collision)
     {
         Instantiate(explodeParticles, transform.position, transform.rotation);
-        Destroy(gameObject);
+        base.OnCollisionEnter(collision);
     }
 }
