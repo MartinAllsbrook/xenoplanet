@@ -1818,11 +1818,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3101116444431670986, guid: 409b60a415299564e8e55dc462be6ec6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.05634053
+      value: 0.056340497
       objectReference: {fileID: 0}
     - target: {fileID: 3101116444431670986, guid: 409b60a415299564e8e55dc462be6ec6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0016291976
+      value: -0.0016291966
       objectReference: {fileID: 0}
     - target: {fileID: 3101116444630245022, guid: 409b60a415299564e8e55dc462be6ec6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2319,14 +2319,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7416700645033415983, guid: 8e71ed8cc0d30de4fb69c9dc76111f4d, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.89645785
-      objectReference: {fileID: 0}
-    - target: {fileID: 7416700645033415983, guid: 8e71ed8cc0d30de4fb69c9dc76111f4d, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7416700645137342091, guid: 8e71ed8cc0d30de4fb69c9dc76111f4d, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -2374,10 +2366,6 @@ PrefabInstance:
     - target: {fileID: 7416700645137342092, guid: 8e71ed8cc0d30de4fb69c9dc76111f4d, type: 3}
       propertyPath: m_Name
       value: Basic Turret
-      objectReference: {fileID: 0}
-    - target: {fileID: 7416700645137342092, guid: 8e71ed8cc0d30de4fb69c9dc76111f4d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e71ed8cc0d30de4fb69c9dc76111f4d, type: 3}
