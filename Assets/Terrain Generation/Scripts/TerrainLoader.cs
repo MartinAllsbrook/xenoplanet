@@ -116,18 +116,18 @@ public class TerrainLoader : MonoBehaviour
     {
         var lastXCell = xPlayerCell;
         var lastZCell = zPlayerCell;
-        xPlayerCell = (int) MathF.Truncate(transform.position.x / 512);
-        zPlayerCell = (int) MathF.Truncate(transform.position.z / 512);
+        xPlayerCell = (int) MathF.Floor(transform.position.x / 512);
+        zPlayerCell = (int) MathF.Floor(transform.position.z / 512);
         // Debug.Log("X cell: " + xPlayerCell + "Z cell: " + zPlayerCell);
         var deltaXCell = xPlayerCell - lastXCell;
         var deltaZCell = zPlayerCell - lastZCell;
         if (deltaXCell != 0 || deltaZCell != 0)
         {
-            bool loadZ = lastZCell != 0;
+            bool loadZ = deltaZCell != 0;
             if (loadZ)
-                LoadRow(deltaXCell, true);
+                LoadRow(deltaZCell, true);
             else
-                LoadRow(deltaZCell, false);
+                LoadRow(deltaXCell, false);
         }
     }
     
@@ -136,42 +136,100 @@ public class TerrainLoader : MonoBehaviour
         var length = loadDistance * 2 + 1;
         
         // Find last row
-        int rowIndex;
+        int lastRowIndex;
+        int firstRowIndex;
         if (deltaCell > 0)
-            rowIndex = 0;
+        {
+            lastRowIndex = 0;
+            firstRowIndex = length - 1;
+        }
         else
-            rowIndex = length - 1;
+        {
+            lastRowIndex = length - 1;
+            firstRowIndex = 0;
+        }
 
         // Delete last row
         for (int j = 0; j < length; j++)
         {
             if (loadZ)
-                Destroy(loadedChunks[j, rowIndex]);
+            {
+                Destroy(loadedChunks[j, lastRowIndex]);
+            }
             else
-                Destroy(loadedChunks[rowIndex, j]);
+                Destroy(loadedChunks[lastRowIndex, j]);
         }
 
 
         // Move rows
 
-        for (int i = 0; i < length - 1; i++)
+        if (deltaCell > 0)
         {
-            for (int j = 0; j < length; j++)
+            for (int i = 0; i < length - 1; i++)
             {
-                if (loadZ)
-                    loadedChunks[i, j] = loadedChunks[i + 1, j];
-                else
-                    loadedChunks[j, i] = loadedChunks[j, i + 1];
+                for (int j = 0; j < length; j++)
+                {
+                    if (loadZ)
+                    {
+                        loadedChunks[j, i] = loadedChunks[j, (i + 1)];
+                    }
+                    else
+                        loadedChunks[i, j] = loadedChunks[i + 1, j];
+
+                }
+            }
+        }
+        else
+        {
+            for (int i = length - 1; i > 0; i--)
+            {
+                for (int j = 0; j < length; j++)
+                {
+                    if (loadZ)
+                    {
+                        loadedChunks[j, i] = loadedChunks[j, i - 1];
+                    }
+                    else
+                        loadedChunks[i, j] = loadedChunks[i - 1, j];
+                }
             }
         }
 
 
-        // Add row
-        for (var i = zPlayerCell - loadDistance; i <= zPlayerCell + loadDistance; i++)        
+
+        
+        for (var i = -loadDistance; i <= loadDistance; i++)        
         {
             if (loadZ)
             {
-                loadedChunks[length - 1, i - zPlayerCell + loadDistance] = Instantiate(terrain, 
+                var xPos = (i + xPlayerCell) * 513f;
+                var zPos = (zPlayerCell + loadDistance * deltaCell) * 513f;
+                
+                loadedChunks[i + loadDistance, firstRowIndex] = Instantiate(terrain, 
+                    new Vector3(xPos, 0, zPos), 
+                    new Quaternion(0,0,0,0)
+                );
+                
+            }
+            else
+            {
+                var xPos = (xPlayerCell + loadDistance * deltaCell) * 513f;
+                var zPos = (i + zPlayerCell) * 513f;
+                
+                loadedChunks[firstRowIndex, i + loadDistance] = Instantiate(terrain, 
+                    new Vector3(xPos, 0, zPos), 
+                    new Quaternion(0,0,0,0)
+                );
+                
+            }
+        }
+        
+        // Add row
+        /*for (var i = zPlayerCell - loadDistance; i <= zPlayerCell + loadDistance; i++)        
+        {
+            if (loadZ)
+            {
+                loadedChunks[length - 1, i - xPlayerCell + loadDistance] = Instantiate(terrain, 
                     new Vector3(i * 513f, 0, (xPlayerCell + loadDistance * deltaCell) * 513f), 
                     new Quaternion(0,0,0,0)
                 );
@@ -183,7 +241,7 @@ public class TerrainLoader : MonoBehaviour
                     new Quaternion(0,0,0,0)
                 );
             }
-        }
+        }*/
     }
     // private void LoadCellsAround(int xCell, int zCell)
     // {
