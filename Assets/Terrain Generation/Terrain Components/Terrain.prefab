@@ -98,9 +98,9 @@ MonoBehaviour:
   baseTerrainData: {fileID: 15600000, guid: 587f7452108b19e45819d2b2999857c2, type: 2}
   octaves:
   - 1
-  - 4
+  - 2
+  - 8
   - 16
-  - 64
   redistributionFactor: 4
   terrainPainter: {fileID: 7827047538427826260}
   terrainScatter: {fileID: 1909386825974346712}

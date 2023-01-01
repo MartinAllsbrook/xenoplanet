@@ -39,12 +39,13 @@ public class BiomeGenerator : MonoBehaviour
         float height = heightMap[x, z] * 513 * Random.Range(0.9f, 1.2f);
         float moisture = moistureMap[x, z];
 
-        if (position.z / 512 == 0)
-        {
-            if (x > center - roadWidth &&
-                x < center + roadWidth)
-                return 0;
-        }
+        // Create road
+        // if (position.z / 512 == 0)
+        // {
+        //     if (x > center - roadWidth &&
+        //         x < center + roadWidth)
+        //         return 0;
+        // }
 
         for (int i = 1; i < biomeInfo.Length; i++)
         {

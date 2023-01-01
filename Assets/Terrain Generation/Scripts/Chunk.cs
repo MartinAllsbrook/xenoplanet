@@ -58,11 +58,10 @@ public class Chunk : MonoBehaviour
     private void SetTerrain()
     {
         // var pos = transform.position;
-        if (transform.position.z == 0)
-        {
-            
-            BuildRoad();
-        }
+        // if (transform.position.z == 0)
+        // {
+        //     BuildRoad();
+        // }
 
         /*for (int i = 0; i < 513; i++)
         {
