@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class InputManager : MonoBehaviour
@@ -22,10 +23,15 @@ public class InputManager : MonoBehaviour
     private bool readyToJump = false;
     private float _fireStrength;
 
+    public UnityEvent toggleInventory;
+
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
+        if (toggleInventory == null)
+            toggleInventory = new UnityEvent();
+        
         _playerControls = new PlayerControls();
         _playerMovement = GetComponent<PlayerMovement>();
         _fireStrength = 0;
@@ -116,6 +122,11 @@ public class InputManager : MonoBehaviour
         {
             _grapple.Unhook();
         }
+        
+        // D-Pad Left => toggle inventory
+        if (_playerControls.Player.PadLeft.WasPerformedThisFrame())
+            toggleInventory.Invoke();
+        
 
         // I dont know what this does
         // _playerControls.Player.Movement.canceled += context => _cameraDirection = Vector2.zero;
