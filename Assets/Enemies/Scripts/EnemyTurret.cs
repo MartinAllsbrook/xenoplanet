@@ -61,7 +61,7 @@ public class EnemyTurret : Enemy
             if (objectHit.CompareTag("Player"))
             {
                 Player playerStats = objectHit.GetComponent<Player>();
-                playerStats.DealDamage(_laserCharge);
+                playerStats.ChangeHealth(-_laserCharge);
             }
 
             laserEnd = laserHit.point; // Laser ends at hit position of ray
