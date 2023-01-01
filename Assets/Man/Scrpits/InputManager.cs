@@ -27,13 +27,17 @@ public class InputManager : MonoBehaviour
     private bool inventoryOpen = false;
 
     public UnityEvent toggleInventory;
-
+    public UnityEvent select;
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
+        
         if (toggleInventory == null)
             toggleInventory = new UnityEvent();
+
+        if (select == null)
+            select = new UnityEvent();
         
         _playerControls = new PlayerControls();
         _playerMovement = GetComponent<PlayerMovement>();
@@ -135,15 +139,20 @@ public class InputManager : MonoBehaviour
             ToggleInventory();
     }
 
+    // Control checks while inventory is open
     private void InventoryControlChecks()
     {
         moveDirection = _playerControls.Player.Movement.ReadValue<Vector2>();
+        
+        if (_playerControls.Player.Jump.WasPressedThisFrame())
+            select.Invoke();
 
         // D-Pad Left => toggle inventory
         if (_playerControls.Player.PadLeft.WasPerformedThisFrame())
             ToggleInventory();
     }
 
+    // Toggles inventory state on and off
     private void ToggleInventory()
     {
         // Call event
