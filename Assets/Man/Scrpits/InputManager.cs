@@ -15,7 +15,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private Bow _bow;
     [SerializeField] private Grapple _grapple;
     
-    private Vector2 _moveDirection;
+    public Vector2 moveDirection;
     private Vector2 _cameraDirection;
     private bool _isSprinting;
     private bool _isJumping;
@@ -94,10 +94,10 @@ public class InputManager : MonoBehaviour
         bool crouch = _playerControls.Player.Crouch.IsInProgress();
 
         //Move LeftStick (WASD) – Move
-        _moveDirection = _playerControls.Player.Movement.ReadValue<Vector2>();
+        moveDirection = _playerControls.Player.Movement.ReadValue<Vector2>();
 
         //_____Call Movement_____
-        _playerMovement.PlayerInput(_moveDirection, jump, sprint, crouch);
+        _playerMovement.PlayerInput(moveDirection, jump, sprint, crouch);
 
         //Move RightStick (Mouse) – Camera
         if (_playerControls.Player.Camera.IsInProgress())
@@ -137,6 +137,8 @@ public class InputManager : MonoBehaviour
 
     private void InventoryControlChecks()
     {
+        moveDirection = _playerControls.Player.Movement.ReadValue<Vector2>();
+
         // D-Pad Left => toggle inventory
         if (_playerControls.Player.PadLeft.WasPerformedThisFrame())
             ToggleInventory();

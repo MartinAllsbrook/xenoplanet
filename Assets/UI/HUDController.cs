@@ -12,13 +12,21 @@ public class HUDController : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI arrowDisplay;
     [SerializeField] private RectTransform healthBar;
-    [SerializeField] private GameObject hitmarker;
-    
+    [SerializeField] private CrosshaireController crosshaireController;
+    [SerializeField] private GameObject inventoryDisplay;
+    private bool inventoryOpen = false;
+
     private void Awake()
     {
         // Create singleton
         if (Instance == null)
             Instance = this;
+    }
+    
+    void Start()
+    {
+        InputManager.Instance.toggleInventory.AddListener(ToggleInventory);
+        inventoryDisplay.SetActive(false);
     }
 
     // Set arrow display
@@ -38,14 +46,22 @@ public class HUDController : MonoBehaviour
 
     public void PlayHitMarker()
     {
-        StartCoroutine(HitMarker());
+        crosshaireController.PlayHitMarker();
     }
 
-    IEnumerator HitMarker()
+    private void ToggleInventory()
     {
-        hitmarker.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        hitmarker.SetActive(false);
-        yield return null;
+        if (inventoryOpen)
+        {
+            inventoryDisplay.SetActive(false);
+            crosshaireController.gameObject.SetActive(true);
+            inventoryOpen = false;
+        }
+        else
+        {
+            inventoryDisplay.SetActive(true);
+            crosshaireController.gameObject.SetActive(false);
+            inventoryOpen = true;
+        }
     }
 }

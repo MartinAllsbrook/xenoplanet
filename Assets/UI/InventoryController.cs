@@ -1,30 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
 public class InventoryController : MonoBehaviour
 {
-    [SerializeField] private GameObject inventoryDisplay;
-    private bool inventoryOpen = false;
-    
-    void Start()
-    {
-        InputManager.Instance.toggleInventory.AddListener(ToggleInventory);
-        inventoryDisplay.SetActive(false);
-    }
+    [SerializeField] private Image inventoryCursor;
 
-    private void ToggleInventory()
+    private void Update()
     {
-        if (inventoryOpen)
-        {
-            inventoryDisplay.SetActive(false);
-            inventoryOpen = false;
-        }
-        else
-        {
-            inventoryDisplay.SetActive(true);
-            inventoryOpen = true;
-        }
-    }  
+        var moveDirection = InputManager.Instance.moveDirection;
+        inventoryCursor.transform.position += new Vector3(moveDirection.x, moveDirection.y, 0);
+    }
 }
