@@ -27,7 +27,7 @@ public class Chunk : MonoBehaviour
     private float[,] heightMap;
     private float[,] moistureMap;
     private int[,] biomeMap;
-    
+
     private Terrain terrain;
     private TerrainData terrainData;
 
@@ -52,13 +52,13 @@ public class Chunk : MonoBehaviour
         terrainData.heightmapResolution = width;
         terrainData.size = new Vector3(width, depth, length);
 
-        MakeNoise(20, 0, 5000, MapStepTwo);
+        MakeNoise(20, 0, TerrainLoader.Instance.seed, MapStepTwo);
     }
 
     private void MapStepTwo()
     {
         heightMap = moistureMap;
-        MakeNoise(20, 0, 10000, SetTerrain);
+        MakeNoise(20, 0, TerrainLoader.Instance.moistureSeed, SetTerrain);
     }
 
     private void SetTerrain()

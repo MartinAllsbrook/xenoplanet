@@ -140,6 +140,8 @@ MonoBehaviour:
       trees: 0300000004000000050000000600000007000000
       grasses: 01000000
       biomeIndex: 0
+  seed: 0
+  moistureSeed: 0
   chunkLoaded:
     m_PersistentCalls:
       m_Calls: []
@@ -147,5 +149,5 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   terrain: {fileID: 8700995294294666482, guid: 15d2f62750e99cc4b8f5ba6776c7fb92, type: 3}
-  loadDistance: 1
+  loadDistance: 2
   roadwidth: 20

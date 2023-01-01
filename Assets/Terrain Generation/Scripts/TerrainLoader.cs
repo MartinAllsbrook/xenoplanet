@@ -4,6 +4,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 using Debug = UnityEngine.Debug;
+using Random = UnityEngine.Random;
 
 /*public static class NoiseManager
 {
@@ -49,7 +50,8 @@ public class TerrainLoader : MonoBehaviour
 
     [SerializeField] public BiomeInfo[] biomeInfo;
     
-    // public int seed;
+    public int seed;
+    public int moistureSeed;
     public UnityEvent chunkLoaded;
     public UnityEvent terrainReady;
     
@@ -80,13 +82,19 @@ public class TerrainLoader : MonoBehaviour
     
     private void Awake()
     {
+        // Create singleton
         if (Instance == null) Instance = this;
         
-        // Dealing with events
+        // Create random seed
+        seed = Random.Range(10000, 20000);
+        moistureSeed = Random.Range(10000, 20000);
+        
+        // Deal with events
         if (chunkLoaded == null) chunkLoaded = new UnityEvent();
         if (terrainReady == null) terrainReady = new UnityEvent();
         chunkLoaded.AddListener(OnTerrainReady);
         numChunks = (loadDistance * 2 + 1) * (loadDistance * 2 + 1);
+        
     }
 
     // Sends out event when the terrain is loaded and ready for action

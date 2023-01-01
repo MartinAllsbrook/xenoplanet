@@ -6,9 +6,12 @@ public class DaylightCycle : MonoBehaviour
 {
     [SerializeField] private float dayLength;
     [SerializeField] private AnimationCurve fogCurve;
-    
+    [SerializeField] private AnimationCurve sunCurve;
+    [SerializeField] private AnimationCurve moonCurve;
     private float _dayTimer;
-
+    private Light sun;
+    private Light moon;
+    
     private Quaternion _sunRotation;
     
     // Start is called before the first frame update
@@ -16,7 +19,8 @@ public class DaylightCycle : MonoBehaviour
     {
         _dayTimer = 0; 
         _sunRotation = transform.rotation;
-        
+        sun = gameObject.GetComponent<Light>();
+        moon = transform.GetChild(0).GetComponent<Light>();
     }
 
     // Update is called once per frame
@@ -30,10 +34,12 @@ public class DaylightCycle : MonoBehaviour
         // Set sun
         var sunPosition = 360 * dayPercent;
         transform.rotation = Quaternion.Euler(new Vector3(sunPosition, -30f, 0f));
-        
+        sun.intensity = sunCurve.Evaluate(dayPercent);
+        moon.intensity = moonCurve.Evaluate(dayPercent);
+
         // Set fog
         var fogColor = fogCurve.Evaluate(dayPercent);
         RenderSettings.fogColor = new Color(fogColor, fogColor, fogColor);
-
+        
     }
 }
