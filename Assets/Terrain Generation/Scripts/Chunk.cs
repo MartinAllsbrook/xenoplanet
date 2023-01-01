@@ -79,8 +79,7 @@ public class Chunk : MonoBehaviour
         
         chunkLoaded.Invoke();
     }
-
-    /*
+    
     private void BuildRoad()
     {
         Debug.Log("building road");
@@ -122,7 +121,7 @@ public class Chunk : MonoBehaviour
             }
         }
     }
-    */
+
 
     // Helper functions
     private void MakeNoise(int roadwidth, int smoothFactor, int seed, GenericDelegate onFinishedCallback)

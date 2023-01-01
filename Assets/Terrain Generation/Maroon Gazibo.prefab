@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 622004007911885253}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Beam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 447314208387773717}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Maroon Gazibo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,6 +89,10 @@ PrefabInstance:
     - target: {fileID: 7918802606847723835, guid: 415c75da8aeeb9946baf2a134820e071, type: 3}
       propertyPath: m_Name
       value: TFF_Wooden_Bridge_02A (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7918802606847723835, guid: 415c75da8aeeb9946baf2a134820e071, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7918802606848152859, guid: 415c75da8aeeb9946baf2a134820e071, type: 3}
       propertyPath: m_RootOrder
@@ -152,6 +156,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TFF_Wooden_Chair_01A (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4288546804094627620, guid: aee4e0ac54e643542a514ef5a8d18c68, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4288546804094857988, guid: aee4e0ac54e643542a514ef5a8d18c68, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -213,6 +221,10 @@ PrefabInstance:
     - target: {fileID: 7122877113367674633, guid: 3d48c759a60c15047b0fbea5485be031, type: 3}
       propertyPath: m_Name
       value: TFF_Wooden_Fence_01A (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7122877113367674633, guid: 3d48c759a60c15047b0fbea5485be031, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7122877113367896873, guid: 3d48c759a60c15047b0fbea5485be031, type: 3}
       propertyPath: m_RootOrder
@@ -320,6 +332,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TFF_Wooden_Pole_02A
       objectReference: {fileID: 0}
+    - target: {fileID: 6053961764888736455, guid: 122187dd37d5a5043af09b50a491bfcc, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 122187dd37d5a5043af09b50a491bfcc, type: 3}
 --- !u!4 &5263627677571836649 stripped
@@ -337,6 +353,10 @@ PrefabInstance:
     - target: {fileID: 376409998566692142, guid: 06c3f544f78664041b45dcbd733a1260, type: 3}
       propertyPath: m_Name
       value: TFF_Wooden_Fence_02A
+      objectReference: {fileID: 0}
+    - target: {fileID: 376409998566692142, guid: 06c3f544f78664041b45dcbd733a1260, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 376409998567049486, guid: 06c3f544f78664041b45dcbd733a1260, type: 3}
       propertyPath: m_RootOrder
@@ -400,6 +420,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TFF_Wooden_Chair_01A
       objectReference: {fileID: 0}
+    - target: {fileID: 4288546804094627620, guid: aee4e0ac54e643542a514ef5a8d18c68, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4288546804094857988, guid: aee4e0ac54e643542a514ef5a8d18c68, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -462,6 +486,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: TFF_Wooden_Swing_01A
       objectReference: {fileID: 0}
+    - target: {fileID: 6464637959405741244, guid: 7c8076ecf0fdd0c4fb045bc2e885eccd, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6464637959405741246, guid: 7c8076ecf0fdd0c4fb045bc2e885eccd, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6464637959405910172, guid: 7c8076ecf0fdd0c4fb045bc2e885eccd, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -523,6 +555,10 @@ PrefabInstance:
     - target: {fileID: 7918802606847723835, guid: 415c75da8aeeb9946baf2a134820e071, type: 3}
       propertyPath: m_Name
       value: TFF_Wooden_Bridge_02A
+      objectReference: {fileID: 0}
+    - target: {fileID: 7918802606847723835, guid: 415c75da8aeeb9946baf2a134820e071, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7918802606848152859, guid: 415c75da8aeeb9946baf2a134820e071, type: 3}
       propertyPath: m_RootOrder
@@ -630,6 +666,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TFF_Wooden_Pole_02A (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6053961764888736455, guid: 122187dd37d5a5043af09b50a491bfcc, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 122187dd37d5a5043af09b50a491bfcc, type: 3}
 --- !u!4 &8066973071067905820 stripped
@@ -647,6 +687,10 @@ PrefabInstance:
     - target: {fileID: 4288546804094627620, guid: aee4e0ac54e643542a514ef5a8d18c68, type: 3}
       propertyPath: m_Name
       value: TFF_Wooden_Chair_01A (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4288546804094627620, guid: aee4e0ac54e643542a514ef5a8d18c68, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4288546804094857988, guid: aee4e0ac54e643542a514ef5a8d18c68, type: 3}
       propertyPath: m_RootOrder
@@ -710,6 +754,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TFF_Wooden_Fence_01A
       objectReference: {fileID: 0}
+    - target: {fileID: 7122877113367674633, guid: 3d48c759a60c15047b0fbea5485be031, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7122877113367896873, guid: 3d48c759a60c15047b0fbea5485be031, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -771,6 +819,10 @@ PrefabInstance:
     - target: {fileID: 376409998566692142, guid: 06c3f544f78664041b45dcbd733a1260, type: 3}
       propertyPath: m_Name
       value: TFF_Wooden_Fence_02A (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 376409998566692142, guid: 06c3f544f78664041b45dcbd733a1260, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 376409998567049486, guid: 06c3f544f78664041b45dcbd733a1260, type: 3}
       propertyPath: m_RootOrder
@@ -878,6 +930,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TFF_Wooden_Pole_02A (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6053961764888736455, guid: 122187dd37d5a5043af09b50a491bfcc, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 122187dd37d5a5043af09b50a491bfcc, type: 3}
 --- !u!4 &4059069706394267317 stripped
@@ -940,6 +996,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TFF_Wooden_Pole_02A (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6053961764888736455, guid: 122187dd37d5a5043af09b50a491bfcc, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 122187dd37d5a5043af09b50a491bfcc, type: 3}
 --- !u!4 &2638729002830130460 stripped
@@ -957,6 +1017,10 @@ PrefabInstance:
     - target: {fileID: 7122877113367674633, guid: 3d48c759a60c15047b0fbea5485be031, type: 3}
       propertyPath: m_Name
       value: TFF_Wooden_Fence_01A (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7122877113367674633, guid: 3d48c759a60c15047b0fbea5485be031, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7122877113367896873, guid: 3d48c759a60c15047b0fbea5485be031, type: 3}
       propertyPath: m_RootOrder
@@ -1063,6 +1127,10 @@ PrefabInstance:
     - target: {fileID: 449156230832652900, guid: 7c407a103ea0bc545a00a4d46d0171e6, type: 3}
       propertyPath: m_Name
       value: TFF_Wooden_Pavilion_01A
+      objectReference: {fileID: 0}
+    - target: {fileID: 449156230832652900, guid: 7c407a103ea0bc545a00a4d46d0171e6, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c407a103ea0bc545a00a4d46d0171e6, type: 3}
