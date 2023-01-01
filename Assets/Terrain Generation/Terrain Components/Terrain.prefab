@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7827047538427826260}
   - component: {fileID: 1909386825974346712}
   - component: {fileID: 311811538059476027}
+  - component: {fileID: 1092145958796822348}
   m_Layer: 6
   m_Name: Terrain
   m_TagString: Untagged
@@ -102,9 +103,6 @@ MonoBehaviour:
   - 8
   - 16
   redistributionFactor: 4
-  terrainPainter: {fileID: 7827047538427826260}
-  terrainScatter: {fileID: 1909386825974346712}
-  biomeGenerator: {fileID: 311811538059476027}
 --- !u!114 &7827047538427826260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,6 +143,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b026aae372ae294caeeef34dd885772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1092145958796822348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8700995294294666482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 496875dbba23b5143b496058df6e759f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  landMarks:
+  - width: 10
+    length: 10
+    structure: {fileID: 3679172626369138109, guid: 6c8667767f61465499adf05ae84fbccf, type: 3}
+  - width: 14
+    length: 14
+    structure: {fileID: 5736998040483158193, guid: dfe4234f2b7a2f64296eb9fb2c7e9e3d, type: 3}
 --- !u!1001 &6695905352838270486
 PrefabInstance:
   m_ObjectHideFlags: 0

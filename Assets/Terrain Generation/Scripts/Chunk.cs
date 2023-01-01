@@ -13,10 +13,11 @@ public class Chunk : MonoBehaviour
     [SerializeField] private float[] octaves;
     [SerializeField] private float redistributionFactor;
     
-    [SerializeField] private TerrainPainter terrainPainter;
-    [SerializeField] private TerrainScatter terrainScatter;
-    [SerializeField] private BiomeGenerator biomeGenerator;
-
+    private TerrainPainter terrainPainter;
+    private TerrainScatter terrainScatter;
+    private BiomeGenerator biomeGenerator;
+    private LandMarkGenerator landMarkGenerator;
+    
     private const int length = 513;
     private const int width = 513;
     private const int depth = 513;
@@ -35,6 +36,11 @@ public class Chunk : MonoBehaviour
 
     private void Awake()
     {
+        terrainPainter = gameObject.GetComponent<TerrainPainter>();
+        terrainScatter = gameObject.GetComponent<TerrainScatter>();
+        biomeGenerator = gameObject.GetComponent<BiomeGenerator>();
+        landMarkGenerator = gameObject.GetComponent<LandMarkGenerator>();
+        
         chunkLoaded = TerrainLoader.Instance.chunkLoaded;
     }
 
@@ -57,20 +63,8 @@ public class Chunk : MonoBehaviour
 
     private void SetTerrain()
     {
-        // var pos = transform.position;
-        // if (transform.position.z == 0)
-        // {
-        //     BuildRoad();
-        // }
-
-        /*for (int i = 0; i < 513; i++)
-        {
-            for (int j = 0; j < 513; j++)
-            {
-                heightMap[i,j] = biomeMap[i,j] / 100f;
-            }
-        }*/
-
+        landMarkGenerator.PlaceLandMark(ref heightMap);
+        
         terrainData.SetHeights(0, 0, heightMap);
         
         TerrainCollider terrainCollider = GetComponent<TerrainCollider>();
@@ -86,6 +80,7 @@ public class Chunk : MonoBehaviour
         chunkLoaded.Invoke();
     }
 
+    /*
     private void BuildRoad()
     {
         Debug.Log("building road");
@@ -109,7 +104,7 @@ public class Chunk : MonoBehaviour
                 if (distanceFromRoad <= 0)
                     distanceFromRoad = 0;
                 float percentFromRoad;
-
+    
                 if (z > center)
                 {
                     percentFromRoad = distanceFromRoad / (leftCurbLength);
@@ -122,19 +117,12 @@ public class Chunk : MonoBehaviour
                     // roadHeight = percentFromRoad;
                     roadHeight = baseRoadHeight * (1-percentFromRoad) + heightMap[z,x] * percentFromRoad;
                 }
-
-                /*for (int i = -smoothFactor; i <= smoothFactor; i++)
-                {
-                    var potentialHeight = CompileNoise(256, x + i, position);
-                    if (potentialHeight >= (24f / 513f)) potentialHeight = (24f / 513f);
-                    if (potentialHeight <= (12f / 513f)) potentialHeight = (12f/513f);
-                    roadHeight += potentialHeight;
-                }
-                roadHeight /= (smoothFactor * 2 + 1);*/
+                
                 heightMap[z,x] = roadHeight;
             }
         }
     }
+    */
 
     // Helper functions
     private void MakeNoise(int roadwidth, int smoothFactor, int seed, GenericDelegate onFinishedCallback)
