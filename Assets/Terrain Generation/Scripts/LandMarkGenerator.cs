@@ -44,7 +44,6 @@ public class LandMarkGenerator : MonoBehaviour
                         distance = Mathf.Abs(z - position);
                     distance -= radius;
                     float percent = (float) distance / radius;
-                    Debug.Log(percent);
                     heightMap[z,x] = height * (1-percent) + heightMap[z,x] * percent;
                 }
             }

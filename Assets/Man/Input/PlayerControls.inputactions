@@ -103,6 +103,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "PadRight",
+                    "type": "Button",
+                    "id": "b205b63e-344d-4582-b922-01879c52a363",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -356,6 +365,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "PadLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9cd7fab6-b7b5-4719-a15e-ddb995bceb25",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PadRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

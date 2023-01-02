@@ -12,16 +12,17 @@ public class InventoryController : MonoBehaviour
 {
     [SerializeField] private Image inventoryCursor;
 
-    [SerializeField] private InventoryTile[] _inventoryTiles;
-
+    [SerializeField] private ItemSlot[] itemSlots;
+    [SerializeField] private float cursorMoveSpeed;
+    
     private Sprite _defaultCursorSprite;
     private int _pickedUpItemPosition;
     private bool _holdingItem;
     
     private void Awake()
     {
-        for (int i = 0; i < _inventoryTiles.Length; i++)
-            _inventoryTiles[i].inventoryPosition = i;
+        for (int i = 0; i < itemSlots.Length; i++)
+            itemSlots[i].inventoryPosition = i;
 
         _defaultCursorSprite = inventoryCursor.sprite;
     }
@@ -34,7 +35,7 @@ public class InventoryController : MonoBehaviour
     private void Update()
     {
         var moveDirection = InputManager.Instance.moveDirection;
-        inventoryCursor.transform.position += new Vector3(moveDirection.x, moveDirection.y, 0);
+        inventoryCursor.transform.position += Time.deltaTime * cursorMoveSpeed * new Vector3(moveDirection.x, moveDirection.y, 0);
     }
 
     private void Select()
@@ -42,19 +43,19 @@ public class InventoryController : MonoBehaviour
         Ray ray = new Ray(inventoryCursor.transform.position, Vector3.forward);
         if (Physics.Raycast(ray, out RaycastHit raycastHit, 100))
         {
-            var tileHit = raycastHit.transform.gameObject.GetComponent<InventoryTile>();
+            var tileHit = raycastHit.transform.gameObject.GetComponent<ItemSlot>();
             Debug.Log(tileHit.inventoryPosition);
-            if (!_holdingItem && _inventoryTiles[tileHit.inventoryPosition].Full)
+            if (!_holdingItem && itemSlots[tileHit.inventoryPosition].Full)
             {
                 _holdingItem = true;
                 _pickedUpItemPosition = tileHit.inventoryPosition;
-                inventoryCursor.sprite = _inventoryTiles[tileHit.inventoryPosition].InventoryItem.Icon;
+                inventoryCursor.sprite = itemSlots[tileHit.inventoryPosition].InventoryItem.Icon;
             }
-            else if (_holdingItem && !_inventoryTiles[tileHit.inventoryPosition].Full)
+            else if (_holdingItem && !itemSlots[tileHit.inventoryPosition].Full)
             {
                 _holdingItem = false;
-                _inventoryTiles[tileHit.inventoryPosition].InventoryItem = _inventoryTiles[_pickedUpItemPosition].InventoryItem;
-                _inventoryTiles[_pickedUpItemPosition].InventoryItem = null;
+                itemSlots[tileHit.inventoryPosition].InventoryItem = itemSlots[_pickedUpItemPosition].InventoryItem;
+                itemSlots[_pickedUpItemPosition].InventoryItem = null;
                 inventoryCursor.sprite = _defaultCursorSprite;
             }
         }
@@ -64,11 +65,11 @@ public class InventoryController : MonoBehaviour
     {
         Debug.Log("Picked up item");
         int firstOpenIndex;
-        for (int i = 0; i < _inventoryTiles.Length; i++)
+        for (int i = 0; i < itemSlots.Length; i++)
         {
-            if (!_inventoryTiles[i].Full)
+            if (!itemSlots[i].Full)
             {
-                _inventoryTiles[i].InventoryItem = item;
+                itemSlots[i].InventoryItem = item;
                 return;
             }
         }

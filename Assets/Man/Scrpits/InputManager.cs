@@ -28,6 +28,8 @@ public class InputManager : MonoBehaviour
 
     public UnityEvent toggleInventory;
     public UnityEvent select;
+    public UnityEvent hotbarNext;
+    public UnityEvent hotbarPrev;
     private void Awake()
     {
         if (Instance == null)
@@ -38,6 +40,12 @@ public class InputManager : MonoBehaviour
 
         if (select == null)
             select = new UnityEvent();
+        
+        if (hotbarNext == null)
+            hotbarNext = new UnityEvent();
+        
+        if (hotbarPrev == null)
+            hotbarPrev = new UnityEvent();
         
         _playerControls = new PlayerControls();
         _playerMovement = GetComponent<PlayerMovement>();
@@ -122,20 +130,26 @@ public class InputManager : MonoBehaviour
         if (_playerControls.Player.CycleArrows.WasPressedThisFrame())
             _bow.CycleArrow();
 
-        // D-Pad Up => Shrink Grapple
+        /*// D-Pad Up => Shrink Grapple
         if (_playerControls.Player.PadUp.IsInProgress())
             _grapple.ChangeGrappleLength(true);
-
+        
         // D-Pad Down => Lengthen Grapple
         if (_playerControls.Player.PadDown.IsInProgress())
-            _grapple.ChangeGrappleLength(false);
+            _grapple.ChangeGrappleLength(false);*/
 
+        if (_playerControls.Player.PadRight.WasPerformedThisFrame())
+            hotbarNext.Invoke();
+        
+        if (_playerControls.Player.PadLeft.WasPerformedThisFrame())
+            hotbarPrev.Invoke();
+        
         // LT / RMB => Release to delete grapple
         if (_playerControls.Player.Use.WasPressedThisFrame())
             _grapple.Unhook();
         
-        // D-Pad Left => toggle inventory
-        if (_playerControls.Player.PadLeft.WasPerformedThisFrame())
+        // D-Pad Down => toggle inventory
+        if (_playerControls.Player.PadDown.WasPerformedThisFrame())
             ToggleInventory();
     }
 
@@ -147,8 +161,8 @@ public class InputManager : MonoBehaviour
         if (_playerControls.Player.Jump.WasPressedThisFrame())
             select.Invoke();
 
-        // D-Pad Left => toggle inventory
-        if (_playerControls.Player.PadLeft.WasPerformedThisFrame())
+        // D-Pad Down => toggle inventory
+        if (_playerControls.Player.PadDown.WasPerformedThisFrame())
             ToggleInventory();
     }
 

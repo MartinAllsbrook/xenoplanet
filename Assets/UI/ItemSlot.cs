@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryTile : MonoBehaviour
+public class ItemSlot : MonoBehaviour
 { 
     public int inventoryPosition;
     [SerializeField] private Sprite blankSlotImage;
