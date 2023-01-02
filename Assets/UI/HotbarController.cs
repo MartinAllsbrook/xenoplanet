@@ -24,6 +24,7 @@ public class HotbarController : MonoBehaviour
     {
         InputManager.Instance.hotbarNext.AddListener(NextTile);
         InputManager.Instance.hotbarPrev.AddListener(PrevTile);
+        InputManager.Instance.useItem.AddListener(UseItem);
         _hotbarTiles[0].Selected = true;
     }
 
@@ -57,5 +58,10 @@ public class HotbarController : MonoBehaviour
             else
                 _hotbarTiles[i].Selected = false;
         }
+    }
+
+    private void UseItem()
+    {
+        _hotbarTiles[_selectedTile].itemSlot.UseItem();
     }
 }

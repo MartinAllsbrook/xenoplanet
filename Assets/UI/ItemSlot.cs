@@ -38,4 +38,10 @@ public class ItemSlot : MonoBehaviour
     {
         get { return _full; }
     }
+
+    public void UseItem()
+    {
+        inventoryItem.UseItem();
+        InventoryItem = null;
+    }
 }

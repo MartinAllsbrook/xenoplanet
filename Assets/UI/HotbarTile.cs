@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class HotbarTile : MonoBehaviour
 {
-    [SerializeField] private ItemSlot itemSlot;
+    [SerializeField] public ItemSlot itemSlot;
     [SerializeField] private Color selectedColor;
     
     private Color _unselectedColor;

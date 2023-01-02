@@ -30,22 +30,17 @@ public class InputManager : MonoBehaviour
     public UnityEvent select;
     public UnityEvent hotbarNext;
     public UnityEvent hotbarPrev;
+    public UnityEvent useItem;
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
         
-        if (toggleInventory == null)
-            toggleInventory = new UnityEvent();
-
-        if (select == null)
-            select = new UnityEvent();
-        
-        if (hotbarNext == null)
-            hotbarNext = new UnityEvent();
-        
-        if (hotbarPrev == null)
-            hotbarPrev = new UnityEvent();
+        if (toggleInventory == null) toggleInventory = new UnityEvent();
+        if (select == null) select = new UnityEvent();
+        if (hotbarNext == null) hotbarNext = new UnityEvent();
+        if (hotbarPrev == null) hotbarPrev = new UnityEvent();
+        if (useItem == null) useItem = new UnityEvent();
         
         _playerControls = new PlayerControls();
         _playerMovement = GetComponent<PlayerMovement>();
@@ -146,7 +141,8 @@ public class InputManager : MonoBehaviour
         
         // LT / RMB => Release to delete grapple
         if (_playerControls.Player.Use.WasPressedThisFrame())
-            _grapple.Unhook();
+            useItem.Invoke();
+            // _grapple.Unhook();
         
         // D-Pad Down => toggle inventory
         if (_playerControls.Player.PadDown.WasPerformedThisFrame())

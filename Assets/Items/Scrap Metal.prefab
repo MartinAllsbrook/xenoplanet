@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4627887458621138066}
   - component: {fileID: 4396236822151203915}
   - component: {fileID: 8691283972758876812}
-  - component: {fileID: -2446383751042131314}
+  - component: {fileID: 9133531792027542161}
   m_Layer: 8
   m_Name: Scrap Metal
   m_TagString: Item Pickup
@@ -98,7 +98,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-2446383751042131314
+--- !u!114 &9133531792027542161
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3980989105184464102}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48f18e320cd2e404c8d855d29daed1b7, type: 3}
+  m_Script: {fileID: 11500000, guid: 330dfdce39c11b74f8f23d88c6817eaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Item:
