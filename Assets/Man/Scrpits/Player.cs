@@ -32,14 +32,11 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == itemPickup)
+        if (collision.gameObject.CompareTag("Item Pickup"))
         {
-            Debug.Log("Picked up Item");
-            if (collision.gameObject.CompareTag("Scrap Metal"))
-            {
-                ChangeHealth(10);
-                Debug.Log("Picked up scrap");
-            }
+            Debug.Log("Picked up item");
+            ItemPickup itemPickup = collision.gameObject.GetComponent<ItemPickup>();
+            HUDController.Instance.PickUpItem(itemPickup.Item);
         }
     }
 }

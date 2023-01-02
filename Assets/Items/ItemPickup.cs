@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
 {
+    public InventoryItem Item;
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))

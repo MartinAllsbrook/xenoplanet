@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -2446383751042131314}
   m_Layer: 8
   m_Name: Scrap Metal
-  m_TagString: Scrap Metal
+  m_TagString: Item Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,3 +110,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48f18e320cd2e404c8d855d29daed1b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Item:
+    Icon: {fileID: -1344595865, guid: 7b700eca985f440478b5a0f2b322d3e6, type: 3}

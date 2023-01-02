@@ -13,7 +13,7 @@ public class HUDController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI arrowDisplay;
     [SerializeField] private RectTransform healthBar;
     [SerializeField] private CrosshaireController crosshaireController;
-    [SerializeField] private GameObject inventoryDisplay;
+    [SerializeField] private InventoryController inventoryController;
     private bool inventoryOpen = false;
 
     private void Awake()
@@ -26,7 +26,7 @@ public class HUDController : MonoBehaviour
     void Start()
     {
         InputManager.Instance.toggleInventory.AddListener(ToggleInventory);
-        inventoryDisplay.SetActive(false);
+        inventoryController.gameObject.SetActive(false);
     }
 
     // Set arrow display
@@ -53,15 +53,20 @@ public class HUDController : MonoBehaviour
     {
         if (inventoryOpen)
         {
-            inventoryDisplay.SetActive(false);
+            inventoryController.gameObject.SetActive(false);
             crosshaireController.gameObject.SetActive(true);
             inventoryOpen = false;
         }
         else
         {
-            inventoryDisplay.SetActive(true);
+            inventoryController.gameObject.SetActive(true);
             crosshaireController.gameObject.SetActive(false);
             inventoryOpen = true;
         }
+    }
+
+    public void PickUpItem(InventoryItem item)
+    {
+        inventoryController.PickUpItem(item);
     }
 }

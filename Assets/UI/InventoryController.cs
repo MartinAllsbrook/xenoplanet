@@ -4,12 +4,23 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 using Image = UnityEngine.UI.Image;
 
 public class InventoryController : MonoBehaviour
 {
     [SerializeField] private Image inventoryCursor;
+
+    [SerializeField] private InventoryTile[] _inventoryTiles;
+
+    private void Awake()
+    {
+        for (int i = 0; i < _inventoryTiles.Length; i++)
+        {
+            _inventoryTiles[i].inventoryPosition = i;
+        }
+    }
 
     private void Start()
     {
@@ -32,4 +43,9 @@ public class InventoryController : MonoBehaviour
         }
     }
 
+    public void PickUpItem(InventoryItem item)
+    {
+        Debug.Log("Picked up item");
+        _inventoryTiles[0].InventoryItem = item;
+    }
 }
