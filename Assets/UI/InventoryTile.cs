@@ -7,8 +7,10 @@ using UnityEngine.UI;
 public class InventoryTile : MonoBehaviour
 { 
     public int inventoryPosition;
+    [SerializeField] private Sprite blankSlotImage;
     private InventoryItem inventoryItem;
     private Image _image;
+    private bool _full = false;
 
     private void Awake()
     {
@@ -21,7 +23,19 @@ public class InventoryTile : MonoBehaviour
         set
         {
             inventoryItem = value;
+            if (value == null)
+            {
+                _image.sprite = blankSlotImage;
+                _full = false;
+                return;
+            }
             _image.sprite = inventoryItem.Icon;
+            _full = true;
         }
+    }
+    
+    public bool Full
+    {
+        get { return _full; }
     }
 }
