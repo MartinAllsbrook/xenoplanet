@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 
 public class InputManager : MonoBehaviour
 {
@@ -13,7 +15,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private Bow _bow;
     [SerializeField] private Grapple _grapple;
     
-    private Vector2 _moveDirection;
+    public Vector2 moveDirection;
     private Vector2 _cameraDirection;
     private bool _isSprinting;
     private bool _isJumping;
@@ -22,10 +24,21 @@ public class InputManager : MonoBehaviour
     private bool readyToJump = false;
     private float _fireStrength;
 
+    private bool inventoryOpen = false;
+
+    public UnityEvent toggleInventory;
+    public UnityEvent select;
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
+        
+        if (toggleInventory == null)
+            toggleInventory = new UnityEvent();
+
+        if (select == null)
+            select = new UnityEvent();
+        
         _playerControls = new PlayerControls();
         _playerMovement = GetComponent<PlayerMovement>();
         _fireStrength = 0;
@@ -60,7 +73,19 @@ public class InputManager : MonoBehaviour
     
     private void Update()
     {
-        //Press A (Space) – Jump
+        if (inventoryOpen)
+        {
+            InventoryControlChecks();
+        }
+        else
+        {
+            BasicControlChecks();
+        }
+    }
+
+    private void BasicControlChecks()
+    {
+                //Press A (Space) – Jump
         // _playerControls.Player.Jump.performed += context => _playerMovement.Jump();
         
         // When player is presses jump
@@ -73,10 +98,10 @@ public class InputManager : MonoBehaviour
         bool crouch = _playerControls.Player.Crouch.IsInProgress();
 
         //Move LeftStick (WASD) – Move
-        _moveDirection = _playerControls.Player.Movement.ReadValue<Vector2>();
+        moveDirection = _playerControls.Player.Movement.ReadValue<Vector2>();
 
         //_____Call Movement_____
-        _playerMovement.PlayerInput(_moveDirection, jump, sprint, crouch);
+        _playerMovement.PlayerInput(moveDirection, jump, sprint, crouch);
 
         //Move RightStick (Mouse) – Camera
         if (_playerControls.Player.Camera.IsInProgress())
@@ -87,22 +112,16 @@ public class InputManager : MonoBehaviour
 
         // RT / LMB => Hold to charge arrow
         if (_playerControls.Player.Fire.IsInProgress())
-        {
             _bow.ChargeArrow();
-        }
 
         // RT / LMB => Release to fire arrow
         if (_playerControls.Player.Fire.WasReleasedThisFrame())
-        {
             _bow.FireArrow();
-        }
-        
+
         // Y / Q => Cycle arrows
         if (_playerControls.Player.CycleArrows.WasPressedThisFrame())
-        {
             _bow.CycleArrow();
-        }
-        
+
         // D-Pad Up => Shrink Grapple
         if (_playerControls.Player.PadUp.IsInProgress())
             _grapple.ChangeGrappleLength(true);
@@ -113,11 +132,36 @@ public class InputManager : MonoBehaviour
 
         // LT / RMB => Release to delete grapple
         if (_playerControls.Player.Use.WasPressedThisFrame())
-        {
             _grapple.Unhook();
-        }
+        
+        // D-Pad Left => toggle inventory
+        if (_playerControls.Player.PadLeft.WasPerformedThisFrame())
+            ToggleInventory();
+    }
 
-        // I dont know what this does
-        // _playerControls.Player.Movement.canceled += context => _cameraDirection = Vector2.zero;
+    // Control checks while inventory is open
+    private void InventoryControlChecks()
+    {
+        moveDirection = _playerControls.Player.Movement.ReadValue<Vector2>();
+        
+        if (_playerControls.Player.Jump.WasPressedThisFrame())
+            select.Invoke();
+
+        // D-Pad Left => toggle inventory
+        if (_playerControls.Player.PadLeft.WasPerformedThisFrame())
+            ToggleInventory();
+    }
+
+    // Toggles inventory state on and off
+    private void ToggleInventory()
+    {
+        // Call event
+        toggleInventory.Invoke();
+        
+        // Set inventory open
+        if (inventoryOpen)
+            inventoryOpen = false;
+        else
+            inventoryOpen = true;
     }
 }

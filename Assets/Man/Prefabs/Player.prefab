@@ -71,13 +71,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5871221131373447265}
+  - component: {fileID: 4650032884601681207}
   - component: {fileID: 5871221131373447268}
   - component: {fileID: 5871221131373447264}
   - component: {fileID: 5871221131373447267}
   - component: {fileID: 5871221131373447266}
   - component: {fileID: 5871221131373447271}
   - component: {fileID: 5871221131373447270}
-  - component: {fileID: 4650032884601681207}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -105,6 +105,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4650032884601681207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5871221131373447293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e622fa3a3ec733844ae2f7d9a26b53bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  itemPickup: 0
 --- !u!114 &5871221131373447268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,6 +146,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bow: {fileID: 1756127340532499031}
   _grapple: {fileID: 3643135492808573079}
+  moveDirection: {x: 0, y: 0}
+  toggleInventory:
+    m_PersistentCalls:
+      m_Calls: []
+  select:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5871221131373447267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +245,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 2a402f53-dc60-46c8-8ecb-0d00e7fee535
     m_ActionName: Player/PadDown[/XInputControllerWindows/dpad/down]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3d06e8be-2886-421c-be35-4faead29d556
+    m_ActionName: Player/PadLeft[/XInputControllerWindows/dpad/left]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -259,19 +284,6 @@ CapsuleCollider:
   m_Height: 1.5374144
   m_Direction: 1
   m_Center: {x: 0, y: 0.78129274, z: 0}
---- !u!114 &4650032884601681207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5871221131373447293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e622fa3a3ec733844ae2f7d9a26b53bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
 --- !u!1001 &2082838958
 PrefabInstance:
   m_ObjectHideFlags: 0
