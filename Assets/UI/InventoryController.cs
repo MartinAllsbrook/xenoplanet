@@ -63,7 +63,7 @@ public class InventoryController : MonoBehaviour
 
     public void PickUpItem(InventoryItem item)
     {
-        Debug.Log("Picked up item");
+        // Debug.Log("Picked up item");
         int firstOpenIndex;
         for (int i = 0; i < itemSlots.Length; i++)
         {

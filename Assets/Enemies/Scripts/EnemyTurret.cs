@@ -38,7 +38,7 @@ public class EnemyTurret : Enemy
                 return;
             }
             // else (because of return)
-            StopLaser();
+            // StopLaser();
         }
 
         if (cannon.transform.rotation != _targetRotation)
@@ -64,18 +64,23 @@ public class EnemyTurret : Enemy
                 playerStats.ChangeHealth(-_laserCharge);
             }
 
+            _laserCharge += (1 - _laserCharge) * Time.deltaTime * chargeMultiplier;
+
             laserEnd = laserHit.point; // Laser ends at hit position of ray
         }
         else
+        {
+            StopLaser();
             laserEnd = _transformPosition + (direction.normalized * range);
+        }
 
         // Set line renderer's positions
         _laserBeam.SetPosition(0, _transformPosition);
         _laserBeam.SetPosition(1, laserEnd);
         
         // Set line renderer's width
-        _laserCharge += (1 - _laserCharge) * Time.deltaTime * chargeMultiplier;
-        _laserBeam.widthMultiplier = _laserCharge * 2 * Random.Range(0.85f, 1.0f);
+        // _laserCharge += (1 - _laserCharge) * Time.deltaTime * chargeMultiplier;
+        _laserBeam.widthMultiplier = _laserCharge * Random.Range(0.85f, 1.0f);
     }
 
     private void StopLaser()

@@ -22,6 +22,6 @@ public class ItemPickup : MonoBehaviour
     
     protected virtual void UseItem()
     {
-        Debug.Log("Item Used from callback");
+        Debug.Log("No use item method defined");
     }
 }
