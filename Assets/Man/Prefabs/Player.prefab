@@ -153,6 +153,15 @@ MonoBehaviour:
   select:
     m_PersistentCalls:
       m_Calls: []
+  hotbarNext:
+    m_PersistentCalls:
+      m_Calls: []
+  hotbarPrev:
+    m_PersistentCalls:
+      m_Calls: []
+  useItem:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5871221131373447267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,10 +177,10 @@ MonoBehaviour:
   PlayerBaseSpeed: 8
   PlayerSprintMultiplier: 2
   PlayerCrouchMultiplier: 0.5
-  PlayerJumpForce: 5
-  doubbleJumpMultiplier: 1.75
-  PlayerFallForce: 80
-  SecondJump: 0
+  PlayerJumpForce: 10
+  doubbleJumpMultiplier: 2.6
+  PlayerFallForce: 30
+  CanSecondJump: 1
   thridPersonCamera: {fileID: 0}
   mainCamera: {fileID: 0}
   WhatIsGround:
@@ -179,7 +188,18 @@ MonoBehaviour:
     m_Bits: 64
   groundCheck: {fileID: 1505611185}
   isGrounded: 0
-  isJump: 0
+  OnJumpEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLandEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSprintEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnCrouchEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5871221131373447266
 MonoBehaviour:
   m_ObjectHideFlags: 0

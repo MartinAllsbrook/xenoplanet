@@ -15,6 +15,7 @@ public class PlayerAnimation : MonoBehaviour
     //Animator Parameters
     private static readonly int XVelocity = Animator.StringToHash("xVelocity");
     private static readonly int YVelocity = Animator.StringToHash("yVelocity");
+    private static readonly int Jump = Animator.StringToHash("Jump");
     private static readonly int IsGrounded = Animator.StringToHash("isGrounded");
     
     private void Awake()
@@ -32,6 +33,11 @@ public class PlayerAnimation : MonoBehaviour
        
        // Debug.Log("poop" + _playerMovement.isGrounded);   
 
+    }
+
+    public void JumpAninmation()
+    {
+        _animation.SetTrigger(Jump);
     }
     
 }

@@ -4,6 +4,7 @@ using Cinemachine;
 using Cinemachine.Utility;
 using UnityEditor.Experimental.RestService;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -15,32 +16,44 @@ public class PlayerMovement : MonoBehaviour
     private float turnVelocity;
 
     // Move Factors
+    [Header("Movement Speeds")]
+    [Space(15)]
     [Range(1, 100)] [SerializeField] private float PlayerBaseSpeed;
     [Range(0, 2)] [SerializeField] private float PlayerSprintMultiplier;
     [Range(0, 2)] [SerializeField] private float PlayerCrouchMultiplier;
     [Range(0, 20)] [SerializeField] private float PlayerJumpForce;
     [Range(0, 4)] [SerializeField] private float doubbleJumpMultiplier;
     [Range(0, 100)] [SerializeField] private float PlayerFallForce;
-    [SerializeField] private bool SecondJump;
+    [SerializeField] private bool CanSecondJump;
+    
     private Vector3 PlayerDirection;
     private bool PlayerJump;
+    private bool PlayerSecondJump;
     private bool PlayerSprint;
     private bool PlayerCrouch;
     
-
-    // [Range(1, 100)] [SerializeField] private float maxVelocity;
-    // [Range(1, 5000)] [SerializeField] private float stationaryDrag;
     
     //Camera Reference
+    [Header("Camera Reference")]
+    [Space(15)]
     [SerializeField] private CinemachineFreeLook thridPersonCamera;
     [SerializeField] private Camera mainCamera;
     
     //Checks
+    [Header("Player Checks")]
+    [Space(15)]
     [SerializeField] private LayerMask WhatIsGround;
     [SerializeField] private Transform groundCheck;
-    public bool isGrounded;
+    [HideInInspector]public bool isGrounded;
+    private bool wasGrounded;
+    private bool isJumping;
     
-    public bool isJump;
+    [Header("Player Events")]
+    [Space(15)]
+    [SerializeField] UnityEvent OnJumpEvent;
+    [SerializeField] UnityEvent OnLandEvent;
+    [SerializeField] UnityEvent OnSprintEvent;
+    [SerializeField] UnityEvent OnCrouchEvent;
 
     private void Awake()
     {
@@ -55,7 +68,8 @@ public class PlayerMovement : MonoBehaviour
         Jump();
         
         CheckGrounded();
-        // Debug.Log(isGrounded);
+        
+        Events();
     }
 
     public void PlayerInput(Vector3 PlayerDirInput, bool PlayerJumpInput, bool PlayerSprintInput, bool PlayerCrouchInput)
@@ -64,45 +78,35 @@ public class PlayerMovement : MonoBehaviour
         PlayerJump = PlayerJumpInput;
         PlayerSprint = PlayerSprintInput;
         PlayerCrouch = PlayerCrouchInput;
-        // Debug.Log(PlayerSprint);
     }
 
     #region Movment
     public void Jump()
     {
         // If the player jumped this update
-        if (PlayerJump)
+        if (PlayerJump && isGrounded)
         {
-            // If the player is on the ground jump
-            if (isGrounded)
-                _rigidbody.velocity += Vector3.up * PlayerJumpForce;
+            _rigidbody.velocity += Vector3.up * PlayerJumpForce;
+        }
 
-            // If the player is in the air
-            else
-            {
-                // If the player has a 2nd jump double jump
-                if (SecondJump)
-                {
-                    //without this double jump on falling is too small
-                    _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, 0f, _rigidbody.velocity.z); // zero out velocity before jumping
-                    // _rigidbody.velocity += Vector3.up * (PlayerJumpForce * Time.deltaTime * 50);
-                    // float temp = (PlayerJumpForce * 20f);
-                    // _rigidbody.velocity += new Vector3(PlayerDirection.x, temp, PlayerDirection.y);
-                    _rigidbody.velocity += Vector3.up * (PlayerJumpForce * doubbleJumpMultiplier);
-                    Debug.Log("DoubbleJump");
-                    SecondJump = false;
-                }
-                // Else fall faster
-                else
-                    _rigidbody.velocity += Vector3.down * (PlayerFallForce * Time.deltaTime);
-            }
+        //if not grounded and can second jump on update
+        if (PlayerJump && PlayerSecondJump && CanSecondJump && !isGrounded)
+        {
+            //zero out y velocity before second jump
+            _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, 0f, _rigidbody.velocity.z); 
+            _rigidbody.velocity += Vector3.up * (PlayerJumpForce * doubbleJumpMultiplier);
+            PlayerSecondJump = false;
+        }
+
+        //if falling
+        if (_rigidbody.velocity.y < 0 && !isGrounded)
+        {
+            _rigidbody.velocity += Vector3.down * (PlayerFallForce * Time.deltaTime);
         }
     }
 
     public void Move()
     {
-        if (isGrounded)
-        {
             //Calculate direction to move
             float targetAngle = Mathf.Atan2(PlayerDirection.x, PlayerDirection.y) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnVelocity, 0.1f);
@@ -115,6 +119,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 //apply camera rotation
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
+                
                 if(PlayerSprint)
                     _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, camDirection * (PlayerBaseSpeed * PlayerSprintMultiplier * PlayerDirection.magnitude), ref currVelocity, 0.3f);
                 if(PlayerCrouch)
@@ -127,13 +132,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, Vector3.zero, ref currVelocity, 0.2f);
             }
-        }
-
-        //AirControl??
-        if (!isGrounded)
-        {
-            
-        }
     }
 
     public void CameraControl(Vector2 direction)
@@ -153,8 +151,9 @@ public class PlayerMovement : MonoBehaviour
         if (Physics.CheckSphere(groundCheck.position, 0.1f, WhatIsGround))
         {
             // Debug.Log("walkable");
+            wasGrounded = isGrounded;
             isGrounded = true;
-            SecondJump = true;
+            PlayerSecondJump = true;
         }
         else
             isGrounded = false;
@@ -162,6 +161,20 @@ public class PlayerMovement : MonoBehaviour
     
 
     #endregion
+
+    private void Events()
+    {
+        if(PlayerJump && isGrounded) 
+            OnJumpEvent.Invoke();
+        if(PlayerSecondJump && CanSecondJump && PlayerJump)
+            OnJumpEvent.Invoke();
+        if(PlayerSprint && isGrounded) 
+            OnSprintEvent.Invoke();
+        if(PlayerCrouch && isGrounded)
+            OnCrouchEvent.Invoke();
+        if(isGrounded && !wasGrounded)
+            OnLandEvent.Invoke();
+    }
 
     private void OnDrawGizmos()
     {
