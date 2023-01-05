@@ -177,7 +177,7 @@ MonoBehaviour:
   PlayerBaseSpeed: 8
   PlayerSprintMultiplier: 2
   PlayerCrouchMultiplier: 0.5
-  PlayerJumpForce: 15
+  PlayerJumpForce: 6
   doubbleJumpMultiplier: 1.5
   PlayerFallForce: 35
   CanSecondJump: 1

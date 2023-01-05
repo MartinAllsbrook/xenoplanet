@@ -181,7 +181,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 //apply camera rotation
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
-                Vector3 target = camDirection * (PlayerBaseSpeed * PlayerDirection.magnitude); // why do we multiply by playerdirection.magnitude?
+                Vector3 target = camDirection * (PlayerBaseSpeed * PlayerSprintMultiplier * PlayerDirection.magnitude); // why do we multiply by playerdirection.magnitude?
                 target.y = _rigidbody.velocity.y;
                 _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, target, ref currVelocity, 1f); 
                 // _rigidbody.AddForce(camDirection * (10000 * PlayerDirection.magnitude * Time.deltaTime));
