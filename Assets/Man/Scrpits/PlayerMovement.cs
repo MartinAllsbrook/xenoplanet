@@ -180,9 +180,11 @@ public class PlayerMovement : MonoBehaviour
             if (PlayerDirection.magnitude > 0.1f)
             {
                 //apply camera rotation
-                transform.rotation = Quaternion.Euler(0f, angle, 0f); // This line confuses me
-                _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, camDirection * (PlayerBaseSpeed * PlayerDirection.magnitude), ref currVelocity, 0.3f);
-                // _rigidbody.AddForce();
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+                Vector3 target = camDirection * (PlayerBaseSpeed * PlayerDirection.magnitude); // why do we multiply by playerdirection.magnitude?
+                target.y = _rigidbody.velocity.y;
+                _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, target, ref currVelocity, 1f); 
+                // _rigidbody.AddForce(camDirection * (10000 * PlayerDirection.magnitude * Time.deltaTime));
             }
         }
     
