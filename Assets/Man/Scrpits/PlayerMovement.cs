@@ -107,10 +107,6 @@ public class PlayerMovement : MonoBehaviour
                 _rigidbody.velocity += Vector3.up * PlayerJumpForce; // Should change this to AddForce() 
 
             //if falling
-            if (_rigidbody.velocity.y < 0 && !isGrounded)
-            {
-                _rigidbody.velocity += Vector3.down * (PlayerFallForce * Time.deltaTime);
-            }
         }
 
         private void Move()
@@ -155,6 +151,10 @@ public class PlayerMovement : MonoBehaviour
             {
                 DoubbleJump();
             }
+            if (_rigidbody.velocity.y < 0 && !isGrounded)
+            {
+                _rigidbody.velocity += Vector3.down * (PlayerFallForce * Time.deltaTime);
+            }
         }
 
         private void DoubbleJump()
@@ -191,12 +191,12 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     #region Sandboarding Movement
-
+        
     #endregion
     
     // Old movement
-    /*#region Old Movment
-    public void Jump()
+    #region Old Movment
+    /*public void Jump()
     {
         // If the player jumped this update
         if (PlayerJump && isGrounded)
@@ -254,8 +254,8 @@ public class PlayerMovement : MonoBehaviour
         thridPersonCamera.m_XAxis.m_InputAxisValue = -direction.x;
         thridPersonCamera.m_YAxis.m_InputAxisValue = -direction.y;
     }
-        
-    #endregion*/
+    */
+    #endregion
 
     #region Checks
 
