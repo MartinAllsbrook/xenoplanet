@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour
     
     private PlayerControls _playerControls;
     private PlayerMovement _playerMovement;
+    private CharacterControllerFSM _controllerFsm;
     [SerializeField] private Bow _bow;
     [SerializeField] private Grapple _grapple;
     
@@ -44,6 +45,7 @@ public class InputManager : MonoBehaviour
         
         _playerControls = new PlayerControls();
         _playerMovement = GetComponent<PlayerMovement>();
+        _controllerFsm = GetComponent<CharacterControllerFSM>();
         _fireStrength = 0;
     }
 
@@ -104,8 +106,9 @@ public class InputManager : MonoBehaviour
         moveDirection = _playerControls.Player.Movement.ReadValue<Vector2>();
 
         //_____Call Movement_____
+        _controllerFsm.PlayerInput(moveDirection, jump, sprint, crouch);
         _playerMovement.PlayerInput(moveDirection, jump, sprint, crouch);
-
+        
         //Move RightStick (Mouse) – Camera
         if (_playerControls.Player.Camera.IsInProgress())
         {
