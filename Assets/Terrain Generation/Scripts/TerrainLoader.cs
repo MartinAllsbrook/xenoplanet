@@ -110,6 +110,12 @@ public class TerrainLoader : MonoBehaviour
 
     void Start()
     {
+        // TODO: Remove when no longer needed
+        if (loadDistance == 0)
+        {
+            terrainReady.Invoke();
+            return;
+        }
         loadedChunks = new GameObject[loadDistance * 2 + 1, loadDistance * 2 + 1];
         for (var x = 0 - loadDistance; x <= 0 + loadDistance; x++)
         {
@@ -122,6 +128,11 @@ public class TerrainLoader : MonoBehaviour
 
     private void Update()
     {
+        // TODO: Remove when no longer needed
+        if (loadDistance == 0)
+        {
+            return;
+        }
         var lastXCell = xPlayerCell;
         var lastZCell = zPlayerCell;
         xPlayerCell = (int) MathF.Floor(transform.position.x / 512);

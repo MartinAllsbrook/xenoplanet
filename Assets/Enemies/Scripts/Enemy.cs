@@ -6,10 +6,17 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] protected float health;
-    [SerializeField] protected float range;
+    [SerializeField] protected float viewDistance;
     [SerializeField] protected LayerMask visible;
     [SerializeField] private GameObject deathParticles;
     // [SerializeField] protected LayerMask player;
+    
+    protected Rigidbody enemyRigidbody;
+
+    protected virtual void Awake()
+    {
+        enemyRigidbody = GetComponent<Rigidbody>();
+    }
 
     protected virtual void OnCollisionEnter(Collision collision)
     {

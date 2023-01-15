@@ -28,7 +28,7 @@ public class EnemyTurret : Enemy
     {
         Vector3 direction = Player.Instance.transform.position + new Vector3(0, 1, 0) - _transformPosition;
         Ray ray = new Ray(_transformPosition, direction);
-        if (Physics.Raycast(ray, out RaycastHit hit, range, visible))
+        if (Physics.Raycast(ray, out RaycastHit hit, viewDistance, visible))
         {
             if (hit.transform.gameObject.CompareTag("Player"))
             {
@@ -54,7 +54,7 @@ public class EnemyTurret : Enemy
 
         // Cast ray for laser
         Ray laserRay = new Ray(_transformPosition, direction);
-        if (Physics.Raycast(laserRay, out RaycastHit laserHit, range, visible))
+        if (Physics.Raycast(laserRay, out RaycastHit laserHit, viewDistance, visible))
         {
             // If laser hit's the player deal damage
             GameObject objectHit = laserHit.transform.gameObject;
@@ -71,7 +71,7 @@ public class EnemyTurret : Enemy
         else
         {
             StopLaser();
-            laserEnd = _transformPosition + (direction.normalized * range);
+            laserEnd = _transformPosition + (direction.normalized * viewDistance);
         }
 
         // Set line renderer's positions
