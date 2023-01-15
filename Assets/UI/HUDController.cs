@@ -14,6 +14,7 @@ public class HUDController : MonoBehaviour
     [SerializeField] private RectTransform healthBar;
     [SerializeField] private CrosshaireController crosshaireController;
     [SerializeField] private InventoryController inventoryController;
+    [SerializeField] private GameObject loadingScreen;
     private bool inventoryOpen = false;
 
     private void Awake()
@@ -26,6 +27,7 @@ public class HUDController : MonoBehaviour
     void Start()
     {
         InputManager.Instance.toggleInventory.AddListener(ToggleInventory);
+        TerrainLoader.Instance.terrainReady.AddListener(DoneLoading);
         inventoryController.gameObject.SetActive(false);
     }
 
@@ -68,5 +70,10 @@ public class HUDController : MonoBehaviour
     public void PickUpItem(InventoryItem item)
     {
         inventoryController.PickUpItem(item);
+    }
+
+    private void DoneLoading()
+    {
+        loadingScreen.SetActive(false);
     }
 }

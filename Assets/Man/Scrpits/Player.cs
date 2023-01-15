@@ -8,13 +8,22 @@ public class Player : MonoBehaviour
     public static Player Instance;
     
     [SerializeField] private float health;
-    [SerializeField] private int itemPickup;
+
+    private Rigidbody playerRigidbody;
+    // [SerializeField] private int itemPickup;
     
     private void Awake()
     {
         // Create player singleton
         if (Instance == null)
             Instance = this;
+
+        playerRigidbody = GetComponent<Rigidbody>();
+    }
+
+    private void Start()
+    {
+        TerrainLoader.Instance.terrainReady.AddListener(OnGameStart);
     }
 
     public void ChangeHealth(float ammount)
@@ -37,6 +46,18 @@ public class Player : MonoBehaviour
             Debug.Log("Picked up item");
             ItemPickup itemPickup = collision.gameObject.GetComponent<ItemPickup>();
             HUDController.Instance.PickUpItem(itemPickup.Item);
+        }
+    }
+
+    private void OnGameStart()
+    {
+        playerRigidbody.useGravity = true;
+
+
+        Ray ray = new Ray(transform.position, Vector3.down);
+        if (Physics.Raycast(ray, out RaycastHit hit, 600)) // May want to add a layermask to this
+        {
+            transform.position = hit.point + (Vector3.up * 0.5f);
         }
     }
 }
