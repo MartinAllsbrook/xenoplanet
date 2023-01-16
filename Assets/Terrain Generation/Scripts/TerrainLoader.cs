@@ -128,11 +128,6 @@ public class TerrainLoader : MonoBehaviour
 
     private void Update()
     {
-        // TODO: Remove when no longer needed
-        if (loadDistance == 0)
-        {
-            return;
-        }
         var lastXCell = xPlayerCell;
         var lastZCell = zPlayerCell;
         xPlayerCell = (int) MathF.Floor(transform.position.x / 512);
