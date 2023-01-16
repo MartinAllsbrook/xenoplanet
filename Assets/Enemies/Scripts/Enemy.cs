@@ -12,7 +12,16 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject deathParticles;
     [SerializeField] protected float idleDistance;
     // [SerializeField] protected LayerMask player;
+    [Serializable]
+    public class ItemDrop
+    {
+        public int dropChance;
+        public int dropTries;
+        public GameObject drop;
+    }
 
+    [SerializeField] protected ItemDrop[] itemDrops;
+    
     protected Vector3 targetLocation;
     protected Rigidbody enemyRigidbody;
     
@@ -40,6 +49,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    // Generate a random position
     protected virtual Vector3 GenerateRandomTarget()
     {
         return new Vector3(
@@ -50,7 +60,18 @@ public class Enemy : MonoBehaviour
     
     protected virtual void Die()
     {
+        // Instantiate the enemies death particle system
         Instantiate(deathParticles, transform.position, transform.rotation);
+        //  Instatiate 
+        for (int i = 0; i < itemDrops.Length; i++)
+        {
+            for (int j = 0; j < itemDrops[i].dropTries; j++)
+            {
+                if (Random.Range(1,101) < itemDrops[i].dropChance)
+                    Instantiate(itemDrops[i].drop, transform.position, transform.rotation);
+            }
+        }
+        
         Destroy(gameObject);
     }
 

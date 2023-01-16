@@ -152,8 +152,12 @@ MonoBehaviour:
   visible:
     serializedVersion: 2
     m_Bits: 72
-  deathParticles: {fileID: 8057273944674690625, guid: 0e95d998cd4acce48ab1476c0551634c, type: 3}
-  idleDistance: 0
+  deathParticles: {fileID: 6195871198001566187, guid: 5b8ca04c0ed3fed49a823c9ce5d0fa1f, type: 3}
+  idleDistance: 20
+  itemDrops:
+  - dropChance: 100
+    dropTries: 1
+    drop: {fileID: 3980989105184464102, guid: 3ea26d7b3d2c2e143959505caa9f0fde, type: 3}
   range:
   - 15
   - 25
@@ -161,7 +165,7 @@ MonoBehaviour:
   - 2
   - 10
   speed: 5
-  accelerationTime: 0.3
+  accelerationTime: 2
   slowdownDistance: 0
   coolDownTime: 1
   laser: {fileID: 4655262563220487885, guid: 0c737fe9da2396b4e8a4694bf38d6cc5, type: 3}

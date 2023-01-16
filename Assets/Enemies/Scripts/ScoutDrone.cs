@@ -30,6 +30,6 @@ public class ScoutDrone : FlyingEnemy
 
     private void FireLaser()
     {
-        Instantiate(laser, transform.position + transform.forward, Quaternion.Euler(transform.rotation.eulerAngles));
+        Instantiate(laser, transform.position + transform.forward * 1.5f, Quaternion.Euler(transform.rotation.eulerAngles));
     }
 }
