@@ -16,7 +16,7 @@ public class FlyingEnemy : Enemy
     protected void Update()
     {
         // Make raycast towards player
-        Vector3 direction = Player.Instance.transform.position + new Vector3(0, 1.5f, 0) - transform.position;
+        Vector3 direction = Player.Instance.transform.position + new Vector3(0, 1, 0) - transform.position;
         Ray ray = new Ray(transform.position, direction);
         if (Physics.Raycast(ray, out RaycastHit hit, viewDistance, visible))
         {
@@ -47,17 +47,14 @@ public class FlyingEnemy : Enemy
 
     protected void MoveTo(Vector3 target)
     {
+        target.y += hoverHeight[0];
         var delta = target - transform.position;
-        var diretion = delta.normalized;
+        var direction = delta.normalized;
         var distance = delta.magnitude;
-        
+        transform.LookAt(Player.Instance.transform.position + Vector3.up);
         if (distance > range[0])
-        {
-            enemyRigidbody.velocity = Vector3.SmoothDamp(enemyRigidbody.velocity, speed * diretion, ref currentVelocity, accelerationTime);
-        }
+            enemyRigidbody.velocity = Vector3.SmoothDamp(enemyRigidbody.velocity, speed * direction, ref currentVelocity, accelerationTime);
         else
-        {
             enemyRigidbody.velocity = Vector3.SmoothDamp(enemyRigidbody.velocity, Vector3.zero, ref currentVelocity, accelerationTime);
-        }
     }
 }
