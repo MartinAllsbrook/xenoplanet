@@ -28,5 +28,7 @@ public class Laser : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Destroy(gameObject);
+        Player player = collision.gameObject.GetComponent<Player>();
+        player.ChangeHealth(-5);
     }
 }

@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float viewDistance;
     [SerializeField] protected LayerMask visible;
     [SerializeField] private GameObject deathParticles;
+    [SerializeField] protected float idleDistance;
     // [SerializeField] protected LayerMask player;
 
     protected Vector3 targetLocation;
@@ -42,9 +43,9 @@ public class Enemy : MonoBehaviour
     protected virtual Vector3 GenerateRandomTarget()
     {
         return new Vector3(
-            transform.position.x + Random.Range(-10f, 10f), 
-            transform.position.x + Random.Range(0, 10f),
-            transform.position.z + Random.Range(-10f, 10f));
+            transform.position.x + Random.Range(-idleDistance, idleDistance), 
+            transform.position.x + Random.Range(0, idleDistance),
+            transform.position.z + Random.Range(-idleDistance, idleDistance));
     }
     
     protected virtual void Die()

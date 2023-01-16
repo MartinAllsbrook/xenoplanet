@@ -153,6 +153,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 72
   deathParticles: {fileID: 8057273944674690625, guid: 0e95d998cd4acce48ab1476c0551634c, type: 3}
+  idleDistance: 0
   range:
   - 15
   - 25
@@ -161,6 +162,7 @@ MonoBehaviour:
   - 10
   speed: 5
   accelerationTime: 0.3
+  slowdownDistance: 0
   coolDownTime: 1
   laser: {fileID: 4655262563220487885, guid: 0c737fe9da2396b4e8a4694bf38d6cc5, type: 3}
 --- !u!33 &2994207794475489681
