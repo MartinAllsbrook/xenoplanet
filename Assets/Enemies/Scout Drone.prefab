@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2682631488596450742}
   - component: {fileID: 5048466363264313609}
   - component: {fileID: 2581389326928525835}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 2994207794475489710}
   - component: {fileID: 2994207794475489711}
   - component: {fileID: 6870540376460656178}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Scout Drone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

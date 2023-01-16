@@ -66,7 +66,7 @@ public class FlyingEnemy : Enemy
             locationTolerance = 1;
         }
             
-        Debug.Log("Idle");
+        // Debug.Log("Idle");
     }
 
     protected override Vector3 GenerateRandomTarget()
@@ -83,7 +83,7 @@ public class FlyingEnemy : Enemy
 
     protected void MoveTo(Vector3 target)
     {
-        Debug.Log("Distance: " + (transform.position - targetLocation).magnitude + "Target: " + target);
+        // Debug.Log("Distance: " + (transform.position - targetLocation).magnitude + "Target: " + target);
         target.y += hoverHeight[0];
         var delta = target - transform.position;
         var direction = delta.normalized;

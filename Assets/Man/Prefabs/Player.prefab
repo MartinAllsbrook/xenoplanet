@@ -400,6 +400,18 @@ PrefabInstance:
       propertyPath: initialGrappleLength
       value: 0.291
       objectReference: {fileID: 0}
+    - target: {fileID: 2344779117644041702, guid: fa9334d76319ca844a4575858a7e1b2b, type: 3}
+      propertyPath: maxAimDistance
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2344779117644041702, guid: fa9334d76319ca844a4575858a7e1b2b, type: 3}
+      propertyPath: arrows.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2344779117644041702, guid: fa9334d76319ca844a4575858a7e1b2b, type: 3}
+      propertyPath: aimingLayerMask.m_Bits
+      value: 192
+      objectReference: {fileID: 0}
     - target: {fileID: 2551837241359621135, guid: fa9334d76319ca844a4575858a7e1b2b, type: 3}
       propertyPath: m_RootOrder
       value: 3
