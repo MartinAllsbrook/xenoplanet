@@ -14,9 +14,11 @@ public class ScoutDrone : FlyingEnemy
     {
         coolDown = coolDownTime;
     }
-
+    
     protected override void Attack()
     {
+        base.Attack();
+        
         if (coolDown > 0)
             coolDown -= Time.deltaTime;
         else

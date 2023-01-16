@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
@@ -10,12 +11,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected LayerMask visible;
     [SerializeField] private GameObject deathParticles;
     // [SerializeField] protected LayerMask player;
-    
-    protected Rigidbody enemyRigidbody;
 
+    protected Vector3 targetLocation;
+    protected Rigidbody enemyRigidbody;
+    
     protected virtual void Awake()
     {
         enemyRigidbody = GetComponent<Rigidbody>();
+        targetLocation = GenerateRandomTarget();
     }
 
     protected virtual void OnCollisionEnter(Collision collision)
@@ -36,6 +39,14 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    protected virtual Vector3 GenerateRandomTarget()
+    {
+        return new Vector3(
+            transform.position.x + Random.Range(-10f, 10f), 
+            transform.position.x + Random.Range(0, 10f),
+            transform.position.z + Random.Range(-10f, 10f));
+    }
+    
     protected virtual void Die()
     {
         Instantiate(deathParticles, transform.position, transform.rotation);
