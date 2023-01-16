@@ -177,8 +177,8 @@ MonoBehaviour:
   PlayerSprintMultiplier: 2
   PlayerCrouchMultiplier: 0.5
   PlayerJumpForce: 6
-  doubbleJumpMultiplier: 1.5
-  PlayerFallForce: 35
+  doubbleJumpMultiplier: 1.25
+  PlayerFallForce: 20
   CanSecondJump: 1
   thridPersonCamera: {fileID: 0}
   mainCamera: {fileID: 0}
@@ -369,6 +369,10 @@ PrefabInstance:
     - target: {fileID: 2733616821781847809, guid: 7b8933c2bf99d7844aa98c9e13171b34, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2733616821781847810, guid: 7b8933c2bf99d7844aa98c9e13171b34, type: 3}
+      propertyPath: loadDistance
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2733616821781847811, guid: 7b8933c2bf99d7844aa98c9e13171b34, type: 3}
       propertyPath: m_Name
