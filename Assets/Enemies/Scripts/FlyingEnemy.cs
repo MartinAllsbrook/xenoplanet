@@ -22,7 +22,7 @@ public class FlyingEnemy : Enemy
 
         if (CanSeePlayer(out RaycastHit hit))
         {
-            Debug.Log(hit);
+            // Debug.Log(hit);
             targetLocation = hit.transform.position;
             MoveTo(targetLocation);
             if ((hit.transform.position - transform.position).magnitude < range[1]) 

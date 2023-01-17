@@ -4946,6 +4946,12 @@ MonoBehaviour:
   baseForce: 400
   arrowName: Explosive
   explodeParticles: {fileID: 5065590562593492601, guid: 6689370d9bf0f6343a0a9b040326513a, type: 3}
+  enemies:
+    serializedVersion: 2
+    m_Bits: 128
+  explosionRadius: 10
+  explosionFalloff: 0
+  maxExplosionDamage: 10
 --- !u!1001 &2980667634900302022
 PrefabInstance:
   m_ObjectHideFlags: 0
