@@ -256,6 +256,63 @@ Transform:
   m_Father: {fileID: 1741811449}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &117988979
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -21.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 68.259995
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 49.04897
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489708, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_Name
+      value: Scout Drone (4)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
 --- !u!1 &232676196
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,6 +810,63 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 406650181}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &501578123
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 68.259995
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 49.04897
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489708, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_Name
+      value: Scout Drone (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
 --- !u!1001 &530756984
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2322,6 +2436,63 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1510752763}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1600508800
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 68.259995
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 49.04897
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489708, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_Name
+      value: Scout Drone (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
 --- !u!1 &1663967925
 GameObject:
   m_ObjectHideFlags: 0
@@ -2517,7 +2688,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3101116444431670986, guid: 409b60a415299564e8e55dc462be6ec6, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.028858973
+      value: 0.028858976
       objectReference: {fileID: 0}
     - target: {fileID: 3101116444431670986, guid: 409b60a415299564e8e55dc462be6ec6, type: 3}
       propertyPath: m_LocalRotation.y
@@ -3159,6 +3330,63 @@ Transform:
   m_Father: {fileID: 1741811449}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1822084071
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -14.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 68.259995
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 49.04897
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489680, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994207794475489708, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+      propertyPath: m_Name
+      value: Scout Drone (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
 --- !u!1 &1970635941
 GameObject:
   m_ObjectHideFlags: 0

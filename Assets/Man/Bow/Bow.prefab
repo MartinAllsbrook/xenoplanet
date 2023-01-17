@@ -349,9 +349,15 @@ MonoBehaviour:
   arrows:
   - {fileID: 8552387443009401812, guid: eeb0ec5fde229a148a41b776d4a0c62d, type: 3}
   - {fileID: 6564256316830937675, guid: 5774ebc7947634245b4ffb3ddc297906, type: 3}
-  - {fileID: 5145491759780584552, guid: 24b4a99dfa004884681b1379b4096ba6, type: 3}
+  - {fileID: 3416325244853850123, guid: d4e452000a4ebcd458ed2ad2ee3b5b53, type: 3}
   camera: {fileID: 0}
   thirdPersonCamera: {fileID: 0}
+  arrowSpawnPosition: {fileID: 0}
+  aimingLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  arrowAimer: {fileID: 0}
+  maxAimDistance: 60
 --- !u!114 &746001878644346662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,7 +370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df934b43f8eb9c94bbc6ad7c2007a50d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grappleLength: 2
+  initialGrappleLength: 0
   grappleRateOfChange: 5
 --- !u!1 &7727254352805837735
 GameObject:

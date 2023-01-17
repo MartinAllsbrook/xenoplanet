@@ -6,12 +6,21 @@ using UnityEngine;
 
 public class ExplosiveArrow : Arrow
 {
-    [SerializeField] private GameObject explodeParticles;
-    [SerializeField] private LayerMask enemies;
-    [SerializeField] private float explosionRadius;
-    [SerializeField] private float explosionFalloff;
-    [SerializeField] private float maxExplosionDamage;
+    [SerializeField] protected GameObject explodeParticles;
+    [SerializeField] protected LayerMask enemies;
+    [SerializeField] protected float explosionRadius;
+    [SerializeField] protected float explosionFalloff;
+    [SerializeField] protected float maxExplosionDamage;
+
     protected override void OnCollisionEnter(Collision collision)
+    {
+        Explode();
+        
+        // Call base at the end because it deletes the gameobject
+        base.OnCollisionEnter(collision);
+    }
+    
+    protected virtual void Explode()
     {
         var colliders = Physics.OverlapSphere(transform.position, explosionRadius, enemies);
         for (int i = 0; i < colliders.Length; i++)
@@ -27,8 +36,5 @@ public class ExplosiveArrow : Arrow
         
         // Create explosion particles where the arrow exploded
         Instantiate(explodeParticles, transform.position, transform.rotation);
-        
-        // Call base at the end because it deletes the gameobject
-        base.OnCollisionEnter(collision);
     }
 }
