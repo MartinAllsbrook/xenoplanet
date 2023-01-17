@@ -8,7 +8,6 @@ using Random = UnityEngine.Random;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] protected float health;
-
     public virtual float Health
     {
         private get { return health; }
@@ -24,6 +23,7 @@ public class Enemy : MonoBehaviour
                 Die();
         }
     } 
+    
     [SerializeField] protected float viewDistance;
     [SerializeField] protected LayerMask visible;
     [SerializeField] private GameObject deathParticles;
@@ -42,6 +42,7 @@ public class Enemy : MonoBehaviour
     protected Vector3 targetLocation;
     protected Rigidbody enemyRigidbody;
     protected Vector3 lastPlayerLocation;
+    protected bool canSeePlayer;
 
     // private UnityEvent playerVisible;
     
@@ -111,12 +112,15 @@ public class Enemy : MonoBehaviour
             {
                 // Debug.Log(playerVisible);
                 // playerVisible.Invoke();
+                canSeePlayer = true;
                 hitOut = hit;
                 return true;
             }
+            canSeePlayer = false;
             hitOut = hit;
             return false;
         }
+        canSeePlayer = false;
         hitOut = hit;
         return false;
     }

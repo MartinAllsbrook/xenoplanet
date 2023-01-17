@@ -9,7 +9,7 @@ public class Laser : MonoBehaviour
     
     private LineRenderer laserLineRenderer;
     private Rigidbody laserRigidbody;
-
+    
     private void Awake()
     {
         laserLineRenderer = GetComponent<LineRenderer>();

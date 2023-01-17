@@ -5,32 +5,10 @@ using UnityEngine;
 
 public class ScoutDrone : FlyingEnemy
 {
-    [SerializeField] private float coolDownTime;
-    private float coolDown;
-
-    [SerializeField] private GameObject laser;
-
-    protected override void Start()
-    {
-        base.Start();
-        coolDown = coolDownTime;
-    }
-    
     protected override void Attack()
     {
         base.Attack();
-        
-        if (coolDown > 0)
-            coolDown -= Time.deltaTime;
-        else
-        {
-            coolDown = coolDownTime;
-            FireLaser();
-        }
-    }
-
-    private void FireLaser()
-    {
-        Instantiate(laser, transform.position + transform.forward * 1.5f, Quaternion.Euler(transform.rotation.eulerAngles));
+        // laserGun.transform.rotation = Quaternion.LookRotation();
+        laserGun.Charge();
     }
 }
