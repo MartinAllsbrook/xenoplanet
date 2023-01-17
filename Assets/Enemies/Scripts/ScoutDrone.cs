@@ -10,8 +10,9 @@ public class ScoutDrone : FlyingEnemy
 
     [SerializeField] private GameObject laser;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         coolDown = coolDownTime;
     }
     

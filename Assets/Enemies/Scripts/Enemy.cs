@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
@@ -11,7 +12,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected LayerMask visible;
     [SerializeField] private GameObject deathParticles;
     [SerializeField] protected float idleDistance;
-    // [SerializeField] protected LayerMask player;
+    
     [Serializable]
     public class ItemDrop
     {
@@ -24,11 +25,20 @@ public class Enemy : MonoBehaviour
     
     protected Vector3 targetLocation;
     protected Rigidbody enemyRigidbody;
+    protected Vector3 lastPlayerLocation;
+
+    // private UnityEvent playerVisible;
     
     protected virtual void Awake()
     {
         enemyRigidbody = GetComponent<Rigidbody>();
         targetLocation = GenerateRandomTarget();
+    }
+
+    protected virtual void Start()
+    {
+        // if (playerVisible == null)
+        //     playerVisible = Player.Instance.playerVisible;
     }
 
     protected virtual void OnCollisionEnter(Collision collision)
@@ -75,6 +85,25 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
+    protected virtual bool CanSeePlayer(out RaycastHit hitOut)
+    {
+        Vector3 direction = Player.Instance.transform.position + new Vector3(0, 1, 0) - transform.position;
+        Ray ray = new Ray(transform.position, direction);
+        if (Physics.Raycast(ray, out RaycastHit hit, viewDistance, visible))
+        {
+            if (hit.transform.gameObject.CompareTag("Player"))
+            {
+                // Debug.Log(playerVisible);
+                // playerVisible.Invoke();
+                hitOut = hit;
+                return true;
+            }
+            hitOut = hit;
+            return false;
+        }
+        hitOut = hit;
+        return false;
+    }
     /*protected virtual RaycastHit Look()
     {
         Vector3 direction = Player.Instance.transform.position + new Vector3(0, 1, 0) - transform.position;

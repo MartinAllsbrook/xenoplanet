@@ -19,8 +19,19 @@ public class FlyingEnemy : Enemy
     protected void Update()
     {
         locationTolerance = range[0];
+
+        if (CanSeePlayer(out RaycastHit hit))
+        {
+            Debug.Log(hit);
+            targetLocation = hit.transform.position;
+            MoveTo(targetLocation);
+            if ((hit.transform.position - transform.position).magnitude < range[1]) 
+                Attack();
+            return;
+        } 
+        Idle();
         // Make raycast towards player
-        Vector3 direction = Player.Instance.transform.position + new Vector3(0, 1, 0) - transform.position;
+        /*Vector3 direction = Player.Instance.transform.position + new Vector3(0, 1, 0) - transform.position;
         Ray ray = new Ray(transform.position, direction);
         if (Physics.Raycast(ray, out RaycastHit hit, viewDistance, visible))
         {
@@ -35,7 +46,7 @@ public class FlyingEnemy : Enemy
             // Idle if unable to see player
             else
                 Idle();
-        }
+        }*/
     }
 
     protected virtual void Attack()
