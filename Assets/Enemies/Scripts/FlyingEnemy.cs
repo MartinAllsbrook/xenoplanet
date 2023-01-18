@@ -22,6 +22,7 @@ public class FlyingEnemy : Enemy
     
     protected void Update()
     {
+        base.Update();
         locationTolerance = range[0];
         // If the enemy can currently see the player
         if (CanSeePlayer(out RaycastHit hit))

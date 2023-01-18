@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected LayerMask visible;
     [SerializeField] private GameObject deathParticles;
     [SerializeField] protected float idleDistance;
+    [SerializeField] protected IndicatorLight canSeePlayerIndicator;
     
     [Serializable]
     public class ItemDrop
@@ -56,6 +57,12 @@ public class Enemy : MonoBehaviour
     {
         // if (playerVisible == null)
         //     playerVisible = Player.Instance.playerVisible;
+    }
+
+    protected virtual void Update()
+    {
+        // Make indicator light solid if the player is visible
+        canSeePlayerIndicator.Flashing = !canSeePlayer;
     }
 
     // protected virtual void OnCollisionEnter(Collision collision)
