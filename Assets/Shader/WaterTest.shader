@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
 Shader "Unlit/WaterTest"
 {
     Properties
@@ -18,7 +20,9 @@ Shader "Unlit/WaterTest"
         _SurfaceCutoff("Surface Cutoff", Range(0,1)) = 0.5
         
         //surface displace
-        _WaveTexture("Waves", 2D) = "white"{}
+//        _WaveTexture("Waves", 2D) = "white"{}
+        
+        _Smoothness("Smoothness", Range(0,1)) = 0.5
     }
     SubShader
     {
@@ -64,13 +68,16 @@ Shader "Unlit/WaterTest"
             float4 _FoamColor;
 
             //surface displace
-            sampler2D _WaveTexture;
-            float4 _WaveTexture_ST;
+            // sampler2D _WaveTexture;
+            // float4 _WaveTexture_ST;
+
+            float _Smoothness;
 
             struct MeshData
             {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
+                float3 normal : NORMAL;
             };
 
             struct v2f
@@ -79,7 +86,8 @@ Shader "Unlit/WaterTest"
                 float4 screenPosition : TEXCOORD1;
                 float2 noiseUV : TEXCOORD2;
                 float2 distortUV : TEXCOORD3;
-                float2 waves : TEXCOORD4;
+                half3 WorldRefl : TEXCOORD4;
+                float3 normal: NORMAL;
                 
                 UNITY_FOG_COORDS(1)
             };
@@ -92,10 +100,17 @@ Shader "Unlit/WaterTest"
                 //Depth
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.screenPosition = ComputeScreenPos(o.vertex);
-                // v.vertex.y = GetWave(v.uv);
+                o.normal = v.normal;
+                
 
                 o.noiseUV = TRANSFORM_TEX(v.uv, _SurfaceNoise);
                 o.distortUV = TRANSFORM_TEX(v.uv, _SurfaceDiffuse);
+
+                float3 worldPos = mul(unity_ObjectToWorld, v.vertex);
+                float3 worldViewDir = normalize(UnityWorldSpaceViewDir(worldPos));
+                float3 worldNormal = UnityObjectToWorldNormal(o.normal);
+                o.WorldRefl = reflect(-worldViewDir, worldNormal);
+                
                 
                 // float wavesMap = TRANSFORM_TEX(v.uv, _WaveTexture);
                 // o.vertex.y += sin(_Time + wavesMap) * 0.8;
@@ -111,6 +126,7 @@ Shader "Unlit/WaterTest"
 
             fixed4 frag (v2f i) : SV_Target
             {
+                
                 //calc depth
                 float currDepth = tex2Dproj(_CameraDepthTexture, UNITY_PROJ_COORD(i.screenPosition)).r;
                 float existingDepthLinear = LinearEyeDepth(currDepth);
@@ -133,19 +149,27 @@ Shader "Unlit/WaterTest"
 
                 //foam
                 float foamDepthDifference = saturate(depthDifference / _FoamDistance);
+                
                 //cutoff
                 float noiseCutoff = _SurfaceCutoff * foamDepthDifference;
-                float surfaceNoise = surfaceNoiseSample > noiseCutoff ? 2 : 0;
-                //float surfaceNoise = smoothstep(noiseCutoff - 0.001, noiseCutoff + 0.001, surfaceNoiseSample);
+                //float surfaceNoise = surfaceNoiseSample > noiseCutoff ? 2 : 0;
+                float surfaceNoise = smoothstep(noiseCutoff - 0.00001, noiseCutoff + 0.00001, surfaceNoiseSample);
 
                 //noise color
                 float surfaceNoiseColor = surfaceNoise * _FoamColor;
                 
                 // apply fog
                 //UNITY_APPLY_FOG(i.fogCoord, col);
+
+                float4 skyData = UNITY_SAMPLE_TEXCUBE(unity_SpecCube0, i.WorldRefl);
+                // decode cubemap data into actual color
+                float3 skyColor = DecodeHDR (skyData, unity_SpecCube0_HDR);
+                // output it!
+                fixed4 c = 0;
+                c.rgb = skyColor * _Smoothness * surfaceNoiseSample;
                 
                 
-                return waterColor + surfaceNoiseColor;
+                return waterColor + surfaceNoiseColor + c;
             }
             ENDCG
         }
