@@ -1,15 +1,14 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class GrappleArrow : Arrow
+public class BombArrow : ExplosiveArrow
 {
     protected override void OnCollisionEnter(Collision collision)
     {
-        // Set grapple as hooked
-        Grapple.Instance.Hook(transform.position);
+        Explode();
+        
+        // Call base at the end because it deletes the gameobject
         base.OnCollisionEnter(collision);
     }
 }

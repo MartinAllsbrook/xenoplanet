@@ -89,10 +89,4 @@ public class EnemyTurret : Enemy
         _laserCharge = 0;
         _laserBeam.widthMultiplier = _laserCharge;
     }
-
-    protected override void OnCollisionEnter(Collision collision)
-    {
-        base.OnCollisionEnter(collision);
-        Debug.Log("Turret Collided");
-    }
 }

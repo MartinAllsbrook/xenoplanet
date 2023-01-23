@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class Grapple : MonoBehaviour
 {
+    [SerializeField] private GameObject grappleProjectile;
     [Range(0,1)] [SerializeField] private float initialGrappleLength;
     [SerializeField] private float grappleRateOfChange;
     
@@ -16,13 +17,12 @@ public class Grapple : MonoBehaviour
     private SpringJoint _joint;
     private LineRenderer _ropeRenderer;
     private Vector3 _grapplePoint;
-
+    
     private void Awake()
     {
         // Create singleton
         if (Instance == null)
             Instance = this;
-
     }
 
     private void Start()
@@ -32,9 +32,11 @@ public class Grapple : MonoBehaviour
         _ropeRenderer = gameObject.GetComponent<LineRenderer>();
     }
 
-    private void Update()
+    public void FireGrapple()
     {
-        
+        Vector3 direction = Bow.Instance.CalculateAimPosition(transform.position);
+        Debug.Log("fire grapple");
+        Instantiate(grappleProjectile, transform.position, Quaternion.LookRotation(direction));
     }
 
     private void LateUpdate()

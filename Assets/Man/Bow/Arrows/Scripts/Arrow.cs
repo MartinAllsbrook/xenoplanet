@@ -44,6 +44,7 @@ public class Arrow : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             HUDController.Instance.PlayHitMarker();
+            collision.gameObject.GetComponent<Enemy>().Health = -damage;
         }
         
         // On collision destroy arrow

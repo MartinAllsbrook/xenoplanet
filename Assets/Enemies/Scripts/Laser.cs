@@ -9,7 +9,7 @@ public class Laser : MonoBehaviour
     
     private LineRenderer laserLineRenderer;
     private Rigidbody laserRigidbody;
-
+    
     private void Awake()
     {
         laserLineRenderer = GetComponent<LineRenderer>();
@@ -28,7 +28,10 @@ public class Laser : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Destroy(gameObject);
-        Player player = collision.gameObject.GetComponent<Player>();
-        player.ChangeHealth(-5);
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Player player = collision.gameObject.GetComponent<Player>();
+            player.ChangeHealth(-5);            
+        }
     }
 }
