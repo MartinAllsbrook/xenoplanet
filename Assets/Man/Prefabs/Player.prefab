@@ -369,6 +369,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: b205b63e-344d-4582-b922-01879c52a363
     m_ActionName: Player/PadRight[/XInputControllerWindows/dpad/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b83af148-3f22-4019-8ac1-521d0f68e866
+    m_ActionName: Player/FireGrapple[/XInputControllerWindows/rightShoulder]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -457,7 +461,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2733616821781847810, guid: 7b8933c2bf99d7844aa98c9e13171b34, type: 3}
       propertyPath: loadDistance
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2733616821781847811, guid: 7b8933c2bf99d7844aa98c9e13171b34, type: 3}
       propertyPath: m_Name
@@ -477,6 +481,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5871221131373447265}
     m_Modifications:
+    - target: {fileID: 746001878644346662, guid: fa9334d76319ca844a4575858a7e1b2b, type: 3}
+      propertyPath: grappleProjectile
+      value: 
+      objectReference: {fileID: 5145491759780584552, guid: 24b4a99dfa004884681b1379b4096ba6, type: 3}
+    - target: {fileID: 746001878644346662, guid: fa9334d76319ca844a4575858a7e1b2b, type: 3}
+      propertyPath: initialGrappleLength
+      value: 0.124
+      objectReference: {fileID: 0}
+    - target: {fileID: 2344779117644041702, guid: fa9334d76319ca844a4575858a7e1b2b, type: 3}
+      propertyPath: aimingLayerMask.m_Bits
+      value: 192
+      objectReference: {fileID: 0}
     - target: {fileID: 2551837241359621135, guid: fa9334d76319ca844a4575858a7e1b2b, type: 3}
       propertyPath: m_RootOrder
       value: 3

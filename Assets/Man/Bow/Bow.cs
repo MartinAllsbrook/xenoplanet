@@ -54,8 +54,8 @@ public class Bow : MonoBehaviour
         // Change fov to match arrow charge
         thirdPersonCamera.GetComponent<CinemachineFreeLook>().m_Lens.FieldOfView = strength * 4 + 45;
     }
-    
-    public void FireArrow()
+
+    public Vector3 CalculateAimPosition(Vector3 spawnPosition)
     {
         // Create a raycast from camera to see where it hit's an invisible sphere around the player 
         Vector3 origin = camera.transform.position;
@@ -66,8 +66,13 @@ public class Bow : MonoBehaviour
         else
             arrowAimer.position = camera.transform.position + camera.transform.forward * maxAimDistance;
 
+        return arrowAimer.position - spawnPosition;
+    }
+    
+    public void FireArrow()
+    {
         Vector3 spawnPosition = arrowSpawnPosition.position;
-        Vector3 arrowDirection = arrowAimer.position - spawnPosition;
+        Vector3 arrowDirection = CalculateAimPosition(spawnPosition);
 
         var arrowInstance = Instantiate(arrows[selectedArrow], spawnPosition, Quaternion.LookRotation(arrowDirection));
             

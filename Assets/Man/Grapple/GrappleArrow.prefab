@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5674237800687717243}
   - component: {fileID: 7629595674026841263}
   - component: {fileID: -1004854484752836778}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GrappleArrow
   m_TagString: Arrow
   m_Icon: {fileID: 0}
@@ -129,10 +129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c83a0e37fe54c941a57a6484614a135, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowRigidbody: {fileID: 5674237800687717243}
-  baseDamage: 5
-  baseForce: 800
-  arrowName: Grapple
+  grappleRigidbody: {fileID: 5674237800687717243}
+  velocity: 200
 --- !u!1 &5410939821980027645
 GameObject:
   m_ObjectHideFlags: 0

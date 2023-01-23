@@ -41,7 +41,6 @@ public class Arrow : MonoBehaviour
 
     protected virtual void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collide");
         if (collision.gameObject.CompareTag("Enemy"))
         {
             HUDController.Instance.PlayHitMarker();
