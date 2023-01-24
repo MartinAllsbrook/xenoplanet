@@ -2,16 +2,34 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] protected float health;
+    public virtual float Health
+    {
+        private get { return health; }
+        set
+        {
+            Debug.Log("Damage Taken: " + value);
+            
+            // Loose health
+            health += value;
+            
+            // If enemy has no more health destroy it
+            if (health <= 0)
+                Die();
+        }
+    } 
+    
     [SerializeField] protected float viewDistance;
     [SerializeField] protected LayerMask visible;
     [SerializeField] private GameObject deathParticles;
     [SerializeField] protected float idleDistance;
-    // [SerializeField] protected LayerMask player;
+    [SerializeField] protected IndicatorLight canSeePlayerIndicator;
+    
     [Serializable]
     public class ItemDrop
     {
@@ -24,6 +42,10 @@ public class Enemy : MonoBehaviour
     
     protected Vector3 targetLocation;
     protected Rigidbody enemyRigidbody;
+    protected Vector3 lastPlayerLocation;
+    protected bool canSeePlayer;
+
+    // private UnityEvent playerVisible;
     
     protected virtual void Awake()
     {
@@ -31,23 +53,35 @@ public class Enemy : MonoBehaviour
         targetLocation = GenerateRandomTarget();
     }
 
-    protected virtual void OnCollisionEnter(Collision collision)
+    protected virtual void Start()
     {
-        // If the enemy collided with an arrow
-        if (collision.gameObject.CompareTag("Arrow"))
-        {
-            // Get arrow script, and arrow damage from script
-            Arrow arrow = collision.gameObject.GetComponent<Arrow>();
-            float damage = arrow.Damage;
-                
-            // Loose health
-            health -= damage;
-            
-            // If enemy has no more health destroy it
-            if (health <= 0)
-                Die();
-        }
+        // if (playerVisible == null)
+        //     playerVisible = Player.Instance.playerVisible;
     }
+
+    protected virtual void Update()
+    {
+        // Make indicator light solid if the player is visible
+        canSeePlayerIndicator.Flashing = !canSeePlayer;
+    }
+
+    // protected virtual void OnCollisionEnter(Collision collision)
+    // {
+    //     // If the enemy collided with an arrow
+    //     if (collision.gameObject.CompareTag("Arrow"))
+    //     {
+    //         // Get arrow script, and arrow damage from script
+    //         Arrow arrow = collision.gameObject.GetComponent<Arrow>();
+    //         float damage = arrow.Damage;
+    //             
+    //         // Loose health
+    //         health -= damage;
+    //         
+    //         // If enemy has no more health destroy it
+    //         if (health <= 0)
+    //             Die();
+    //     }
+    // }
 
     // Generate a random position
     protected virtual Vector3 GenerateRandomTarget()
@@ -73,6 +107,29 @@ public class Enemy : MonoBehaviour
         }
         
         Destroy(gameObject);
+    }
+
+    protected virtual bool CanSeePlayer(out RaycastHit hitOut)
+    {
+        Vector3 direction = Player.Instance.transform.position + new Vector3(0, 1, 0) - transform.position;
+        Ray ray = new Ray(transform.position, direction);
+        if (Physics.Raycast(ray, out RaycastHit hit, viewDistance, visible))
+        {
+            if (hit.transform.gameObject.CompareTag("Player"))
+            {
+                // Debug.Log(playerVisible);
+                // playerVisible.Invoke();
+                canSeePlayer = true;
+                hitOut = hit;
+                return true;
+            }
+            canSeePlayer = false;
+            hitOut = hit;
+            return false;
+        }
+        canSeePlayer = false;
+        hitOut = hit;
+        return false;
     }
 
     /*protected virtual RaycastHit Look()

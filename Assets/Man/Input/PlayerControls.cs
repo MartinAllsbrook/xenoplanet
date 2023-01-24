@@ -134,6 +134,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FireGrapple"",
+                    ""type"": ""Button"",
+                    ""id"": ""b83af148-3f22-4019-8ac1-521d0f68e866"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -400,6 +409,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""PadRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b3f97fd2-3038-4726-89e9-c37ffe8e56c6"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FireGrapple"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -437,6 +457,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_PadDown = m_Player.FindAction("PadDown", throwIfNotFound: true);
         m_Player_PadLeft = m_Player.FindAction("PadLeft", throwIfNotFound: true);
         m_Player_PadRight = m_Player.FindAction("PadRight", throwIfNotFound: true);
+        m_Player_FireGrapple = m_Player.FindAction("FireGrapple", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -508,6 +529,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_PadDown;
     private readonly InputAction m_Player_PadLeft;
     private readonly InputAction m_Player_PadRight;
+    private readonly InputAction m_Player_FireGrapple;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -524,6 +546,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @PadDown => m_Wrapper.m_Player_PadDown;
         public InputAction @PadLeft => m_Wrapper.m_Player_PadLeft;
         public InputAction @PadRight => m_Wrapper.m_Player_PadRight;
+        public InputAction @FireGrapple => m_Wrapper.m_Player_FireGrapple;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -569,6 +592,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @PadRight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPadRight;
                 @PadRight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPadRight;
                 @PadRight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPadRight;
+                @FireGrapple.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireGrapple;
+                @FireGrapple.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireGrapple;
+                @FireGrapple.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireGrapple;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -609,6 +635,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @PadRight.started += instance.OnPadRight;
                 @PadRight.performed += instance.OnPadRight;
                 @PadRight.canceled += instance.OnPadRight;
+                @FireGrapple.started += instance.OnFireGrapple;
+                @FireGrapple.performed += instance.OnFireGrapple;
+                @FireGrapple.canceled += instance.OnFireGrapple;
             }
         }
     }
@@ -645,5 +674,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnPadDown(InputAction.CallbackContext context);
         void OnPadLeft(InputAction.CallbackContext context);
         void OnPadRight(InputAction.CallbackContext context);
+        void OnFireGrapple(InputAction.CallbackContext context);
     }
 }

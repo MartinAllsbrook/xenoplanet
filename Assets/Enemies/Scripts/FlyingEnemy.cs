@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -12,35 +13,52 @@ public class FlyingEnemy : Enemy
     [SerializeField] protected float speed;
     [SerializeField] protected float accelerationTime;
     [SerializeField] protected float slowdownDistance;
+    [SerializeField] protected float lookSpeed;
     
+    [SerializeField] protected LaserGun laserGun;
+
     protected Vector3 currentVelocity;
     protected float locationTolerance;
     
     protected void Update()
     {
+        base.Update();
         locationTolerance = range[0];
-        // Make raycast towards player
-        Vector3 direction = Player.Instance.transform.position + new Vector3(0, 1, 0) - transform.position;
-        Ray ray = new Ray(transform.position, direction);
-        if (Physics.Raycast(ray, out RaycastHit hit, viewDistance, visible))
+        // If the enemy can currently see the player
+        if (CanSeePlayer(out RaycastHit hit))
         {
-            // If enemy can see player
-            if (hit.transform.gameObject.CompareTag("Player"))
-            {
-                targetLocation = hit.transform.position;
-                MoveTo(targetLocation);
-                if ((hit.transform.position - transform.position).magnitude < range[1]) 
-                    Attack();
-            }
-            // Idle if unable to see player
-            else
-                Idle();
+            // Debug.Log(hit);
+            var rotation = Quaternion.RotateTowards(
+                laserGun.transform.rotation,
+                Quaternion.LookRotation(Player.Instance.transform.position + Vector3.up - transform.position),
+                lookSpeed);
+            laserGun.transform.rotation = rotation; 
+            targetLocation = hit.transform.position;
+            if ((hit.transform.position - transform.position).magnitude < range[1])
+                Attack();
+            MoveTo(targetLocation);
+
         }
+        // Else the enemy cannot see the player
+        else
+        {
+            Ray ray = new Ray(targetLocation, Vector3.down);
+            if (Physics.Raycast(ray, out RaycastHit groundHit, 512, visible))
+            {
+                var rotation = Quaternion.RotateTowards(
+                    laserGun.transform.rotation,
+                    Quaternion.LookRotation(groundHit.point - transform.position),
+                    lookSpeed);
+                laserGun.transform.rotation = rotation; 
+                // laserGun.transform.LookAt(groundHit.point);
+            }
+            Idle();
+        }        
+        
     }
 
     protected virtual void Attack()
     { 
-        transform.LookAt(Player.Instance.transform.position + Vector3.up);
     }
 
     protected void Idle()
@@ -54,19 +72,11 @@ public class FlyingEnemy : Enemy
                 ref currentVelocity, accelerationTime / 2);
             locationTolerance += Time.deltaTime * (locationTolerance + 0.1f);
         }
-
-        /*else if (enemyRigidbody.velocity.magnitude > 0.1f)
-        {
-            enemyRigidbody.velocity = Vector3.SmoothDamp(enemyRigidbody.velocity, Vector3.zero, 
-                ref currentVelocity, accelerationTime / 2);
-        }*/
         else
         {
             targetLocation = GenerateRandomTarget();
             locationTolerance = 1;
         }
-            
-        Debug.Log("Idle");
     }
 
     protected override Vector3 GenerateRandomTarget()
@@ -83,7 +93,6 @@ public class FlyingEnemy : Enemy
 
     protected void MoveTo(Vector3 target)
     {
-        Debug.Log("Distance: " + (transform.position - targetLocation).magnitude + "Target: " + target);
         target.y += hoverHeight[0];
         var delta = target - transform.position;
         var direction = delta.normalized;
