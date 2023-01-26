@@ -486,8 +486,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5145491759780584552, guid: 24b4a99dfa004884681b1379b4096ba6, type: 3}
     - target: {fileID: 746001878644346662, guid: fa9334d76319ca844a4575858a7e1b2b, type: 3}
+      propertyPath: grappleRateOfChange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 746001878644346662, guid: fa9334d76319ca844a4575858a7e1b2b, type: 3}
       propertyPath: initialGrappleLength
-      value: 0.124
+      value: 0.925
       objectReference: {fileID: 0}
     - target: {fileID: 2344779117644041702, guid: fa9334d76319ca844a4575858a7e1b2b, type: 3}
       propertyPath: aimingLayerMask.m_Bits

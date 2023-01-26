@@ -59,25 +59,29 @@ public class Grapple : MonoBehaviour
         _joint.maxDistance = distanceFromPoint * initialGrappleLength;
         _joint.minDistance = 0;
 
-        _joint.spring = 30f;
-        _joint.damper = 30f;
-        _joint.massScale = 4.5f;
+        _joint.tolerance = 5f;
+        _joint.spring = 400f;
+        _joint.damper = 400f;
+        _joint.massScale = 1f;
 
         _ropeRenderer.positionCount = 2;
     }
 
+    private void Update()
+    {
+        ShrinkGrapple();
+    }
+
     // Pull on grapple
-    public void ChangeGrappleLength(bool shrink)
+    public void ShrinkGrapple()
     {
         if (_joint)
         {
             var grappleLength = _joint.maxDistance;
-            
-            if (shrink) 
+
+            if (grappleLength >= 0) 
                 grappleLength -= Time.deltaTime * grappleRateOfChange;
-            else
-                grappleLength += Time.deltaTime * grappleRateOfChange;
-            
+
             _joint.maxDistance = grappleLength;
         }
         
