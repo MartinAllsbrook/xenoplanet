@@ -265,12 +265,11 @@ MonoBehaviour:
   doubbleJumpMultiplier: 1.25
   PlayerFallForce: 20
   CanSecondJump: 1
-  thridPersonCamera: {fileID: 0}
-  mainCamera: {fileID: 0}
   WhatIsGround:
     serializedVersion: 2
     m_Bits: 64
   groundCheck: {fileID: 1505611185}
+  MaxSlopeAngle: 0
   isGrounded: 0
   OnJumpEvent:
     m_PersistentCalls:
@@ -491,7 +490,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 746001878644346662, guid: fa9334d76319ca844a4575858a7e1b2b, type: 3}
       propertyPath: initialGrappleLength
-      value: 0.925
+      value: 0.967
       objectReference: {fileID: 0}
     - target: {fileID: 2344779117644041702, guid: fa9334d76319ca844a4575858a7e1b2b, type: 3}
       propertyPath: aimingLayerMask.m_Bits

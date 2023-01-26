@@ -220,8 +220,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeaf8033a0d1bca4f8f8bb9de05f6059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}
-  mainCameraTransform: {fileID: 0}
 --- !u!1001 &2197815130938837687
 PrefabInstance:
   m_ObjectHideFlags: 0
