@@ -21,16 +21,16 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _SurfaceDiffuse:
-        m_Texture: {fileID: 2800000, guid: 789ffac4129361a49a45d87e3f711c4b, type: 3}
-        m_Scale: {x: 10.46, y: 10}
+        m_Texture: {fileID: 2800000, guid: f869cf237523e4f1e82bf7189f75d5f4, type: 3}
+        m_Scale: {x: 10, y: 100}
         m_Offset: {x: 0, y: 0}
     - _SurfaceDisplace:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SurfaceNoise:
-        m_Texture: {fileID: 2800000, guid: 04c6be233606612439efe95130e41662, type: 3}
-        m_Scale: {x: 0.79, y: 8.1}
+        m_Texture: {fileID: 2800000, guid: 0623839c566024935a21928df8bfba56, type: 3}
+        m_Scale: {x: 10, y: 10}
         m_Offset: {x: 0, y: 0}
     - _SurfaceNoiseDiffuse:
         m_Texture: {fileID: 2800000, guid: 15f4dcc04cfab405486b7f5b1efb7e22, type: 3}
@@ -54,16 +54,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DepthMaxDist: 22.2
-    - _FoamDistance: 4.47
+    - _DepthMaxDist: 5.25
+    - _FoamDistance: 7.82
     - _Smoothness: 1
-    - _SurfaceCutoff: 0.387
-    - _SurfaceDiffuseAmount: 0
+    - _SurfaceCutoff: 0.995
+    - _SurfaceDiffuseAmount: 1
     - _SurfaceSpeed: 0.011
     m_Colors:
     - _DepthGradientDeep: {r: 0, g: 0.46812487, b: 0.6509434, a: 1}
     - _DepthGradientShallow: {r: 0.1462264, g: 0.6919375, b: 1, a: 0.79607844}
-    - _FoamColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 0}
+    - _FoamColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 0}
     - _FoamColot: {r: 0, g: 0, b: 0, a: 0}
     - _SurfaceNoiseSpeed: {r: 0.3, g: 0.3, b: 0, a: 1}
     - _SurfaceSpeed: {r: 0.004, g: 0.02, b: 0, a: 0}

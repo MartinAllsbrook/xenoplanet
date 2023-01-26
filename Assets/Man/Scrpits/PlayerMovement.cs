@@ -44,6 +44,12 @@ public class PlayerMovement : MonoBehaviour
     [Space(15)]
     [SerializeField] private LayerMask WhatIsGround;
     [SerializeField] private Transform groundCheck;
+    [SerializeField] private float MaxSlopeAngle;
+    private float curSlopeAngle;
+    private Vector3 playerForward;
+    RaycastHit groundHitInfo;
+    
+    
     [HideInInspector]public bool isGrounded;
     private bool wasGrounded;
     private bool isJumping;
@@ -65,6 +71,8 @@ public class PlayerMovement : MonoBehaviour
     {
         // Start by checking if the player is grounded
         CheckGrounded();
+        CheckSlope();
+        CheckForward();
 
         if (isGrounded)
             GroundMovement();
@@ -124,6 +132,7 @@ public class PlayerMovement : MonoBehaviour
                 //apply camera rotation
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
                 
+                //multiplied by PlayerDirection.magnitude (input vector) to give stick senstitivity
                 if(PlayerSprint)
                     _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, camDirection * (PlayerBaseSpeed * PlayerSprintMultiplier * PlayerDirection.magnitude), ref currVelocity, 0.3f);
                 if(PlayerCrouch)
@@ -151,7 +160,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 DoubbleJump();
             }
-            if (_rigidbody.velocity.y < 0 && !isGrounded)
+            if (_rigidbody.velocity.y <= 0 && !isGrounded)
             {
                 _rigidbody.velocity += Vector3.down * (PlayerFallForce * Time.deltaTime);
             }
@@ -272,6 +281,30 @@ public class PlayerMovement : MonoBehaviour
         else
             isGrounded = false;
     }
+
+    private void CheckSlope()
+    {
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out groundHitInfo, Mathf.Infinity,
+                WhatIsGround))
+        {
+            // Debug.Log("ground");
+            curSlopeAngle = Vector3.Angle(groundHitInfo.normal, Vector3.up);
+            Debug.Log(curSlopeAngle);
+        }
+
+    }
+
+    private void CheckForward()
+    {
+        if (!isGrounded)
+        {
+            playerForward = transform.forward;
+            Debug.Log(playerForward);
+            return;
+        }
+
+        playerForward = Vector3.Cross(groundHitInfo.normal, -transform.right);
+    }
     
     #endregion
 
@@ -292,5 +325,9 @@ public class PlayerMovement : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, 0.1f);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * 1000);
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, playerForward * 1000);
     }
 }
