@@ -35,10 +35,12 @@ public class PlayerMovement : MonoBehaviour
     
     
     //Camera Reference
-    [Header("Camera Reference")]
-    [Space(15)]
-    [SerializeField] private CinemachineFreeLook thridPersonCamera;
-    [SerializeField] private Camera mainCamera;
+    // [Header("Camera Reference")]
+    // [Space(15)]
+    // [SerializeField] private CinemachineFreeLook thridPersonCamera;
+    // [SerializeField] private Camera mainCamera;
+    private CinemachineFreeLook thridPersonCamera;
+    private Camera mainCamera;
     
     //Checks
     [Header("Player Checks")]
@@ -66,6 +68,22 @@ public class PlayerMovement : MonoBehaviour
     {
         // Get rigidbody
         _rigidbody = GetComponent<Rigidbody>();
+    }
+
+    private void Start()
+    {
+        thridPersonCamera = FindObjectOfType<CinemachineFreeLook>();
+        if(!thridPersonCamera.CompareTag("MainCamera"))
+            Debug.LogError("Cannot find thirdPersonCamera");
+        
+        var cameras = FindObjectsOfType<Camera>();
+        foreach (var camera in cameras)
+        {
+            if (camera.CompareTag("MainCamera"))
+                mainCamera = camera;
+        }
+        if(!mainCamera.CompareTag("MainCamera"))
+            Debug.LogError("Cannot find mainCamera");
     }
 
     private void Update()

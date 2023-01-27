@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7333517709302875484}
   - component: {fileID: 5638833612729779951}
   - component: {fileID: 1323303441520926606}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Tracer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4826,7 +4826,7 @@ GameObject:
   - component: {fileID: 2792159186334025496}
   - component: {fileID: 135257644589340876}
   - component: {fileID: 1479035195779734685}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Flack Arrow
   m_TagString: Arrow
   m_Icon: {fileID: 0}
@@ -4963,7 +4963,7 @@ GameObject:
   m_Component:
   - component: {fileID: 153971141533886194}
   - component: {fileID: 8107230887427430770}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Tracer (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1275704390781249308}
   - component: {fileID: 4193129057634641071}
   - component: {fileID: 7362405291596250574}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Tracer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4826,7 +4826,7 @@ GameObject:
   - component: {fileID: 5966821036017870168}
   - component: {fileID: 8471655722130848396}
   - component: {fileID: 97432909806372530}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Explosive Arrow
   m_TagString: Arrow
   m_Icon: {fileID: 0}
@@ -5006,6 +5006,10 @@ PrefabInstance:
     - target: {fileID: 7940283967979246476, guid: 97216c245dbb64b4b9750a6447830b45, type: 3}
       propertyPath: m_Name
       value: Tracer (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7940283967979246476, guid: 97216c245dbb64b4b9750a6447830b45, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97216c245dbb64b4b9750a6447830b45, type: 3}
