@@ -131,6 +131,7 @@ MonoBehaviour:
   maxOffset: 0.96
   grassDensity: 513
   patchDetail: 16
+  grassPrefab: {fileID: 7527757087965635429, guid: 9754a93fc18f2fa489865cd7195fdb25, type: 3}
 --- !u!114 &311811538059476027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,6 +217,10 @@ PrefabInstance:
     - target: {fileID: 6235813285526436614, guid: c7d18bec353ffc24cac04c4072b12ca6, type: 3}
       propertyPath: m_Name
       value: Water
+      objectReference: {fileID: 0}
+    - target: {fileID: 6235813285526436614, guid: c7d18bec353ffc24cac04c4072b12ca6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7d18bec353ffc24cac04c4072b12ca6, type: 3}

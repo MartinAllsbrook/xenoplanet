@@ -43,7 +43,7 @@ Shader "Universal Render Pipeline/Nature/Stylized Grass"
 
 		//[Header(Wind)]
 		_WindAmbientStrength("Ambient Strength", Range(0.0, 1.0)) = 0.2
-		_WindSpeed("Speed", Range(0.0, 10.0)) = 3.0
+		_WindSpeed("Ambient Speed", Float) = 3.0
 		_WindDirection("Direction", vector) = (1,0,0,0)
 		_WindVertexRand("Vertex randomization", Range(0.0, 1.0)) = 0.6
 		_WindObjectRand("Object randomization", Range(0.0, 1.0)) = 0.5
@@ -51,6 +51,7 @@ Shader "Universal Render Pipeline/Nature/Stylized Grass"
 		_WindSwinging("Swinging", Range(0.0, 1.0)) = 0.15
 		_WindGustStrength("Gusting strength", Range(0.0, 1.0)) = 0.2
 		_WindGustFreq("Gusting frequency", Range(0.0, 10.0)) = 4
+		_WindGustSpeed("Gusting Speed", Float) = 4
 		[NoScaleOffset] _WindMap("Wind map", 2D) = "black" {}
 		_WindGustTint("Max Gusting tint", Range(0.0, 3.0)) = 1
 
@@ -202,8 +203,11 @@ Shader "Universal Render Pipeline/Nature/Stylized Grass"
 			#pragma multi_compile_fragment _ _LIGHT_COOKIES 
             #pragma multi_compile _ _MIXED_LIGHTING_SUBTRACTIVE //Deprecated?
 			#pragma multi_compile _ _CLUSTERED_RENDERING 
-			#pragma multi_compile _ DYNAMICLIGHTMAP_ON //URP 12+
-			#pragma multi_compile_fragment _ DEBUG_DISPLAY //URP 12+
+			#pragma multi_compile _ DYNAMICLIGHTMAP_ON
+			#pragma multi_compile_fragment _ DEBUG_DISPLAY
+
+			//URP 14+
+			#pragma multi_compile_fragment _ _FORWARD_PLUS
 			
 			//Constants
 			#define SHADERPASS_FORWARD

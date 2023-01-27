@@ -1,3 +1,16 @@
+1.3.2
+
+Added:
+- Support for Unity 2022.2
+- Support for the Forward+ rendering path
+- Support for dynamic wind directions from a Wind Zone component
+- Wind: Gusting speed material parameter
+- "_Seed" parameter for use with the Hybrid Renderer in DOTS (0.5.0 and 1.0.0+)
+
+Fixed:
+- Min/max material parameters not displaying override options on material variants
+- Grass bending pass no longer executes for overlay cameras.
+
 1.3.1
 
 Fixed:

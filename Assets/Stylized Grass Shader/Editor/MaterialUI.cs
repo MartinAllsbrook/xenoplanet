@@ -64,6 +64,7 @@ namespace StylizedGrass
         private MaterialProperty _WindMap;
         private MaterialProperty _WindGustStrength;
         private MaterialProperty _WindGustFreq;
+        private MaterialProperty _WindGustSpeed;
         private MaterialProperty _WindGustTint;
         
         private MaterialProperty _FadingOn;
@@ -159,6 +160,7 @@ namespace StylizedGrass
             _WindMap = FindProperty("_WindMap", props);
             _WindGustStrength = FindProperty("_WindGustStrength", props);
             _WindGustFreq = FindProperty("_WindGustFreq", props);
+            _WindGustSpeed = FindProperty("_WindGustSpeed", props);
             _WindGustTint = FindProperty("_WindGustTint", props);
 
             _LightingMode = FindProperty("_LightingMode", props);
@@ -558,6 +560,7 @@ namespace StylizedGrass
                 EditorGUILayout.LabelField("Gusting", EditorStyles.boldLabel);
                 materialEditor.TexturePropertySingleLine(new GUIContent("Gust texture (Grayscale)"), _WindMap);
                 materialEditor.ShaderProperty(_WindGustStrength, new GUIContent("Strength", "Gusting add wind strength based on the gust texture, which moves over the grass"));
+                materialEditor.ShaderProperty(_WindGustSpeed, "Speed");
                 materialEditor.ShaderProperty(_WindGustFreq, new GUIContent("Frequency", "Controls the tiling of the gusting texture, essentially setting the size of the gusting waves"));
                 materialEditor.ShaderProperty(_WindGustTint, new GUIContent("Max. Color tint", "Uses the gusting texture to add a brighter tint based on the gusting strength"));
 
@@ -649,6 +652,10 @@ namespace StylizedGrass
         
         public override void OnGUI (Rect position, MaterialProperty prop, String label, MaterialEditor editor)
         {
+            #if UNITY_2022_1_OR_NEWER
+            MaterialEditor.BeginProperty(prop);
+            #endif
+            
             float minVal = prop.vectorValue.x;
             float maxVal = prop.vectorValue.y;
             
@@ -680,6 +687,10 @@ namespace StylizedGrass
             {
                 prop.vectorValue = new Vector4(minVal, maxVal, 0f, 0f);
             }
+            
+            #if UNITY_2022_1_OR_NEWER
+            MaterialEditor.EndProperty();
+            #endif
         }
     }
 }

@@ -2,23 +2,14 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 8
+  serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: StylizedGrassDemo
   m_Shader: {fileID: 4800000, guid: d7dd1c3f4cba1d441a7d295a168bac0d, type: 3}
-  m_ValidKeywords:
-  - _ADVANCED_LIGHTING
-  - _FADING
-  - _NORMALMAP
-  - _SCALEMAP
-  m_InvalidKeywords:
-  - _ALPHATOCOVERAGE_ON
-  - _ENVIRONMENTREFLECTIONS_ON
-  - _FADINGON_ON
-  - _SCALEMAP_ON
+  m_ShaderKeywords: _ADVANCED_LIGHTING _FADING _NORMALMAP _SCALEMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -88,7 +79,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Ints: []
     m_Floats:
     - _AdvancedLighting: 1
     - _AlphaClip: 0
@@ -152,9 +142,9 @@ Material:
     - _WindAmbientStrength: 0.2
     - _WindFlutter: 0.559
     - _WindGustFreq: 2.27
-    - _WindGustSpeed: 5
-    - _WindGustStrength: 0.191
-    - _WindGustTint: 0.04
+    - _WindGustSpeed: 4
+    - _WindGustStrength: 0.378
+    - _WindGustTint: 0.27
     - _WindObjectRand: 1
     - _WindQuality: 0
     - _WindRandSpeed: 1

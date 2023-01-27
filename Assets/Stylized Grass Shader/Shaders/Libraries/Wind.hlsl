@@ -5,16 +5,22 @@
 //Properties
 TEXTURE2D(_WindMap); SAMPLER(sampler_WindMap);
 float4 _GlobalWindParams;
-//X: Strength
+//X: Delta time between frames
+//Y: Wind Zone: Main
+//Z: Wind Zone: Turbulence
 //W: (int bool) Wind zone present
-float _WindStrength;
-float4 _GlobalWindDirection;
+float3 _GlobalWindDirection;
+float3 _GlobalWindOffset;
+
+#define WIND_ZONE_MAIN _GlobalWindParams.y
+#define WIND_ZONE_TURBULENCE _GlobalWindParams.z
+#define WIND_ZONE_DIRECTION _GlobalWindDirection
 
 struct WindSettings
 {
 	float mask;
 	float ambientStrength;
-	float speed;
+	float ambientSpeed;
 	float time;
 	float3 direction;
 	float swinging;
@@ -23,56 +29,55 @@ struct WindSettings
 	float randVertex;
 	float randObjectStrength;
 
-	float3 gustDirection;
+	float3 gustOffset;
+	float gustSpeed;
 
 	float gustStrength;
 	float gustFrequency;
 };
 
-WindSettings PopulateWindSettings(in float strength, float speed, float4 direction, float swinging, float mask, float randObject, float randVertex, float randObjectStrength, float gustStrength, float gustFrequency)
+WindSettings PopulateWindSettings(in float strength, float speed, float4 direction, float swinging, float mask, float randObject, float randVertex, float randObjectStrength, float gustStrength, float gustFrequency, float gustSpeed)
 {
-	WindSettings s = (WindSettings)0;
+	WindSettings windSettings = (WindSettings)0;
 
-	//Apply WindZone strength
-	if (_GlobalWindParams.x > 0) 
+	//Apply WindZone
+	if (_GlobalWindParams.w > 0) 
 	{
-		strength *= _GlobalWindParams.y;
-		gustStrength *= _GlobalWindParams.z;
-
-		direction.xyz = _GlobalWindDirection.xyz;
-		s.gustDirection = _GlobalWindDirection.xyz;
-		s.time = _GlobalWindParams.x;
+		strength *= WIND_ZONE_MAIN;
+		gustStrength *= WIND_ZONE_TURBULENCE;
+		direction.xyz = WIND_ZONE_DIRECTION.xyz;
+		
+		windSettings.gustOffset = _GlobalWindOffset.xyz;
+		windSettings.gustSpeed = gustSpeed * 0.01;
+		windSettings.time = _GlobalWindParams.x;
 	}
 	else
 	{
-		s.gustDirection = direction.xyz;
-		s.time = _TimeParameters.x;
+		windSettings.gustOffset = direction.xyz;
+		windSettings.gustSpeed = gustSpeed;
+		windSettings.time = _TimeParameters.x;
 	}
 
-	s.ambientStrength = strength;
-	s.speed = speed;
-	s.direction.xyz = direction.xyz;
-	s.swinging = swinging;
-	s.mask = mask;
-	s.randObject = randObject;
-	s.randVertex = randVertex;
-	s.randObjectStrength = randObjectStrength;
-	s.gustStrength = gustStrength;
-	s.gustFrequency = gustFrequency;
+	windSettings.ambientStrength = strength;
+	windSettings.ambientSpeed = speed;
+	windSettings.direction.xyz = direction.xyz;
+	windSettings.swinging = swinging;
+	windSettings.mask = mask;
+	windSettings.randObject = randObject;
+	windSettings.randVertex = randVertex;
+	windSettings.randObjectStrength = randObjectStrength;
+	windSettings.gustStrength = gustStrength;
+	windSettings.gustFrequency = gustFrequency * 0.01;
 
-	return s;
+	return windSettings;
 }
 
 //World-align UV moving in wind direction
-float2 GetGustingUV(float3 positionWS, in float speed, in float freq, in float3 dir)
+float2 GetGustingUV(float3 positionWS, WindSettings windSettings)
 {
-	return (positionWS.xz * freq * 0.01) - (speed * freq * 0.01) * dir.xz;
-}
-
-//World-align UV moving in wind direction
-float2 GetGustingUV(float3 positionWS, WindSettings s)
-{
-	return GetGustingUV(positionWS, s.time * s.speed, s.gustFrequency, s.gustDirection);
+	return (positionWS.xz * windSettings.gustFrequency) - 
+	(windSettings.time * windSettings.gustFrequency)
+	/* Direction */ * (windSettings.gustOffset.xz * windSettings.gustSpeed.xx);
 }
 
 #if defined(SHADER_STAGE_VERTEX) || defined(SHADER_STAGE_DOMAIN)
@@ -81,40 +86,40 @@ float2 GetGustingUV(float3 positionWS, WindSettings s)
 #define SAMPLE_GUST_MAP(texName, sampler, uv) SAMPLE_TEXTURE2D(texName, sampler, uv)
 #endif
 
-float SampleGustMap(float3 positionWS, WindSettings s)
+float SampleGustMap(float3 positionWS, WindSettings windSettings)
 {
-	float2 gustUV = GetGustingUV(positionWS, s);
+	float2 gustUV = GetGustingUV(positionWS, windSettings);
 
 	float gust = SAMPLE_GUST_MAP(_WindMap, sampler_WindMap, gustUV).r;
 
-	gust *= s.gustStrength * s.mask;
+	gust *= windSettings.gustStrength;
 
 	return gust;
 }
 
-float4 GetWindOffset(in float3 positionOS, in float3 positionWS, float rand, WindSettings s)
+float4 GetWindOffset(in float3 positionOS, in float3 positionWS, float rand, WindSettings windSettings)
 {
 	float4 offset = 0;
 
 #if !defined(DISABLE_WIND)
 	//Random offset per vertex
-	float f = length(positionOS.xz) * s.randVertex;
-	float strength = s.ambientStrength * 0.5 * lerp(1, rand, s.randObjectStrength);
+	float f = length(positionOS.xz) * windSettings.randVertex;
+	float strength = windSettings.ambientStrength * 0.5 * lerp(1, rand, windSettings.randObjectStrength);
 	
 	//Combine
-	float2 sine = sin(s.speed * (s.time + (rand * s.randObject) + f));
+	float2 sine = sin(windSettings.ambientSpeed * (windSettings.time + (rand * windSettings.randObject) + f));
 	//Remap from -1/1 to 0/1
-	sine = lerp(sine * 0.5 + 0.5, sine, s.swinging);
+	sine = lerp(sine * 0.5 + 0.5, sine, windSettings.swinging);
 
 	//Apply gusting
-	float2 gust = SampleGustMap(positionWS, s).xx;
+	float2 gust = SampleGustMap(positionWS, windSettings).xx;
 
 	//Scale sine
-	sine = sine * s.mask * strength;
+	sine = sine * strength;
 
 	//Mask by direction vector + gusting push
-	offset.xz = (sine + gust) * s.direction.xz;
-	offset.y = s.mask;
+	offset.xz = windSettings.direction.xz * (sine + gust) * windSettings.mask;
+	offset.y = windSettings.mask;
 
 	//Summed offset strength
 	float windWeight = length(offset.xz) + 0.0001;
@@ -129,11 +134,11 @@ float4 GetWindOffset(in float3 positionOS, in float3 positionWS, float rand, Win
 	return offset;
 }
 
-void GetWindOffset_float(in float3 positionOS, in float3 positionWS, float rand, in float strength, float speed, float3 direction, float swinging, float mask, float randObject, float randVertex, float randObjectStrength, float gustStrength, float gustFrequency, out float3 offset)
+void GetWindOffset_float(in float3 positionOS, in float3 positionWS, float rand, in float strength, float speed, float3 direction, float swinging, float mask, float randObject, float randVertex, float randObjectStrength, float gustStrength, float gustFrequency, float gustSpeed, out float3 offset)
 {
-	WindSettings s = PopulateWindSettings(strength, speed, direction.xyzz, swinging, mask, randObject, randVertex, randObjectStrength, gustStrength, gustFrequency);
+	WindSettings windSettings = PopulateWindSettings(strength, speed, direction.xyzz, swinging, mask, randObject, randVertex, randObjectStrength, gustStrength, gustFrequency, gustSpeed);
 
-	offset = GetWindOffset(positionOS, positionWS, rand, s).xyz;
+	offset = GetWindOffset(positionOS, positionWS, rand, windSettings).xyz;
 
 	//Negate component so the entire vector can just be additively applied
 	offset.y = -offset.y;

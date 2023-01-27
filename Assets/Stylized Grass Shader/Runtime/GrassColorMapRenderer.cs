@@ -7,6 +7,7 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 #endif
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Rendering;
 #if URP
 using UnityEngine.Rendering.Universal;
@@ -76,6 +77,7 @@ namespace StylizedGrass
             EditorSceneManager.sceneSaved -= OnSceneSave;
 #endif
         }
+        
 
         private void OnDrawGizmosSelected()
         {
@@ -126,7 +128,7 @@ namespace StylizedGrass
         public void AssignColorMap()
         {
             if (!colorMap) return;
-
+            
             colorMap.SetActive();
         }
 

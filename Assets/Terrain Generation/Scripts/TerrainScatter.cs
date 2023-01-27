@@ -15,6 +15,7 @@ public class TerrainScatter : MonoBehaviour
 
     [SerializeField] private int grassDensity;
     [SerializeField] private int patchDetail;
+    [SerializeField] private GameObject grassPrefab;
     private float xOffset;
     private float zOffset;
     private float roadWidth;
@@ -34,37 +35,39 @@ public class TerrainScatter : MonoBehaviour
 
     void ScatterGrass(int[,] biomeMap)
     {
-        terrain.terrainData.SetDetailResolution(grassDensity, patchDetail);
-  
-        int[,] newMap = new int[grassDensity, grassDensity];
-
-        for (int x = 0; x < grassDensity; x++)
-        {
-            for (int z = 0; z < grassDensity; z++)
-            {
-                var biome = biomeMap[x, z];
-                for (int i = 1; i < biomeInfo.Length; i++)
-                {
-                    for (int j = 1; j < 4; j++)
-                    {
-                        if (biome == 0)
-                        {
-                            newMap[x, z] = 0;
-                        }
-                        else if (biome == biomeInfo[i].moistureInfo[j].biomeIndex)
-                        {
-                            // Debug.Log("x: " + x + " z: " + z + " i: " + i + " j: " + j + " Grasses: " + biomeInfo[i].moistureInfo[j].grasses.Length);
-                            if (biomeInfo[i].moistureInfo[j].grasses.Length > 0)
-                            {
-                                newMap[x, z] = biomeInfo[i].moistureInfo[j].grasses[0];
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        // terrain.terrainData.SetDetailResolution(grassDensity, patchDetail);
+        //
+        // int[,] newMap = new int[grassDensity, grassDensity];
+        //
+        // for (int x = 0; x < grassDensity; x++)
+        // {
+        //     for (int z = 0; z < grassDensity; z++)
+        //     {
+        //         var biome = biomeMap[x, z];
+        //         for (int i = 1; i < biomeInfo.Length; i++)
+        //         {
+        //             for (int j = 1; j < 4; j++)
+        //             {
+        //                 if (biome == 0)
+        //                 {
+        //                     newMap[x, z] = 0;
+        //                 }
+        //                 else if (biome == biomeInfo[i].moistureInfo[j].biomeIndex)
+        //                 {
+        //                     // Debug.Log("x: " + x + " z: " + z + " i: " + i + " j: " + j + " Grasses: " + biomeInfo[i].moistureInfo[j].grasses.Length);
+        //                     if (biomeInfo[i].moistureInfo[j].grasses.Length > 0)
+        //                     {
+        //                         newMap[x, z] = biomeInfo[i].moistureInfo[j].grasses[0];
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+        //
+        // terrain.terrainData.SetDetailLayer(0, 0, 0, newMap);
         
-        terrain.terrainData.SetDetailLayer(0, 0, 0, newMap);
+
     }
 
     void ScatterTrees(int[,] biomeMap)

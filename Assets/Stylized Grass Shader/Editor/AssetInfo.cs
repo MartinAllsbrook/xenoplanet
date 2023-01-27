@@ -15,7 +15,7 @@ namespace StylizedGrass
         public const string ASSET_ID = "143830";
         public const string ASSET_ABRV = "SGS";
 
-        public const string INSTALLED_VERSION = "1.3.1";
+        public const string INSTALLED_VERSION = "1.3.2";
         public const string MIN_UNITY_VERSION = "2020.3";
         public const string MIN_URP_VERSION = "10.3.2";
 

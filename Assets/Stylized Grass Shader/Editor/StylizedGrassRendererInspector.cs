@@ -31,6 +31,9 @@ namespace StylizedGrass
 
         public override void OnInspectorGUI()
         {
+            EditorGUILayout.LabelField("Version " + AssetInfo.INSTALLED_VERSION, EditorStyles.centeredGreyMiniLabel);
+            GUILayout.Space(5);
+
 #if !URP
             EditorGUILayout.HelpBox("The Universal Render Pipeline v" + AssetInfo.MIN_URP_VERSION + " is not installed", MessageType.Error);
 #else
@@ -79,6 +82,8 @@ namespace StylizedGrass
                             WindZone wz = obj.AddComponent<WindZone>();
 
                             windZone.objectReferenceValue = wz;
+
+                            Selection.activeGameObject = obj;
                         }
                     }
 

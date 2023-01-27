@@ -28,7 +28,7 @@ namespace StylizedGrass
         public float flattenStrength = 1f;
         [Range(0, 3f)]
         public float pushStrength = 1f;
-        [Range(0f, 3f)]
+        [Range(0.1f, 3f)]
         public float scaleMultiplier = 1f;
 
         [Tooltip("When enabled, overlapping benders of the same type will blend together")]
@@ -67,7 +67,7 @@ namespace StylizedGrass
 
         private void Reset()
         {
-            bendingShader = Shader.Find(MESH_SHADER_OPAQUE_NAME);
+            bendingShader = Shader.Find(BEND_SHADER_NAME);
         }
 
         public void OnEnable()
@@ -92,7 +92,7 @@ namespace StylizedGrass
             }
             
             //Updating to 1.3.0+
-            bendingShader = Shader.Find(MESH_SHADER_OPAQUE_NAME);
+            bendingShader = Shader.Find(BEND_SHADER_NAME);
             
             SetupMaterial();
             UpdateProperties();
@@ -108,9 +108,9 @@ namespace StylizedGrass
             {
                 //Create a unique material per instance
                 material = new Material(targetMat);
-                material.hideFlags = HideFlags.DontSave;
+                material.hideFlags = HideFlags.DontSave | HideFlags.NotEditable;
                 material.enableInstancing = false;
-                material.name += "(Instance)";
+                material.name += " (Instance)";
                 renderer.material = material;
             }
             else
@@ -119,21 +119,25 @@ namespace StylizedGrass
                 material = targetMat;
                 material.enableInstancing = true;
                 renderer.sharedMaterial = material;
-                
             }
+            
+            #if DEVELOPMENT_BUILD
+            //Debug.LogFormat("[GrassBender {0}] Renderer:{1} - Material:{2} - Shader:{3}", GetInstanceID(), renderer, material ? "True" : "False", material ? material.shader.name : "None");
+            #endif
         }
         
         private readonly int paramsID = Shader.PropertyToID("_Params");
         private readonly int _SrcFactor = Shader.PropertyToID("_SrcFactor");
         private readonly int _DstFactor = Shader.PropertyToID("_DstFactor");
         
+        /// <summary>
+        /// Passes any change in parameters to the material. Must be called for changes to have an effect on rendering.
+        /// </summary>
         public void UpdateProperties()
         {
             if (!renderer) GetRenderer();
 
             if (!material) SetupMaterial();
-            
-            //renderer.rendererPriority = sortingLayer;
 
             if (GrassBendingFeature.SRPBatcherEnabled())
             {
@@ -188,7 +192,6 @@ namespace StylizedGrass
             {
                 lineRenderer = null;
             }
-           
         }
 
         private void OnDisable()
@@ -222,13 +225,13 @@ namespace StylizedGrass
             }
         }
         
-        public static Material GetMaterial(Type type)
+        private static Material GetMaterial(Type type)
         {
             return (type == typeof(MeshRenderer) || type == typeof(ParticleSystemRenderer)) ? MeshMaterial : TrailMaterial;
         }
 
         private const string TRAIL_KEYWORD = "_TRAIL";
-        public const string MESH_SHADER_OPAQUE_NAME = "Hidden/Nature/Grass Bend Mesh";
+        public const string BEND_SHADER_NAME = "Hidden/Nature/Grass Bend Mesh";
 
         private static Material _TrailMaterial;
         private static Material TrailMaterial
@@ -237,7 +240,7 @@ namespace StylizedGrass
             {
                 if (!_TrailMaterial)
                 {
-                    _TrailMaterial = new Material(Shader.Find(MESH_SHADER_OPAQUE_NAME));
+                    _TrailMaterial = new Material(Shader.Find(BEND_SHADER_NAME));
                     _TrailMaterial.name = "TrailOrLineBender";
                     _TrailMaterial.EnableKeyword(TRAIL_KEYWORD);
                     _TrailMaterial.hideFlags = HideFlags.DontSave | HideFlags.NotEditable;
@@ -254,7 +257,11 @@ namespace StylizedGrass
             {
                 if(!_MeshMaterial)
                 {
-                    _MeshMaterial = new Material(Shader.Find(MESH_SHADER_OPAQUE_NAME));
+					#if DEVELOPMENT_BUILD
+					if(Shader.Find(BEND_SHADER_NAME) == null) Debug.LogError("[Stylized Grass] Could not find the grass bending shader, it was not included in the build.");
+					#endif
+				
+                    _MeshMaterial = new Material(Shader.Find(BEND_SHADER_NAME));
                     _MeshMaterial.name = "MeshOrParticleBender";
                     _MeshMaterial.DisableKeyword(TRAIL_KEYWORD);
                     _MeshMaterial.hideFlags = HideFlags.DontSave | HideFlags.NotEditable;

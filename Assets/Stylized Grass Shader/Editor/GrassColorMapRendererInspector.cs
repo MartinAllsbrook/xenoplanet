@@ -65,6 +65,9 @@ namespace StylizedGrass
 
         public override void OnInspectorGUI()
         {
+            EditorGUILayout.LabelField("Version " + AssetInfo.INSTALLED_VERSION, EditorStyles.centeredGreyMiniLabel);
+            GUILayout.Space(5);
+
             serializedObject.Update();
 
             EditorGUI.BeginChangeCheck();

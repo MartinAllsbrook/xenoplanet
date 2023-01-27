@@ -94,6 +94,7 @@ namespace AwesomeTechnologies.Shaders
             Settings.AddFloatProperty("_WindRandStrength", "Random strength", "", ShaderControllerSettings.GetFloatFromMaterials(materials, "_WindRandStrength"), 0, 1);
             Settings.AddFloatProperty("_WindSwinging", "Swinging", "", ShaderControllerSettings.GetFloatFromMaterials(materials, "_WindSwinging"), 0, 1);
             Settings.AddFloatProperty("_WindGustStrength", "Gust Strength", "", ShaderControllerSettings.GetFloatFromMaterials(materials, "_WindGustStrength"), 0, 1);
+            Settings.AddFloatProperty("_WindGustSpeed", "Gust Speed", "", ShaderControllerSettings.GetFloatFromMaterials(materials, "_WindGustSpeed"), 0, 10);
             Settings.AddFloatProperty("_WindGustFreq", "Gust Frequency", "", ShaderControllerSettings.GetFloatFromMaterials(materials, "_WindGustFreq"), 0, 10);
             Settings.AddFloatProperty("_WindGustTint", "Gust Tint", "", ShaderControllerSettings.GetFloatFromMaterials(materials, "_WindGustTint"), 0, 1);
             
@@ -145,6 +146,7 @@ namespace AwesomeTechnologies.Shaders
             material.SetFloat("_WindRandStrength", Settings.GetFloatPropertyValue("_WindRandStrength"));
             material.SetFloat("_WindSwinging", Settings.GetFloatPropertyValue("_WindSwinging"));
             material.SetFloat("_WindGustStrength", Settings.GetFloatPropertyValue("_WindGustStrength"));
+            material.SetFloat("_WindGustSpeed", Settings.GetFloatPropertyValue("_WindGustSpeed"));
             material.SetFloat("_WindGustFreq", Settings.GetFloatPropertyValue("_WindGustFreq"));
             material.SetFloat("_WindGustTint", Settings.GetFloatPropertyValue("_WindGustTint"));
         }

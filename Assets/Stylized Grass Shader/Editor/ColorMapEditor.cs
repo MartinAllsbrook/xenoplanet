@@ -402,7 +402,7 @@ namespace StylizedGrass
             render.Apply();
             
             //DTX5 not supported on mobile which Texture2D.Compress will use if the alpha channel is used (scale map)
-            EditorUtility.CompressTexture(render, renderer.layerScaleSettings.Count > 0 ? TextureFormat.DXT5 : TextureFormat.DXT1, TextureCompressionQuality.Normal);
+            EditorUtility.CompressTexture(render, renderer.layerScaleSettings.Count > 0 ? TextureFormat.RGBA32 : TextureFormat.DXT1, TextureCompressionQuality.Normal);
             render.name = renderer.colorMap.name;
 
             if (!renderer.colorMap.texture) renderer.colorMap.texture = new Texture2D(renderer.colorMap.resolution, renderer.colorMap.resolution);

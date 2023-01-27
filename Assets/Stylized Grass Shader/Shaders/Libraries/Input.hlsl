@@ -49,23 +49,29 @@ half _PerspectiveCorrection;
 
 //Wind
 half _WindAmbientStrength;
-half _WindSpeed;
+float _WindSpeed;
 half _WindVertexRand;
 half _WindObjectRand;
 half _WindRandStrength;
 half _WindSwinging;
 half _WindGustStrength;
 half _WindGustFreq;
+float _WindGustSpeed;
 half _WindGustTint;
 
 half4 _LODDebugColor;
+
+//DOTS
+float _Seed;
 
 CBUFFER_END
 
 #if defined(UNITY_DOTS_INSTANCING_ENABLED)
 UNITY_DOTS_INSTANCING_START(MaterialPropertyMetadata)
     UNITY_DOTS_INSTANCED_PROP(float4, _BaseColor)
+    UNITY_DOTS_INSTANCED_PROP(float, _Seed) //Value is expected to be between 0 and 1
 UNITY_DOTS_INSTANCING_END(MaterialPropertyMetadata)
 
 #define _BaseColor UNITY_ACCESS_DOTS_INSTANCED_PROP(float4, _BaseColor)
+#define _Seed UNITY_ACCESS_DOTS_INSTANCED_PROP(float, _Seed)
 #endif

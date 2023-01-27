@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     private bool PlayerSecondJump;
     private bool PlayerSprint;
     private bool PlayerCrouch;
+    private Vector3 camDirection;
     
     
     //Camera Reference
@@ -47,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float MaxSlopeAngle;
     private float curSlopeAngle;
     private Vector3 playerForward;
-    RaycastHit groundHitInfo;
+    private RaycastHit groundHitInfo;
     
     
     [HideInInspector]public bool isGrounded;
@@ -73,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
         CheckGrounded();
         CheckSlope();
         CheckForward();
+        CheckGravity();
 
         if (isGrounded)
             GroundMovement();
@@ -81,6 +83,8 @@ public class PlayerMovement : MonoBehaviour
 
         // Invoke Events
         Events();
+        Debug.Log("Slope: " + CheckSlope());
+        Debug.Log("isGrounded: " +  isGrounded);
     }
 
     // Public method to recieve inputs from input controller
@@ -124,8 +128,11 @@ public class PlayerMovement : MonoBehaviour
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnVelocity, 0.1f);
 
             //Move
-            Vector3 camDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-
+            camDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            
+            if (CheckSlope())
+                camDirection = Vector3.ProjectOnPlane(camDirection, groundHitInfo.normal).normalized;
+            
             //if input then turn and move
             if (PlayerDirection.magnitude > 0.1f)
             {
@@ -143,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
             //if no input 0 velocity (prevents sliding)
             else
             {
-                _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, Vector3.zero, ref currVelocity, 0.2f);
+                _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, Vector3.zero, ref currVelocity, 0.05f);
             }
         }
 
@@ -282,16 +289,21 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
     }
 
-    private void CheckSlope()
+    private bool CheckSlope()
     {
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out groundHitInfo, Mathf.Infinity,
-                WhatIsGround))
+                WhatIsGround) && isGrounded)
         {
-            // Debug.Log("ground");
             curSlopeAngle = Vector3.Angle(groundHitInfo.normal, Vector3.up);
-            Debug.Log(curSlopeAngle);
+            return curSlopeAngle < MaxSlopeAngle && curSlopeAngle != 0;
         }
 
+        return false;
+    }
+
+    private void CheckGravity()
+    {
+        _rigidbody.useGravity = !CheckSlope();
     }
 
     private void CheckForward()
@@ -299,7 +311,6 @@ public class PlayerMovement : MonoBehaviour
         if (!isGrounded)
         {
             playerForward = transform.forward;
-            Debug.Log(playerForward);
             return;
         }
 
@@ -326,8 +337,10 @@ public class PlayerMovement : MonoBehaviour
     {
         Gizmos.DrawWireSphere(groundCheck.position, 0.1f);
         Gizmos.color = Color.blue;
-        Gizmos.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * 1000);
+        Gizmos.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * 100);
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, playerForward * 1000);
+        Gizmos.DrawRay(transform.position, playerForward * 100);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawRay(transform.position, camDirection * 100);
     }
 }

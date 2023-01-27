@@ -295,6 +295,10 @@ namespace StylizedGrass
                 new ShaderKeyword("DYNAMICLIGHTMAP_ON"),
                 new ShaderKeyword("DEBUG_DISPLAY"),
                 #endif
+                
+                #if !UNITY_2022_2_OR_NEWER
+                new ShaderKeyword("_FORWARD_PLUS"),
+                #endif
             };
 			
 			#if ENABLE_SHADER_STRIPPING_LOG

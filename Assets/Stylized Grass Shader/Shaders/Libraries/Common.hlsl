@@ -61,8 +61,13 @@ struct Attributes
 
 //---------------------------------------------------------------//
 
-float ObjectPosRand01() {
+float ObjectPosRand01()
+{
+	#if defined(UNITY_DOTS_INSTANCING_ENABLED)
+	return _Seed;
+	#else
 	return frac(UNITY_MATRIX_M[0][3] + UNITY_MATRIX_M[1][3] + UNITY_MATRIX_M[2][3]);
+	#endif
 }
 
 float3 GetPivotPos() {
