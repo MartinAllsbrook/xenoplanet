@@ -45,15 +45,30 @@ public class LandMarkGenerator : MonoBehaviour
                 if (x >= xStart && x <= xEnd && z >= zStart && z <= zEnd)
                     heightMap[z, x] = height;
                 // Else smooth the transition
-                /*else
+                else
                 {
-                    int distance = Mathf.Abs(x - xPosition);
-                    if (distance < Mathf.Abs(z - zPosition))
-                        distance = Mathf.Abs(z - zPosition);
-                    distance -= radius;
-                    float percent = (float) distance / radius;
+                    int xDistance = Mathf.Abs(x - xPosition);
+                    int zDistance = Mathf.Abs(z - zPosition);
+                    
+                    // Use the greater distance
+                    int usedDistance;
+                    float percent;
+                    if (xDistance < zDistance)
+                    {
+                        usedDistance = zDistance;
+                        usedDistance -= length;
+                        percent = (float) usedDistance / length;
+
+                    }
+                    else
+                    {
+                        usedDistance = xDistance;
+                        usedDistance -= width;
+                        percent = (float) usedDistance / width;
+                    }
+                    
                     heightMap[z,x] = height * (1-percent) + heightMap[z,x] * percent;
-                }*/
+                }
             }
         }
 
