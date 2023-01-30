@@ -20,35 +20,43 @@ public class LandMarkGenerator : MonoBehaviour
         // Choose random landmark
         LandMark landMark = landMarks[Random.Range(0, landMarks.Length)];
         
-        int radius = landMark.width;
-        int position = Random.Range(radius * 2, 512 - radius * 2);
+        int width = landMark.width;
+        int length = landMark.length;
+        int xPosition = Random.Range(width * 2, 512 - width * 2);
+        int zPosition = Random.Range(length * 2, 512 - length * 2);
         
-        int start = position - radius;
-        int end = position + radius;
-        int smoothStart = position - radius * 2;
-        int smoothEnd = position + radius * 2;
-        float height = heightMap[position, position];
+        int xStart = xPosition - width;
+        int xEnd = xPosition + width;
+        int xSmoothStart = xPosition - width * 2;
+        int xSmoothEnd = xPosition + width * 2;
         
-        for (int x = smoothStart; x <= smoothEnd; x++)
+        int zStart = zPosition - length;
+        int zEnd = zPosition + length;
+        int zSmoothStart = zPosition - length * 2;
+        int zSmoothEnd = zPosition + length * 2;
+        
+        float height = heightMap[zPosition, xPosition];
+        
+        for (int x = xSmoothStart; x <= xSmoothEnd; x++)
         { 
-            for (int z = smoothStart; z <= smoothEnd; z++)
+            for (int z = zSmoothStart; z <= zSmoothEnd; z++)
             {
                 // If we are near the center of the land mark
-                if (x >= start && x <= end && z >= start && z <= end)
+                if (x >= xStart && x <= xEnd && z >= zStart && z <= zEnd)
                     heightMap[z, x] = height;
                 // Else smooth the transition
-                else
+                /*else
                 {
-                    int distance = Mathf.Abs(x - position);
-                    if (distance < Mathf.Abs(z - position))
-                        distance = Mathf.Abs(z - position);
+                    int distance = Mathf.Abs(x - xPosition);
+                    if (distance < Mathf.Abs(z - zPosition))
+                        distance = Mathf.Abs(z - zPosition);
                     distance -= radius;
                     float percent = (float) distance / radius;
                     heightMap[z,x] = height * (1-percent) + heightMap[z,x] * percent;
-                }
+                }*/
             }
         }
 
-        Instantiate(landMark.structure, new Vector3(position + transform.position.x, height*512, position + transform.position.z), new Quaternion(0, 0, 0, 0));
+        Instantiate(landMark.structure, new Vector3(xPosition + transform.position.x, height*512, zPosition + transform.position.z), new Quaternion(0, 0, 0, 0));
     }
 }
