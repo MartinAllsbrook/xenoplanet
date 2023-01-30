@@ -101,8 +101,8 @@ public class PlayerMovement : MonoBehaviour
 
         // Invoke Events
         Events();
-        Debug.Log("Slope: " + CheckSlope());
-        Debug.Log("isGrounded: " +  isGrounded);
+        // Debug.Log("Slope: " + CheckSlope());
+        // Debug.Log("isGrounded: " +  isGrounded);
     }
 
     // Public method to recieve inputs from input controller

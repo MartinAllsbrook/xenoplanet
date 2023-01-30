@@ -12,14 +12,20 @@ public class TerrainScatter : MonoBehaviour
 
     [SerializeField] private int treeCount;
     [Range(-1, 1)] [SerializeField] private float maxOffset;
-
-    [SerializeField] private int grassDensity;
+    
     [SerializeField] private int patchDetail;
-    [SerializeField] private GameObject grassPrefab;
+    
     private float xOffset;
     private float zOffset;
     private float roadWidth;
     private Terrain terrain;
+    
+    //Grass Test
+    [SerializeField] private GameObject grassPrefab;
+    [SerializeField] private float grassHeightThreshold = 10.0f;
+    [SerializeField] private float voronoiScale = 10.0f;
+    [SerializeField] private int grassDensity;
+    
     public void ScatterFoliage(Terrain passedTerrain, int[,] biomeMap)
     {
         biomeInfo = TerrainLoader.Instance.biomeInfo;
@@ -31,6 +37,7 @@ public class TerrainScatter : MonoBehaviour
         roadWidth = TerrainLoader.Instance.roadwidth;
         ScatterGrass(biomeMap);
         ScatterTrees(biomeMap);
+
     }
 
     void ScatterGrass(int[,] biomeMap)
@@ -66,8 +73,8 @@ public class TerrainScatter : MonoBehaviour
         // }
         //
         // terrain.terrainData.SetDetailLayer(0, 0, 0, newMap);
-        
 
+       
     }
 
     void ScatterTrees(int[,] biomeMap)

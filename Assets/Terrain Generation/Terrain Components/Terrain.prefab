@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1909386825974346712}
   - component: {fileID: 311811538059476027}
   - component: {fileID: 1092145958796822348}
+  - component: {fileID: -7379540437250982229}
   m_Layer: 6
   m_Name: Terrain
   m_TagString: Untagged
@@ -129,9 +130,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   treeCount: 75
   maxOffset: 0.96
-  grassDensity: 513
-  patchDetail: 16
+  patchDetail: 662
   grassPrefab: {fileID: 7527757087965635429, guid: 9754a93fc18f2fa489865cd7195fdb25, type: 3}
+  grassHeightThreshold: 500
+  voronoiScale: 64.34
+  grassDensity: 558
 --- !u!114 &311811538059476027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +166,23 @@ MonoBehaviour:
   - width: 14
     length: 14
     structure: {fileID: 5736998040483158193, guid: dfe4234f2b7a2f64296eb9fb2c7e9e3d, type: 3}
+--- !u!114 &-7379540437250982229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8700995294294666482}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cec7c91391cc84f65b876180e5b05a9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grassPrefab: {fileID: 7527757087965635429, guid: 9754a93fc18f2fa489865cd7195fdb25, type: 3}
+  grassHeightThreshold: 102.57
+  voronoiScale: 10
+  grassDensity: 0.2
+  terrain: {fileID: 8700995294294666485}
 --- !u!1001 &3203313497573046193
 PrefabInstance:
   m_ObjectHideFlags: 0
