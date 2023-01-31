@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,7 +15,9 @@ public class Bow : MonoBehaviour
     // [SerializeField] private Transform arrowSpawnPosition;
     [SerializeField] private LayerMask aimingLayerMask;
     [SerializeField] private float maxAimDistance;
-    
+    [SerializeField] private float meleeDistance;
+    [SerializeField] private float meleeDamage;
+
     private GameObject mainCamera;
     private CinemachineFreeLook thirdPersonCamera;
     private Transform arrowAimer;
@@ -23,6 +26,7 @@ public class Bow : MonoBehaviour
     private float strength = 0;
     private int selectedArrow = 0;
     private float chargeMultiplier = 3;
+    private ParticleSystem meleeParticleSystem;
 
     private void Awake()
     {
@@ -50,6 +54,7 @@ public class Bow : MonoBehaviour
         if (!arrowAimer.CompareTag("MainCamera"))
             Debug.LogError("Cannot find arrowAimer");
 
+        meleeParticleSystem = GetComponent<ParticleSystem>();
     }
 
     public void CycleArrow()
@@ -74,20 +79,6 @@ public class Bow : MonoBehaviour
         thirdPersonCamera.m_Lens.FieldOfView = strength * 4 + 45;
     }
 
-    public Vector3 CalculateAimPosition(Vector3 spawnPosition)
-    {
-        // Create a raycast from camera to see where it hit's an invisible sphere around the player 
-        Vector3 origin = mainCamera.transform.position;
-        Vector3 direction = mainCamera.transform.forward;
-        Ray ray = new Ray(origin, direction);
-        if (Physics.Raycast(ray, out RaycastHit hit, maxAimDistance, aimingLayerMask))
-            arrowAimer.position = hit.point;
-        else
-            arrowAimer.position = mainCamera.transform.position + mainCamera.transform.forward * maxAimDistance;
-
-        return arrowAimer.position - spawnPosition;
-    }
-    
     public void FireArrow()
     {
         Vector3 spawnPosition = transform.position;
@@ -102,5 +93,43 @@ public class Bow : MonoBehaviour
         thirdPersonCamera.m_Lens.FieldOfView = 45;
         strength = 0;
         chargeTime = 0;
+    }
+    
+    public void Melee()
+    {
+        Debug.Log("Melee");
+        meleeParticleSystem.Play();
+        Ray ray = CreateRayFromCamera();
+        if (Physics.Raycast(ray, out RaycastHit hit, 20, aimingLayerMask))
+        {
+            if ((hit.point - transform.position).magnitude > meleeDistance)
+                return;
+
+            if (hit.transform.CompareTag("Enemy") || hit.transform.CompareTag("Breakable Environment"))
+                hit.transform.gameObject.GetComponent<BreakableObject>().Health = -meleeDamage;
+            
+        }
+            
+    }
+    
+    public Vector3 CalculateAimPosition(Vector3 spawnPosition)
+    {
+        Ray ray = CreateRayFromCamera();
+        if (Physics.Raycast(ray, out RaycastHit hit, maxAimDistance, aimingLayerMask))
+            arrowAimer.position = hit.point;
+        else
+            arrowAimer.position = mainCamera.transform.position + mainCamera.transform.forward * maxAimDistance;
+
+        return arrowAimer.position - spawnPosition;
+    }
+    
+
+
+    private Ray CreateRayFromCamera()
+    {
+        Vector3 origin = mainCamera.transform.position;
+        Vector3 direction = mainCamera.transform.forward;
+        return new Ray(origin, direction);
+        
     }
 }

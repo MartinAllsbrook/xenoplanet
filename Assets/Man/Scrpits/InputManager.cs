@@ -125,13 +125,16 @@ public class InputManager : MonoBehaviour
         if (_playerControls.Player.CycleArrows.WasPressedThisFrame())
             _bow.CycleArrow();
 
-        /*// D-Pad Up => Shrink Grapple
-        if (_playerControls.Player.PadUp.IsInProgress())
-            _grapple.ChangeGrappleLength(true);
-        
-        // D-Pad Down => Lengthen Grapple
-        if (_playerControls.Player.PadDown.IsInProgress())
-            _grapple.ChangeGrappleLength(false);*/
+        if (_playerControls.Player.Melee.WasPerformedThisFrame())
+            _bow.Melee();
+
+            /*// D-Pad Up => Shrink Grapple
+            if (_playerControls.Player.PadUp.IsInProgress())
+                _grapple.ChangeGrappleLength(true);
+            
+            // D-Pad Down => Lengthen Grapple
+            if (_playerControls.Player.PadDown.IsInProgress())
+                _grapple.ChangeGrappleLength(false);*/
 
         if (_playerControls.Player.PadRight.WasPerformedThisFrame())
             hotbarNext.Invoke();
