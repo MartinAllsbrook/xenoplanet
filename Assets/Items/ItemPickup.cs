@@ -23,13 +23,22 @@ public class ItemPickup : MonoBehaviour
             transform.position += Vector3.down * fallSpeed;    
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    // Code from when this was not a trigger
+    /*private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
         }
-    }
+    }*/
     
     protected virtual void UseItem()
     {

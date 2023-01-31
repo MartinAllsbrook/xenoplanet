@@ -73,8 +73,18 @@ public class Player : MonoBehaviour
             playerSpotted = true;
         }
     }*/
-    
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Item Pickup"))
+        {
+            Debug.Log("Picked up item");
+            ItemPickup itemPickup = other.gameObject.GetComponent<ItemPickup>();
+            HUDController.Instance.PickUpItem(itemPickup.Item);
+        }
+    }
+
+    /*private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Item Pickup"))
         {
@@ -82,7 +92,7 @@ public class Player : MonoBehaviour
             ItemPickup itemPickup = collision.gameObject.GetComponent<ItemPickup>();
             HUDController.Instance.PickUpItem(itemPickup.Item);
         }
-    }
+    }*/
 
     private void OnGameStart()
     {
@@ -95,7 +105,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnSpotted()
+    /*private void OnSpotted()
     {
         Debug.Log("Player Spotted");
     }
@@ -103,5 +113,5 @@ public class Player : MonoBehaviour
     private void OnHidden()
     {
         Debug.Log("Player Hidden");
-    }
+    }*/
 }
