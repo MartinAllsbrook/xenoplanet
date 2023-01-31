@@ -10,6 +10,7 @@ TagManager:
   - Pickup
   - Scrap Metal
   - Item Pickup
+  - Breakable Environment
   layers:
   - Default
   - TransparentFX
