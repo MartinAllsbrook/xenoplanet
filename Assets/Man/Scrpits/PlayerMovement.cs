@@ -126,8 +126,9 @@ public class PlayerMovement : MonoBehaviour
     
     
     // Public method to recieve inputs from input controller for camera
-    public void CameraControl(Vector2 direction)
+    public void GetCamera(InputAction.CallbackContext context)
     {
+        Vector2 direction = context.ReadValue<Vector2>(); 
         thridPersonCamera.m_XAxis.m_InputAxisValue = -direction.x;
         thridPersonCamera.m_YAxis.m_InputAxisValue = -direction.y;
     }

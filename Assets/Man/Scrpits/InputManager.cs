@@ -14,12 +14,6 @@ public class InputManager : MonoBehaviour
     private PlayerMovement _playerMovement;
     [SerializeField] private Bow _bow;
     [SerializeField] private Grapple _grapple;
-    
-    // public Vector2 moveDirection;
-    private Vector2 _cameraDirection;
-    // private bool _isSprinting;
-    // private bool _isJumping;
-    // private bool _isCrouching;
 
     private bool readyToJump = false;
     private float _fireStrength;
@@ -88,13 +82,6 @@ public class InputManager : MonoBehaviour
 
     private void BasicControlChecks()
     {
-
-        //Move RightStick (Mouse) – Camera
-        if (_playerControls.Player.Camera.IsInProgress())
-        {
-            _cameraDirection = _playerControls.Player.Camera.ReadValue<Vector2>();
-            _playerMovement.CameraControl(_cameraDirection);
-        };
 
         // RT / LMB => Hold to charge arrow
         if (_playerControls.Player.Fire.IsInProgress())
