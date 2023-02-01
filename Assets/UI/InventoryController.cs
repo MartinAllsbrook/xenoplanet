@@ -32,11 +32,11 @@ public class InventoryController : MonoBehaviour
         InputManager.Instance.select.AddListener(Select);
     }
 
-    private void Update()
+    /*private void Update()
     {
         var moveDirection = InputManager.Instance.moveDirection;
         inventoryCursor.transform.position += Time.deltaTime * cursorMoveSpeed * new Vector3(moveDirection.x, moveDirection.y, 0);
-    }
+    }*/
 
     private void Select()
     {

@@ -15,11 +15,11 @@ public class InputManager : MonoBehaviour
     [SerializeField] private Bow _bow;
     [SerializeField] private Grapple _grapple;
     
-    public Vector2 moveDirection;
+    // public Vector2 moveDirection;
     private Vector2 _cameraDirection;
-    private bool _isSprinting;
-    private bool _isJumping;
-    private bool _isCrouching;
+    // private bool _isSprinting;
+    // private bool _isJumping;
+    // private bool _isCrouching;
 
     private bool readyToJump = false;
     private float _fireStrength;
@@ -76,35 +76,18 @@ public class InputManager : MonoBehaviour
     
     private void Update()
     {
-        if (inventoryOpen)
-        {
-            InventoryControlChecks();
-        }
-        else
-        {
-            BasicControlChecks();
-        }
+        // if (inventoryOpen)
+        // {
+        //     InventoryControlChecks();
+        // }
+        // else
+        // {
+        //     BasicControlChecks();
+        // }
     }
 
     private void BasicControlChecks()
-    { 
-        // Press A (Space) – Jump
-        // _playerControls.Player.Jump.performed += context => _playerMovement.Jump();
-        
-        // When player is presses jump
-        bool jump = _playerControls.Player.Jump.WasPressedThisFrame();
-
-        //Press LeftStick (Shift) - Sprint
-        bool sprint = _playerControls.Player.Sprinting.IsInProgress();
-
-        //Press RightStick (Control) - Crouch
-        bool crouch = _playerControls.Player.Crouch.IsInProgress();
-
-        //Move LeftStick (WASD) – Move
-        moveDirection = _playerControls.Player.Movement.ReadValue<Vector2>();
-
-        //_____Call Movement_____
-        _playerMovement.PlayerInput(moveDirection, jump, sprint, crouch);
+    {
 
         //Move RightStick (Mouse) – Camera
         if (_playerControls.Player.Camera.IsInProgress())
@@ -159,7 +142,7 @@ public class InputManager : MonoBehaviour
     }
 
     // Control checks while inventory is open
-    private void InventoryControlChecks()
+    /*private void InventoryControlChecks()
     {
         moveDirection = _playerControls.Player.Movement.ReadValue<Vector2>();
         
@@ -169,7 +152,7 @@ public class InputManager : MonoBehaviour
         // D-Pad Down => toggle inventory
         if (_playerControls.Player.PadDown.WasPerformedThisFrame())
             ToggleInventory();
-    }
+    }*/
 
     // Toggles inventory state on and off
     private void ToggleInventory()
