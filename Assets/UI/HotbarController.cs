@@ -53,7 +53,7 @@ public class HotbarController : MonoBehaviour
     {
         for (int i = 0; i < _hotbarTiles.Length; i++)
         {
-            if (i == _selectedTile)
+            if (i == tileIndex)
                 _hotbarTiles[i].Selected = true;
             else
                 _hotbarTiles[i].Selected = false;

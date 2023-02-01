@@ -47,7 +47,10 @@ public class Arrow : MonoBehaviour
             HUDController.Instance.PlayHitMarker();
             collision.gameObject.GetComponent<Enemy>().Health = -damage;
         }
-        
+        if (collision.gameObject.CompareTag("Breakable Environment"))
+        {
+            collision.gameObject.GetComponent<BreakableObject>().Health = -(damage / 2); // Deal less damage to breakable objects with arrows
+        }
         // On collision destroy arrow
         Destroy(gameObject);
     }

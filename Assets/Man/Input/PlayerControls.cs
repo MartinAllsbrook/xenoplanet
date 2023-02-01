@@ -143,6 +143,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Melee"",
+                    ""type"": ""Button"",
+                    ""id"": ""63a1c3a1-3fe4-4dc4-9310-1e4081659653"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -420,6 +429,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""FireGrapple"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fd560ea9-2233-4215-8242-44b420115a47"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Melee"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -458,6 +478,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_PadLeft = m_Player.FindAction("PadLeft", throwIfNotFound: true);
         m_Player_PadRight = m_Player.FindAction("PadRight", throwIfNotFound: true);
         m_Player_FireGrapple = m_Player.FindAction("FireGrapple", throwIfNotFound: true);
+        m_Player_Melee = m_Player.FindAction("Melee", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -530,6 +551,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_PadLeft;
     private readonly InputAction m_Player_PadRight;
     private readonly InputAction m_Player_FireGrapple;
+    private readonly InputAction m_Player_Melee;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -547,6 +569,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @PadLeft => m_Wrapper.m_Player_PadLeft;
         public InputAction @PadRight => m_Wrapper.m_Player_PadRight;
         public InputAction @FireGrapple => m_Wrapper.m_Player_FireGrapple;
+        public InputAction @Melee => m_Wrapper.m_Player_Melee;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -595,6 +618,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @FireGrapple.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireGrapple;
                 @FireGrapple.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireGrapple;
                 @FireGrapple.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireGrapple;
+                @Melee.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMelee;
+                @Melee.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMelee;
+                @Melee.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMelee;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -638,6 +664,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @FireGrapple.started += instance.OnFireGrapple;
                 @FireGrapple.performed += instance.OnFireGrapple;
                 @FireGrapple.canceled += instance.OnFireGrapple;
+                @Melee.started += instance.OnMelee;
+                @Melee.performed += instance.OnMelee;
+                @Melee.canceled += instance.OnMelee;
             }
         }
     }
@@ -675,5 +704,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnPadLeft(InputAction.CallbackContext context);
         void OnPadRight(InputAction.CallbackContext context);
         void OnFireGrapple(InputAction.CallbackContext context);
+        void OnMelee(InputAction.CallbackContext context);
     }
 }
