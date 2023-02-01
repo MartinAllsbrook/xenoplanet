@@ -121,17 +121,15 @@ public class PlayerMovement : MonoBehaviour
     {
         _crouchInput = context.action.WasPerformedThisFrame();
     }
-
-    #endregion
     
-    
-    // Public method to recieve inputs from input controller for camera
     public void GetCamera(InputAction.CallbackContext context)
     {
         Vector2 direction = context.ReadValue<Vector2>(); 
         thridPersonCamera.m_XAxis.m_InputAxisValue = -direction.x;
         thridPersonCamera.m_YAxis.m_InputAxisValue = -direction.y;
     }
+
+    #endregion
     
     // Movement is broken up into methods based on the characters current state
     #region Ground Movement

@@ -11,8 +11,6 @@ public class InputManager : MonoBehaviour
     public static InputManager Instance;
     
     private PlayerControls _playerControls;
-    private PlayerMovement _playerMovement;
-    [SerializeField] private Bow _bow;
     [SerializeField] private Grapple _grapple;
 
     private bool readyToJump = false;
@@ -37,7 +35,6 @@ public class InputManager : MonoBehaviour
         if (useItem == null) useItem = new UnityEvent();
         
         _playerControls = new PlayerControls();
-        _playerMovement = GetComponent<PlayerMovement>();
         _fireStrength = 0;
     }
 
@@ -82,30 +79,6 @@ public class InputManager : MonoBehaviour
 
     private void BasicControlChecks()
     {
-
-        // RT / LMB => Hold to charge arrow
-        if (_playerControls.Player.Fire.IsInProgress())
-            _bow.ChargeArrow();
-
-        // RT / LMB => Release to fire arrow
-        if (_playerControls.Player.Fire.WasReleasedThisFrame())
-            _bow.FireArrow();
-
-        // Y / Q => Cycle arrows
-        if (_playerControls.Player.CycleArrows.WasPressedThisFrame())
-            _bow.CycleArrow();
-
-        if (_playerControls.Player.Melee.WasPerformedThisFrame())
-            _bow.Melee();
-
-            /*// D-Pad Up => Shrink Grapple
-            if (_playerControls.Player.PadUp.IsInProgress())
-                _grapple.ChangeGrappleLength(true);
-            
-            // D-Pad Down => Lengthen Grapple
-            if (_playerControls.Player.PadDown.IsInProgress())
-                _grapple.ChangeGrappleLength(false);*/
-
         if (_playerControls.Player.PadRight.WasPerformedThisFrame())
             hotbarNext.Invoke();
         

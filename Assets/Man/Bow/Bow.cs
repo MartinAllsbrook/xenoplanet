@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class Bow : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class Bow : MonoBehaviour
     private int selectedArrow = 0;
     private float chargeMultiplier = 3;
     private ParticleSystem meleeParticleSystem;
+    private bool _chargingInput = true;
 
     private void Awake()
     {
@@ -57,7 +59,40 @@ public class Bow : MonoBehaviour
         meleeParticleSystem = GetComponent<ParticleSystem>();
     }
 
-    public void CycleArrow()
+    private void Update()
+    {
+        if (_chargingInput)
+        {
+            ChargeArrow();
+        }
+    }
+    
+    public void GetChargingInput(InputAction.CallbackContext context)
+    {
+        _chargingInput = context.action.WasPerformedThisFrame();
+        if (context.action.WasReleasedThisFrame())
+        {
+            FireArrow();
+        }
+    }
+
+    public void GetMeleeInput(InputAction.CallbackContext context)
+    {
+        if (context.action.WasPerformedThisFrame())
+        {
+            Melee();
+        }
+    }
+    
+    public void GetCycleInput(InputAction.CallbackContext context)
+    {
+        if (context.action.WasPerformedThisFrame())
+        {
+            CycleArrow();
+        }
+    }
+    
+    private void CycleArrow()
     {
         // Cycle through arrows
         selectedArrow++;
@@ -67,9 +102,9 @@ public class Bow : MonoBehaviour
         // Update hud
         HUDController.Instance.SetArrow(arrows[selectedArrow].GetComponent<Arrow>().ArrowName);
     }
-
+    
     // "Charge" arrow based on how long the player is holding the trigger
-    public void ChargeArrow()
+    private void ChargeArrow()
     {
         // The longer the player holds the trigger the slower strength builds up
         chargeTime += Time.deltaTime * chargeMultiplier;
@@ -79,7 +114,7 @@ public class Bow : MonoBehaviour
         thirdPersonCamera.m_Lens.FieldOfView = strength * 4 + 45;
     }
 
-    public void FireArrow()
+    private void FireArrow()
     {
         Vector3 spawnPosition = transform.position;
         Vector3 arrowDirection = CalculateAimPosition(spawnPosition);
@@ -95,7 +130,7 @@ public class Bow : MonoBehaviour
         chargeTime = 0;
     }
     
-    public void Melee()
+    private void Melee()
     {
         Debug.Log("Melee");
         meleeParticleSystem.Play();
@@ -123,8 +158,6 @@ public class Bow : MonoBehaviour
         return arrowAimer.position - spawnPosition;
     }
     
-
-
     private Ray CreateRayFromCamera()
     {
         Vector3 origin = mainCamera.transform.position;
