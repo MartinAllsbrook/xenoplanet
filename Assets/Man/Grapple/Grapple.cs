@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class Grapple : MonoBehaviour
 {
@@ -30,6 +32,19 @@ public class Grapple : MonoBehaviour
         _player = Player.Instance.gameObject;
         // _playerRigidBody = _player.GetComponent<Rigidbody>();
         _ropeRenderer = gameObject.GetComponent<LineRenderer>();
+    }
+
+    public void GetFireGrappleInput(InputAction.CallbackContext context)
+    {
+        if (context.action.WasPerformedThisFrame())
+        {
+            FireGrapple();
+        }
+
+        if (context.action.WasReleasedThisFrame())
+        {
+            Unhook();
+        }
     }
 
     public void FireGrapple()

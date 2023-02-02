@@ -66,7 +66,9 @@ public class Bow : MonoBehaviour
             ChargeArrow();
         }
     }
-    
+
+    #region GetInputs
+
     public void GetChargingInput(InputAction.CallbackContext context)
     {
         _chargingInput = context.action.WasPerformedThisFrame();
@@ -91,7 +93,9 @@ public class Bow : MonoBehaviour
             CycleArrow();
         }
     }
-    
+
+    #endregion
+
     private void CycleArrow()
     {
         // Cycle through arrows

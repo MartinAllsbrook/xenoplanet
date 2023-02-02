@@ -93,12 +93,6 @@ public class InputManager : MonoBehaviour
         // D-Pad Down => toggle inventory
         if (_playerControls.Player.PadDown.WasPerformedThisFrame())
             ToggleInventory();
-        
-        if (_playerControls.Player.FireGrapple.WasPerformedThisFrame())
-            _grapple.FireGrapple();
-        
-        if (_playerControls.Player.FireGrapple.WasReleasedThisFrame())
-            _grapple.Unhook();
     }
 
     // Control checks while inventory is open

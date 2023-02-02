@@ -451,7 +451,19 @@ MonoBehaviour:
     m_ActionId: b205b63e-344d-4582-b922-01879c52a363
     m_ActionName: Player/PadRight[/XInputControllerWindows/dpad/right]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3643135492808573079}
+        m_TargetAssemblyTypeName: Grapple, Assembly-CSharp
+        m_MethodName: GetFireGrappleInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: b83af148-3f22-4019-8ac1-521d0f68e866
     m_ActionName: Player/FireGrapple[/XInputControllerWindows/rightShoulder]
   - m_PersistentCalls:
