@@ -12,8 +12,6 @@ public class Enemy : BreakableObject
     [SerializeField] protected float idleDistance;
     [SerializeField] protected IndicatorLight canSeePlayerIndicator;
     
-
-    
     protected Vector3 targetLocation;
     protected Vector3 lastPlayerLocation;
     protected bool canSeePlayer;
