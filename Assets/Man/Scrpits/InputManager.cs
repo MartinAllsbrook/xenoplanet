@@ -11,15 +11,7 @@ public class InputManager : MonoBehaviour
     public static InputManager Instance;
     
     private PlayerControls _playerControls;
-    private PlayerMovement _playerMovement;
-    [SerializeField] private Bow _bow;
     [SerializeField] private Grapple _grapple;
-    
-    public Vector2 moveDirection;
-    private Vector2 _cameraDirection;
-    private bool _isSprinting;
-    private bool _isJumping;
-    private bool _isCrouching;
 
     private bool readyToJump = false;
     private float _fireStrength;
@@ -43,7 +35,6 @@ public class InputManager : MonoBehaviour
         if (useItem == null) useItem = new UnityEvent();
         
         _playerControls = new PlayerControls();
-        _playerMovement = GetComponent<PlayerMovement>();
         _fireStrength = 0;
     }
 
@@ -76,66 +67,18 @@ public class InputManager : MonoBehaviour
     
     private void Update()
     {
-        if (inventoryOpen)
-        {
-            InventoryControlChecks();
-        }
-        else
-        {
-            BasicControlChecks();
-        }
+        // if (inventoryOpen)
+        // {
+        //     InventoryControlChecks();
+        // }
+        // else
+        // {
+        //     BasicControlChecks();
+        // }
     }
 
     private void BasicControlChecks()
-    { 
-        // Press A (Space) – Jump
-        // _playerControls.Player.Jump.performed += context => _playerMovement.Jump();
-        
-        // When player is presses jump
-        bool jump = _playerControls.Player.Jump.WasPressedThisFrame();
-
-        //Press LeftStick (Shift) - Sprint
-        bool sprint = _playerControls.Player.Sprinting.IsInProgress();
-
-        //Press RightStick (Control) - Crouch
-        bool crouch = _playerControls.Player.Crouch.IsInProgress();
-
-        //Move LeftStick (WASD) – Move
-        moveDirection = _playerControls.Player.Movement.ReadValue<Vector2>();
-
-        //_____Call Movement_____
-        _playerMovement.PlayerInput(moveDirection, jump, sprint, crouch);
-
-        //Move RightStick (Mouse) – Camera
-        if (_playerControls.Player.Camera.IsInProgress())
-        {
-            _cameraDirection = _playerControls.Player.Camera.ReadValue<Vector2>();
-            _playerMovement.CameraControl(_cameraDirection);
-        };
-
-        // RT / LMB => Hold to charge arrow
-        if (_playerControls.Player.Fire.IsInProgress())
-            _bow.ChargeArrow();
-
-        // RT / LMB => Release to fire arrow
-        if (_playerControls.Player.Fire.WasReleasedThisFrame())
-            _bow.FireArrow();
-
-        // Y / Q => Cycle arrows
-        if (_playerControls.Player.CycleArrows.WasPressedThisFrame())
-            _bow.CycleArrow();
-
-        if (_playerControls.Player.Melee.WasPerformedThisFrame())
-            _bow.Melee();
-
-            /*// D-Pad Up => Shrink Grapple
-            if (_playerControls.Player.PadUp.IsInProgress())
-                _grapple.ChangeGrappleLength(true);
-            
-            // D-Pad Down => Lengthen Grapple
-            if (_playerControls.Player.PadDown.IsInProgress())
-                _grapple.ChangeGrappleLength(false);*/
-
+    {
         if (_playerControls.Player.PadRight.WasPerformedThisFrame())
             hotbarNext.Invoke();
         
@@ -150,16 +93,10 @@ public class InputManager : MonoBehaviour
         // D-Pad Down => toggle inventory
         if (_playerControls.Player.PadDown.WasPerformedThisFrame())
             ToggleInventory();
-        
-        if (_playerControls.Player.FireGrapple.WasPerformedThisFrame())
-            _grapple.FireGrapple();
-        
-        if (_playerControls.Player.FireGrapple.WasReleasedThisFrame())
-            _grapple.Unhook();
     }
 
     // Control checks while inventory is open
-    private void InventoryControlChecks()
+    /*private void InventoryControlChecks()
     {
         moveDirection = _playerControls.Player.Movement.ReadValue<Vector2>();
         
@@ -169,7 +106,7 @@ public class InputManager : MonoBehaviour
         // D-Pad Down => toggle inventory
         if (_playerControls.Player.PadDown.WasPerformedThisFrame())
             ToggleInventory();
-    }
+    }*/
 
     // Toggles inventory state on and off
     private void ToggleInventory()

@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore;
 
 public class CrosshaireController : MonoBehaviour
 {
     [SerializeField] private GameObject hitmarker;
-
+    [SerializeField] private GameObject crossHair;
+    
     public void PlayHitMarker()
     {
         StartCoroutine(HitMarker());
@@ -18,4 +20,15 @@ public class CrosshaireController : MonoBehaviour
         hitmarker.SetActive(false);
         yield return null;
     }
+
+    public void ShowCrossHair()
+    {
+        crossHair.SetActive(true);
+    }
+
+    public void HideCrossHair()
+    {
+        crossHair.SetActive(false);
+    }
+
 }
