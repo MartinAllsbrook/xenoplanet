@@ -75,7 +75,7 @@ public class Chunk : MonoBehaviour
         
         biomeMap = biomeGenerator.GenerateBiomes(heightMap, moistureMap);
         terrainPainter.PaintTerrain(terrain.terrainData, biomeMap);
-        terrainScatter.ScatterFoliage(terrain, biomeMap);
+        terrainScatter.ScatterFoliage(terrain, biomeMap, heightMap);
         
         chunkLoaded.Invoke();
     }

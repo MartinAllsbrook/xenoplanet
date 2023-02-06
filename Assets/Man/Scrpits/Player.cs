@@ -96,6 +96,7 @@ public class Player : MonoBehaviour
 
     private void OnGameStart()
     {
+        Debug.Log("start");
         playerRigidbody.useGravity = true;
         
         Ray ray = new Ray(transform.position, Vector3.down);
