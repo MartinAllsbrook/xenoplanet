@@ -48,12 +48,12 @@ public class TerrainScatter : MonoBehaviour
         // int[,] newMap = new int[grassDensity, grassDensity];
         
         
-        for (int xIterator = 0; xIterator < 128; xIterator++)
+        for (int xIterator = 0; xIterator < 24; xIterator++)
         {
-            for (int zIterator = 0; zIterator < 128; zIterator++)
+            for (int zIterator = 0; zIterator < 24; zIterator++)
             {
-                int x = xIterator * 4;
-                int z = zIterator * 4;
+                int x = xIterator;
+                int z = zIterator;
                 var biome = biomeMap[x, z];
                 for (int i = 1; i < biomeInfo.Length; i++)
                 {
