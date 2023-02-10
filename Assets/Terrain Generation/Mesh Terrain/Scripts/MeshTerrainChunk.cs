@@ -3,15 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
-using UnityEngine.Events;
 using Debug = UnityEngine.Debug;
-using Random = UnityEngine.Random;
 
-public class Chunk : MonoBehaviour
+[RequireComponent(typeof(MeshFilter))]
+public class MeshTerrainChunk : MonoBehaviour
 {
+    private Mesh _mesh;
+    
+    private Vector3[] _vertices;
+    private int[] _triangles;
+
     [SerializeField] private float[] octaves;
     [SerializeField] private float redistributionFactor;
-    
+    [SerializeField] private float maxHeight;
+
     // private TerrainPainter terrainPainter;
     // private TerrainScatter terrainScatter;
     // private BiomeGenerator biomeGenerator;
@@ -21,60 +26,91 @@ public class Chunk : MonoBehaviour
 
     // private UnityEvent chunkLoaded;
     
-    
     private float[,] heightMap;
     private float[,] moistureMap;
     private int[,] biomeMap;
 
     private delegate void GenericDelegate();
     private delegate void GenericDelegate<T>(T variable);
-
-    private void Awake()
+    
+    // Start is called before the first frame update
+    void Start()
     {
-        // terrainPainter = gameObject.GetComponent<TerrainPainter>();
-        // terrainScatter = gameObject.GetComponent<TerrainScatter>();
-        // biomeGenerator = gameObject.GetComponent<BiomeGenerator>();
-        // landMarkGenerator = gameObject.GetComponent<LandMarkGenerator>();
+        _mesh = new Mesh();
+        GetComponent<MeshFilter>().mesh = _mesh;
+
+        GenerateNoise(100, () =>
+        {
+            StartCoroutine(CreateShape());
+        });
         
-        // chunkLoaded = TerrainLoader.Instance.chunkLoaded;
+        // CreateShape();
     }
 
-    private void Start()
+    private void Update()
     {
-        // MakeNoise(20, 0, TerrainLoader.Instance.seed, MapStepTwo);
+        UpdateMesh();
     }
 
-    private void MapStepTwo()
+    #region Mesh Generation
+
+    IEnumerator CreateShape()
     {
-        // heightMap = moistureMap;
-        // MakeNoise(20, 0, TerrainLoader.Instance.moistureSeed, SetTerrain);
+        _vertices = new Vector3[(_size) * (_size)];
+
+        for (int i = 0, z = 0; z <= _size - 1; z++)
+        {
+            for (int x = 0; x <= _size - 1; x++)
+            {
+                _vertices[i] = new Vector3(x, heightMap[x,z] * maxHeight, z);
+                i++;
+            }
+        }
+        _triangles = new int[(_size - 1) * (_size - 1) * 6];
+
+        int vertexIndex = 0;
+        int trangleIndex = 0;
+
+        for (int z = 0; z < _size - 1; z++)
+        {
+            for (int x = 0; x < _size - 1; x++)
+            {
+                _triangles[trangleIndex + 0] = vertexIndex + 0;
+                _triangles[trangleIndex + 1] = vertexIndex + _size;
+                _triangles[trangleIndex + 2] = vertexIndex + 1;
+                _triangles[trangleIndex + 3] = vertexIndex + 1;
+                _triangles[trangleIndex + 4] = vertexIndex + _size;
+                _triangles[trangleIndex + 5] = vertexIndex + _size + 1;
+
+                vertexIndex++;
+                trangleIndex += 6;
+
+            }
+            yield return null;
+
+            vertexIndex++;
+        }
     }
 
-    /*private void SetTerrain()
+    void UpdateMesh()
     {
-        landMarkGenerator.PlaceLandMark(ref heightMap);
-        
-        terrainData.SetHeights(0, 0, heightMap);
-        
-        TerrainCollider terrainCollider = GetComponent<TerrainCollider>();
-        terrainCollider.terrainData = terrain.terrainData;
-        
-        terrain.detailObjectDistance = 1000;
-        terrain.treeBillboardDistance = 5000;
-        
-        biomeMap = biomeGenerator.GenerateBiomes(heightMap, moistureMap);
-        terrainPainter.PaintTerrain(terrain.terrainData, biomeMap);
-        terrainScatter.ScatterFoliage(terrain, biomeMap, heightMap);
-        
-        chunkLoaded.Invoke();
-    }*/
+        _mesh.Clear();
 
-    // Helper functions
-    private void GenerateNoise(int roadwidth, int smoothFactor, int seed, GenericDelegate onFinishedCallback)
+        _mesh.vertices = _vertices;
+        _mesh.triangles = _triangles;
+        
+        _mesh.RecalculateNormals();
+    }
+
+    #endregion
+
+    #region Noise Generation
+
+    private void GenerateNoise(int seed, GenericDelegate onFinishedCallback)
     {
         StartCoroutine(GenerateNoiseCoroutine(seed, data =>
             {
-                moistureMap = data;
+                heightMap = data;
                 onFinishedCallback?.Invoke();
             }
         ));
@@ -82,7 +118,7 @@ public class Chunk : MonoBehaviour
 
     IEnumerator GenerateNoiseCoroutine(int seed, GenericDelegate<float[,]> callback)
     {
-        System.Diagnostics.Stopwatch timer = new Stopwatch();
+        Stopwatch timer = new Stopwatch();
         timer.Start();
     
         
@@ -134,10 +170,23 @@ public class Chunk : MonoBehaviour
     
     float CalculateNoise(float xNorm, float yNorm, float scale)
     {
-        xNorm = xNorm * scale;
-        yNorm = yNorm * scale;
+        xNorm *= scale;
+        yNorm *= scale;
 
         // return (NoiseManager.SimplexPerlin.GetValue(xNorm, yNorm) + 1)/1;
         return Mathf.PerlinNoise(xNorm, yNorm);
     }
+
+    private void OnDrawGizmos()
+    {
+        if (_vertices == null)
+            return;
+        
+        for (int i = 0; i < _vertices.Length; i++)
+        {
+            Gizmos.DrawSphere(_vertices[i], .1f);
+        }
+    }
+
+    #endregion
 }
