@@ -22,7 +22,7 @@ public class MeshTerrainChunk : MonoBehaviour
     // private BiomeGenerator biomeGenerator;
     // private LandMarkGenerator landMarkGenerator;
     
-    private const int _size = 64;
+    private const int _size = 65;
 
     // private UnityEvent chunkLoaded;
     
@@ -33,28 +33,27 @@ public class MeshTerrainChunk : MonoBehaviour
     private delegate void GenericDelegate();
     private delegate void GenericDelegate<T>(T variable);
     
-    // Start is called before the first frame update
-    void Start()
+    public void SetTerrain(int seed)
     {
         _mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = _mesh;
 
-        GenerateNoise(100, () =>
+        GenerateNoise(seed, () =>
         {
-            StartCoroutine(CreateShape());
+            // StartCoroutine(CreateShape());
+            CreateShape();
+            UpdateMesh();
         });
-        
-        // CreateShape();
     }
 
-    private void Update()
+    /*private void Update()
     {
         UpdateMesh();
-    }
+    }*/
 
     #region Mesh Generation
 
-    IEnumerator CreateShape()
+    void CreateShape()
     {
         _vertices = new Vector3[(_size) * (_size)];
 
@@ -66,6 +65,7 @@ public class MeshTerrainChunk : MonoBehaviour
                 i++;
             }
         }
+
         _triangles = new int[(_size - 1) * (_size - 1) * 6];
 
         int vertexIndex = 0;
@@ -86,7 +86,7 @@ public class MeshTerrainChunk : MonoBehaviour
                 trangleIndex += 6;
 
             }
-            yield return null;
+            // yield return null;
 
             vertexIndex++;
         }
@@ -124,7 +124,9 @@ public class MeshTerrainChunk : MonoBehaviour
         
         float[,] noise = new float[_size, _size];
 
-        Vector3 position = transform.position + new Vector3(seed, 0, seed);
+        Vector3 seedOffest = new Vector3(seed, 0, seed);
+        Vector3 positionOffset = transform.position;
+        Vector3 offset = positionOffset + seedOffest;
 
         for (int z = 0; z < _size; z++)
         
@@ -138,7 +140,7 @@ public class MeshTerrainChunk : MonoBehaviour
 
             for (int x = 0; x < _size; x++)
             {
-                noise[z, x] = CompileNoise(z, x, position);
+                noise[x, z] = CompileNoise(z, x, offset);
             }
         }
         timer.Stop();
@@ -147,17 +149,20 @@ public class MeshTerrainChunk : MonoBehaviour
         callback(noise);
     }
     
-    float CompileNoise(int x, int y, Vector3 position)
+    float CompileNoise(int x, int z, Vector3 position)
     {
         float value = 0;
         float octaveSum = 0f;
 
-        float xNorm = (x + position.z - (position.z / 513)) / _size;
-        float yNorm = (y + position.x - (position.x / 513)) / _size;
+        // float xNorm = (x + position.z - (position.z / _size)) / _size;
+        // float zNorm = (z + position.x - (position.x / _size)) / _size;
+        
+        float xNorm = (x + position.z) / _size;
+        float zNorm = (z + position.x) / _size;
     
         for (int i = 0; i < octaves.Length; i++)
         {
-            value += (1/octaves[i]) * CalculateNoise(xNorm, yNorm, octaves[i]);
+            value += (1/octaves[i]) * CalculateNoise(xNorm, zNorm, octaves[i]);
             octaveSum += 1/octaves[i];
         }
         value /= octaveSum;
@@ -168,13 +173,13 @@ public class MeshTerrainChunk : MonoBehaviour
         return value;
     }
     
-    float CalculateNoise(float xNorm, float yNorm, float scale)
+    float CalculateNoise(float xNorm, float zNorm, float scale)
     {
         xNorm *= scale;
-        yNorm *= scale;
+        zNorm *= scale;
 
         // return (NoiseManager.SimplexPerlin.GetValue(xNorm, yNorm) + 1)/1;
-        return Mathf.PerlinNoise(xNorm, yNorm);
+        return Mathf.PerlinNoise(xNorm, zNorm);
     }
 
     private void OnDrawGizmos()
@@ -189,4 +194,9 @@ public class MeshTerrainChunk : MonoBehaviour
     }
 
     #endregion
+
+    public int GetChunkSize()
+    {
+        return _size;
+    }
 }
