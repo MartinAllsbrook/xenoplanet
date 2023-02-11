@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        TerrainLoader.Instance.terrainReady.AddListener(OnGameStart); // Add game start event listener
+        // TerrainLoader.Instance.terrainReady.AddListener(OnGameStart); // Add game start event listener
     }
 
     public void ChangeHealth(float ammount)

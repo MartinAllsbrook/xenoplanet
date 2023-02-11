@@ -262,6 +262,7 @@ public class TerrainLoader : MonoBehaviour
             }
         }*/
     }
+    
     // private void LoadCellsAround(int xCell, int zCell)
     // {
     //     for (var x = xCell - loadDistance; x <= xCell + loadDistance; x++)

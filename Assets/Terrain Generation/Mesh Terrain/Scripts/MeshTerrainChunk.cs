@@ -99,6 +99,14 @@ public class MeshTerrainChunk : MonoBehaviour
         _mesh.vertices = _vertices;
         _mesh.triangles = _triangles;
         
+        MeshCollider collider = gameObject.AddComponent<MeshCollider>();        //collider.material = physicMaterial;
+     
+        collider.cookingOptions = MeshColliderCookingOptions.CookForFasterSimulation | MeshColliderCookingOptions.EnableMeshCleaning | MeshColliderCookingOptions.WeldColocatedVertices | MeshColliderCookingOptions.UseFastMidphase;
+        collider.convex = false;
+        collider.sharedMesh = _mesh;
+        collider.enabled = true;
+
+
         _mesh.RecalculateNormals();
     }
 
@@ -140,7 +148,7 @@ public class MeshTerrainChunk : MonoBehaviour
 
             for (int x = 0; x < _size; x++)
             {
-                noise[x, z] = CompileNoise(z, x, offset);
+                noise[x, z] = CompileNoise(x, z, offset);
             }
         }
         timer.Stop();
@@ -157,8 +165,8 @@ public class MeshTerrainChunk : MonoBehaviour
         // float xNorm = (x + position.z - (position.z / _size)) / _size;
         // float zNorm = (z + position.x - (position.x / _size)) / _size;
         
-        float xNorm = (x + position.z) / _size;
-        float zNorm = (z + position.x) / _size;
+        float xNorm = (x + position.x) / _size;
+        float zNorm = (z + position.z) / _size;
     
         for (int i = 0; i < octaves.Length; i++)
         {
@@ -182,19 +190,19 @@ public class MeshTerrainChunk : MonoBehaviour
         return Mathf.PerlinNoise(xNorm, zNorm);
     }
 
-    private void OnDrawGizmos()
-    {
-        if (_vertices == null)
-            return;
-        
-        for (int i = 0; i < _vertices.Length; i++)
-        {
-            Gizmos.DrawSphere(_vertices[i], .1f);
-        }
-    }
-
     #endregion
 
+    private void OnDrawGizmos()
+    {
+        // if (_vertices == null)
+        //     return;
+        //
+        // for (int i = 0; i < _vertices.Length; i++)
+        // {
+        //     Gizmos.DrawSphere(_vertices[i], .1f);
+        // }
+    }
+    
     public int GetChunkSize()
     {
         return _size;
