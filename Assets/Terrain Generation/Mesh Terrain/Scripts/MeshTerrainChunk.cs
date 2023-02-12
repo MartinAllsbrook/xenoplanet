@@ -12,6 +12,7 @@ public class MeshTerrainChunk : MonoBehaviour
     
     private Vector3[] _vertices;
     private int[] _triangles;
+    private Vector2[] uvs;
 
     [SerializeField] private float[] octaves;
     [SerializeField] private float redistributionFactor;
@@ -61,7 +62,7 @@ public class MeshTerrainChunk : MonoBehaviour
         {
             for (int x = 0; x <= _size - 1; x++)
             {
-                _vertices[i] = new Vector3(x, heightMap[x,z] * maxHeight, z);
+                _vertices[i] = new Vector3(x, heightMap[x, z] * maxHeight, z);
                 i++;
             }
         }
@@ -90,6 +91,18 @@ public class MeshTerrainChunk : MonoBehaviour
 
             vertexIndex++;
         }
+
+        uvs = new Vector2[_vertices.Length];
+        
+        for (int i = 0, z = 0; z <= _size - 1; z++)
+        {
+            for (int x = 0; x <= _size - 1; x++)
+            {
+                uvs[i] = new Vector2((float) x / _size, (float) z / _size);
+                i++;
+            }
+        }
+
     }
 
     void UpdateMesh()
@@ -97,7 +110,8 @@ public class MeshTerrainChunk : MonoBehaviour
         _mesh.Clear();
 
         _mesh.vertices = _vertices;
-        _mesh.triangles = _triangles;
+        _mesh.SetTriangles(_triangles, 0);
+        _mesh.uv = uvs;
         
         MeshCollider collider = gameObject.AddComponent<MeshCollider>();        //collider.material = physicMaterial;
      
