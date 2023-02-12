@@ -13,8 +13,8 @@ public class MeshTerrainChunk : MonoBehaviour
     private Vector3[] _vertices;
     private int[][] _triangles;
     private Vector2[] uvs;
+    private Vector2Int _chunkPosition;
     
-
     [SerializeField] private float[] octaves;
     [SerializeField] private float[] heights;
     [SerializeField] private float redistributionFactor;
@@ -39,6 +39,10 @@ public class MeshTerrainChunk : MonoBehaviour
     
     public void SetTerrain(int seed)
     {
+        var position = transform.position / (_size - 1);
+        _chunkPosition = new Vector2Int((int) position.x, (int) position.z);
+        // Debug.Log(_chunkPosition);
+        
         _mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = _mesh;
 
@@ -258,5 +262,10 @@ public class MeshTerrainChunk : MonoBehaviour
     public int GetChunkSize()
     {
         return _size;
+    }
+
+    public Vector2Int GetPosition()
+    {
+        return _chunkPosition;
     }
 }

@@ -29,12 +29,13 @@ public class MeshTerrainManager : MonoBehaviour
         _terrainSize = terrainRadius * 2 + 1;
         _chunkSize = terrainChunk.GetComponent<MeshTerrainChunk>().GetChunkSize();
         _seed = Random.Range(1000, 2000);
+
+        _chunkData = new List<MeshTerrainChunk>();
         
         CreateInitialChunks();
         UpdatePlayerCell();
     }
-    
-    
+
     private void Update()
     {
         // TODO: Remove when no longer needed
@@ -69,12 +70,20 @@ public class MeshTerrainManager : MonoBehaviour
         {
             for (var z = 0; z < _terrainSize; z++)
             {
-                _loadedChunks[x, z] = LoadChunk(x,z);
+                _loadedChunks[x, z] = LoadChunk(new Vector2Int(x,z));
             }
         }
     }
-    
+
     private void LoadRow(int deltaCell, bool loadZ)
+    {
+        if (loadZ)
+            StartCoroutine(LoadRowZ(deltaCell));
+        else
+            StartCoroutine(LoadRowX(deltaCell));
+    }
+
+    private IEnumerator LoadRowZ(int deltaCell)
     {
         var length = _terrainSize;
         
@@ -95,28 +104,17 @@ public class MeshTerrainManager : MonoBehaviour
         // Delete last row
         for (int j = 0; j < length; j++)
         {
-            if (loadZ)
-                Destroy(_loadedChunks[j, lastRowIndex]);
-            else
-                Destroy(_loadedChunks[lastRowIndex, j]);
+            _loadedChunks[j, lastRowIndex].SetActive(false);
         }
 
-
         // Move rows
-
         if (deltaCell > 0)
         {
             for (int i = 0; i < length - 1; i++)
             {
                 for (int j = 0; j < length; j++)
                 {
-                    if (loadZ)
-                    {
-                        _loadedChunks[j, i] = _loadedChunks[j, (i + 1)];
-                    }
-                    else
-                        _loadedChunks[i, j] = _loadedChunks[i + 1, j];
-
+                    _loadedChunks[j, i] = _loadedChunks[j, (i + 1)];
                 }
             }
         }
@@ -126,47 +124,95 @@ public class MeshTerrainManager : MonoBehaviour
             {
                 for (int j = 0; j < length; j++)
                 {
-                    if (loadZ)
-                    {
-                        _loadedChunks[j, i] = _loadedChunks[j, i - 1];
-                    }
-                    else
-                        _loadedChunks[i, j] = _loadedChunks[i - 1, j];
+                    _loadedChunks[j, i] = _loadedChunks[j, i - 1]; 
                 }
             }
         }
         
         for (var i = -terrainRadius; i <= terrainRadius; i++)        
         {
-            if (loadZ)
-            {
-                /*var xPos = (i + _xPlayerCell) * _chunkSize;
-                var zPos = (_zPlayerCell + terrainRadius * deltaCell) * _chunkSize;
-                
-                _loadedChunks[i + terrainRadius, firstRowIndex] = Instantiate(terrainChunk, 
-                    new Vector3(xPos, 0, zPos), 
-                    new Quaternion(0,0,0,0)
-                );*/
+            int x = i + _xPlayerCell;
+            int z = _zPlayerCell + terrainRadius * deltaCell;
 
-                int x = i + _xPlayerCell;
-                int z = _zPlayerCell + terrainRadius * deltaCell;
-
-                _loadedChunks[i + terrainRadius, firstRowIndex] = LoadChunk(x, z);
-            }
-            else
-            {
-                var x = _xPlayerCell + terrainRadius * deltaCell;
-                var z = i + _zPlayerCell;
-
-                _loadedChunks[firstRowIndex, i + terrainRadius] = LoadChunk(x, z);
-            }
+            _loadedChunks[i + terrainRadius, firstRowIndex] = LoadChunk(new Vector2Int(x,z));
+            yield return null;
         }
+
+        yield return null;
     }
 
-    private GameObject LoadChunk(int chunkX, int chunkZ)
+    private IEnumerator LoadRowX(int deltaCell)
     {
-        GameObject newChunk = Instantiate(terrainChunk, new Vector3(chunkX * (_chunkSize - 1), 0, chunkZ * (_chunkSize - 1)), _zeroRotation);
+        var length = _terrainSize;
+        
+        // Find last row
+        int lastRowIndex;
+        int firstRowIndex;
+        if (deltaCell > 0)
+        {
+            lastRowIndex = 0;
+            firstRowIndex = length - 1;
+        }
+        else
+        {
+            lastRowIndex = length - 1;
+            firstRowIndex = 0;
+        }
+
+        // Delete last row
+        for (int j = 0; j < length; j++)
+        {
+            _loadedChunks[lastRowIndex, j].SetActive(false);
+        }
+
+        // Move rows
+        if (deltaCell > 0)
+        {
+            for (int i = 0; i < length - 1; i++)
+            {
+                for (int j = 0; j < length; j++)
+                {
+                    _loadedChunks[i, j] = _loadedChunks[i + 1, j];
+                }
+            }
+        }
+        else
+        {
+            for (int i = length - 1; i > 0; i--)
+            {
+                for (int j = 0; j < length; j++)
+                {
+                    _loadedChunks[i, j] = _loadedChunks[i - 1, j];
+                }
+            }
+        }
+        
+        for (var i = -terrainRadius; i <= terrainRadius; i++)        
+        {
+            var x = _xPlayerCell + terrainRadius * deltaCell;
+            var z = i + _zPlayerCell;
+
+            _loadedChunks[firstRowIndex, i + terrainRadius] = LoadChunk(new Vector2Int(x,z));
+            yield return null;
+        }
+        yield return null;
+    }
+    
+    private GameObject LoadChunk(Vector2Int chunkPosition)
+    {
+        for (int i = 0; i < _chunkData.Count; i++)
+        {
+            if (chunkPosition == _chunkData[i].GetPosition())
+            {
+                // Debug.Log("It's working");
+                GameObject savedChunk = _chunkData[i].gameObject;
+                savedChunk.SetActive(true);
+                return savedChunk;
+            }
+        }
+        GameObject newChunk = Instantiate(terrainChunk, new Vector3(chunkPosition.x * (_chunkSize - 1), 0, chunkPosition.y * (_chunkSize - 1)), _zeroRotation);
         newChunk.GetComponent<MeshTerrainChunk>().SetTerrain(_seed);
+        _chunkData.Add(newChunk.GetComponent<MeshTerrainChunk>());
         return newChunk;
     }
 
