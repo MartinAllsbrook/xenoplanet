@@ -47,7 +47,7 @@ public class MeshTerrainManager : MonoBehaviour
         
         UpdatePlayerCell();
         
-        Debug.Log("X cell: " + _xPlayerCell + " Z cell: " + _zPlayerCell);
+        // Debug.Log("X cell: " + _xPlayerCell + " Z cell: " + _zPlayerCell);
         
         var deltaXCell = _xPlayerCell - lastXCell;
         var deltaZCell = _zPlayerCell - lastZCell;

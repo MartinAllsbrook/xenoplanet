@@ -302,5 +302,12 @@ MonoBehaviour:
   - 1
   - 4
   - 16
+  heights:
+  - 0
+  - 10
+  - 20
+  - 30
+  - 40
+  - 50
   redistributionFactor: 4
   maxHeight: 100

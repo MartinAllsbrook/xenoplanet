@@ -11,10 +11,11 @@ public class MeshTerrainChunk : MonoBehaviour
     private Mesh _mesh;
     
     private Vector3[] _vertices;
-    private int[] _triangles;
+    private int[][] _triangles;
     private Vector2[] uvs;
 
     [SerializeField] private float[] octaves;
+    [SerializeField] private float[] heights;
     [SerializeField] private float redistributionFactor;
     [SerializeField] private float maxHeight;
 
@@ -67,8 +68,14 @@ public class MeshTerrainChunk : MonoBehaviour
             }
         }
 
-        _triangles = new int[(_size - 1) * (_size - 1) * 6];
+        _triangles = new int[heights.Length - 1][];
+        List<int>[] triangleSet = new List<int>[heights.Length - 1];
 
+        for (int i = 0; i < triangleSet.Length; i++)
+        {
+            triangleSet[i] = new List<int>();
+        }
+        
         int vertexIndex = 0;
         int trangleIndex = 0;
 
@@ -76,12 +83,26 @@ public class MeshTerrainChunk : MonoBehaviour
         {
             for (int x = 0; x < _size - 1; x++)
             {
-                _triangles[trangleIndex + 0] = vertexIndex + 0;
-                _triangles[trangleIndex + 1] = vertexIndex + _size;
-                _triangles[trangleIndex + 2] = vertexIndex + 1;
-                _triangles[trangleIndex + 3] = vertexIndex + 1;
-                _triangles[trangleIndex + 4] = vertexIndex + _size;
-                _triangles[trangleIndex + 5] = vertexIndex + _size + 1;
+                float heightSum = 0f;
+                heightSum += _vertices[vertexIndex + 0].y;
+                heightSum += _vertices[vertexIndex + _size].y;
+                heightSum += _vertices[vertexIndex + 1].y;
+                heightSum += _vertices[vertexIndex + _size + 1].y;
+                float quadHeight = heightSum / 4;
+
+                int setIndex = 0;
+                for (int i = 0; i < heights.Length - 1; i++)
+                {
+                    if (quadHeight >= heights[i] && quadHeight < heights[i + 1])
+                        setIndex = i;
+                }
+
+                triangleSet[setIndex].Add(vertexIndex + 0);
+                triangleSet[setIndex].Add(vertexIndex + _size);
+                triangleSet[setIndex].Add(vertexIndex + 1);
+                triangleSet[setIndex].Add(vertexIndex + 1);
+                triangleSet[setIndex].Add(vertexIndex + _size);
+                triangleSet[setIndex].Add(vertexIndex + _size + 1);
 
                 vertexIndex++;
                 trangleIndex += 6;
@@ -90,6 +111,15 @@ public class MeshTerrainChunk : MonoBehaviour
             // yield return null;
 
             vertexIndex++;
+        }
+
+        for (int i = 0; i < triangleSet.Length; i++)
+        {
+            _triangles[i] = new int[triangleSet[i].Count];
+            for (int j = 0; j < triangleSet[i].Count; j++)
+            {
+                _triangles[i][j] = triangleSet[i][j];
+            }
         }
 
         uvs = new Vector2[_vertices.Length];
@@ -108,9 +138,15 @@ public class MeshTerrainChunk : MonoBehaviour
     void UpdateMesh()
     {
         _mesh.Clear();
-
+        
         _mesh.vertices = _vertices;
-        _mesh.SetTriangles(_triangles, 0);
+
+        _mesh.subMeshCount = _triangles.Length;
+        for (int i = 0; i < _triangles.Length; i++)
+        {
+            Debug.Log(i);
+            _mesh.SetTriangles(_triangles[i], i);
+        }
         _mesh.uv = uvs;
         
         MeshCollider collider = gameObject.AddComponent<MeshCollider>();        //collider.material = physicMaterial;
@@ -119,7 +155,6 @@ public class MeshTerrainChunk : MonoBehaviour
         collider.convex = false;
         collider.sharedMesh = _mesh;
         collider.enabled = true;
-
 
         _mesh.RecalculateNormals();
     }
