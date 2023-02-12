@@ -189,7 +189,6 @@ public class MeshTerrainChunk : MonoBehaviour
         Vector3 offset = positionOffset + seedOffest;
 
         for (int z = 0; z < _size; z++)
-        
         {
             if (timer.ElapsedMilliseconds > 3)
             {
@@ -207,6 +206,7 @@ public class MeshTerrainChunk : MonoBehaviour
         // Debug.Log("Total time: " + timer.ElapsedMilliseconds);
         
         callback(noise);
+        yield return null;
     }
     
     float CompileNoise(int x, int z, Vector3 position)
