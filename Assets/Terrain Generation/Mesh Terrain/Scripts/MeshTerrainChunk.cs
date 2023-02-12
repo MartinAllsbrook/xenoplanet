@@ -13,12 +13,14 @@ public class MeshTerrainChunk : MonoBehaviour
     private Vector3[] _vertices;
     private int[][] _triangles;
     private Vector2[] uvs;
+    
 
     [SerializeField] private float[] octaves;
     [SerializeField] private float[] heights;
     [SerializeField] private float redistributionFactor;
     [SerializeField] private float maxHeight;
-
+    [SerializeField] private ChunkGrassManager _chunkGrassManager;
+    
     // private TerrainPainter terrainPainter;
     // private TerrainScatter terrainScatter;
     // private BiomeGenerator biomeGenerator;
@@ -45,6 +47,7 @@ public class MeshTerrainChunk : MonoBehaviour
             // StartCoroutine(CreateShape());
             CreateShape();
             UpdateMesh();
+            _chunkGrassManager.PlaceGrass(heightMap, maxHeight);
         });
     }
 
@@ -144,7 +147,7 @@ public class MeshTerrainChunk : MonoBehaviour
         _mesh.subMeshCount = _triangles.Length;
         for (int i = 0; i < _triangles.Length; i++)
         {
-            Debug.Log(i);
+            // Debug.Log(i);
             _mesh.SetTriangles(_triangles[i], i);
         }
         _mesh.uv = uvs;
