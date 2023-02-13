@@ -26,12 +26,12 @@ public class ChunkGrassManager : MonoBehaviour
         }
     }*/
 
-    public void PlaceGrass(float[,] heightMap, float maxHeight)
+    public void PlaceGrass(ChunkData chunkData, float maxHeight)
     {
-        StartCoroutine(PlaceGrassRoutine(heightMap, maxHeight));
+        StartCoroutine(PlaceGrassRoutine(chunkData.HeightMap, chunkData.MoistureMap, maxHeight));
     }
 
-    private IEnumerator PlaceGrassRoutine(float[,] heightMap, float maxHeight)
+    private IEnumerator PlaceGrassRoutine(float[,] heightMap, float[,] moistureMap, float maxHeight)
     {
         Stopwatch timer = new Stopwatch();
         timer.Start();
@@ -40,7 +40,7 @@ public class ChunkGrassManager : MonoBehaviour
         {
             if (timer.ElapsedMilliseconds > 3)
             {
-                Debug.Log("Skip");
+                // Debug.Log("Skip");
                 yield return null;
                 timer.Reset();
                 timer.Start();
@@ -49,8 +49,9 @@ public class ChunkGrassManager : MonoBehaviour
             var x = Mathf.FloorToInt(i / 64f);
             var z = i % 64;
             var height = heightMap[x, z] * maxHeight;
-            
-            if (height < minGrassHeight)
+            var moisture = moistureMap[x, z] * maxHeight;
+
+            if (height + Random.Range(-minGrassHeight/2, 0) < minGrassHeight  + Random.Range(0f, 0.1f) || moisture < 0.45)
             {
                 grass[i].SetActive(false);
             }

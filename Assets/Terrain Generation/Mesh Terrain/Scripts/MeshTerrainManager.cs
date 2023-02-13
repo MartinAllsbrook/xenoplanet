@@ -15,8 +15,8 @@ public class MeshTerrainManager : MonoBehaviour
 
     private GameObject[,] _loadedChunks;
     private List<MeshTerrainChunk> _chunkData; 
-    private int _seed;
-
+    private int[] _seeds;
+    
     private int _chunkSize;
 
     private int _xPlayerCell;
@@ -28,7 +28,10 @@ public class MeshTerrainManager : MonoBehaviour
     {
         _terrainSize = terrainRadius * 2 + 1;
         _chunkSize = terrainChunk.GetComponent<MeshTerrainChunk>().GetChunkSize();
-        _seed = Random.Range(1000, 2000);
+        _seeds = new int[3];
+        _seeds[0] = Random.Range(2000, 10000);
+        _seeds[1] = Random.Range(2000, 10000);
+        _seeds[2] = Random.Range(2000, 10000);
 
         _chunkData = new List<MeshTerrainChunk>();
         
@@ -211,7 +214,7 @@ public class MeshTerrainManager : MonoBehaviour
             }
         }
         GameObject newChunk = Instantiate(terrainChunk, new Vector3(chunkPosition.x * (_chunkSize - 1), 0, chunkPosition.y * (_chunkSize - 1)), _zeroRotation);
-        newChunk.GetComponent<MeshTerrainChunk>().SetTerrain(_seed);
+        newChunk.GetComponent<MeshTerrainChunk>().SetTerrain(_seeds);
         _chunkData.Add(newChunk.GetComponent<MeshTerrainChunk>());
         return newChunk;
     }

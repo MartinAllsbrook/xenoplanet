@@ -9,35 +9,29 @@ using Debug = UnityEngine.Debug;
 public class MeshTerrainChunk : MonoBehaviour
 {
     private Mesh _mesh;
-    
+    private ChunkData _chunkData;
     private Vector3[] _vertices;
     private int[][] _triangles;
     private Vector2[] uvs;
     private Vector2Int _chunkPosition;
     
-    [SerializeField] private float[] octaves;
-    [SerializeField] private float[] heights;
-    [SerializeField] private float redistributionFactor;
-    [SerializeField] private float maxHeight;
-    [SerializeField] private ChunkGrassManager _chunkGrassManager;
+    [Serializable]
+    class BiomeTexture
+    {
+        public int biomeCode;
+        public int textureIndex;
+    }
+
+    [SerializeField] private BiomeTexture[] biomeTextures;
     
-    // private TerrainPainter terrainPainter;
-    // private TerrainScatter terrainScatter;
-    // private BiomeGenerator biomeGenerator;
-    // private LandMarkGenerator landMarkGenerator;
+    [SerializeField] private float maxHeight;
+    
+    [SerializeField] private ChunkGrassManager chunkGrassManager;
+    [SerializeField] private MapGenerator mapGenerator;
     
     private const int _size = 65;
-
-    // private UnityEvent chunkLoaded;
     
-    private float[,] heightMap;
-    private float[,] moistureMap;
-    private int[,] biomeMap;
-
-    private delegate void GenericDelegate();
-    private delegate void GenericDelegate<T>(T variable);
-    
-    public void SetTerrain(int seed)
+    public void SetTerrain(int[] seeds)
     {
         var position = transform.position / (_size - 1);
         _chunkPosition = new Vector2Int((int) position.x, (int) position.z);
@@ -45,13 +39,14 @@ public class MeshTerrainChunk : MonoBehaviour
         
         _mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = _mesh;
-
-        GenerateNoise(seed, () =>
+        
+        mapGenerator.GenerateMap(_chunkPosition, seeds, chunkData =>
         {
-            // StartCoroutine(CreateShape());
+            _chunkData = chunkData;
+            Debug.Log(_chunkData.HeightMap);
             CreateShape();
             UpdateMesh();
-            _chunkGrassManager.PlaceGrass(heightMap, maxHeight);
+            chunkGrassManager.PlaceGrass(_chunkData, maxHeight);
         });
     }
 
@@ -70,13 +65,13 @@ public class MeshTerrainChunk : MonoBehaviour
         {
             for (int x = 0; x <= _size - 1; x++)
             {
-                _vertices[i] = new Vector3(x, heightMap[x, z] * maxHeight, z);
+                _vertices[i] = new Vector3(x, _chunkData.HeightMap[x, z] * maxHeight, z);
                 i++;
             }
         }
 
-        _triangles = new int[heights.Length - 1][];
-        List<int>[] triangleSet = new List<int>[heights.Length - 1];
+        _triangles = new int[_chunkData.NumBiomes][];
+        List<int>[] triangleSet = new List<int>[_chunkData.NumBiomes];
 
         for (int i = 0; i < triangleSet.Length; i++)
         {
@@ -89,19 +84,21 @@ public class MeshTerrainChunk : MonoBehaviour
         for (int z = 0; z < _size - 1; z++)
         {
             for (int x = 0; x < _size - 1; x++)
-            {
-                float heightSum = 0f;
+            { 
+                /*float heightSum = 0f;
                 heightSum += _vertices[vertexIndex + 0].y;
                 heightSum += _vertices[vertexIndex + _size].y;
                 heightSum += _vertices[vertexIndex + 1].y;
                 heightSum += _vertices[vertexIndex + _size + 1].y;
-                float quadHeight = heightSum / 4;
+                float quadHeight = heightSum / 4;*/
 
+                var biomeCode = _chunkData.BiomeMap[x, z];
+                
                 int setIndex = 0;
-                for (int i = 0; i < heights.Length - 1; i++)
+                for (int i = 0; i < _chunkData.NumBiomes; i++)
                 {
-                    if (quadHeight >= heights[i] && quadHeight < heights[i + 1])
-                        setIndex = i;
+                    if (biomeCode == biomeTextures[i].biomeCode)
+                        setIndex = biomeTextures[i].textureIndex;
                 }
 
                 triangleSet[setIndex].Add(vertexIndex + 0);
@@ -168,7 +165,7 @@ public class MeshTerrainChunk : MonoBehaviour
 
     #endregion
 
-    #region Noise Generation
+    /*#region Noise Generation
 
     private void GenerateNoise(int seed, GenericDelegate onFinishedCallback)
     {
@@ -246,7 +243,7 @@ public class MeshTerrainChunk : MonoBehaviour
         return Mathf.PerlinNoise(xNorm, zNorm);
     }
 
-    #endregion
+    #endregion*/
 
     private void OnDrawGizmos()
     {
