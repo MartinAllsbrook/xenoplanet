@@ -11,12 +11,12 @@ public class ChunkData
     public int[,] BiomeMap;
     public int NumBiomes;
 
-    public ChunkData(float[,] heightMap, float[,] moistureMap, float[,] strangenessMap, int[,] biomeMap, int numBiomes)
+    public ChunkData(float[,] heightMap, float[,] moistureMap, float[,] strangenessMap)
     {
         HeightMap = heightMap;
         MoistureMap = moistureMap;
         StrangenessMap = strangenessMap;
-        BiomeMap = biomeMap;
-        NumBiomes = numBiomes;
+        // BiomeMap = biomeMap;
+        // NumBiomes = numBiomes;
     }
 }

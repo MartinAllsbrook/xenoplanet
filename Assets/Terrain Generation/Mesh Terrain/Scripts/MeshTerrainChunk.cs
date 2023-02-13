@@ -15,14 +15,14 @@ public class MeshTerrainChunk : MonoBehaviour
     private Vector2[] uvs;
     private Vector2Int _chunkPosition;
     
-    [Serializable]
+    /*[Serializable]
     class BiomeTexture
     {
         public int biomeCode;
         public int textureIndex;
-    }
+    }*/
 
-    [SerializeField] private BiomeTexture[] biomeTextures;
+    // [SerializeField] private BiomeTexture[] biomeTextures;
     
     [SerializeField] private float maxHeight;
     

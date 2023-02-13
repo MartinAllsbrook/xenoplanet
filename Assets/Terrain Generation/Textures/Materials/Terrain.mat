@@ -166,7 +166,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _GrassBlend: 1
+    - _GrassBlend: 0.342
     - _GrassBlendAmount: 0.097
     - _GrassSlopeThreshold: 0.396
     - _HeightTransition: 0
@@ -181,7 +181,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _SlopeThreshold: 0.534
+    - _SlopeThreshold: 0.27
     - _Smoothness: 0
     - _Smoothness0: 0.5
     - _Smoothness1: 0.5
@@ -199,11 +199,11 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Grass: {r: 0.10849059, g: 1, b: 0.20449924, a: 1}
-    - _GrassColor: {r: 0.10735662, g: 0.5283019, b: 0.09718762, a: 0}
+    - _GrassColor: {r: 0.6603774, g: 0.59496266, b: 0.649907, a: 0}
     - _GrassColour: {r: 0, g: 0.8679245, b: 0, a: 1}
     - _GrassTile: {r: 50, g: 50, b: 0, a: 0}
     - _Rock: {r: 0.5660378, g: 0.45855016, b: 0.3818085, a: 1}
-    - _RockColor: {r: 1, g: 1, b: 1, a: 0}
+    - _RockColor: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 0}
     - _RockColour: {r: 0.6886792, g: 0, b: 0, a: 1}
     - _RockTile: {r: 50, g: 50, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}

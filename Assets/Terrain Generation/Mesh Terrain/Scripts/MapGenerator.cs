@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 public class MapGenerator : MonoBehaviour
 {
@@ -12,17 +13,17 @@ public class MapGenerator : MonoBehaviour
     [Header("Height")]
     [SerializeField] private float[] heightOctaves;
     [SerializeField] private float heightRedistributionFactor;
-    [SerializeField] private float[] heightCutoffs;
+    // [SerializeField] private float[] heightCutoffs;
     
     [Header("Moisture")]
     [SerializeField] private float[] moistureOctaves;
     [SerializeField] private float moistureRedistributionFactor;
-    [SerializeField] private float[] moistureCutoffs;
+    // [SerializeField] private float[] moistureCutoffs;
 
     [Header("Strangeness")]
     [SerializeField] private float[] strangenessOctaves;
     [SerializeField] private float strangenessRedistributionFactor;
-    [SerializeField] private float[] strangenessCutoffs;
+    // [SerializeField] private float[] strangenessCutoffs;
     
     private float[,] _generatedMap;
     
@@ -71,19 +72,32 @@ public class MapGenerator : MonoBehaviour
     // Step 4: Compile into biome map
     private void GenerateMap(float[,] heightMap, float[,] moistureMap, float[,] strangenessMap, GenericDelegate<ChunkData> finalCallback)
     {
-        int[,] newBiomeMap = new int[_size, _size];
+        // int[,] newBiomeMap = new int[_size, _size];
+        //
+        // for (int x = 0; x < _size; x++)
+        // {
+        //     for (int z = 0; z < _size; z++)
+        //     {
+        //         newBiomeMap[x, z] = CalculateBiome(heightMap[x, z], moistureMap[x, z], strangenessMap[x, z]);
+        //     }
+        // }
+        //
+        // int numBiomes = (heightCutoffs.Length - 1) * (moistureCutoffs.Length - 1) * (strangenessCutoffs.Length - 1);
 
-        for (int x = 0; x < _size; x++)
+        for (int i = 0; i < _size; i++)
         {
-            for (int z = 0; z < _size; z++)
+            for (int j = 0; j < _size; j++)
             {
-                newBiomeMap[x, z] = CalculateBiome(heightMap[x, z], moistureMap[x, z], strangenessMap[x, z]);
+                if (heightMap[i, j] >= 1)
+                    Debug.Log("HEIGHTMAP: " + heightMap[i, j]);
+                if (moistureMap[i, j] >= 1)
+                    Debug.Log("MOISTURE: " + moistureMap[i, j]);
+                if (strangenessMap[i, j] >= 1)
+                    Debug.Log("STRANGENESS: " + strangenessMap[i, j]);
             }
         }
 
-        int numBiomes = (heightCutoffs.Length - 1) * (moistureCutoffs.Length - 1) * (strangenessCutoffs.Length - 1);
-
-        ChunkData newChunk = new ChunkData(heightMap, moistureMap, strangenessMap, newBiomeMap, numBiomes);
+        ChunkData newChunk = new ChunkData(heightMap, moistureMap, strangenessMap);
         
         finalCallback(newChunk);
         // _chunkDataList.Add(newChunk);
@@ -91,7 +105,7 @@ public class MapGenerator : MonoBehaviour
 
     #endregion
 
-    #region Biome Calculation
+    /*#region Biome Calculation
 
     private int CalculateBiome(float height, float moisture, float strangeness)
     {
@@ -121,7 +135,7 @@ public class MapGenerator : MonoBehaviour
         return biomeValue;
     }
 
-    #endregion
+    #endregion*/
     
     #region Noise Generation
 
