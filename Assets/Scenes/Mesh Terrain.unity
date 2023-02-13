@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.14262606, g: 0.15713239, b: 0.15561509, a: 1}
+  m_IndirectSpecularColor: {r: 0.14262563, g: 0.15713178, b: 0.15561454, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -235,51 +235,71 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3101116443294278126, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.029089306
+      value: 0.029089307
       objectReference: {fileID: 0}
     - target: {fileID: 3101116443294278126, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000017266252
+      value: -0.000000017165572
       objectReference: {fileID: 0}
     - target: {fileID: 3101116443294278126, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 5.0247595e-10
+      value: 4.99546e-10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101116443294278127, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
+      propertyPath: m_Lens.FieldOfView
+      value: 83.20287
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101116444492686521, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
+      propertyPath: m_Lens.FieldOfView
+      value: 83.20316
       objectReference: {fileID: 0}
     - target: {fileID: 3101116444868585969, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.029089306
+      value: 0.029089307
       objectReference: {fileID: 0}
     - target: {fileID: 3101116444868585969, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000017266252
+      value: -0.000000017165572
       objectReference: {fileID: 0}
     - target: {fileID: 3101116444868585969, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 5.0247595e-10
+      value: 4.99546e-10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101116444868585974, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
+      propertyPath: m_Lens.FieldOfView
+      value: 83.20287
       objectReference: {fileID: 0}
     - target: {fileID: 3101116445073189285, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.029089326
+      value: 0.029089307
       objectReference: {fileID: 0}
     - target: {fileID: 3101116445073189285, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000017165576
+      value: -0.000000017165572
       objectReference: {fileID: 0}
     - target: {fileID: 3101116445073189285, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -4.995465e-10
+      value: 4.99546e-10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101116445073189306, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
+      propertyPath: m_Lens.FieldOfView
+      value: 83.20287
       objectReference: {fileID: 0}
     - target: {fileID: 3307781902392146137, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.029089326
+      value: 0.029089307
       objectReference: {fileID: 0}
     - target: {fileID: 3307781902392146137, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000017165576
+      value: -0.000000017165572
       objectReference: {fileID: 0}
     - target: {fileID: 3307781902392146137, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -4.995465e-10
+      value: 4.99546e-10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307781902392146138, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
+      propertyPath: field of view
+      value: 83.20316
       objectReference: {fileID: 0}
     - target: {fileID: 5871221131373447265, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_RootOrder

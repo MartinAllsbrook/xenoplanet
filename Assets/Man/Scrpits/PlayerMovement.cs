@@ -143,8 +143,10 @@ public class PlayerMovement : MonoBehaviour
         private void Jump()
         {
             // If the player jumped this update // Dont need to check if the player is grounded because this can only be called if the player is grounded
-            if (_jumpInput)
-                _rigidbody.velocity += Vector3.up * PlayerJumpForce; // Should change this to AddForce() 
+            if (_jumpInput) 
+                _rigidbody.AddForce(Vector3.up * PlayerJumpForce, ForceMode.VelocityChange);
+            // _rigidbody.velocity += Vector3.up * PlayerJumpForce; // Should change this to AddForce() 
+
 
             //if falling
         }
@@ -195,7 +197,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 DoubbleJump();
             }
-            if (_rigidbody.velocity.y <= 0 && !isGrounded)
+            if (_rigidbody.velocity.y <= 0 && !isGrounded) //falling
             {
                 _rigidbody.velocity += Vector3.down * (PlayerFallForce * Time.deltaTime);
             }
@@ -205,7 +207,8 @@ public class PlayerMovement : MonoBehaviour
         {
             // Zero out y velocity before second jump // Honestly don't know if this is nessessary
             _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, 0f, _rigidbody.velocity.z); 
-            _rigidbody.velocity += Vector3.up * (PlayerJumpForce * doubbleJumpMultiplier);
+            _rigidbody.AddForce(Vector3.up * (PlayerJumpForce * doubbleJumpMultiplier));
+            // _rigidbody.velocity += Vector3.up * (PlayerJumpForce * doubbleJumpMultiplier);
             CanSecondJump = false;
         }
 
