@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1229924325680199750
+--- !u!1 &2197223318155271999
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3045905603881680445}
-  - component: {fileID: 8910320398854825311}
-  - component: {fileID: 1944945036900232769}
+  - component: {fileID: 2678146843189385540}
+  - component: {fileID: 8415075335165870630}
+  - component: {fileID: 1554408638775740728}
   m_Layer: 0
   m_Name: RockMan_LOD1
   m_TagString: Untagged
@@ -18,36 +18,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3045905603881680445
+--- !u!4 &2678146843189385540
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1229924325680199750}
+  m_GameObject: {fileID: 2197223318155271999}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2406125, y: 1.3423624, z: 1.3303307}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4614094307936015476}
+  m_Father: {fileID: 5721547403223610125}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8910320398854825311
+--- !u!33 &8415075335165870630
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1229924325680199750}
-  m_Mesh: {fileID: 2468336167682353805, guid: dd6168b5b788d4dfa816ed74242df6a3, type: 3}
---- !u!23 &1944945036900232769
+  m_GameObject: {fileID: 2197223318155271999}
+  m_Mesh: {fileID: 2468336167682353805, guid: 291f02321031249bba5c95433f8ef01b, type: 3}
+--- !u!23 &1554408638775740728
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1229924325680199750}
+  m_GameObject: {fileID: 2197223318155271999}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -83,7 +83,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &2899042708255608714
+--- !u!1 &2834167849786616051
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,9 +91,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6091799010204663939}
-  - component: {fileID: 6783018836872754866}
-  - component: {fileID: 9029534154526966239}
+  - component: {fileID: 6621946988186134522}
+  - component: {fileID: 5858502443331703243}
+  - component: {fileID: 8223803980661679782}
   m_Layer: 0
   m_Name: RockMan_LOD0
   m_TagString: Untagged
@@ -101,36 +101,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6091799010204663939
+--- !u!4 &6621946988186134522
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2899042708255608714}
+  m_GameObject: {fileID: 2834167849786616051}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2406125, y: 1.3423624, z: 1.3303307}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4614094307936015476}
+  m_Father: {fileID: 5721547403223610125}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &6783018836872754866
+--- !u!33 &5858502443331703243
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2899042708255608714}
-  m_Mesh: {fileID: -6661198389770722894, guid: dd6168b5b788d4dfa816ed74242df6a3, type: 3}
---- !u!23 &9029534154526966239
+  m_GameObject: {fileID: 2834167849786616051}
+  m_Mesh: {fileID: -6661198389770722894, guid: 291f02321031249bba5c95433f8ef01b, type: 3}
+--- !u!23 &8223803980661679782
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2899042708255608714}
+  m_GameObject: {fileID: 2834167849786616051}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -166,7 +166,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &5423282825629388494
+--- !u!1 &4912536176927435191
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -174,8 +174,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4614094307936015476}
-  - component: {fileID: 455587018523747077}
+  - component: {fileID: 5721547403223610125}
+  - component: {fileID: 665717619340149884}
+  - component: {fileID: 5773527455238395552}
   m_Layer: 0
   m_Name: rockManLOD
   m_TagString: Untagged
@@ -183,34 +184,34 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4614094307936015476
+--- !u!4 &5721547403223610125
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5423282825629388494}
+  m_GameObject: {fileID: 4912536176927435191}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.247247, y: 0, z: 7.8804293}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6091799010204663939}
-  - {fileID: 3045905603881680445}
-  - {fileID: 8829471265436048899}
+  - {fileID: 6621946988186134522}
+  - {fileID: 2678146843189385540}
+  - {fileID: 8495792253926357370}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!205 &455587018523747077
+--- !u!205 &665717619340149884
 LODGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5423282825629388494}
+  m_GameObject: {fileID: 4912536176927435191}
   serializedVersion: 2
-  m_LocalReferencePoint: {x: 7.3774767, y: -0.5496658, z: 0.11923289}
-  m_Size: 3.9988167
+  m_LocalReferencePoint: {x: 0.0030136108, y: 1.9990958, z: 0.11906147}
+  m_Size: 3.998893
   m_FadeMode: 0
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
@@ -218,17 +219,31 @@ LODGroup:
   - screenRelativeHeight: 0.25
     fadeTransitionWidth: 0
     renderers:
-    - renderer: {fileID: 9029534154526966239}
+    - renderer: {fileID: 8223803980661679782}
   - screenRelativeHeight: 0.125
     fadeTransitionWidth: 0
     renderers:
-    - renderer: {fileID: 1944945036900232769}
+    - renderer: {fileID: 1554408638775740728}
   - screenRelativeHeight: 0.01
     fadeTransitionWidth: 0
     renderers:
-    - renderer: {fileID: 6763295635592423918}
+    - renderer: {fileID: 5959254972744961687}
   m_Enabled: 1
---- !u!1 &6692791670755871831
+--- !u!64 &5773527455238395552
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4912536176927435191}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6777484806978393757, guid: 291f02321031249bba5c95433f8ef01b, type: 3}
+--- !u!1 &6020778130921679662
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -236,9 +251,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8829471265436048899}
-  - component: {fileID: 4091016661415398191}
-  - component: {fileID: 6763295635592423918}
+  - component: {fileID: 8495792253926357370}
+  - component: {fileID: 4010946561038134358}
+  - component: {fileID: 5959254972744961687}
   m_Layer: 0
   m_Name: RockMan_LOD2
   m_TagString: Untagged
@@ -246,36 +261,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8829471265436048899
+--- !u!4 &8495792253926357370
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6692791670755871831}
+  m_GameObject: {fileID: 6020778130921679662}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2406125, y: 1.3423624, z: 1.3303307}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4614094307936015476}
+  m_Father: {fileID: 5721547403223610125}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4091016661415398191
+--- !u!33 &4010946561038134358
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6692791670755871831}
-  m_Mesh: {fileID: -6777484806978393757, guid: dd6168b5b788d4dfa816ed74242df6a3, type: 3}
---- !u!23 &6763295635592423918
+  m_GameObject: {fileID: 6020778130921679662}
+  m_Mesh: {fileID: -6777484806978393757, guid: 291f02321031249bba5c95433f8ef01b, type: 3}
+--- !u!23 &5959254972744961687
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6692791670755871831}
+  m_GameObject: {fileID: 6020778130921679662}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
