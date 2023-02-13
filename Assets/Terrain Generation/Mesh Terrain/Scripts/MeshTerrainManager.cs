@@ -10,11 +10,11 @@ public class MeshTerrainManager : MonoBehaviour
 {
     [SerializeField] private GameObject terrainChunk;
     [SerializeField] private int terrainRadius;
-
+    
     private int _terrainSize;
 
-    private GameObject[,] _loadedChunks;
-    private List<MeshTerrainChunk> _chunkData; 
+    private GameObject[,] _activeChunks;
+    private List<MeshTerrainChunk> _loadedChunks; 
     private int[] _seeds;
     
     private int _chunkSize;
@@ -33,7 +33,7 @@ public class MeshTerrainManager : MonoBehaviour
         _seeds[1] = Random.Range(2000, 10000);
         _seeds[2] = Random.Range(2000, 10000);
 
-        _chunkData = new List<MeshTerrainChunk>();
+        _loadedChunks = new List<MeshTerrainChunk>();
         
         CreateInitialChunks();
         UpdatePlayerCell();
@@ -68,12 +68,12 @@ public class MeshTerrainManager : MonoBehaviour
 
     private void CreateInitialChunks()
     {
-        _loadedChunks = new GameObject[_terrainSize, _terrainSize];
+        _activeChunks = new GameObject[_terrainSize, _terrainSize];
         for (int x = 0; x < _terrainSize; x++)
         {
             for (var z = 0; z < _terrainSize; z++)
             {
-                _loadedChunks[x, z] = LoadChunk(new Vector2Int(x,z));
+                _activeChunks[x, z] = LoadChunk(new Vector2Int(x,z));
             }
         }
     }
@@ -107,7 +107,7 @@ public class MeshTerrainManager : MonoBehaviour
         // Delete last row
         for (int j = 0; j < length; j++)
         {
-            _loadedChunks[j, lastRowIndex].SetActive(false);
+            _activeChunks[j, lastRowIndex].SetActive(false);
         }
 
         // Move rows
@@ -117,7 +117,7 @@ public class MeshTerrainManager : MonoBehaviour
             {
                 for (int j = 0; j < length; j++)
                 {
-                    _loadedChunks[j, i] = _loadedChunks[j, (i + 1)];
+                    _activeChunks[j, i] = _activeChunks[j, (i + 1)];
                 }
             }
         }
@@ -127,7 +127,7 @@ public class MeshTerrainManager : MonoBehaviour
             {
                 for (int j = 0; j < length; j++)
                 {
-                    _loadedChunks[j, i] = _loadedChunks[j, i - 1]; 
+                    _activeChunks[j, i] = _activeChunks[j, i - 1]; 
                 }
             }
         }
@@ -137,7 +137,7 @@ public class MeshTerrainManager : MonoBehaviour
             int x = i + _xPlayerCell;
             int z = _zPlayerCell + terrainRadius * deltaCell;
 
-            _loadedChunks[i + terrainRadius, firstRowIndex] = LoadChunk(new Vector2Int(x,z));
+            _activeChunks[i + terrainRadius, firstRowIndex] = LoadChunk(new Vector2Int(x,z));
             yield return null;
         }
 
@@ -165,7 +165,7 @@ public class MeshTerrainManager : MonoBehaviour
         // Delete last row
         for (int j = 0; j < length; j++)
         {
-            _loadedChunks[lastRowIndex, j].SetActive(false);
+            _activeChunks[lastRowIndex, j].SetActive(false);
         }
 
         // Move rows
@@ -175,7 +175,7 @@ public class MeshTerrainManager : MonoBehaviour
             {
                 for (int j = 0; j < length; j++)
                 {
-                    _loadedChunks[i, j] = _loadedChunks[i + 1, j];
+                    _activeChunks[i, j] = _activeChunks[i + 1, j];
                 }
             }
         }
@@ -185,7 +185,7 @@ public class MeshTerrainManager : MonoBehaviour
             {
                 for (int j = 0; j < length; j++)
                 {
-                    _loadedChunks[i, j] = _loadedChunks[i - 1, j];
+                    _activeChunks[i, j] = _activeChunks[i - 1, j];
                 }
             }
         }
@@ -195,7 +195,7 @@ public class MeshTerrainManager : MonoBehaviour
             var x = _xPlayerCell + terrainRadius * deltaCell;
             var z = i + _zPlayerCell;
 
-            _loadedChunks[firstRowIndex, i + terrainRadius] = LoadChunk(new Vector2Int(x,z));
+            _activeChunks[firstRowIndex, i + terrainRadius] = LoadChunk(new Vector2Int(x,z));
             yield return null;
         }
         yield return null;
@@ -203,19 +203,19 @@ public class MeshTerrainManager : MonoBehaviour
     
     private GameObject LoadChunk(Vector2Int chunkPosition)
     {
-        for (int i = 0; i < _chunkData.Count; i++)
+        for (int i = 0; i < _loadedChunks.Count; i++)
         {
-            if (chunkPosition == _chunkData[i].GetPosition())
+            if (chunkPosition == _loadedChunks[i].GetPosition())
             {
                 // Debug.Log("It's working");
-                GameObject savedChunk = _chunkData[i].gameObject;
+                GameObject savedChunk = _loadedChunks[i].gameObject;
                 savedChunk.SetActive(true);
                 return savedChunk;
             }
         }
         GameObject newChunk = Instantiate(terrainChunk, new Vector3(chunkPosition.x * (_chunkSize - 1), 0, chunkPosition.y * (_chunkSize - 1)), _zeroRotation);
         newChunk.GetComponent<MeshTerrainChunk>().SetTerrain(_seeds);
-        _chunkData.Add(newChunk.GetComponent<MeshTerrainChunk>());
+        _loadedChunks.Add(newChunk.GetComponent<MeshTerrainChunk>());
         return newChunk;
     }
 

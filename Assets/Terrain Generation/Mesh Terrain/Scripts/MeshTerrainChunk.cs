@@ -28,7 +28,8 @@ public class MeshTerrainChunk : MonoBehaviour
     
     [SerializeField] private ChunkGrassManager chunkGrassManager;
     [SerializeField] private MapGenerator mapGenerator;
-    
+    [SerializeField] private LandMarkGenerator landMarkGenerator;
+
     private const int _size = 65;
     
     public void SetTerrain(int[] seeds)
@@ -43,9 +44,13 @@ public class MeshTerrainChunk : MonoBehaviour
         mapGenerator.GenerateMap(_chunkPosition, seeds, chunkData =>
         {
             _chunkData = chunkData;
-            Debug.Log(_chunkData.HeightMap);
+            
+            landMarkGenerator.PlaceLandMark(ref _chunkData, _size);
+            
+            // Create Mesh
             CreateShape();
             UpdateMesh();
+            
             chunkGrassManager.PlaceGrass(_chunkData, maxHeight);
         });
     }

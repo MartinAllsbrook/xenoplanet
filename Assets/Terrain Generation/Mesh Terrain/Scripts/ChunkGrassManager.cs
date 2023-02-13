@@ -51,7 +51,7 @@ public class ChunkGrassManager : MonoBehaviour
             var height = heightMap[x, z] * maxHeight;
             var moisture = moistureMap[x, z] * maxHeight;
 
-            if (height + Random.Range(-minGrassHeight/2, 0) < minGrassHeight  + Random.Range(0f, 0.1f) || moisture < 0.45)
+            if (height + Random.Range(-minGrassHeight/2, 0) < minGrassHeight + Random.Range(0f, 0.2f) || moisture < 0.45)
             {
                 grass[i].SetActive(false);
             }

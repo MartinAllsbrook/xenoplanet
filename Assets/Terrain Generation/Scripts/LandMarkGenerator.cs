@@ -15,15 +15,15 @@ public class LandMarkGenerator : MonoBehaviour
     }
     [SerializeField] public LandMark[] landMarks;
     
-    public void PlaceLandMark(ref float[,] heightMap)
+    public void PlaceLandMark(ref ChunkData chunkData, int size)
     {
         // Choose random landmark
         LandMark landMark = landMarks[Random.Range(0, landMarks.Length)];
         
         int width = landMark.width;
         int length = landMark.length;
-        int xPosition = Random.Range(width * 2, 512 - width * 2);
-        int zPosition = Random.Range(length * 2, 512 - length * 2);
+        int xPosition = Random.Range(width * 2, size - width * 2);
+        int zPosition = Random.Range(length * 2, size - length * 2);
         
         int xStart = xPosition - width;
         int xEnd = xPosition + width;
@@ -35,7 +35,11 @@ public class LandMarkGenerator : MonoBehaviour
         int zSmoothStart = zPosition - length * 2;
         int zSmoothEnd = zPosition + length * 2;
         
-        float height = heightMap[zPosition, xPosition];
+        Debug.Log(
+            "x: " + xPosition + " " + xSmoothStart + " " + xSmoothEnd + 
+            " z: " + zPosition + " " + zSmoothStart + " " + zSmoothEnd);
+        
+        float height = chunkData.HeightMap[xPosition, zPosition];
         
         for (int x = xSmoothStart; x <= xSmoothEnd; x++)
         { 
@@ -43,7 +47,10 @@ public class LandMarkGenerator : MonoBehaviour
             {
                 // If we are near the center of the land mark
                 if (x >= xStart && x <= xEnd && z >= zStart && z <= zEnd)
-                    heightMap[z, x] = height;
+                {
+                    chunkData.HeightMap[x, z] = height;
+                    chunkData.MoistureMap[x, z] = 0;
+                }
                 // Else smooth the transition
                 else
                 {
@@ -58,7 +65,6 @@ public class LandMarkGenerator : MonoBehaviour
                         usedDistance = zDistance;
                         usedDistance -= length;
                         percent = (float) usedDistance / length;
-
                     }
                     else
                     {
@@ -67,11 +73,11 @@ public class LandMarkGenerator : MonoBehaviour
                         percent = (float) usedDistance / width;
                     }
                     
-                    heightMap[z,x] = height * (1-percent) + heightMap[z,x] * percent;
+                    chunkData.HeightMap[x,z] = height * (1 - percent) + chunkData.HeightMap[x,z] * percent;
                 }
             }
         }
 
-        Instantiate(landMark.structure, new Vector3(xPosition + transform.position.x, height*512, zPosition + transform.position.z), new Quaternion(0, 0, 0, 0));
+        Instantiate(landMark.structure, new Vector3(xPosition + transform.position.x, height*100, zPosition + transform.position.z), new Quaternion(0, 0, 0, 0), transform);
     }
 }
