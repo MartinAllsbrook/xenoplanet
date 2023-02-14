@@ -6,6 +6,7 @@ using UnityEditor.Experimental.RestService;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -23,7 +24,8 @@ public class PlayerMovement : MonoBehaviour
     [Range(0, 2)] [SerializeField] private float PlayerSprintMultiplier;
     [Range(0, 2)] [SerializeField] private float PlayerCrouchMultiplier;
     [Range(0, 20)] [SerializeField] private float PlayerJumpForce;
-    [Range(0, 4)] [SerializeField] private float doubbleJumpMultiplier;
+    [Range(0, 4)] [SerializeField] private float PlayerDoubleJumpMultiplier;
+    [Range(0, 2)] [SerializeField] private float PlayerAirMoveMultiplier;
     [Range(0, 100)] [SerializeField] private float PlayerFallForce;
     [SerializeField] private bool CanSecondJump;
     
@@ -190,7 +192,7 @@ public class PlayerMovement : MonoBehaviour
     
         private void AirMovement()
         {
-            Glide();
+            AirControl();
             
             // if not grounded and can second jump on update // Dont need to check if the player is grounded because this can only be called while player is in the air
             if (_jumpInput && CanSecondJump) // removed && PlayerSecondJump
@@ -205,14 +207,21 @@ public class PlayerMovement : MonoBehaviour
 
         private void DoubbleJump()
         {
-            // Zero out y velocity before second jump // Honestly don't know if this is nessessary
+            // Zero out y velocity before second jump
             _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, 0f, _rigidbody.velocity.z); 
-            _rigidbody.AddForce(Vector3.up * (PlayerJumpForce * doubbleJumpMultiplier));
-            // _rigidbody.velocity += Vector3.up * (PlayerJumpForce * doubbleJumpMultiplier);
+            
+            //Normal Double Jump
+            _rigidbody.AddForce(Vector3.up * (PlayerJumpForce * PlayerDoubleJumpMultiplier), ForceMode.VelocityChange);
+            
+            // Vector3 jumpDirection = new Vector3(_moveInput.x, 1, _moveInput.y);
+            //
+            // jumpDirection = Vector3.ProjectOnPlane(jumpDirection, camDirection);
+            //
+            // _rigidbody.AddForce(jumpDirection * (PlayerJumpForce * PlayerDoubleJumpMultiplier), ForceMode.VelocityChange);
             CanSecondJump = false;
         }
 
-        private void Glide()
+        private void AirControl()
         {
             // TODO: Move this code outside so it is not repeated in this method and the other move method
             
@@ -228,7 +237,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 //apply camera rotation
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
-                Vector3 target = camDirection * (PlayerBaseSpeed * PlayerSprintMultiplier * _moveInput.magnitude); // why do we multiply by playerdirection.magnitude?
+                Vector3 target = camDirection * (PlayerBaseSpeed * PlayerAirMoveMultiplier * _moveInput.magnitude); // why do we multiply by playerdirection.magnitude?
                 target.y = _rigidbody.velocity.y;
                 _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, target, ref currVelocity, 1f); 
                 // _rigidbody.AddForce(camDirection * (10000 * PlayerDirection.magnitude * Time.deltaTime));
