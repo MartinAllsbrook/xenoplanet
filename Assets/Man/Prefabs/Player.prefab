@@ -1227,7 +1227,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3101116444868585975}
-  m_LocalRotation: {x: 0.029089307, y: -0.000000017266252, z: 5.0247595e-10, w: 0.9995768}
+  m_LocalRotation: {x: 0.029089328, y: 0.000000017165576, z: -4.9954657e-10, w: 0.9995768}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1957,7 +1957,31 @@ MonoBehaviour:
     m_ActionId: ef03ca22-0a15-4a5a-a7b3-fe7639c97113
     m_ActionName: Player/Use[/XInputControllerWindows/leftTrigger,/Mouse/rightButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: HUDController, Assembly-CSharp
+        m_MethodName: ToggleInventory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5871221131373447264}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OpenInventory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: e867ffd0-9b9a-42de-8719-8b6e8dc27efd
     m_ActionName: Player/PadUp[/XInputControllerWindows/dpad/up]
   - m_PersistentCalls:
@@ -2020,6 +2044,50 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f6d987eb-52bb-4674-980b-94fcab234ab8
     m_ActionName: Player/Zoom
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5871221131373447264}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: CloseInventory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: HUDController, Assembly-CSharp
+        m_MethodName: ToggleInventory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 048217fb-5121-4378-b6b1-9d1077d7878c
+    m_ActionName: Inventory/CloseInventory[/XInputControllerWindows/dpad/up]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: HUDController, Assembly-CSharp
+        m_MethodName: ReadMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d337e7aa-59f3-42d7-87ec-764390de76cb
+    m_ActionName: Inventory/MoveCursor[/XInputControllerWindows/leftStick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -2186,7 +2254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraLookAt: {fileID: 3982096124858064622}
-  cameraLookAtOffset: 0.7
+  cameraLookAtOffset: 1.5
   crossHairController: {fileID: 0}
 --- !u!1 &8084544105287486461
 GameObject:

@@ -16,6 +16,8 @@ public class HUDController : MonoBehaviour
     [SerializeField] private CrosshaireController crosshaireController;
     [SerializeField] private InventoryController inventoryController;
     [SerializeField] private GameObject loadingScreen;
+    [SerializeField] private TextMeshProUGUI intuitionDisplay;
+
     private bool inventoryOpen = false;
 
     private void Awake()
@@ -76,6 +78,16 @@ public class HUDController : MonoBehaviour
             crosshaireController.gameObject.SetActive(false);
             inventoryOpen = true;
         }
+    }
+    
+    // A function that takes an integer and sets the text to that integer
+    public void SetIntuition(int number)
+    {
+        // Convert the integer to a string
+        string text = number.ToString();
+
+        // Set the text of the TextMeshPro component
+        intuitionDisplay.text = "Intuition: " + text;
     }
 
     public void ReadMove(InputAction.CallbackContext context)

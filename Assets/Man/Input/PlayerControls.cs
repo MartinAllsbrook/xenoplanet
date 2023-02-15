@@ -91,15 +91,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Use"",
-                    ""type"": ""Button"",
-                    ""id"": ""ef03ca22-0a15-4a5a-a7b3-fe7639c97113"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""OpenInventory"",
                     ""type"": ""Button"",
                     ""id"": ""e867ffd0-9b9a-42de-8719-8b6e8dc27efd"",
@@ -157,6 +148,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""name"": ""Zoom"",
                     ""type"": ""Button"",
                     ""id"": ""f6d987eb-52bb-4674-980b-94fcab234ab8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Use Object"",
+                    ""type"": ""Button"",
+                    ""id"": ""466e75ea-c7f4-4ac0-b2bd-2069660f6c72"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -364,28 +364,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""cf272040-427e-45b4-a0a9-18d93e68ab4d"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Use"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5240bbb9-b169-4e3e-bf8c-13347965e442"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Use"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""3b1e78a5-e377-4bf7-bc7f-af0826817ce3"",
                     ""path"": ""<Gamepad>/dpad/up"",
                     ""interactions"": """",
@@ -458,6 +436,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Xbox"",
                     ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f2cc60aa-4f28-4f87-a7e1-31c891e6d1c2"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Use Object"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -595,7 +584,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_Sprinting = m_Player.FindAction("Sprinting", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_CycleArrows = m_Player.FindAction("CycleArrows", throwIfNotFound: true);
-        m_Player_Use = m_Player.FindAction("Use", throwIfNotFound: true);
         m_Player_OpenInventory = m_Player.FindAction("OpenInventory", throwIfNotFound: true);
         m_Player_PadDown = m_Player.FindAction("PadDown", throwIfNotFound: true);
         m_Player_PadLeft = m_Player.FindAction("PadLeft", throwIfNotFound: true);
@@ -603,6 +591,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_FireGrapple = m_Player.FindAction("FireGrapple", throwIfNotFound: true);
         m_Player_Melee = m_Player.FindAction("Melee", throwIfNotFound: true);
         m_Player_Zoom = m_Player.FindAction("Zoom", throwIfNotFound: true);
+        m_Player_UseObject = m_Player.FindAction("Use Object", throwIfNotFound: true);
         // Inventory
         m_Inventory = asset.FindActionMap("Inventory", throwIfNotFound: true);
         m_Inventory_CloseInventory = m_Inventory.FindAction("CloseInventory", throwIfNotFound: true);
@@ -673,7 +662,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Sprinting;
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_CycleArrows;
-    private readonly InputAction m_Player_Use;
     private readonly InputAction m_Player_OpenInventory;
     private readonly InputAction m_Player_PadDown;
     private readonly InputAction m_Player_PadLeft;
@@ -681,6 +669,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_FireGrapple;
     private readonly InputAction m_Player_Melee;
     private readonly InputAction m_Player_Zoom;
+    private readonly InputAction m_Player_UseObject;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -692,7 +681,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Sprinting => m_Wrapper.m_Player_Sprinting;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @CycleArrows => m_Wrapper.m_Player_CycleArrows;
-        public InputAction @Use => m_Wrapper.m_Player_Use;
         public InputAction @OpenInventory => m_Wrapper.m_Player_OpenInventory;
         public InputAction @PadDown => m_Wrapper.m_Player_PadDown;
         public InputAction @PadLeft => m_Wrapper.m_Player_PadLeft;
@@ -700,6 +688,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @FireGrapple => m_Wrapper.m_Player_FireGrapple;
         public InputAction @Melee => m_Wrapper.m_Player_Melee;
         public InputAction @Zoom => m_Wrapper.m_Player_Zoom;
+        public InputAction @UseObject => m_Wrapper.m_Player_UseObject;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -730,9 +719,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @CycleArrows.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCycleArrows;
                 @CycleArrows.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCycleArrows;
                 @CycleArrows.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCycleArrows;
-                @Use.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUse;
-                @Use.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUse;
-                @Use.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUse;
                 @OpenInventory.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenInventory;
                 @OpenInventory.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenInventory;
                 @OpenInventory.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenInventory;
@@ -754,6 +740,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Zoom.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnZoom;
                 @Zoom.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnZoom;
                 @Zoom.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnZoom;
+                @UseObject.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseObject;
+                @UseObject.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseObject;
+                @UseObject.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseObject;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -779,9 +768,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @CycleArrows.started += instance.OnCycleArrows;
                 @CycleArrows.performed += instance.OnCycleArrows;
                 @CycleArrows.canceled += instance.OnCycleArrows;
-                @Use.started += instance.OnUse;
-                @Use.performed += instance.OnUse;
-                @Use.canceled += instance.OnUse;
                 @OpenInventory.started += instance.OnOpenInventory;
                 @OpenInventory.performed += instance.OnOpenInventory;
                 @OpenInventory.canceled += instance.OnOpenInventory;
@@ -803,6 +789,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Zoom.started += instance.OnZoom;
                 @Zoom.performed += instance.OnZoom;
                 @Zoom.canceled += instance.OnZoom;
+                @UseObject.started += instance.OnUseObject;
+                @UseObject.performed += instance.OnUseObject;
+                @UseObject.canceled += instance.OnUseObject;
             }
         }
     }
@@ -875,7 +864,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnSprinting(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnCycleArrows(InputAction.CallbackContext context);
-        void OnUse(InputAction.CallbackContext context);
         void OnOpenInventory(InputAction.CallbackContext context);
         void OnPadDown(InputAction.CallbackContext context);
         void OnPadLeft(InputAction.CallbackContext context);
@@ -883,6 +871,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnFireGrapple(InputAction.CallbackContext context);
         void OnMelee(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
+        void OnUseObject(InputAction.CallbackContext context);
     }
     public interface IInventoryActions
     {

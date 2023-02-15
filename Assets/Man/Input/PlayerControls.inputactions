@@ -69,15 +69,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Use",
-                    "type": "Button",
-                    "id": "ef03ca22-0a15-4a5a-a7b3-fe7639c97113",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "OpenInventory",
                     "type": "Button",
                     "id": "e867ffd0-9b9a-42de-8719-8b6e8dc27efd",
@@ -135,6 +126,15 @@
                     "name": "Zoom",
                     "type": "Button",
                     "id": "f6d987eb-52bb-4674-980b-94fcab234ab8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Use Object",
+                    "type": "Button",
+                    "id": "466e75ea-c7f4-4ac0-b2bd-2069660f6c72",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -342,28 +342,6 @@
                 },
                 {
                     "name": "",
-                    "id": "cf272040-427e-45b4-a0a9-18d93e68ab4d",
-                    "path": "<Gamepad>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Use",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5240bbb9-b169-4e3e-bf8c-13347965e442",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Use",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "3b1e78a5-e377-4bf7-bc7f-af0826817ce3",
                     "path": "<Gamepad>/dpad/up",
                     "interactions": "",
@@ -436,6 +414,17 @@
                     "processors": "",
                     "groups": "Xbox",
                     "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f2cc60aa-4f28-4f87-a7e1-31c891e6d1c2",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Use Object",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

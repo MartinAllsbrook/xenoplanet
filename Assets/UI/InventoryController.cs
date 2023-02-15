@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
@@ -16,7 +17,7 @@ public class InventoryController : MonoBehaviour
 
     [SerializeField] private ItemSlot[] itemSlots;
     [SerializeField] private float cursorMoveSpeed;
-    
+
     private Sprite _defaultCursorSprite;
     private int _pickedUpItemPosition;
     private bool _holdingItem;

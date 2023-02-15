@@ -11,6 +11,7 @@ TagManager:
   - Scrap Metal
   - Item Pickup
   - Breakable Environment
+  - Rock Dude
   layers:
   - Default
   - TransparentFX
