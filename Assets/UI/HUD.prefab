@@ -1025,7 +1025,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitmarker: {fileID: 6748082677144400816}
-  crossHair: {fileID: 0}
+  crossHair: {fileID: 3569047394696756419}
+  startColor: {r: 1, g: 0, b: 0.05513668, a: 0}
+  endColor: {r: 1, g: 0, b: 0, a: 1}
+  duration: 0.5
 --- !u!1 &6115847939745911168
 GameObject:
   m_ObjectHideFlags: 0

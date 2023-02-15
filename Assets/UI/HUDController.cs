@@ -51,6 +51,16 @@ public class HUDController : MonoBehaviour
         crosshaireController.PlayHitMarker();
     }
 
+    public void ShowCrossHair()
+    {
+        crosshaireController.ShowCrossHair();
+    }
+
+    public void HideCrossHair()
+    {
+        crosshaireController.HideCrossHair();
+    }
+
     private void ToggleInventory()
     {
         if (inventoryOpen)

@@ -11,7 +11,7 @@ public class PlayerFollower : MonoBehaviour
 
     [SerializeField] private Transform cameraLookAt;
     [SerializeField] private float cameraLookAtOffset;
-    [SerializeField] private CrosshaireController crossHairController;
+    [SerializeField] private HUDController crossHairController;
     private Transform playerTransform;
     private Transform mainCameraTransform;
     private Coroutine offsetRoutine;
@@ -74,14 +74,14 @@ public class PlayerFollower : MonoBehaviour
             if (resetRoutine != null)
                 StopCoroutine(resetRoutine);
             offsetRoutine = StartCoroutine(OffsetCameraLook());
-            // crossHairController.ShowCrossHair();
+            crossHairController.ShowCrossHair();
         }
         else if (context.action.WasReleasedThisFrame())
         {
             if (offsetRoutine != null)
                 StopCoroutine(offsetRoutine);
             resetRoutine = StartCoroutine(ResetCameraLook());
-            // crossHairController.HideCrossHair();
+            crossHairController.HideCrossHair();
         }
     }
 }

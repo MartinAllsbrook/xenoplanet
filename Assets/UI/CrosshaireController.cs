@@ -1,13 +1,67 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TextCore;
+using UnityEngine.UI;
 
 public class CrosshaireController : MonoBehaviour
 {
     [SerializeField] private GameObject hitmarker;
     [SerializeField] private GameObject crossHair;
     
+    // Reference to the UI image component
+    private Image image;
+
+    // The start and end colors for the transition
+    public Color startColor = Color.white;
+    public Color endColor = Color.black;
+
+    // The duration of the transition in seconds
+    public float duration = 1f;
+
+    // A flag to indicate if the transition is in progress
+    private Coroutine fadeInRoutine;
+    private Coroutine fadeOutRoutine;
+
+    private void Start()
+    {
+        image = crossHair.GetComponent<Image>();
+    }
+
+    // A coroutine that changes the color of the image using lerp
+    private IEnumerator FadeIn()
+    {
+        // Get the current time
+        float startTime = Time.time;
+        
+        while (Time.time - startTime < duration)
+        {
+            float t = (Time.time - startTime) / duration; // Calculate the fraction of the transition
+            image.color = Color.Lerp(startColor, endColor, t); // Lerp the color of the image
+            
+            yield return null;
+        }
+
+        image.color = endColor;
+    }
+    
+    private IEnumerator FadeOut()
+    {
+        // Get the current time
+        float startTime = Time.time;
+        
+        while (Time.time - startTime < duration)
+        {
+            float t = (Time.time - startTime) / duration; // Calculate the fraction of the transition
+            image.color = Color.Lerp(endColor, startColor, t); // Lerp the color of the image
+            
+            yield return null;
+        }
+
+        image.color = startColor;
+    }
+
     public void PlayHitMarker()
     {
         StartCoroutine(HitMarker());
@@ -23,12 +77,17 @@ public class CrosshaireController : MonoBehaviour
 
     public void ShowCrossHair()
     {
-        crossHair.SetActive(true);
+        // crossHair.SetActive(true);
+        if (fadeOutRoutine != null)
+            StopCoroutine(fadeOutRoutine);
+        StartCoroutine(FadeIn());
     }
 
     public void HideCrossHair()
     {
-        crossHair.SetActive(false);
+        // crossHair.SetActive(false);
+        if (fadeInRoutine != null)
+            StopCoroutine(fadeInRoutine);
+        StartCoroutine(FadeOut());
     }
-
 }
