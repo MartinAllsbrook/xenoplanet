@@ -14,6 +14,8 @@ public class PlayerFollower : MonoBehaviour
     [SerializeField] private CrosshaireController crossHairController;
     private Transform playerTransform;
     private Transform mainCameraTransform;
+    private Coroutine offsetRoutine;
+    private Coroutine resetRoutine;
 
     private void Awake()
     {
@@ -41,27 +43,45 @@ public class PlayerFollower : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, mainCameraTransform.rotation.eulerAngles.y, 0);
     }
 
-    private void OffsetCameraLook()
+    private IEnumerator OffsetCameraLook()
     {
-        cameraLookAt.position = transform.position + transform.right * cameraLookAtOffset + transform.up * 1.64f;
+        var targetPosition = transform.position + transform.right * cameraLookAtOffset + transform.up * 1.64f;
+        while ((cameraLookAt.position - targetPosition).magnitude > 0.1f)
+        {
+            targetPosition = transform.position + transform.right * cameraLookAtOffset + transform.up * 1.64f;
+            cameraLookAt.position = Vector3.Lerp(cameraLookAt.position, targetPosition, 0.1f);
+            yield return null;
+        }
+        yield return null;
     }
 
-    private void ResetCameraLook()
+    private IEnumerator ResetCameraLook()
     {
-        cameraLookAt.position = transform.position + transform.up * 1.64f;
+        var targetPosition = transform.position + transform.up * 1.64f;
+        while ((cameraLookAt.position - targetPosition).magnitude > 0.1f)
+        {
+            targetPosition = transform.position + transform.up * 1.64f;
+            cameraLookAt.position = Vector3.Lerp(cameraLookAt.position, targetPosition, 0.1f);
+            yield return null;
+        }
+        yield return null;
     }
 
     public void OnZoom(InputAction.CallbackContext context)
     {
         if (context.action.WasPerformedThisFrame())
         {
-            OffsetCameraLook();
-            crossHairController.ShowCrossHair();
+            if (resetRoutine != null)
+                StopCoroutine(resetRoutine);
+            offsetRoutine = StartCoroutine(OffsetCameraLook());
+            // crossHairController.ShowCrossHair();
         }
         else if (context.action.WasReleasedThisFrame())
         {
-            ResetCameraLook();
-            crossHairController.HideCrossHair();
+            if (offsetRoutine != null)
+                StopCoroutine(offsetRoutine);
+            resetRoutine = StartCoroutine(ResetCameraLook());
+            // crossHairController.HideCrossHair();
         }
     }
 }
