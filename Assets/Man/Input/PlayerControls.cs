@@ -475,6 +475,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveCursor"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""d337e7aa-59f3-42d7-87ec-764390de76cb"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -488,6 +497,72 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""CloseInventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3cb857ec-f2e7-4963-90e8-9ec2d0a54569"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""MoveCursor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""5b6ee207-316f-4a63-82d4-f3624dbe16f0"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveCursor"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""abdfac04-7e18-4d6a-a17f-1bcd85e655d0"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""MoveCursor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""68fdda49-768f-4fe1-ac1a-1274decc1360"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""MoveCursor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""6a124525-f234-4a6b-867b-62c466550fc4"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""MoveCursor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""625bb81b-1a92-487b-a86c-72dae1c8c7f0"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""MoveCursor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -531,6 +606,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         // Inventory
         m_Inventory = asset.FindActionMap("Inventory", throwIfNotFound: true);
         m_Inventory_CloseInventory = m_Inventory.FindAction("CloseInventory", throwIfNotFound: true);
+        m_Inventory_MoveCursor = m_Inventory.FindAction("MoveCursor", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -736,11 +812,13 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Inventory;
     private IInventoryActions m_InventoryActionsCallbackInterface;
     private readonly InputAction m_Inventory_CloseInventory;
+    private readonly InputAction m_Inventory_MoveCursor;
     public struct InventoryActions
     {
         private @PlayerControls m_Wrapper;
         public InventoryActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @CloseInventory => m_Wrapper.m_Inventory_CloseInventory;
+        public InputAction @MoveCursor => m_Wrapper.m_Inventory_MoveCursor;
         public InputActionMap Get() { return m_Wrapper.m_Inventory; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -753,6 +831,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @CloseInventory.started -= m_Wrapper.m_InventoryActionsCallbackInterface.OnCloseInventory;
                 @CloseInventory.performed -= m_Wrapper.m_InventoryActionsCallbackInterface.OnCloseInventory;
                 @CloseInventory.canceled -= m_Wrapper.m_InventoryActionsCallbackInterface.OnCloseInventory;
+                @MoveCursor.started -= m_Wrapper.m_InventoryActionsCallbackInterface.OnMoveCursor;
+                @MoveCursor.performed -= m_Wrapper.m_InventoryActionsCallbackInterface.OnMoveCursor;
+                @MoveCursor.canceled -= m_Wrapper.m_InventoryActionsCallbackInterface.OnMoveCursor;
             }
             m_Wrapper.m_InventoryActionsCallbackInterface = instance;
             if (instance != null)
@@ -760,6 +841,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @CloseInventory.started += instance.OnCloseInventory;
                 @CloseInventory.performed += instance.OnCloseInventory;
                 @CloseInventory.canceled += instance.OnCloseInventory;
+                @MoveCursor.started += instance.OnMoveCursor;
+                @MoveCursor.performed += instance.OnMoveCursor;
+                @MoveCursor.canceled += instance.OnMoveCursor;
             }
         }
     }
@@ -803,5 +887,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     public interface IInventoryActions
     {
         void OnCloseInventory(InputAction.CallbackContext context);
+        void OnMoveCursor(InputAction.CallbackContext context);
     }
 }

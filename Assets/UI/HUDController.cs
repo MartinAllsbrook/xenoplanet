@@ -78,6 +78,11 @@ public class HUDController : MonoBehaviour
         }
     }
 
+    public void ReadMove(InputAction.CallbackContext context)
+    {
+        inventoryController.Move(context.ReadValue<Vector2>());
+    }
+
     public void PickUpItem(InventoryItem item)
     {
         inventoryController.PickUpItem(item);

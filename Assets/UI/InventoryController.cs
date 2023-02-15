@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 using Image = UnityEngine.UI.Image;
@@ -18,7 +20,8 @@ public class InventoryController : MonoBehaviour
     private Sprite _defaultCursorSprite;
     private int _pickedUpItemPosition;
     private bool _holdingItem;
-    
+
+    private Vector3 _moveDirection;
     private void Awake()
     {
         for (int i = 0; i < itemSlots.Length; i++)
@@ -32,11 +35,17 @@ public class InventoryController : MonoBehaviour
         InputManager.Instance.select.AddListener(Select);
     }
 
-    /*private void Update()
+    private void Update()
     {
-        var moveDirection = InputManager.Instance.moveDirection;
-        inventoryCursor.transform.position += Time.deltaTime * cursorMoveSpeed * new Vector3(moveDirection.x, moveDirection.y, 0);
-    }*/
+        inventoryCursor.transform.position += Time.deltaTime * cursorMoveSpeed * _moveDirection;
+
+    }
+
+    public void Move(Vector2 moveDirection)
+    {
+        _moveDirection = new Vector3(moveDirection.x, moveDirection.y, 0);
+    }
+    
 
     private void Select()
     {
