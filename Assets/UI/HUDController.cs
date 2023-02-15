@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Image = UnityEngine.UIElements.Image;
 
@@ -26,8 +27,8 @@ public class HUDController : MonoBehaviour
     
     void Start()
     {
-        InputManager.Instance.toggleInventory.AddListener(ToggleInventory);
-        TerrainLoader.Instance.terrainReady.AddListener(DoneLoading);
+        // InputManager.Instance.toggleInventory.AddListener(ToggleInventory);
+        // TerrainLoader.Instance.terrainReady.AddListener(DoneLoading);
         inventoryController.gameObject.SetActive(false);
     }
 
@@ -61,7 +62,7 @@ public class HUDController : MonoBehaviour
         crosshaireController.HideCrossHair();
     }
 
-    private void ToggleInventory()
+    public void ToggleInventory(InputAction.CallbackContext context)
     {
         if (inventoryOpen)
         {

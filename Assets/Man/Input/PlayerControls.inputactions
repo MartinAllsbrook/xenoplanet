@@ -78,7 +78,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "PadUp",
+                    "name": "OpenInventory",
                     "type": "Button",
                     "id": "e867ffd0-9b9a-42de-8719-8b6e8dc27efd",
                     "expectedControlType": "Button",
@@ -369,7 +369,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PadUp",
+                    "action": "OpenInventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -436,6 +436,34 @@
                     "processors": "",
                     "groups": "Xbox",
                     "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Inventory",
+            "id": "7e0c187d-fc8e-4e8a-b839-60e2e20def3b",
+            "actions": [
+                {
+                    "name": "CloseInventory",
+                    "type": "Button",
+                    "id": "048217fb-5121-4378-b6b1-9d1077d7878c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9153dff2-f312-4e16-bec2-3692e50f58e8",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CloseInventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

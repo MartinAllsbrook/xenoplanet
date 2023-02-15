@@ -100,7 +100,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""PadUp"",
+                    ""name"": ""OpenInventory"",
                     ""type"": ""Button"",
                     ""id"": ""e867ffd0-9b9a-42de-8719-8b6e8dc27efd"",
                     ""expectedControlType"": ""Button"",
@@ -391,7 +391,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""PadUp"",
+                    ""action"": ""OpenInventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -462,6 +462,34 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Inventory"",
+            ""id"": ""7e0c187d-fc8e-4e8a-b839-60e2e20def3b"",
+            ""actions"": [
+                {
+                    ""name"": ""CloseInventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""048217fb-5121-4378-b6b1-9d1077d7878c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""9153dff2-f312-4e16-bec2-3692e50f58e8"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CloseInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -493,13 +521,16 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_CycleArrows = m_Player.FindAction("CycleArrows", throwIfNotFound: true);
         m_Player_Use = m_Player.FindAction("Use", throwIfNotFound: true);
-        m_Player_PadUp = m_Player.FindAction("PadUp", throwIfNotFound: true);
+        m_Player_OpenInventory = m_Player.FindAction("OpenInventory", throwIfNotFound: true);
         m_Player_PadDown = m_Player.FindAction("PadDown", throwIfNotFound: true);
         m_Player_PadLeft = m_Player.FindAction("PadLeft", throwIfNotFound: true);
         m_Player_PadRight = m_Player.FindAction("PadRight", throwIfNotFound: true);
         m_Player_FireGrapple = m_Player.FindAction("FireGrapple", throwIfNotFound: true);
         m_Player_Melee = m_Player.FindAction("Melee", throwIfNotFound: true);
         m_Player_Zoom = m_Player.FindAction("Zoom", throwIfNotFound: true);
+        // Inventory
+        m_Inventory = asset.FindActionMap("Inventory", throwIfNotFound: true);
+        m_Inventory_CloseInventory = m_Inventory.FindAction("CloseInventory", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -567,7 +598,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_CycleArrows;
     private readonly InputAction m_Player_Use;
-    private readonly InputAction m_Player_PadUp;
+    private readonly InputAction m_Player_OpenInventory;
     private readonly InputAction m_Player_PadDown;
     private readonly InputAction m_Player_PadLeft;
     private readonly InputAction m_Player_PadRight;
@@ -586,7 +617,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @CycleArrows => m_Wrapper.m_Player_CycleArrows;
         public InputAction @Use => m_Wrapper.m_Player_Use;
-        public InputAction @PadUp => m_Wrapper.m_Player_PadUp;
+        public InputAction @OpenInventory => m_Wrapper.m_Player_OpenInventory;
         public InputAction @PadDown => m_Wrapper.m_Player_PadDown;
         public InputAction @PadLeft => m_Wrapper.m_Player_PadLeft;
         public InputAction @PadRight => m_Wrapper.m_Player_PadRight;
@@ -626,9 +657,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Use.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUse;
                 @Use.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUse;
                 @Use.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUse;
-                @PadUp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPadUp;
-                @PadUp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPadUp;
-                @PadUp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPadUp;
+                @OpenInventory.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenInventory;
+                @OpenInventory.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenInventory;
+                @OpenInventory.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenInventory;
                 @PadDown.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPadDown;
                 @PadDown.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPadDown;
                 @PadDown.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPadDown;
@@ -675,9 +706,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Use.started += instance.OnUse;
                 @Use.performed += instance.OnUse;
                 @Use.canceled += instance.OnUse;
-                @PadUp.started += instance.OnPadUp;
-                @PadUp.performed += instance.OnPadUp;
-                @PadUp.canceled += instance.OnPadUp;
+                @OpenInventory.started += instance.OnOpenInventory;
+                @OpenInventory.performed += instance.OnOpenInventory;
+                @OpenInventory.canceled += instance.OnOpenInventory;
                 @PadDown.started += instance.OnPadDown;
                 @PadDown.performed += instance.OnPadDown;
                 @PadDown.canceled += instance.OnPadDown;
@@ -700,6 +731,39 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Inventory
+    private readonly InputActionMap m_Inventory;
+    private IInventoryActions m_InventoryActionsCallbackInterface;
+    private readonly InputAction m_Inventory_CloseInventory;
+    public struct InventoryActions
+    {
+        private @PlayerControls m_Wrapper;
+        public InventoryActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @CloseInventory => m_Wrapper.m_Inventory_CloseInventory;
+        public InputActionMap Get() { return m_Wrapper.m_Inventory; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(InventoryActions set) { return set.Get(); }
+        public void SetCallbacks(IInventoryActions instance)
+        {
+            if (m_Wrapper.m_InventoryActionsCallbackInterface != null)
+            {
+                @CloseInventory.started -= m_Wrapper.m_InventoryActionsCallbackInterface.OnCloseInventory;
+                @CloseInventory.performed -= m_Wrapper.m_InventoryActionsCallbackInterface.OnCloseInventory;
+                @CloseInventory.canceled -= m_Wrapper.m_InventoryActionsCallbackInterface.OnCloseInventory;
+            }
+            m_Wrapper.m_InventoryActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @CloseInventory.started += instance.OnCloseInventory;
+                @CloseInventory.performed += instance.OnCloseInventory;
+                @CloseInventory.canceled += instance.OnCloseInventory;
+            }
+        }
+    }
+    public InventoryActions @Inventory => new InventoryActions(this);
     private int m_XboxSchemeIndex = -1;
     public InputControlScheme XboxScheme
     {
@@ -728,12 +792,16 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnCycleArrows(InputAction.CallbackContext context);
         void OnUse(InputAction.CallbackContext context);
-        void OnPadUp(InputAction.CallbackContext context);
+        void OnOpenInventory(InputAction.CallbackContext context);
         void OnPadDown(InputAction.CallbackContext context);
         void OnPadLeft(InputAction.CallbackContext context);
         void OnPadRight(InputAction.CallbackContext context);
         void OnFireGrapple(InputAction.CallbackContext context);
         void OnMelee(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
+    }
+    public interface IInventoryActions
+    {
+        void OnCloseInventory(InputAction.CallbackContext context);
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 
 public class InputManager : MonoBehaviour
@@ -11,6 +12,7 @@ public class InputManager : MonoBehaviour
     public static InputManager Instance;
     
     private PlayerControls _playerControls;
+    private PlayerInput _playerInput;
     [SerializeField] private Grapple _grapple;
 
     private bool readyToJump = false;
@@ -33,7 +35,8 @@ public class InputManager : MonoBehaviour
         if (hotbarNext == null) hotbarNext = new UnityEvent();
         if (hotbarPrev == null) hotbarPrev = new UnityEvent();
         if (useItem == null) useItem = new UnityEvent();
-        
+
+        _playerInput = GetComponent<PlayerInput>();
         _playerControls = new PlayerControls();
         _fireStrength = 0;
     }
@@ -67,32 +70,56 @@ public class InputManager : MonoBehaviour
     
     private void Update()
     {
-        // if (inventoryOpen)
-        // {
-        //     InventoryControlChecks();
-        // }
-        // else
-        // {
-        //     BasicControlChecks();
-        // }
+        // ControlChecks();
     }
 
-    private void BasicControlChecks()
+    private void ControlChecks()
     {
-        if (_playerControls.Player.PadRight.WasPerformedThisFrame())
-            hotbarNext.Invoke();
+        // if (_playerControls.Player.PadRight.WasPerformedThisFrame())
+        //     hotbarNext.Invoke();
+        //
+        // if (_playerControls.Player.PadLeft.WasPerformedThisFrame())
+        //     hotbarPrev.Invoke();
+        //
+        // // LT / RMB => Release to delete grapple
+        // if (_playerControls.Player.Use.WasPressedThisFrame())
+        //     useItem.Invoke();
+        //     // _grapple.Unhook();
+        //
+        // // D-Pad Down => toggle inventory
+        // if (_playerControls.Player.PadDown.WasPerformedThisFrame())
+        //     ToggleInventory();
+
+        if (_playerControls.Player.OpenInventory.WasPerformedThisFrame())
+        {
+            Debug.Log("Open Inventory");
+            _playerInput.SwitchCurrentActionMap("Inventory");
+            // _playerInput.actions["Player"].Disable();
+            // _playerControls.Player.Disable();
+            // _playerControls.Inventory.Enable();
+        }
+
+        if (_playerControls.Inventory.CloseInventory.WasPerformedThisFrame())
+        {
+            Debug.Log("Close Inventory");
+            _playerInput.SwitchCurrentActionMap("Player");
+            // _playerControls.Player.Enable();
+            // _playerControls.Inventory.Disable();
+        }
+            // _playerControls.actions("Player");
+    }
+
+    public void CloseInventory(InputAction.CallbackContext context)
+    {
+        if (context.action.WasPerformedThisFrame())
+            _playerInput.SwitchCurrentActionMap("Player");
         
-        if (_playerControls.Player.PadLeft.WasPerformedThisFrame())
-            hotbarPrev.Invoke();
-        
-        // LT / RMB => Release to delete grapple
-        if (_playerControls.Player.Use.WasPressedThisFrame())
-            useItem.Invoke();
-            // _grapple.Unhook();
-        
-        // D-Pad Down => toggle inventory
-        if (_playerControls.Player.PadDown.WasPerformedThisFrame())
-            ToggleInventory();
+    }
+
+    public void OpenInventory(InputAction.CallbackContext context)
+    {
+        if (context.action.WasPerformedThisFrame())
+            _playerInput.SwitchCurrentActionMap("Inventory");
     }
 
     // Control checks while inventory is open
@@ -109,6 +136,8 @@ public class InputManager : MonoBehaviour
     }*/
 
     // Toggles inventory state on and off
+    
+    
     private void ToggleInventory()
     {
         // Call event
