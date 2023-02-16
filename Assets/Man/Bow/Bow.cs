@@ -18,6 +18,8 @@ public class Bow : MonoBehaviour
     [SerializeField] private float maxAimDistance;
     [SerializeField] private float meleeDistance;
     [SerializeField] private float meleeDamage;
+    
+    [SerializeField] private HUDController crossHairController;
 
     private GameObject mainCamera;
     private CinemachineFreeLook thirdPersonCamera;
@@ -28,7 +30,9 @@ public class Bow : MonoBehaviour
     private int selectedArrow = 0;
     private float chargeMultiplier = 3;
     private ParticleSystem meleeParticleSystem;
-    private bool _chargingInput = true;
+    private bool _chargingInput = false;
+    private bool _aimingInput = false;
+    
 
     private void Awake()
     {
@@ -65,6 +69,15 @@ public class Bow : MonoBehaviour
         {
             ChargeArrow();
         }
+
+        // if (_aimingInput)
+        // {
+        //     AimArrow();
+        // }
+        // else
+        // {
+        //     ResetAim();
+        // }
     }
 
     #region GetInputs
@@ -75,6 +88,18 @@ public class Bow : MonoBehaviour
         if (context.action.WasReleasedThisFrame())
         {
             FireArrow();
+        }
+    }
+
+    public void OnZoom(InputAction.CallbackContext context)
+    {
+        if (context.action.WasPerformedThisFrame())
+        {
+            AimArrow();
+        }
+        else if (context.action.WasReleasedThisFrame())
+        {
+            ResetAim();
         }
     }
 
@@ -115,7 +140,42 @@ public class Bow : MonoBehaviour
         strength = Mathf.Pow(chargeTime, 1/chargeMultiplier);
         
         // Change fov to match arrow charge
-        thirdPersonCamera.m_Lens.FieldOfView = strength * 4 + 45;
+        // thirdPersonCamera.m_Lens.FieldOfView = strength * 4 + 45;
+        // ChargeZoom();
+        
+    }
+
+    private void AimArrow()
+    {
+        StartCoroutine(lerpFieldOfView(thirdPersonCamera, 19f, 0.25f));
+        crossHairController.ShowCrossHair();
+    }
+
+    private void ResetAim()
+    {
+        Debug.Log("release");
+        StartCoroutine(lerpFieldOfView(thirdPersonCamera, 34f, 0.2f));
+        crossHairController.HideCrossHair();
+    }
+    
+    IEnumerator lerpFieldOfView(CinemachineFreeLook targetCamera, float toFOV, float duration)
+    {
+        float counter = 0;
+
+        float fromFOV = targetCamera.m_Lens.FieldOfView;
+
+        while (counter < duration)
+        {
+            counter += Time.deltaTime;
+
+            float fOVTime = counter / duration;
+            Debug.Log(fOVTime);
+
+            //Change FOV
+            targetCamera.m_Lens.FieldOfView = Mathf.Lerp(fromFOV, toFOV, fOVTime);
+            //Wait for a frame
+            yield return null;
+        }
     }
 
     private void FireArrow()
@@ -129,9 +189,11 @@ public class Bow : MonoBehaviour
         arrowInstance.GetComponent<Arrow>().Fire(strength);
         
         // Reset FOV and vars
-        thirdPersonCamera.m_Lens.FieldOfView = 45;
+        // thirdPersonCamera.m_Lens.FieldOfView = 45;
         strength = 0;
         chargeTime = 0;
+        
+        //Impulse
     }
     
     private void Melee()
