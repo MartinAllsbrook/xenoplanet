@@ -165,6 +165,11 @@ public class PlayerMovement : MonoBehaviour
             if (CheckSlope())
                 camDirection = Vector3.ProjectOnPlane(camDirection, groundHitInfo.normal).normalized;
             
+            if(Bow.Instance.isAiming)
+            {
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            }
+            
             //if input then turn and move
             if (_moveInput.magnitude > 0.1f)
             {

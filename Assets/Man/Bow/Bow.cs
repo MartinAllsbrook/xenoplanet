@@ -7,6 +7,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class Bow : MonoBehaviour
 {
@@ -15,15 +16,20 @@ public class Bow : MonoBehaviour
     [SerializeField] private GameObject[] arrows;
     // [SerializeField] private Transform arrowSpawnPosition;
     [SerializeField] private LayerMask aimingLayerMask;
+    [Range(0, 5)] [SerializeField] private float aimSensitivityMultiplier;
+    [Range(0, 1)] [SerializeField] private float aimLerpDuration;
+    [SerializeField] private Vector3 aimOffset;
     [SerializeField] private float maxAimDistance;
     [SerializeField] private float meleeDistance;
     [SerializeField] private float meleeDamage;
-    
+    [SerializeField] private Transform CameraLookAt;
+
     [SerializeField] private HUDController crossHairController;
 
     private GameObject mainCamera;
     private CinemachineFreeLook thirdPersonCamera;
     private Transform arrowAimer;
+    private CinemachineImpulseSource ImpulseSource;
     
     private float chargeTime = 0;
     private float strength = 0;
@@ -32,7 +38,9 @@ public class Bow : MonoBehaviour
     private ParticleSystem meleeParticleSystem;
     private bool _chargingInput = false;
     private bool _aimingInput = false;
-    
+
+    public bool isAiming;
+
 
     private void Awake()
     {
@@ -61,6 +69,10 @@ public class Bow : MonoBehaviour
             Debug.LogError("Cannot find arrowAimer");
 
         meleeParticleSystem = GetComponent<ParticleSystem>();
+        ImpulseSource = GetComponent<CinemachineImpulseSource>();
+        
+        thirdPersonCamera.m_XAxis.m_MaxSpeed = 100;
+        thirdPersonCamera.m_YAxis.m_MaxSpeed = 1;
     }
 
     private void Update()
@@ -147,16 +159,35 @@ public class Bow : MonoBehaviour
 
     private void AimArrow()
     {
-        StartCoroutine(lerpFieldOfView(thirdPersonCamera, 19f, 0.25f));
+        isAiming = true;
+        StartCoroutine(lerpFieldOfView(thirdPersonCamera, 19f, aimLerpDuration));
         crossHairController.ShowCrossHair();
+        
+        //Sensitivity
+        thirdPersonCamera.m_XAxis.m_MaxSpeed /= aimSensitivityMultiplier;
+        thirdPersonCamera.m_YAxis.m_MaxSpeed /= aimSensitivityMultiplier;
+        
+        // thirdPersonCamera.m_
+        StartCoroutine(lerpFieldOfView(aimOffset, aimLerpDuration));
     }
 
     private void ResetAim()
     {
         Debug.Log("release");
-        StartCoroutine(lerpFieldOfView(thirdPersonCamera, 34f, 0.2f));
+        StartCoroutine(lerpFieldOfView(thirdPersonCamera, 34f, aimLerpDuration));
         crossHairController.HideCrossHair();
+        
+        thirdPersonCamera.m_XAxis.m_MaxSpeed *= aimSensitivityMultiplier;
+        thirdPersonCamera.m_YAxis.m_MaxSpeed *= aimSensitivityMultiplier;
+
+        //hard coded value
+        Vector3 returnPos = new Vector3(0, 1.64f, 0);
+
+
+
+        isAiming = false;
     }
+    
     
     IEnumerator lerpFieldOfView(CinemachineFreeLook targetCamera, float toFOV, float duration)
     {
@@ -194,6 +225,7 @@ public class Bow : MonoBehaviour
         chargeTime = 0;
         
         //Impulse
+        ImpulseSource.GenerateImpulse();
     }
     
     private void Melee()

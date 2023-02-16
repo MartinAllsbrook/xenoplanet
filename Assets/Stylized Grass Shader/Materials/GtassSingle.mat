@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GrassThick
+  m_Name: GtassSingle
   m_Shader: {fileID: 4800000, guid: d7dd1c3f4cba1d441a7d295a168bac0d, type: 3}
   m_ValidKeywords:
   - _ADVANCED_LIGHTING
@@ -36,11 +36,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: a0ee5ef2b07cdc440ad04d7434d0249f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 92fb759ae491e0b4c9a24fb1347ad9d4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 3a9a0f2428d33594d98920a77162fd31, type: 3}
+        m_Texture: {fileID: 2800000, guid: d683352dd2e7b6c4abad305a2702c5bf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -48,7 +48,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: a0ee5ef2b07cdc440ad04d7434d0249f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 92fb759ae491e0b4c9a24fb1347ad9d4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -147,7 +147,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.42587593, g: 0.745283, b: 0, a: 1}
+    - _BaseColor: {r: 0.425876, g: 0.745283, b: 0, a: 1}
     - _BendTint: {r: 0.8, g: 0.8, b: 0.8, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
@@ -156,7 +156,7 @@ Material:
     - _FadeParams: {r: 50, g: 100, b: 0, a: 0}
     - _HueVariation: {r: 1, g: 0.63, b: 0, a: 0.15}
     - _LODDebugColor: {r: 1, g: 1, b: 1, a: 1}
-    - _NormalParams: {r: 0.809, g: 1, b: 0, a: 0}
+    - _NormalParams: {r: 1, g: 1, b: 1, a: 0}
     - _ScalemapInfluence: {r: 0, g: 1, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _WindDirection: {r: 1, g: 0, b: 0, a: 0}
