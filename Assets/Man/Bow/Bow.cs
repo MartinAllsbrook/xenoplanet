@@ -168,7 +168,7 @@ public class Bow : MonoBehaviour
         thirdPersonCamera.m_YAxis.m_MaxSpeed /= aimSensitivityMultiplier;
         
         // thirdPersonCamera.m_
-        StartCoroutine(lerpFieldOfView(aimOffset, aimLerpDuration));
+        // StartCoroutine(lerpFieldOfView(aimOffset, aimLerpDuration));
     }
 
     private void ResetAim()
