@@ -32,7 +32,7 @@ public class BreakableObject : MonoBehaviour
     }
     
     [SerializeField] protected ItemDrop[] itemDrops;
-    [SerializeField] private GameObject deathParticles;
+    [SerializeField] protected GameObject deathParticles;
 
     protected Rigidbody enemyRigidbody;
     
