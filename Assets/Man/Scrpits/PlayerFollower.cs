@@ -67,8 +67,27 @@ public class PlayerFollower : MonoBehaviour
         }
         yield return null;
     }
+    
+    public IEnumerator LerpCameraOffset(float offset, float duration)
+    {
+        float counter = 0;
+        var currentTransform = transform;
+        
 
-    public void OnZoom(InputAction.CallbackContext context)
+        while (counter < duration)
+        {
+            counter += Time.deltaTime;
+
+            float lerpProgress = counter / duration;
+            Debug.Log(lerpProgress);
+            
+            var targetPosition = currentTransform.position + currentTransform.up * 1.64f + currentTransform.right * offset;
+            cameraLookAt.position = Vector3.Lerp(cameraLookAt.position, targetPosition, lerpProgress);
+            yield return null;
+        }
+    }
+
+    /*public void OnZoom(InputAction.CallbackContext context)
     {
         if (context.action.WasPerformedThisFrame())
         {
@@ -84,5 +103,5 @@ public class PlayerFollower : MonoBehaviour
             resetRoutine = StartCoroutine(ResetCameraLook());
             crossHairController.HideCrossHair();
         }
-    }
+    }*/
 }

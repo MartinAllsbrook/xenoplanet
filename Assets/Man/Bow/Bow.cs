@@ -22,8 +22,8 @@ public class Bow : MonoBehaviour
     [SerializeField] private float maxAimDistance;
     [SerializeField] private float meleeDistance;
     [SerializeField] private float meleeDamage;
-    [SerializeField] private Transform CameraLookAt;
-
+    [SerializeField] private PlayerFollower playerFollower;
+    [SerializeField] private float cameraLookAtOffset;
     [SerializeField] private HUDController crossHairController;
 
     private GameObject mainCamera;
@@ -41,6 +41,7 @@ public class Bow : MonoBehaviour
 
     public bool isAiming;
 
+    private bool _aimingCoroutinesRunning;
 
     private void Awake()
     {
@@ -160,7 +161,10 @@ public class Bow : MonoBehaviour
     private void AimArrow()
     {
         isAiming = true;
+        
+        
         StartCoroutine(lerpFieldOfView(thirdPersonCamera, 19f, aimLerpDuration));
+        StartCoroutine(playerFollower.LerpCameraOffset(cameraLookAtOffset, aimLerpDuration));
         crossHairController.ShowCrossHair();
         
         //Sensitivity
@@ -175,6 +179,7 @@ public class Bow : MonoBehaviour
     {
         Debug.Log("release");
         StartCoroutine(lerpFieldOfView(thirdPersonCamera, 34f, aimLerpDuration));
+        StartCoroutine(playerFollower.LerpCameraOffset(0, aimLerpDuration));
         crossHairController.HideCrossHair();
         
         thirdPersonCamera.m_XAxis.m_MaxSpeed *= aimSensitivityMultiplier;
@@ -182,15 +187,15 @@ public class Bow : MonoBehaviour
 
         //hard coded value
         Vector3 returnPos = new Vector3(0, 1.64f, 0);
-
-
-
+        
         isAiming = false;
     }
     
     
     IEnumerator lerpFieldOfView(CinemachineFreeLook targetCamera, float toFOV, float duration)
     {
+        _aimingCoroutinesRunning = true;
+        
         float counter = 0;
 
         float fromFOV = targetCamera.m_Lens.FieldOfView;
@@ -207,6 +212,8 @@ public class Bow : MonoBehaviour
             //Wait for a frame
             yield return null;
         }
+
+        _aimingCoroutinesRunning = false;
     }
 
     private void FireArrow()
