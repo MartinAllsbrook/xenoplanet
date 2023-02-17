@@ -25,7 +25,8 @@ public class Bow : MonoBehaviour
     [SerializeField] private PlayerFollower playerFollower;
     [SerializeField] private float cameraLookAtOffset;
     [SerializeField] private HUDController crossHairController;
-
+    [SerializeField] private float cameraTurn;
+    
     private GameObject mainCamera;
     private CinemachineFreeLook thirdPersonCamera;
     private Transform arrowAimer;
@@ -208,6 +209,8 @@ public class Bow : MonoBehaviour
             Debug.Log(fOVTime);
 
             //Change FOV
+            
+            // thirdPersonCamera.m_XAxis.m_InputAxisValue = cameraTurn;
             targetCamera.m_Lens.FieldOfView = Mathf.Lerp(fromFOV, toFOV, fOVTime);
             //Wait for a frame
             yield return null;

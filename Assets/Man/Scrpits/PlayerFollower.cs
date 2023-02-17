@@ -10,6 +10,7 @@ public class PlayerFollower : MonoBehaviour
     // public static PlayerFollower Instance;
 
     [SerializeField] private Transform cameraLookAt;
+    [SerializeField] private Transform cameraFollow;
     [SerializeField] private float cameraLookAtOffset;
     [SerializeField] private HUDController crossHairController;
     private Transform playerTransform;
@@ -83,6 +84,7 @@ public class PlayerFollower : MonoBehaviour
             
             var targetPosition = currentTransform.position + currentTransform.up * 1.64f + currentTransform.right * offset;
             cameraLookAt.position = Vector3.Lerp(cameraLookAt.position, targetPosition, lerpProgress);
+            cameraFollow.position = cameraLookAt.position + Vector3.down * 1.64f;
             yield return null;
         }
     }
