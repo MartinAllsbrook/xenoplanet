@@ -165,6 +165,11 @@ public class PlayerMovement : MonoBehaviour
             if (CheckSlope())
                 camDirection = Vector3.ProjectOnPlane(camDirection, groundHitInfo.normal).normalized;
             
+            if(Bow.Instance.isAiming)
+            {
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            }
+            
             //if input then turn and move
             if (_moveInput.magnitude > 0.1f)
             {
@@ -173,11 +178,11 @@ public class PlayerMovement : MonoBehaviour
                 
                 //multiplied by PlayerDirection.magnitude (input vector) to give stick senstitivity
                 if(_sprintInput)
-                    _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, camDirection * (PlayerBaseSpeed * PlayerSprintMultiplier * _moveInput.magnitude), ref currVelocity, 0.3f);
+                    _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, camDirection * (PlayerBaseSpeed * PlayerSprintMultiplier * _moveInput.magnitude), ref currVelocity, 0.2f);
                 if(_crouchInput)
-                    _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, camDirection * (PlayerBaseSpeed * PlayerCrouchMultiplier * _moveInput.magnitude), ref currVelocity, 0.3f);
+                    _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, camDirection * (PlayerBaseSpeed * PlayerCrouchMultiplier * _moveInput.magnitude), ref currVelocity, 0.2f);
                 else
-                    _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, camDirection * (PlayerBaseSpeed * _moveInput.magnitude), ref currVelocity, 0.3f);
+                    _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, camDirection * (PlayerBaseSpeed * _moveInput.magnitude), ref currVelocity, 0.2f);
             }
             //if no input 0 velocity (prevents sliding)
             else
@@ -213,10 +218,9 @@ public class PlayerMovement : MonoBehaviour
             //Normal Double Jump
             _rigidbody.AddForce(Vector3.up * (PlayerJumpForce * PlayerDoubleJumpMultiplier), ForceMode.VelocityChange);
             
-            // Vector3 jumpDirection = new Vector3(_moveInput.x, 1, _moveInput.y);
-            //
-            // jumpDirection = Vector3.ProjectOnPlane(jumpDirection, camDirection);
-            //
+            // Vector3 jumpDirection = new Vector3(_moveInput.x, 1, _moveInput.y) * playerForward;
+            
+            
             // _rigidbody.AddForce(jumpDirection * (PlayerJumpForce * PlayerDoubleJumpMultiplier), ForceMode.VelocityChange);
             CanSecondJump = false;
         }
@@ -252,7 +256,7 @@ public class PlayerMovement : MonoBehaviour
     {
         CheckGrounded();
         CheckSlope();
-        CheckForward();
+        // CheckForward();
         CheckGravity();
     }
     

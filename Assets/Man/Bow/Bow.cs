@@ -7,6 +7,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class Bow : MonoBehaviour
 {
@@ -19,16 +20,22 @@ public class Bow : MonoBehaviour
     [SerializeField] private float meleeDistance;
     [SerializeField] private float meleeDamage;
 
-    private GameObject mainCamera;
-    private CinemachineFreeLook thirdPersonCamera;
-    private Transform arrowAimer;
+    [SerializeField] private GameObject mainCamera;
+    [SerializeField] private CinemachineFreeLook thirdPersonCamera;
+    [SerializeField] private Transform arrowAimer;
+    [SerializeField] private CinemachineImpulseSource ImpulseSource;
     
     private float chargeTime = 0;
     private float strength = 0;
     private int selectedArrow = 0;
     private float chargeMultiplier = 3;
     private ParticleSystem meleeParticleSystem;
-    private bool _chargingInput = true;
+    private bool _chargingInput = false;
+    private bool _aimingInput = false;
+    
+    public bool isAiming;
+
+    private bool _aimingCoroutinesRunning;
 
     private void Awake()
     {
@@ -39,32 +46,14 @@ public class Bow : MonoBehaviour
 
     private void Start()
     {
-        thirdPersonCamera = FindObjectOfType<CinemachineFreeLook>();
-        if(!thirdPersonCamera.CompareTag("MainCamera"))
-            Debug.LogError("Cannot find thirdPersonCamera");
-        
-        var cameras = FindObjectsOfType<Camera>();
-        foreach (var camera in cameras)
-        {
-            if (camera.CompareTag("MainCamera"))
-                mainCamera = camera.gameObject;
-        }
-        if(!mainCamera.CompareTag("MainCamera"))
-            Debug.LogError("Cannot find mainCamera");
-
-        arrowAimer = mainCamera.transform.GetChild(1);
-        if (!arrowAimer.CompareTag("MainCamera"))
-            Debug.LogError("Cannot find arrowAimer");
-
         meleeParticleSystem = GetComponent<ParticleSystem>();
+        ImpulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
     private void Update()
     {
         if (_chargingInput)
-        {
             ChargeArrow();
-        }
     }
 
     #region GetInputs
@@ -115,7 +104,9 @@ public class Bow : MonoBehaviour
         strength = Mathf.Pow(chargeTime, 1/chargeMultiplier);
         
         // Change fov to match arrow charge
-        thirdPersonCamera.m_Lens.FieldOfView = strength * 4 + 45;
+        // thirdPersonCamera.m_Lens.FieldOfView = strength * 4 + 45;
+        // ChargeZoom();
+        
     }
 
     private void FireArrow()
@@ -129,9 +120,12 @@ public class Bow : MonoBehaviour
         arrowInstance.GetComponent<Arrow>().Fire(strength);
         
         // Reset FOV and vars
-        thirdPersonCamera.m_Lens.FieldOfView = 45;
+        // thirdPersonCamera.m_Lens.FieldOfView = 45;
         strength = 0;
         chargeTime = 0;
+        
+        //Impulse
+        ImpulseSource.GenerateImpulse();
     }
     
     private void Melee()
