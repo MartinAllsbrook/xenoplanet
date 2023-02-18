@@ -16,21 +16,14 @@ public class Bow : MonoBehaviour
     [SerializeField] private GameObject[] arrows;
     // [SerializeField] private Transform arrowSpawnPosition;
     [SerializeField] private LayerMask aimingLayerMask;
-    [Range(0, 5)] [SerializeField] private float aimSensitivityMultiplier;
-    [Range(0, 1)] [SerializeField] private float aimLerpDuration;
-    [SerializeField] private Vector3 aimOffset;
     [SerializeField] private float maxAimDistance;
     [SerializeField] private float meleeDistance;
     [SerializeField] private float meleeDamage;
-    [SerializeField] private PlayerFollower playerFollower;
-    [SerializeField] private float cameraLookAtOffset;
-    [SerializeField] private HUDController crossHairController;
-    [SerializeField] private float cameraTurn;
-    
-    private GameObject mainCamera;
-    private CinemachineFreeLook thirdPersonCamera;
-    private Transform arrowAimer;
-    private CinemachineImpulseSource ImpulseSource;
+
+    [SerializeField] private GameObject mainCamera;
+    [SerializeField] private CinemachineFreeLook thirdPersonCamera;
+    [SerializeField] private Transform arrowAimer;
+    [SerializeField] private CinemachineImpulseSource ImpulseSource;
     
     private float chargeTime = 0;
     private float strength = 0;
@@ -39,9 +32,7 @@ public class Bow : MonoBehaviour
     private ParticleSystem meleeParticleSystem;
     private bool _chargingInput = false;
     private bool _aimingInput = false;
-
-    [SerializeField] private float xSensitivity;
-    [SerializeField] private float ySensitivity;
+    
     public bool isAiming;
 
     private bool _aimingCoroutinesRunning;
@@ -55,45 +46,14 @@ public class Bow : MonoBehaviour
 
     private void Start()
     {
-        thirdPersonCamera = FindObjectOfType<CinemachineFreeLook>();
-        if(!thirdPersonCamera.CompareTag("MainCamera"))
-            Debug.LogError("Cannot find thirdPersonCamera");
-        
-        var cameras = FindObjectsOfType<Camera>();
-        foreach (var camera in cameras)
-        {
-            if (camera.CompareTag("MainCamera"))
-                mainCamera = camera.gameObject;
-        }
-        if(!mainCamera.CompareTag("MainCamera"))
-            Debug.LogError("Cannot find mainCamera");
-
-        arrowAimer = mainCamera.transform.GetChild(1);
-        if (!arrowAimer.CompareTag("MainCamera"))
-            Debug.LogError("Cannot find arrowAimer");
-
         meleeParticleSystem = GetComponent<ParticleSystem>();
         ImpulseSource = GetComponent<CinemachineImpulseSource>();
-        
-        thirdPersonCamera.m_XAxis.m_MaxSpeed = 100;
-        thirdPersonCamera.m_YAxis.m_MaxSpeed = 1;
     }
 
     private void Update()
     {
         if (_chargingInput)
-        {
             ChargeArrow();
-        }
-
-        // if (_aimingInput)
-        // {
-        //     AimArrow();
-        // }
-        // else
-        // {
-        //     ResetAim();
-        // }
     }
 
     #region GetInputs
