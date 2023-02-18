@@ -40,6 +40,8 @@ public class Bow : MonoBehaviour
     private bool _chargingInput = false;
     private bool _aimingInput = false;
 
+    [SerializeField] private float xSensitivity;
+    [SerializeField] private float ySensitivity;
     public bool isAiming;
 
     private bool _aimingCoroutinesRunning;
@@ -105,18 +107,6 @@ public class Bow : MonoBehaviour
         }
     }
 
-    public void OnZoom(InputAction.CallbackContext context)
-    {
-        if (context.action.WasPerformedThisFrame())
-        {
-            AimArrow();
-        }
-        else if (context.action.WasReleasedThisFrame())
-        {
-            ResetAim();
-        }
-    }
-
     public void GetMeleeInput(InputAction.CallbackContext context)
     {
         if (context.action.WasPerformedThisFrame())
@@ -157,66 +147,6 @@ public class Bow : MonoBehaviour
         // thirdPersonCamera.m_Lens.FieldOfView = strength * 4 + 45;
         // ChargeZoom();
         
-    }
-
-    private void AimArrow()
-    {
-        isAiming = true;
-        
-        
-        StartCoroutine(lerpFieldOfView(thirdPersonCamera, 19f, aimLerpDuration));
-        StartCoroutine(playerFollower.LerpCameraOffset(cameraLookAtOffset, aimLerpDuration));
-        crossHairController.ShowCrossHair();
-        
-        //Sensitivity
-        thirdPersonCamera.m_XAxis.m_MaxSpeed /= aimSensitivityMultiplier;
-        thirdPersonCamera.m_YAxis.m_MaxSpeed /= aimSensitivityMultiplier;
-        
-        // thirdPersonCamera.m_
-        // StartCoroutine(lerpFieldOfView(aimOffset, aimLerpDuration));
-    }
-
-    private void ResetAim()
-    {
-        Debug.Log("release");
-        StartCoroutine(lerpFieldOfView(thirdPersonCamera, 34f, aimLerpDuration));
-        StartCoroutine(playerFollower.LerpCameraOffset(0, aimLerpDuration));
-        crossHairController.HideCrossHair();
-        
-        thirdPersonCamera.m_XAxis.m_MaxSpeed *= aimSensitivityMultiplier;
-        thirdPersonCamera.m_YAxis.m_MaxSpeed *= aimSensitivityMultiplier;
-
-        //hard coded value
-        Vector3 returnPos = new Vector3(0, 1.64f, 0);
-        
-        isAiming = false;
-    }
-    
-    
-    IEnumerator lerpFieldOfView(CinemachineFreeLook targetCamera, float toFOV, float duration)
-    {
-        _aimingCoroutinesRunning = true;
-        
-        float counter = 0;
-
-        float fromFOV = targetCamera.m_Lens.FieldOfView;
-
-        while (counter < duration)
-        {
-            counter += Time.deltaTime;
-
-            float fOVTime = counter / duration;
-            Debug.Log(fOVTime);
-
-            //Change FOV
-            
-            // thirdPersonCamera.m_XAxis.m_InputAxisValue = cameraTurn;
-            targetCamera.m_Lens.FieldOfView = Mathf.Lerp(fromFOV, toFOV, fOVTime);
-            //Wait for a frame
-            yield return null;
-        }
-
-        _aimingCoroutinesRunning = false;
     }
 
     private void FireArrow()

@@ -2,21 +2,25 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO.Enumeration;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerFollower : MonoBehaviour
 {
     // public static PlayerFollower Instance;
-
+    [Range(0, 5)] [SerializeField] private float aimSensitivityMultiplier;
+    [Range(0, 1)] [SerializeField] private float aimLerpDuration;
     [SerializeField] private Transform cameraLookAt;
     [SerializeField] private Transform cameraFollow;
     [SerializeField] private float cameraLookAtOffset;
     [SerializeField] private HUDController crossHairController;
+    [SerializeField] private CinemachineFreeLook thirdPersonCamera;
+    [SerializeField] private float xSensitivity;
+    [SerializeField] private float ySensitivity;
     private Transform playerTransform;
     private Transform mainCameraTransform;
-    private Coroutine offsetRoutine;
-    private Coroutine resetRoutine;
+    private Coroutine _aimCoroutine;
 
     private void Awake()
     {
@@ -44,66 +48,46 @@ public class PlayerFollower : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, mainCameraTransform.rotation.eulerAngles.y, 0);
     }
 
-    private IEnumerator OffsetCameraLook()
+    IEnumerator Aim(float toFOV, float offset, float duration)
     {
-        var targetPosition = transform.position + transform.right * cameraLookAtOffset + transform.up * 1.64f;
-        while ((cameraLookAt.position - targetPosition).magnitude > 0.1f)
-        {
-            targetPosition = transform.position + transform.right * cameraLookAtOffset + transform.up * 1.64f;
-            cameraLookAt.position = Vector3.Lerp(cameraLookAt.position, targetPosition, 0.1f);
-            
-            yield return null;
-        }
-        yield return null;
-    }
-
-    private IEnumerator ResetCameraLook()
-    {
-        var targetPosition = transform.position + transform.up * 1.64f;
-        while ((cameraLookAt.position - targetPosition).magnitude > 0.1f)
-        {
-            targetPosition = transform.position + transform.up * 1.64f;
-            cameraLookAt.position = Vector3.Lerp(cameraLookAt.position, targetPosition, 0.1f);
-            yield return null;
-        }
-        yield return null;
-    }
-    
-    public IEnumerator LerpCameraOffset(float offset, float duration)
-    {
-        float counter = 0;
-        var currentTransform = transform;
         
+        float counter = 0;
+
+        float fromFOV = thirdPersonCamera.m_Lens.FieldOfView;
+        var currentTransform = transform;
 
         while (counter < duration)
         {
-            counter += Time.deltaTime;
-
-            float lerpProgress = counter / duration;
-            Debug.Log(lerpProgress);
-            
             var targetPosition = currentTransform.position + currentTransform.up * 1.64f + currentTransform.right * offset;
+            counter += Time.deltaTime;
+            float lerpProgress = counter / duration;
             cameraLookAt.position = Vector3.Lerp(cameraLookAt.position, targetPosition, lerpProgress);
             cameraFollow.position = cameraLookAt.position + Vector3.down * 1.64f;
+            thirdPersonCamera.m_Lens.FieldOfView = Mathf.Lerp(fromFOV, toFOV, lerpProgress);
             yield return null;
         }
+
     }
 
-    /*public void OnZoom(InputAction.CallbackContext context)
+    public void OnZoom(InputAction.CallbackContext context)
     {
         if (context.action.WasPerformedThisFrame())
         {
-            if (resetRoutine != null)
-                StopCoroutine(resetRoutine);
-            offsetRoutine = StartCoroutine(OffsetCameraLook());
+            if (_aimCoroutine != null)
+                StopCoroutine(_aimCoroutine);
+            _aimCoroutine = StartCoroutine(Aim(19f, cameraLookAtOffset, aimLerpDuration));
             crossHairController.ShowCrossHair();
+            thirdPersonCamera.m_XAxis.m_MaxSpeed = xSensitivity / aimSensitivityMultiplier;
+            thirdPersonCamera.m_YAxis.m_MaxSpeed = ySensitivity / aimSensitivityMultiplier;
         }
         else if (context.action.WasReleasedThisFrame())
         {
-            if (offsetRoutine != null)
-                StopCoroutine(offsetRoutine);
-            resetRoutine = StartCoroutine(ResetCameraLook());
+            if (_aimCoroutine != null)
+                StopCoroutine(_aimCoroutine);
+            _aimCoroutine = StartCoroutine(Aim(40f, 0f, aimLerpDuration));
             crossHairController.HideCrossHair();
+            thirdPersonCamera.m_XAxis.m_MaxSpeed = xSensitivity;
+            thirdPersonCamera.m_YAxis.m_MaxSpeed = ySensitivity;
         }
-    }*/
+    }
 }
