@@ -147,9 +147,8 @@ public class PlayerMovement : MonoBehaviour
             // If the player jumped this update // Dont need to check if the player is grounded because this can only be called if the player is grounded
             if (_jumpInput) 
                 _rigidbody.AddForce(Vector3.up * PlayerJumpForce, ForceMode.VelocityChange);
-            // _rigidbody.velocity += Vector3.up * PlayerJumpForce; // Should change this to AddForce() 
-
-
+            // _rigidbody.velocity += Vector3.up * PlayerJumpForce; // Should change this to AddForce()
+            
             //if falling
         }
 
@@ -159,21 +158,19 @@ public class PlayerMovement : MonoBehaviour
             float targetAngle = Mathf.Atan2(_moveInput.x, _moveInput.y) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnVelocity, 0.1f);
 
-            //Move
+            //Move]
             camDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             
             if (CheckSlope())
                 camDirection = Vector3.ProjectOnPlane(camDirection, groundHitInfo.normal).normalized;
             
             if(Bow.Instance.isAiming)
-            {
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
-            }
-            
-            //if input then turn and move
+
+                //if input then turn and move
             if (_moveInput.magnitude > 0.1f)
             {
-                //apply camera rotation
+                //apply player rotation
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
                 
                 //multiplied by PlayerDirection.magnitude (input vector) to give stick senstitivity
@@ -241,6 +238,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 //apply camera rotation
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
+                
                 Vector3 target = camDirection * (PlayerBaseSpeed * PlayerAirMoveMultiplier * _moveInput.magnitude); // why do we multiply by playerdirection.magnitude?
                 target.y = _rigidbody.velocity.y;
                 _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, target, ref currVelocity, 1f); 
