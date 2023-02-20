@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Cinemachine;
 using Cinemachine.Utility;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.RestService;
 using UnityEngine;
 using UnityEngine.Events;
@@ -49,13 +50,17 @@ public class PlayerMovement : MonoBehaviour
     [Space(15)]
     [SerializeField] private LayerMask WhatIsGround;
     [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask WhatIsClimb;
+    [SerializeField] private Transform climbCheck;
     [SerializeField] private float MaxSlopeAngle;
     private float curSlopeAngle;
     private Vector3 playerForward;
     private RaycastHit groundHitInfo;
+    private RaycastHit climbHitInfo;
     
     
     [HideInInspector]public bool isGrounded;
+    private bool isClimbing;
     private bool wasGrounded;
     private bool isJumping;
     
@@ -92,6 +97,11 @@ public class PlayerMovement : MonoBehaviour
     {
         // Start by checking if the player is grounded
         PreformChecks();
+
+        if (isClimbing)
+        {
+            Climb();
+        }
 
         if (isGrounded)
             GroundMovement();
@@ -192,6 +202,11 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        private void Climb()
+        {
+            camDirection = Vector3.ProjectOnPlane(camDirection, climbHitInfo.normal).normalized;
+        }
+
     #endregion
 
     #region Air movement
@@ -260,6 +275,7 @@ public class PlayerMovement : MonoBehaviour
     {
         CheckGrounded();
         CheckSlope();
+        CheckClimbing();
         CheckForward();
         CheckGravity();
         CheckSlowTime();
@@ -289,6 +305,28 @@ public class PlayerMovement : MonoBehaviour
         }
 
         return false;
+    }
+
+    private void CheckClimbing()
+    {
+        if (Physics.CheckSphere(climbCheck.position, 0.2f, WhatIsClimb))
+        {
+            if (Physics.Raycast(climbCheck.position, transform.TransformDirection(Vector3.forward), out climbHitInfo))
+            {
+                if (Vector3.Angle(climbHitInfo.normal, Vector3.up) > MaxSlopeAngle)
+                {
+                    isClimbing = true;
+                    Debug.Log("climbing");
+                    Debug.Log(climbHitInfo.collider.name);
+                }
+            }
+        }
+
+        // if (Physics.CheckSphere(climbCheck.position, 0.1f, WhatIsClimb))
+        // {
+        //     Debug.Log("climbing");
+        //     isClimbing = true;
+        // }
     }
     
     private void CheckGravity()
@@ -344,5 +382,7 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.DrawRay(transform.position, playerForward * 100);
         Gizmos.color = Color.yellow;
         Gizmos.DrawRay(transform.position, camDirection * 100);
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawRay(climbCheck.position, transform.TransformDirection(Vector3.forward) * 0.25f);
     }
 }

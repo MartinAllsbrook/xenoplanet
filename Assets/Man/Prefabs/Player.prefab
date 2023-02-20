@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &124893287
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 124893288}
+  m_Layer: 0
+  m_Name: ClimbCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &124893288
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124893287}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.322, z: 0.133}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4000581252801232876}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1211391839
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,14 +629,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3101116443294278124}
-  m_LocalRotation: {x: -0.014260462, y: -0.16847129, z: -0.002437579, w: 0.9856004}
+  m_LocalRotation: {x: -0.0142604625, y: -0.16847129, z: -0.002437579, w: 0.9856004}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3101116443741817695}
   m_Father: {fileID: 3101116444492686520}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3101116443294278127
 MonoBehaviour:
@@ -635,7 +666,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 34
+    FieldOfView: 40
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -1082,9 +1113,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3101116444868585969}
   - {fileID: 3101116445073189285}
   - {fileID: 3101116443294278126}
+  - {fileID: 3101116444868585969}
   m_Father: {fileID: 4360092891476818064}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1110,7 +1141,7 @@ MonoBehaviour:
   m_Follow: {fileID: 8807201125697038280}
   m_CommonLens: 1
   m_Lens:
-    FieldOfView: 34
+    FieldOfView: 40
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -1129,7 +1160,7 @@ MonoBehaviour:
   m_YAxis:
     Value: 0.5
     m_SpeedMode: 0
-    m_MaxSpeed: 1
+    m_MaxSpeed: 1.5
     m_AccelTime: 0.2
     m_DecelTime: 0.1
     m_InputAxisName: 
@@ -1276,7 +1307,7 @@ Transform:
   m_Children:
   - {fileID: 3101116443954174584}
   m_Father: {fileID: 3101116444492686520}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3101116444868585974
 MonoBehaviour:
@@ -1306,7 +1337,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 34
+    FieldOfView: 40
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -1347,14 +1378,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3101116445073189307}
-  m_LocalRotation: {x: -0.014260462, y: -0.16847129, z: -0.002437579, w: 0.9856004}
+  m_LocalRotation: {x: -0.0142604625, y: -0.16847129, z: -0.002437579, w: 0.9856004}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3101116444461669477}
   m_Father: {fileID: 3101116444492686520}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3101116445073189306
 MonoBehaviour:
@@ -1384,7 +1415,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 34
+    FieldOfView: 40
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -1460,7 +1491,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3307781902392146132}
-  m_LocalRotation: {x: -0.014260462, y: -0.16847129, z: -0.002437579, w: 0.9856004}
+  m_LocalRotation: {x: -0.0142604625, y: -0.16847129, z: -0.002437579, w: 0.9856004}
   m_LocalPosition: {x: 2.295227, y: 1.4399986, z: -6.5176697}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1495,7 +1526,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 34
+  field of view: 40
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -1803,6 +1834,7 @@ Transform:
   - {fileID: 1505611185}
   - {fileID: 5982735160590934504}
   - {fileID: 3512862401435029302}
+  - {fileID: 124893288}
   m_Father: {fileID: 5871221131373447265}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1925,10 +1957,16 @@ MonoBehaviour:
   PlayerAirMoveMultiplier: 1
   PlayerFallForce: 10
   CanSecondJump: 1
+  directionalSecondJump: 0
+  _playerFollower: {fileID: 854709611}
   WhatIsGround:
     serializedVersion: 2
     m_Bits: 64
   groundCheck: {fileID: 1505611185}
+  WhatIsClimb:
+    serializedVersion: 2
+    m_Bits: 0
+  climbCheck: {fileID: 124893288}
   MaxSlopeAngle: 45
   isGrounded: 0
   OnJumpEvent:
@@ -2418,14 +2456,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aimSensitivityMultiplier: 3.24
-  aimLerpDuration: 0.558
+  aimLerpDuration: 0.15
   cameraLookAt: {fileID: 3982096124858064622}
   cameraFollow: {fileID: 8807201125697038280}
-  cameraLookAtOffset: 1.6
+  cameraLookAtOffset: 0.6
   crossHairController: {fileID: 0}
   thirdPersonCamera: {fileID: 3101116444492686521}
   xSensitivity: 100
   ySensitivity: 1.5
+  isAiming: 0
 --- !u!1 &8084544105287486461
 GameObject:
   m_ObjectHideFlags: 0
@@ -2582,18 +2621,14 @@ MonoBehaviour:
   aimingLayerMask:
     serializedVersion: 2
     m_Bits: 192
-  aimSensitivityMultiplier: 3.98
-  aimLerpDuration: 0.5
-  aimOffset: {x: 0, y: 0, z: 0}
   maxAimDistance: 60
   meleeDistance: 3
   meleeDamage: 30
-  playerFollower: {fileID: 854709611}
-  cameraLookAtOffset: 1
-  crossHairController: {fileID: 0}
-  cameraTurn: -0.1
-  xSensitivity: 100
-  ySensitivity: 1.5
+  mainCamera: {fileID: 3307781902392146132}
+  thirdPersonCamera: {fileID: 3101116444492686521}
+  arrowAimer: {fileID: 1919678411}
+  ImpulseSource: {fileID: 1577006788}
+  _numArrowsText: {fileID: 0}
   isAiming: 0
 --- !u!114 &3643135492808573079
 MonoBehaviour:
