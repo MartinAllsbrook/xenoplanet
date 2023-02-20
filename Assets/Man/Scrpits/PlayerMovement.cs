@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     [Range(0, 2)] [SerializeField] private float PlayerAirMoveMultiplier;
     [Range(0, 100)] [SerializeField] private float PlayerFallForce;
     [SerializeField] private bool CanSecondJump;
+    [SerializeField] private bool directionalSecondJump;
     
     private Vector2 _moveInput;
     private bool _jumpInput;
@@ -37,8 +38,11 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 camDirection;
     
     //Camera Reference
+    [Header("Camera Reference")]
+    [Space(15)]
     private CinemachineFreeLook thridPersonCamera;
     private Camera mainCamera;
+    [SerializeField] private PlayerFollower _playerFollower;
     
     //Checks
     [Header("Player Checks")]
@@ -164,7 +168,7 @@ public class PlayerMovement : MonoBehaviour
             if (CheckSlope())
                 camDirection = Vector3.ProjectOnPlane(camDirection, groundHitInfo.normal).normalized;
             
-            if(Bow.Instance.isAiming)
+            if(_playerFollower.isAiming)
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
                 //if input then turn and move
@@ -210,15 +214,17 @@ public class PlayerMovement : MonoBehaviour
         private void DoubbleJump()
         {
             // Zero out y velocity before second jump
-            _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, 0f, _rigidbody.velocity.z); 
+            _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, 0f, _rigidbody.velocity.z);
+
+            if (directionalSecondJump)
+            {
+                Vector3 jumpDirection = new Vector3(playerForward.x, 1, playerForward.z);
+                _rigidbody.AddForce(playerForward * (PlayerJumpForce * PlayerDoubleJumpMultiplier), ForceMode.VelocityChange);
+                Debug.Log("Forard: "+playerForward);
+            }
+            else
+                _rigidbody.AddForce(Vector3.up * (PlayerJumpForce * PlayerDoubleJumpMultiplier), ForceMode.VelocityChange);
             
-            //Normal Double Jump
-            _rigidbody.AddForce(Vector3.up * (PlayerJumpForce * PlayerDoubleJumpMultiplier), ForceMode.VelocityChange);
-            
-            // Vector3 jumpDirection = new Vector3(_moveInput.x, 1, _moveInput.y) * playerForward;
-            
-            
-            // _rigidbody.AddForce(jumpDirection * (PlayerJumpForce * PlayerDoubleJumpMultiplier), ForceMode.VelocityChange);
             CanSecondJump = false;
         }
 
@@ -254,8 +260,9 @@ public class PlayerMovement : MonoBehaviour
     {
         CheckGrounded();
         CheckSlope();
-        // CheckForward();
+        CheckForward();
         CheckGravity();
+        CheckSlowTime();
     }
     
     private void CheckGrounded()
@@ -298,6 +305,18 @@ public class PlayerMovement : MonoBehaviour
         }
 
         playerForward = Vector3.Cross(groundHitInfo.normal, -transform.right);
+    }
+
+    private void CheckSlowTime()
+    {
+        if (_playerFollower.isAiming && !isGrounded)
+        {
+            Time.timeScale = 0.25f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
     }
     
     #endregion

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -24,6 +25,8 @@ public class Bow : MonoBehaviour
     [SerializeField] private CinemachineFreeLook thirdPersonCamera;
     [SerializeField] private Transform arrowAimer;
     [SerializeField] private CinemachineImpulseSource ImpulseSource;
+
+    [SerializeField] private TMP_Text _numArrowsText;
     
     private float chargeTime = 0;
     private float strength = 0;
@@ -32,6 +35,7 @@ public class Bow : MonoBehaviour
     private ParticleSystem meleeParticleSystem;
     private bool _chargingInput = false;
     private bool _aimingInput = false;
+    private float _numArrows;
     
     public bool isAiming;
 
@@ -52,6 +56,7 @@ public class Bow : MonoBehaviour
 
     private void Update()
     {
+        GetNumArrows();
         if (_chargingInput)
             ChargeArrow();
     }
@@ -126,6 +131,12 @@ public class Bow : MonoBehaviour
         
         //Impulse
         ImpulseSource.GenerateImpulse();
+    }
+
+    void GetNumArrows()
+    {
+        _numArrows = arrows.Length;
+        _numArrowsText.text = _numArrows.ToString();
     }
     
     private void Melee()

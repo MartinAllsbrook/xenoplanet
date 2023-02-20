@@ -21,6 +21,7 @@ public class PlayerFollower : MonoBehaviour
     private Transform playerTransform;
     private Transform mainCameraTransform;
     private Coroutine _aimCoroutine;
+    public bool isAiming = false;
 
     private void Awake()
     {
@@ -50,7 +51,7 @@ public class PlayerFollower : MonoBehaviour
 
     IEnumerator Aim(float toFOV, float offset, float duration)
     {
-        
+
         float counter = 0;
 
         float fromFOV = thirdPersonCamera.m_Lens.FieldOfView;
@@ -73,15 +74,17 @@ public class PlayerFollower : MonoBehaviour
     {
         if (context.action.WasPerformedThisFrame())
         {
+            isAiming = true;
             if (_aimCoroutine != null)
                 StopCoroutine(_aimCoroutine);
-            _aimCoroutine = StartCoroutine(Aim(19f, cameraLookAtOffset, aimLerpDuration));
+            _aimCoroutine = StartCoroutine(Aim(15f, cameraLookAtOffset, aimLerpDuration));
             crossHairController.ShowCrossHair();
             thirdPersonCamera.m_XAxis.m_MaxSpeed = xSensitivity / aimSensitivityMultiplier;
             thirdPersonCamera.m_YAxis.m_MaxSpeed = ySensitivity / aimSensitivityMultiplier;
         }
         else if (context.action.WasReleasedThisFrame())
         {
+            isAiming = false;
             if (_aimCoroutine != null)
                 StopCoroutine(_aimCoroutine);
             _aimCoroutine = StartCoroutine(Aim(40f, 0f, aimLerpDuration));
