@@ -39,7 +39,7 @@ public class LandMarkGenerator : MonoBehaviour
             "x: " + xPosition + " " + xSmoothStart + " " + xSmoothEnd + 
             " z: " + zPosition + " " + zSmoothStart + " " + zSmoothEnd);
         
-        float height = chunkData.HeightMap[xPosition, zPosition];
+        float height = chunkData.GetHeight(xPosition, zPosition);
         
         for (int x = xSmoothStart; x <= xSmoothEnd; x++)
         { 
@@ -48,8 +48,8 @@ public class LandMarkGenerator : MonoBehaviour
                 // If we are near the center of the land mark
                 if (x >= xStart && x <= xEnd && z >= zStart && z <= zEnd)
                 {
-                    chunkData.HeightMap[x, z] = height;
-                    chunkData.MoistureMap[x, z] = 0;
+                    chunkData.SetHeight(x, z, height);
+                    chunkData.SetMoisture(x, z, 0f);
                 }
                 // Else smooth the transition
                 else
@@ -73,7 +73,8 @@ public class LandMarkGenerator : MonoBehaviour
                         percent = (float) usedDistance / width;
                     }
                     
-                    chunkData.HeightMap[x,z] = height * (1 - percent) + chunkData.HeightMap[x,z] * percent;
+                    var newHeight = height * (1 - percent) + chunkData.GetHeight(x,z) * percent;
+                    chunkData.SetHeight(x, z, newHeight);
                 }
             }
         }
