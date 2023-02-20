@@ -27,12 +27,12 @@ public class ChunkGrassManager : MonoBehaviour
         }
     }*/
 
-    public void PlaceGrass(ChunkData chunkData, float maxHeight)
+    public void PlaceGrass(ChunkData chunkData)
     {
-        StartCoroutine(PlaceGrassRoutine(chunkData, maxHeight));
+        StartCoroutine(PlaceGrassRoutine(chunkData));
     }
 
-    private IEnumerator PlaceGrassRoutine(ChunkData chunkData, float maxHeight)
+    private IEnumerator PlaceGrassRoutine(ChunkData chunkData)
     {
         Stopwatch timer = new Stopwatch();
         timer.Start();
@@ -49,8 +49,8 @@ public class ChunkGrassManager : MonoBehaviour
             
             var x = Mathf.FloorToInt(i / 64f) + Random.Range(-grassVariation, grassVariation);
             var z = i % 64 + Random.Range(-grassVariation, grassVariation);
-            var height = chunkData.GetHeight(x, z) * maxHeight;
-            var moisture = chunkData.GetMoisture(x, z) * maxHeight;
+            var height = chunkData.GetHeight(x, z);
+            var moisture = chunkData.GetMoisture(x, z);
 
             if (height + Random.Range(-minGrassHeight/2, 0) < minGrassHeight + Random.Range(0f, 0.2f) || moisture < 0.45)
             {
@@ -60,6 +60,7 @@ public class ChunkGrassManager : MonoBehaviour
             {
                 grass[i].transform.position = new Vector3(transform.position.x + x + Random.Range(-0.25f, 0.25f), height + Random.Range(-0.1f, 0.1f), transform.position.z + z + Random.Range(-0.25f, 0.25f));
                 grass[i].transform.rotation = Quaternion.Euler(0,Random.Range(0,360),0);
+                grass[i].transform.up = chunkData.GetNormal(x, z);
             }
         }
         timer.Stop();

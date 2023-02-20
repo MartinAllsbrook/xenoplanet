@@ -13,16 +13,19 @@ public class MapGenerator : MonoBehaviour
     [Header("Height")]
     [SerializeField] private float[] heightOctaves;
     [SerializeField] private float heightRedistributionFactor;
+    [SerializeField] private int maxHeight;
     // [SerializeField] private float[] heightCutoffs;
     
     [Header("Moisture")]
     [SerializeField] private float[] moistureOctaves;
     [SerializeField] private float moistureRedistributionFactor;
+    [SerializeField] private int maxMoisture;
     // [SerializeField] private float[] moistureCutoffs;
 
     [Header("Strangeness")]
     [SerializeField] private float[] strangenessOctaves;
     [SerializeField] private float strangenessRedistributionFactor;
+    [SerializeField] private int maxStrangeness;
     // [SerializeField] private float[] strangenessCutoffs;
     
     private float[,] _generatedMap;
@@ -45,7 +48,7 @@ public class MapGenerator : MonoBehaviour
     // Step 1: Generate Heights
     public void GenerateMap(Vector2Int tile, int[] seeds, GenericDelegate<ChunkData> finalCallback)
     {
-        GenerateNoise(seeds[0], tile, heightOctaves, heightRedistributionFactor, () =>
+        GenerateNoise(seeds[0], tile, heightOctaves, heightRedistributionFactor, maxHeight, () =>
         {
             GenerateMap(tile, seeds, _generatedMap, finalCallback);
         });
@@ -54,7 +57,7 @@ public class MapGenerator : MonoBehaviour
     // Step 2: Generate Moisture
     private void GenerateMap(Vector2Int tile, int[] seeds, float[,] heightMap, GenericDelegate<ChunkData> finalCallback)
     {
-        GenerateNoise(seeds[1], tile, moistureOctaves, moistureRedistributionFactor, () =>
+        GenerateNoise(seeds[1], tile, moistureOctaves, moistureRedistributionFactor, maxMoisture, () =>
         {
             GenerateMap(tile, seeds, heightMap, _generatedMap, finalCallback);
         });
@@ -63,7 +66,7 @@ public class MapGenerator : MonoBehaviour
     // Step 3: Generate Strangeness
     private void GenerateMap(Vector2Int tile, int[] seeds, float[,] heightMap, float[,] moistureMap, GenericDelegate<ChunkData> finalCallback)
     {
-        GenerateNoise(seeds[2], tile, strangenessOctaves, strangenessRedistributionFactor, () =>
+        GenerateNoise(seeds[2], tile, strangenessOctaves, strangenessRedistributionFactor, maxStrangeness, () =>
         {
             GenerateMap(heightMap, moistureMap, _generatedMap, finalCallback);
         });
@@ -84,18 +87,18 @@ public class MapGenerator : MonoBehaviour
         //
         // int numBiomes = (heightCutoffs.Length - 1) * (moistureCutoffs.Length - 1) * (strangenessCutoffs.Length - 1);
 
-        for (int i = 0; i < _size; i++)
-        {
-            for (int j = 0; j < _size; j++)
-            {
-                if (heightMap[i, j] >= 1)
-                    Debug.Log("HEIGHTMAP: " + heightMap[i, j]);
-                if (moistureMap[i, j] >= 1)
-                    Debug.Log("MOISTURE: " + moistureMap[i, j]);
-                if (strangenessMap[i, j] >= 1)
-                    Debug.Log("STRANGENESS: " + strangenessMap[i, j]);
-            }
-        }
+        // for (int i = 0; i < _size; i++)
+        // {
+        //     for (int j = 0; j < _size; j++)
+        //     {
+        //         if (heightMap[i, j] >= 1)
+        //             Debug.Log("HEIGHTMAP: " + heightMap[i, j]);
+        //         if (moistureMap[i, j] >= 1)
+        //             Debug.Log("MOISTURE: " + moistureMap[i, j]);
+        //         if (strangenessMap[i, j] >= 1)
+        //             Debug.Log("STRANGENESS: " + strangenessMap[i, j]);
+        //     }
+        // }
 
         ChunkData newChunk = new ChunkData(heightMap, moistureMap, strangenessMap);
         
@@ -139,9 +142,9 @@ public class MapGenerator : MonoBehaviour
     
     #region Noise Generation
 
-    private void GenerateNoise(int seed, Vector2Int position, float[] octaves, float redistributionFactor, GenericDelegate onFinishedCallback)
+    private void GenerateNoise(int seed, Vector2Int position, float[] octaves, float redistributionFactor, int maxValue, GenericDelegate onFinishedCallback)
     {
-        StartCoroutine(GenerateNoiseCoroutine(seed, position, octaves, redistributionFactor, data =>
+        StartCoroutine(GenerateNoiseCoroutine(seed, position, octaves, redistributionFactor, maxValue, data =>
             {
                 _generatedMap = data;
                 onFinishedCallback?.Invoke();
@@ -149,7 +152,7 @@ public class MapGenerator : MonoBehaviour
         ));
     }
 
-    IEnumerator GenerateNoiseCoroutine(int seed, Vector2Int position, float[] octaves, float redistributionFactor, GenericDelegate<float[,]> callback)
+    IEnumerator GenerateNoiseCoroutine(int seed, Vector2Int position, float[] octaves, float redistributionFactor, int maxValue, GenericDelegate<float[,]> callback)
     {
         Stopwatch timer = new Stopwatch();
         timer.Start();
@@ -171,7 +174,7 @@ public class MapGenerator : MonoBehaviour
 
             for (int x = 0; x < _size; x++)
             {
-                noise[x, z] = CompileNoise(x, z, offset, octaves, redistributionFactor);
+                noise[x, z] = (maxValue * CompileNoise(x, z, offset, octaves, redistributionFactor));
             }
         }
         timer.Stop();

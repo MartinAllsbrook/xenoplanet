@@ -11,11 +11,11 @@ public class TreeScatter : MonoBehaviour
     [SerializeField] private float minHeight;
     [SerializeField] private float minMoisture;
     
-    public void PlaceTrees(ChunkData chunkData, float maxHeight, int size)
+    public void PlaceTrees(ChunkData chunkData, int size)
     {
-        StartCoroutine(PlaceTreesRoutine(transform, chunkData, maxHeight, size));
+        StartCoroutine(PlaceTreesRoutine(transform, chunkData, size));
     }
-    private IEnumerator PlaceTreesRoutine(Transform parent, ChunkData chunkData, float maxHeight, int size)
+    private IEnumerator PlaceTreesRoutine(Transform parent, ChunkData chunkData, int size)
     {
         Quaternion zero = new Quaternion(0, 0, 0, 0);
         for (int xI = 0; xI < numTrees; xI++)
@@ -28,8 +28,8 @@ public class TreeScatter : MonoBehaviour
 
                 int treeIndex = Random.Range(0, trees.Length);
 
-                float height = chunkData.GetHeight(x, z) * maxHeight;
-                float moisture = chunkData.GetMoisture(x, z) * maxHeight;
+                float height = chunkData.GetHeight(x, z);
+                float moisture = chunkData.GetMoisture(x, z);
                 if (height > minHeight && moisture > minMoisture)
                 {
                     Instantiate(trees[treeIndex], new Vector3(parent.position.x + x, height, parent.position.z + z), zero, parent);

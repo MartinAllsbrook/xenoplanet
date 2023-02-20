@@ -23,9 +23,6 @@ public class MeshTerrainChunk : MonoBehaviour
     }*/
 
     // [SerializeField] private BiomeTexture[] biomeTextures;
-    
-    [SerializeField] private float maxHeight;
-    
     [SerializeField] private ChunkGrassManager chunkGrassManager;
     [SerializeField] private MapGenerator mapGenerator;
     [SerializeField] private LandMarkGenerator landMarkGenerator;
@@ -51,8 +48,8 @@ public class MeshTerrainChunk : MonoBehaviour
             CreateShape();
             UpdateMesh();
             
-            chunkGrassManager.PlaceGrass(_chunkData, maxHeight);
-            treeScatter.PlaceTrees(_chunkData, maxHeight, _size);
+            chunkGrassManager.PlaceGrass(_chunkData);
+            treeScatter.PlaceTrees(_chunkData, _size);
         });
     }
 
@@ -78,7 +75,7 @@ public class MeshTerrainChunk : MonoBehaviour
         {
             for (int x = 0; x <= _size - 1; x++)
             {
-                _vertices[i] = new Vector3(x, _chunkData.GetHeight(x, z) * maxHeight, z);
+                _vertices[i] = new Vector3(x, _chunkData.GetHeight(x, z), z);
                 i++;
             }
         }

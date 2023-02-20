@@ -35,9 +35,9 @@ public class LandMarkGenerator : MonoBehaviour
         int zSmoothStart = zPosition - length * 2;
         int zSmoothEnd = zPosition + length * 2;
         
-        Debug.Log(
-            "x: " + xPosition + " " + xSmoothStart + " " + xSmoothEnd + 
-            " z: " + zPosition + " " + zSmoothStart + " " + zSmoothEnd);
+        // Debug.Log(
+        //     "x: " + xPosition + " " + xSmoothStart + " " + xSmoothEnd + 
+        //     " z: " + zPosition + " " + zSmoothStart + " " + zSmoothEnd);
         
         float height = chunkData.GetHeight(xPosition, zPosition);
         
@@ -79,6 +79,6 @@ public class LandMarkGenerator : MonoBehaviour
             }
         }
 
-        Instantiate(landMark.structure, new Vector3(xPosition + transform.position.x, height*100, zPosition + transform.position.z), new Quaternion(0, 0, 0, 0), transform);
+        Instantiate(landMark.structure, new Vector3(xPosition + transform.position.x, height, zPosition + transform.position.z), new Quaternion(0, 0, 0, 0), transform);
     }
 }

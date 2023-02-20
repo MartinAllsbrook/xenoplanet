@@ -48,11 +48,11 @@ public class ChunkData
         if (x == xFloor && z == zFloor)
             return _heightMap[xFloor, zFloor];
 
-        Debug.Log("xFloor: " + xFloor + " zFloor: " + zFloor);
+        // Debug.Log("xFloor: " + xFloor + " zFloor: " + zFloor);
         Plane plane = _planes[xFloor, zFloor];
         Ray ray = new Ray(new Vector3(x, 0, z), Vector3.up);
         plane.Raycast(ray, out float y);
-        
+        // Debug.Log(y);
         return y;
     }
 
@@ -72,6 +72,14 @@ public class ChunkData
         Vector3 normal = _planes[xFloor, zFloor].normal;
 
         return Vector3.Angle(normal, Vector3.up);
+    }
+
+    public Vector3 GetNormal(float x, float z)
+    {
+        int xFloor = (int) Mathf.Floor(x);
+        int zFloor = (int) Mathf.Floor(z);
+        
+       return -_planes[xFloor, zFloor].normal;
     }
 
     public void SetHeight(int x, int z, float height)

@@ -372,7 +372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terrainChunk: {fileID: 9051413243473054194, guid: d09ef82256ab88144a51a5adbaf93309, type: 3}
-  terrainRadius: 3
+  terrainRadius: 2
 --- !u!4 &1879675989
 Transform:
   m_ObjectHideFlags: 0
