@@ -37,8 +37,13 @@ RenderSettings:
   m_ReflectionBounces: 2
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
+<<<<<<< Updated upstream
   m_Sun: {fileID: 270968677}
   m_IndirectSpecularColor: {r: 0.14963406, g: 0.16817424, b: 0.17387153, a: 1}
+=======
+  m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0.1496334, g: 0.16817348, b: 0.1738709, a: 1}
+>>>>>>> Stashed changes
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -501,6 +506,10 @@ PrefabInstance:
       propertyPath: crossHairController
       value: 
       objectReference: {fileID: 801875721}
+    - target: {fileID: 122746415131477221, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 727cfaf3482ac48ff97b662624abc435, type: 2}
     - target: {fileID: 1756127340532499031, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: _numArrowsText
       value: 
@@ -519,27 +528,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3101116443741817689, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_FollowOffset.y
-      value: 0.6669987
+      value: 2.188863
       objectReference: {fileID: 0}
     - target: {fileID: 3101116443741817689, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_FollowOffset.z
-      value: -4.338255
+      value: -6.744643
       objectReference: {fileID: 0}
     - target: {fileID: 3101116443954174586, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_FollowOffset.y
-      value: 0.6669987
+      value: 2.188863
       objectReference: {fileID: 0}
     - target: {fileID: 3101116443954174586, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_FollowOffset.z
-      value: -4.338255
+      value: -6.744643
       objectReference: {fileID: 0}
     - target: {fileID: 3101116444461669479, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_FollowOffset.y
-      value: 0.6669987
+      value: 2.188863
       objectReference: {fileID: 0}
     - target: {fileID: 3101116444461669479, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_FollowOffset.z
-      value: -4.338255
+      value: -6.744643
       objectReference: {fileID: 0}
     - target: {fileID: 3101116444868585969, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -559,7 +568,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3101116444868585969, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_LocalRotation.x
+<<<<<<< Updated upstream
       value: -0.0142604625
+=======
+      value: -0.014260467
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 3101116444868585969, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_LocalRotation.y
@@ -567,7 +580,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3101116444868585969, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_LocalRotation.z
+<<<<<<< Updated upstream
       value: -0.002437579
+=======
+      value: -0.0024375785
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 3101116445073189285, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_LocalRotation.x
@@ -593,6 +610,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.002437579
       objectReference: {fileID: 0}
+    - target: {fileID: 4821747341416296056, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 490bf097c15f14b0eb0bc61fd4f7a2c1, type: 2}
     - target: {fileID: 5871221131373447265, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_RootOrder
       value: 1
