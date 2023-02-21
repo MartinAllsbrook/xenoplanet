@@ -23,13 +23,10 @@ public class MeshTerrainChunk : MonoBehaviour
     }*/
 
     // [SerializeField] private BiomeTexture[] biomeTextures;
-    
-    [SerializeField] private float maxHeight;
-    
     [SerializeField] private ChunkGrassManager chunkGrassManager;
     [SerializeField] private MapGenerator mapGenerator;
     [SerializeField] private LandMarkGenerator landMarkGenerator;
-
+    [SerializeField] private TreeScatter treeScatter;
     private const int _size = 65;
     
     public void SetTerrain(int[] seeds)
@@ -51,7 +48,8 @@ public class MeshTerrainChunk : MonoBehaviour
             CreateShape();
             UpdateMesh();
             
-            chunkGrassManager.PlaceGrass(_chunkData, maxHeight);
+            chunkGrassManager.PlaceGrass(_chunkData);
+            treeScatter.PlaceTrees(_chunkData, _size);
         });
     }
 
@@ -65,7 +63,7 @@ public class MeshTerrainChunk : MonoBehaviour
     void CreateShape()
     {
         CreateVertecies();
-        CreateTriangles();
+        CreateTriangles(ref _chunkData);
         CreateUVs();
     }
 
@@ -77,13 +75,13 @@ public class MeshTerrainChunk : MonoBehaviour
         {
             for (int x = 0; x <= _size - 1; x++)
             {
-                _vertices[i] = new Vector3(x, _chunkData.HeightMap[x, z] * maxHeight, z);
+                _vertices[i] = new Vector3(x, _chunkData.GetHeight(x, z), z);
                 i++;
             }
         }
     }
 
-    private void CreateTriangles()
+    private void CreateTriangles(ref ChunkData chunkData)
     {
         _triangles = new int[(_size - 1) * (_size - 1) * 6];
         int vertexIndex = 0;
@@ -131,7 +129,7 @@ public class MeshTerrainChunk : MonoBehaviour
         _mesh.triangles = _triangles;
         _mesh.uv = uvs;
         
-        MeshCollider collider = gameObject.AddComponent<MeshCollider>();        //collider.material = physicMaterial;
+        MeshCollider collider = gameObject.AddComponent<MeshCollider>(); //collider.material = physicMaterial;
      
         collider.cookingOptions = MeshColliderCookingOptions.CookForFasterSimulation | MeshColliderCookingOptions.EnableMeshCleaning | MeshColliderCookingOptions.WeldColocatedVertices | MeshColliderCookingOptions.UseFastMidphase;
         collider.convex = false;
