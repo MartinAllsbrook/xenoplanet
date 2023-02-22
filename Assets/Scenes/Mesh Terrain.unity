@@ -547,11 +547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3101116444868585969, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_LocalRotation.x
-<<<<<<< Updated upstream
       value: -0.014260467
-=======
-      value: -0.0142604625
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 3101116444868585969, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_LocalRotation.y
@@ -559,11 +555,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3101116444868585969, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_LocalRotation.z
-<<<<<<< Updated upstream
       value: -0.0024375785
-=======
-      value: -0.002437579
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 3101116445073189285, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_LocalRotation.x
