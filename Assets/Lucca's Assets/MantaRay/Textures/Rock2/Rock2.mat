@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Material
+  m_Name: Rock2
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ValidKeywords:
   - _EMISSION
@@ -25,11 +25,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 781c544da363e4dcb927c4218ae56885, type: 3}
+        m_Texture: {fileID: 2800000, guid: 90c0e9cb439c4474b926f432bf5526d1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 0657de06587ec4c299c5f433c0f575e9, type: 3}
+        m_Texture: {fileID: 2800000, guid: 05f6232ce2ca04b6f87daf7ecf2467a9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CelCurveTexture:
@@ -53,11 +53,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: 04bc72f7cc8f145cab4d6d11d2b9b1ab, type: 3}
+        m_Texture: {fileID: 2800000, guid: a2771ff120d7a4e42a194c3568124109, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 781c544da363e4dcb927c4218ae56885, type: 3}
+        m_Texture: {fileID: 2800000, guid: 90c0e9cb439c4474b926f432bf5526d1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:

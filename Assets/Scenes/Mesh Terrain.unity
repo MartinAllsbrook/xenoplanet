@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!108 &270968677 stripped
-Light:
-  m_CorrespondingSourceObject: {fileID: 2277116756983606291, guid: 74dd41bd1c66c89419e27f380e906f05, type: 3}
-  m_PrefabInstance: {fileID: 619942690}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &619942690
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -512,27 +507,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3101116443741817689, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_FollowOffset.y
-      value: 2.188863
+      value: 1.984191
       objectReference: {fileID: 0}
     - target: {fileID: 3101116443741817689, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_FollowOffset.z
-      value: -6.744643
+      value: -6.833588
       objectReference: {fileID: 0}
     - target: {fileID: 3101116443954174586, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_FollowOffset.y
-      value: 2.188863
+      value: 1.984191
       objectReference: {fileID: 0}
     - target: {fileID: 3101116443954174586, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_FollowOffset.z
-      value: -6.744643
+      value: -6.833588
       objectReference: {fileID: 0}
     - target: {fileID: 3101116444461669479, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_FollowOffset.y
-      value: 2.188863
+      value: 1.984191
       objectReference: {fileID: 0}
     - target: {fileID: 3101116444461669479, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_FollowOffset.z
-      value: -6.744643
+      value: -6.833588
       objectReference: {fileID: 0}
     - target: {fileID: 3101116444868585969, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -552,7 +547,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3101116444868585969, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_LocalRotation.x
+<<<<<<< Updated upstream
       value: -0.014260467
+=======
+      value: -0.0142604625
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 3101116444868585969, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_LocalRotation.y
@@ -560,7 +559,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3101116444868585969, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_LocalRotation.z
+<<<<<<< Updated upstream
       value: -0.0024375785
+=======
+      value: -0.002437579
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 3101116445073189285, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_LocalRotation.x
