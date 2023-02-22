@@ -38,7 +38,7 @@ public class Bow : MonoBehaviour
     private float _numArrows;
     
     public bool isAiming;
-
+    private bool _readyToFire = true;
     private bool _aimingCoroutinesRunning;
 
     private void Awake()
@@ -66,10 +66,18 @@ public class Bow : MonoBehaviour
     public void GetChargingInput(InputAction.CallbackContext context)
     {
         _chargingInput = context.action.WasPerformedThisFrame();
-        if (context.action.WasReleasedThisFrame())
+        if (context.action.WasReleasedThisFrame() && _readyToFire)
         {
+            _readyToFire = false;
             FireArrow();
+            StartCoroutine(ReadyBow());
         }
+    }
+
+    IEnumerator ReadyBow()
+    {
+        yield return new WaitForSeconds(0.02f);
+        _readyToFire = true;
     }
 
     public void GetMeleeInput(InputAction.CallbackContext context)

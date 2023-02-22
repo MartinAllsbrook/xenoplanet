@@ -103,6 +103,7 @@ MonoBehaviour:
   arrowRigidbody: {fileID: -43158751508159289}
   maxDamage: 60
   maxForce: 3000
+  arrowUp: 0.02
   arrowName: Normal
 --- !u!54 &-43158751508159289
 Rigidbody:
@@ -119,7 +120,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 3
+  m_CollisionDetection: 2
 --- !u!65 &6357286865884150547
 BoxCollider:
   m_ObjectHideFlags: 0
