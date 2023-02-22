@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 124893288}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ClimbCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4000581252801232876}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1211391839
 GameObject:
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 1211391827}
   - component: {fileID: 1211391826}
   - component: {fileID: 1211391836}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MInimapCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 300
+  orthographic size: 100
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 1919678404}
   - component: {fileID: 1919678405}
   - component: {fileID: 1919678410}
-  m_Layer: 13
+  m_Layer: 3
   m_Name: Arrow aimer
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -277,7 +277,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3982096124858064622}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Camera Look At
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 4013661615234847827}
   - component: {fileID: 5269605186038844513}
   - component: {fileID: 7338115152466722510}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -533,7 +533,7 @@ GameObject:
   - component: {fileID: 27201625936499759}
   - component: {fileID: 3187601088566447253}
   - component: {fileID: 2444905098015347380}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -615,7 +615,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3101116443294278126}
   - component: {fileID: 3101116443294278127}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BottomRig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -695,7 +695,7 @@ GameObject:
   - component: {fileID: 3101116443741817688}
   - component: {fileID: 3101116443741817689}
   - component: {fileID: 3101116443741817694}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -822,7 +822,7 @@ GameObject:
   - component: {fileID: 3101116443954174565}
   - component: {fileID: 3101116443954174586}
   - component: {fileID: 3101116443954174587}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -950,7 +950,7 @@ GameObject:
   - component: {fileID: 3101116444461669479}
   - component: {fileID: 1282342918}
   - component: {fileID: 1919053659}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1094,7 +1094,7 @@ GameObject:
   - component: {fileID: 3101116444492686521}
   - component: {fileID: 1386575354}
   - component: {fileID: 432878347}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ThirdPersonCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -1286,7 +1286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3101116444868585969}
   - component: {fileID: 3101116444868585974}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TopRig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1364,7 +1364,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3101116445073189285}
   - component: {fileID: 3101116445073189306}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MiddleRig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1441,7 +1441,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3048968158186159525}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arrow Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1628,7 +1628,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8807201125697038280}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Camera Follow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1649,7 +1649,7 @@ Transform:
   m_Children:
   - {fileID: 1708178566583762095}
   m_Father: {fileID: 5871221131373447265}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3644778320721836987
 GameObject:
@@ -1660,7 +1660,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2261382923536222332}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bow Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1694,7 +1694,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4360092891476818064}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ---Cameras---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1747,8 +1747,8 @@ Transform:
   m_LocalScale: {x: 5.35, y: 8.91667, z: 8.91667}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 4000581252801232876}
-  m_RootOrder: 3
+  m_Father: {fileID: 5871221131373447265}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &3599683566690974974
 SpriteRenderer:
@@ -1811,7 +1811,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000581252801232876}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ---Checks---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1833,7 +1833,6 @@ Transform:
   - {fileID: 439783002314710535}
   - {fileID: 1505611185}
   - {fileID: 5982735160590934504}
-  - {fileID: 3512862401435029302}
   - {fileID: 124893288}
   m_Father: {fileID: 5871221131373447265}
   m_RootOrder: 4
@@ -1878,6 +1877,7 @@ Transform:
   - {fileID: 8389869011405627649}
   - {fileID: 4360092891476818064}
   - {fileID: 4000581252801232876}
+  - {fileID: 3512862401435029302}
   - {fileID: 8807201125697038280}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -2336,7 +2336,7 @@ GameObject:
   - component: {fileID: 6171251618950171280}
   - component: {fileID: 437870573987881878}
   - component: {fileID: 7621686312432679362}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2418,7 +2418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8389869011405627649}
   - component: {fileID: 854709611}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player Follower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2624,6 +2624,7 @@ MonoBehaviour:
   maxAimDistance: 60
   meleeDistance: 3
   meleeDamage: 30
+  maxChargeTime: 2
   mainCamera: {fileID: 3307781902392146132}
   thirdPersonCamera: {fileID: 3101116444492686521}
   arrowAimer: {fileID: 1919678411}
@@ -7544,6 +7545,10 @@ PrefabInstance:
       value: Debug Ball
       objectReference: {fileID: 0}
     - target: {fileID: 4583082788677893577, guid: fb2f401abc059c54f81fe0b21731dee3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4583082788677893577, guid: fb2f401abc059c54f81fe0b21731dee3, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -7686,6 +7691,10 @@ PrefabInstance:
     - target: {fileID: 4583082788677893577, guid: fb2f401abc059c54f81fe0b21731dee3, type: 3}
       propertyPath: m_Name
       value: Debug Ball
+      objectReference: {fileID: 0}
+    - target: {fileID: 4583082788677893577, guid: fb2f401abc059c54f81fe0b21731dee3, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4583082788677893577, guid: fb2f401abc059c54f81fe0b21731dee3, type: 3}
       propertyPath: m_IsActive
@@ -8119,6 +8128,10 @@ PrefabInstance:
     - target: {fileID: 4583082788677893577, guid: fb2f401abc059c54f81fe0b21731dee3, type: 3}
       propertyPath: m_Name
       value: Debug Ball
+      objectReference: {fileID: 0}
+    - target: {fileID: 4583082788677893577, guid: fb2f401abc059c54f81fe0b21731dee3, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4583082788677893577, guid: fb2f401abc059c54f81fe0b21731dee3, type: 3}
       propertyPath: m_IsActive

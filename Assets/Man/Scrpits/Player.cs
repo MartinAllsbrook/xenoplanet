@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -101,10 +102,19 @@ public class Player : MonoBehaviour
     
     public void ChangeHealth(float ammount)
     {
-        if (health > 0 && health < 100)
-            health += ammount;
-        else
+        var newHealth = health + ammount;
+        Debug.Log(ammount);
+        if (newHealth > 0 && newHealth <= 100)
+            health = newHealth;
+        else if (newHealth > 100)
+        {
+            health = 100;
+        }
+        else if (newHealth <= 0)
+        {
             health = 0;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
         
         // Communicate new health
         HUDController.Instance.SetHealth(health);

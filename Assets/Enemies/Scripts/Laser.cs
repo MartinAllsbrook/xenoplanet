@@ -33,5 +33,11 @@ public class Laser : MonoBehaviour
             Player player = collision.gameObject.GetComponent<Player>();
             player.ChangeHealth(-5);            
         }
+
+        if (collision.gameObject.CompareTag("Breakable Environment"))
+        {
+            BreakableObject breakableObject = collision.gameObject.GetComponent<BreakableObject>();
+            breakableObject.Health = -20;
+        }
     }
 }

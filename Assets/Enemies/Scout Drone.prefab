@@ -198,17 +198,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 25
-  viewDistance: 128
-  visible:
-    serializedVersion: 2
-    m_Bits: 72
-  deathParticles: {fileID: 6195871198001566187, guid: 5b8ca04c0ed3fed49a823c9ce5d0fa1f, type: 3}
-  idleDistance: 20
-  canSeePlayerIndicator: {fileID: 8641439640894998964}
   itemDrops:
   - dropChance: 100
     dropTries: 1
     drop: {fileID: 3980989105184464102, guid: 3ea26d7b3d2c2e143959505caa9f0fde, type: 3}
+  deathParticles: {fileID: 6195871198001566187, guid: 5b8ca04c0ed3fed49a823c9ce5d0fa1f, type: 3}
+  viewDistance: 128
+  visible:
+    serializedVersion: 2
+    m_Bits: 72
+  idleDistance: 20
+  canSeePlayerIndicator: {fileID: 8641439640894998964}
   range:
   - 15
   - 25
@@ -218,7 +218,7 @@ MonoBehaviour:
   speed: 5
   accelerationTime: 2
   slowdownDistance: 0
-  lookSpeed: 0.37
+  lookSpeed: 1
   laserGun: {fileID: 4333335038404239827}
 --- !u!33 &2994207794475489681
 MeshFilter:

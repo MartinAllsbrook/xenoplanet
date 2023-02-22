@@ -12,6 +12,7 @@ TagManager:
   - Item Pickup
   - Breakable Environment
   - Rock Dude
+  - Terrain
   layers:
   - Default
   - TransparentFX

@@ -8,8 +8,8 @@ using UnityEngine.Events;
 public class Arrow : MonoBehaviour
 {
     [SerializeField] protected Rigidbody arrowRigidbody;
-    [SerializeField] private float baseDamage;
-    [SerializeField] private float baseForce;
+    [SerializeField] private float maxDamage;
+    [SerializeField] private float maxForce;
     
     [SerializeField] private string arrowName;
     public string ArrowName
@@ -29,8 +29,8 @@ public class Arrow : MonoBehaviour
     // Fire: Add fore and set damage of arrow
     public void Fire(float strength)
     {
-        arrowRigidbody.AddForce(strength * baseForce * transform.forward);
-        damage = baseDamage * strength;
+        arrowRigidbody.AddForce(strength * maxForce * transform.forward);
+        damage = maxDamage * strength;
     }
     
     private void Update()

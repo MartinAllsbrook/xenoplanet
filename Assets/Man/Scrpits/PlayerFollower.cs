@@ -22,6 +22,7 @@ public class PlayerFollower : MonoBehaviour
     private Transform mainCameraTransform;
     private Coroutine _aimCoroutine;
     public bool isAiming = false;
+    private float _offset;
 
     private void Awake()
     {
@@ -43,13 +44,16 @@ public class PlayerFollower : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         transform.position = playerTransform.position;
         transform.rotation = Quaternion.Euler(0, mainCameraTransform.rotation.eulerAngles.y, 0);
+        cameraLookAt.position = transform.position + transform.up * 1.64f + transform.right * _offset;
+        cameraFollow.position = cameraLookAt.position + Vector3.down * 1.64f;
+        
     }
 
-    IEnumerator Aim(float toFOV, float offset, float duration)
+    IEnumerator Aim(float toFOV, float toOffset, float duration)
     {
 
         float counter = 0;
@@ -59,11 +63,9 @@ public class PlayerFollower : MonoBehaviour
 
         while (counter < duration)
         {
-            var targetPosition = currentTransform.position + currentTransform.up * 1.64f + currentTransform.right * offset;
             counter += Time.deltaTime;
             float lerpProgress = counter / duration;
-            cameraLookAt.position = Vector3.Lerp(cameraLookAt.position, targetPosition, lerpProgress);
-            cameraFollow.position = cameraLookAt.position + Vector3.down * 1.64f;
+            _offset = Mathf.Lerp(_offset, toOffset, lerpProgress);
             thirdPersonCamera.m_Lens.FieldOfView = Mathf.Lerp(fromFOV, toFOV, lerpProgress);
             yield return null;
         }

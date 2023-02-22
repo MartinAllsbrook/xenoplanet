@@ -20,7 +20,8 @@ public class Bow : MonoBehaviour
     [SerializeField] private float maxAimDistance;
     [SerializeField] private float meleeDistance;
     [SerializeField] private float meleeDamage;
-
+    [SerializeField] private float maxChargeTime;
+    
     [SerializeField] private GameObject mainCamera;
     [SerializeField] private CinemachineFreeLook thirdPersonCamera;
     [SerializeField] private Transform arrowAimer;
@@ -31,7 +32,6 @@ public class Bow : MonoBehaviour
     private float chargeTime = 0;
     private float strength = 0;
     private int selectedArrow = 0;
-    private float chargeMultiplier = 3;
     private ParticleSystem meleeParticleSystem;
     private bool _chargingInput = false;
     private bool _aimingInput = false;
@@ -105,18 +105,18 @@ public class Bow : MonoBehaviour
     private void ChargeArrow()
     {
         // The longer the player holds the trigger the slower strength builds up
-        chargeTime += Time.deltaTime * chargeMultiplier;
-        strength = Mathf.Pow(chargeTime, 1/chargeMultiplier);
-        
+        chargeTime += Time.deltaTime;
+        strength = 1 - maxChargeTime / (chargeTime + maxChargeTime);
+
         // Change fov to match arrow charge
         // thirdPersonCamera.m_Lens.FieldOfView = strength * 4 + 45;
         // ChargeZoom();
-        
+
     }
 
     private void FireArrow()
     {
-        Vector3 spawnPosition = transform.position;
+        Vector3 spawnPosition = Player.Instance.transform.position + Vector3.up * 2;
         Vector3 arrowDirection = CalculateAimPosition(spawnPosition);
 
         var arrowInstance = Instantiate(arrows[selectedArrow], spawnPosition, Quaternion.LookRotation(arrowDirection));
