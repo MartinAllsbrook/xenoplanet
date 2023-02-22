@@ -1,9 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Tree : BreakableObject
 {
+
+    private CinemachineImpulseSource _impulseSource;
+
+    private void Start()
+    {
+        _impulseSource = GetComponent<CinemachineImpulseSource>();
+    }
+
     protected override void Die()
     {
         StartCoroutine(FallOver());
@@ -12,18 +23,20 @@ public class Tree : BreakableObject
     IEnumerator FallOver()
     {
         var rigidbody = gameObject.AddComponent<Rigidbody>();
-        rigidbody.AddForce(RandomDirection() * 100f);
+        rigidbody.mass = 200;
+        rigidbody.AddForce(RandomDirection() * 150f);
         
         if (gameObject.GetComponent<SphereCollider>())
             Destroy(gameObject.GetComponent<SphereCollider>());
-
+        
         if (gameObject.GetComponent<CapsuleCollider>())
             Destroy(gameObject.GetComponent<CapsuleCollider>());
         
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.5f);
         // Instantiate the objects death particle system
         Instantiate(deathParticles, transform.position + transform.up * 2, new Quaternion(0,0,0,0));
         yield return new WaitForSeconds(1f);
+        _impulseSource.GenerateImpulse();
         Disappear();
     }
     
@@ -56,5 +69,12 @@ public class Tree : BreakableObject
         Destroy(gameObject);
     }
 
-    
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log(collision.gameObject.layer);
+        if (collision.gameObject.layer == 6)
+        {
+            _impulseSource.GenerateImpulse();
+        }
+    }
 }
