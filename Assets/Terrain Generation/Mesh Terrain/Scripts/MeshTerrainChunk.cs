@@ -29,7 +29,7 @@ public class MeshTerrainChunk : MonoBehaviour
     [SerializeField] private TreeScatter treeScatter;
     private const int _size = 65;
     
-    public void SetTerrain(int[] seeds)
+    public void SetTerrain(int[] seeds, bool makeActive)
     {
         var position = transform.position / (_size - 1);
         _chunkPosition = new Vector2Int((int) position.x, (int) position.z);
@@ -50,6 +50,9 @@ public class MeshTerrainChunk : MonoBehaviour
             
             chunkGrassManager.PlaceGrass(_chunkData);
             treeScatter.PlaceTrees(_chunkData, _size);
+            
+            if(!makeActive)
+                gameObject.SetActive(false);
         });
     }
 
