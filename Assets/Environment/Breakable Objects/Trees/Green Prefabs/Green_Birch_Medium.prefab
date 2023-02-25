@@ -134,7 +134,7 @@ MonoBehaviour:
   itemDrops:
   - dropChance: 50
     dropTries: 2
-    drop: {fileID: 3980989105184464102, guid: 3ea26d7b3d2c2e143959505caa9f0fde, type: 3}
+    drop: {fileID: 3980989105184464102, guid: 06ed67bd55c54e04896a29454752dbed, type: 3}
   deathParticles: {fileID: 4636119874828671470, guid: 3f4574a2eae2ff74d895060666d1da89, type: 3}
 --- !u!65 &7475349287578590862
 BoxCollider:

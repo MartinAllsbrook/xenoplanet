@@ -5,28 +5,16 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
 {
-    // public InventoryItem Item;
-    [SerializeField] private LayerMask canLandOn;
-    [SerializeField] private float floatHeight;
-    [SerializeField] private float rotateSpeed;
-    [SerializeField] private float fallSpeed;
+    private float _floatHeight = 1f;
+    private float _rotateSpeed = 1f;
+    private float _fallSpeed = 0.1f;
     [SerializeField] private string itemName;
-    
-    private void Start()
-    {
-        // Item.Callback = UseItem;
-    }
-
-    /*public string GetName()
-    {
-        return itemName;
-    }*/
 
     private void FixedUpdate()
     {
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, rotateSpeed, 0));
-        if (!Physics.Raycast(transform.position, Vector3.down, floatHeight))
-            transform.position += Vector3.down * fallSpeed;    
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, _rotateSpeed, 0));
+        if (!Physics.Raycast(transform.position, Vector3.down, _floatHeight))
+            transform.position += Vector3.down * _fallSpeed;    
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,18 +26,4 @@ public class ItemPickup : MonoBehaviour
                 Destroy(gameObject);
         }
     }
-
-    // Code from when this was not a trigger
-    /*private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Destroy(gameObject);
-        }
-    }*/
-    
-    // protected virtual void UseItem()
-    // {
-    //     Debug.Log("No use item method defined");
-    // }
 }

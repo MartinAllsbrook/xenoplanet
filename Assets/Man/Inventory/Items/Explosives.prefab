@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8691283972758876812}
   - component: {fileID: 1221427625222491817}
   m_Layer: 8
-  m_Name: Scrap Metal
+  m_Name: Explosives
   m_TagString: Item Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d1a5903867c8f0a4a8a94c3fe36dad11, type: 2}
+  - {fileID: 2100000, guid: f2d81d08d32994061b705c071b2fa0e4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -110,7 +110,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48f18e320cd2e404c8d855d29daed1b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canLandOn:
-    serializedVersion: 2
-    m_Bits: 2147483647
-  itemName: Scrap Metal
+  itemName: Explosives

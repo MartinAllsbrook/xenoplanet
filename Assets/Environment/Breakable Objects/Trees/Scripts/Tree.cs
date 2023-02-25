@@ -62,7 +62,7 @@ public class Tree : BreakableObject
             for (int j = 0; j < itemDrops[i].dropTries; j++)
             {
                 if (Random.Range(1,101) < itemDrops[i].dropChance)
-                    Instantiate(itemDrops[i].drop, transform.position, transform.rotation);
+                    Instantiate(itemDrops[i].drop, transform.position, new Quaternion(0,0,0,0));
             }
         }
         

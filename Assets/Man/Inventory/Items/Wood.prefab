@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8691283972758876812}
   - component: {fileID: 1221427625222491817}
   m_Layer: 8
-  m_Name: Scrap Metal
+  m_Name: Wood
   m_TagString: Item Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d1a5903867c8f0a4a8a94c3fe36dad11, type: 2}
+  - {fileID: 2100000, guid: 9f74a13152dad544abedc7538eb3182c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -113,4 +113,4 @@ MonoBehaviour:
   canLandOn:
     serializedVersion: 2
     m_Bits: 2147483647
-  itemName: Scrap Metal
+  itemName: Wood
