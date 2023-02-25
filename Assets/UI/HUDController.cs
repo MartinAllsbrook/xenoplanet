@@ -14,7 +14,7 @@ public class HUDController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI arrowDisplay;
     [SerializeField] private RectTransform healthBar;
     [SerializeField] private CrosshaireController crosshaireController;
-    [SerializeField] private InventoryController inventoryController;
+    [SerializeField] private Inventory inventory;
     [SerializeField] private GameObject loadingScreen;
     [SerializeField] private TextMeshProUGUI intuitionDisplay;
 
@@ -31,7 +31,7 @@ public class HUDController : MonoBehaviour
     {
         // InputManager.Instance.toggleInventory.AddListener(ToggleInventory);
         // TerrainLoader.Instance.terrainReady.AddListener(DoneLoading);
-        inventoryController.gameObject.SetActive(false);
+        // inventory.gameObject.SetActive(false);
     }
 
     // Set arrow display
@@ -66,18 +66,18 @@ public class HUDController : MonoBehaviour
 
     public void ToggleInventory(InputAction.CallbackContext context)
     {
-        if (inventoryOpen)
-        {
-            inventoryController.gameObject.SetActive(false);
-            crosshaireController.gameObject.SetActive(true);
-            inventoryOpen = false;
-        }
-        else
-        {
-            inventoryController.gameObject.SetActive(true);
-            crosshaireController.gameObject.SetActive(false);
-            inventoryOpen = true;
-        }
+        // if (inventoryOpen)
+        // {
+        //     inventory.gameObject.SetActive(false);
+        //     crosshaireController.gameObject.SetActive(true);
+        //     inventoryOpen = false;
+        // }
+        // else
+        // {
+        //     inventory.gameObject.SetActive(true);
+        //     crosshaireController.gameObject.SetActive(false);
+        //     inventoryOpen = true;
+        // }
     }
     
     // A function that takes an integer and sets the text to that integer
@@ -90,14 +90,14 @@ public class HUDController : MonoBehaviour
         intuitionDisplay.text = "Intuition: " + text;
     }
 
-    public void ReadMove(InputAction.CallbackContext context)
-    {
-        inventoryController.Move(context.ReadValue<Vector2>());
-    }
+    // public void ReadMove(InputAction.CallbackContext context)
+    // {
+    //     inventoryController.Move(context.ReadValue<Vector2>());
+    // }
 
-    public void PickUpItem(InventoryItem item)
+    public void PickUpItem(string itemName)
     {
-        inventoryController.PickUpItem(item);
+        // inventory.PickUpItem(item);
     }
 
     private void DoneLoading()

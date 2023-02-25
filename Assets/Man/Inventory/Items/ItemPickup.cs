@@ -5,16 +5,22 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
 {
-    public InventoryItem Item;
+    // public InventoryItem Item;
     [SerializeField] private LayerMask canLandOn;
     [SerializeField] private float floatHeight;
     [SerializeField] private float rotateSpeed;
     [SerializeField] private float fallSpeed;
+    [SerializeField] private string itemName;
     
     private void Start()
     {
-        Item.Callback = UseItem;
+        // Item.Callback = UseItem;
     }
+
+    /*public string GetName()
+    {
+        return itemName;
+    }*/
 
     private void FixedUpdate()
     {
@@ -27,7 +33,9 @@ public class ItemPickup : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            Debug.Log(itemName);
+            if (Inventory.Instance.PickUpItem(itemName))
+                Destroy(gameObject);
         }
     }
 
@@ -40,8 +48,8 @@ public class ItemPickup : MonoBehaviour
         }
     }*/
     
-    protected virtual void UseItem()
-    {
-        Debug.Log("No use item method defined");
-    }
+    // protected virtual void UseItem()
+    // {
+    //     Debug.Log("No use item method defined");
+    // }
 }

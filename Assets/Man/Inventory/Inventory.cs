@@ -5,14 +5,26 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    public static Inventory Instance;
+    
     [SerializeField] private ItemCounter[] itemCounters;
     [SerializeField] private CraftingRecipe[] craftingRecipes;
-    private void Start()
+
+    private void Awake()
     {
-        int numItems = 5;
-        itemCounters = new ItemCounter[numItems];
+        if (Instance == null)
+            Instance = this;
+    }
 
+    public bool PickUpItem(string itemName)
+    {
+        for (int i = 0; i < itemCounters.Length; i++)
+        {
+            if (itemCounters[i].CompareAndAdd(itemName))
+                return true;
+        }
 
+        return false;
     }
 
     private void CraftItem(string itemName)

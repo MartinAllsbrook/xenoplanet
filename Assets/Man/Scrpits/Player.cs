@@ -139,15 +139,16 @@ public class Player : MonoBehaviour
         }
     }*/
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Item Pickup"))
         {
-            Debug.Log("Picked up item");
-            ItemPickup itemPickup = other.gameObject.GetComponent<ItemPickup>();
-            HUDController.Instance.PickUpItem(itemPickup.Item);
+            // ItemPickup itemPickup = other.gameObject.GetComponent<ItemPickup>();
+            string itemName = other.GetComponent<ItemPickup>().GetName();
+            Debug.Log("Picked up: " + itemName);
+            HUDController.Instance.PickUpItem(itemName);
         }
-    }
+    }*/
 
     /*private void OnCollisionEnter(Collision collision)
     {
