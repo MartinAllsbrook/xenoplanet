@@ -363,26 +363,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1835633127579326031, guid: 9b9fda4aaad554642af9a893bc1138d5, type: 3}
-      propertyPath: craftingRecipes.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1835633127579326031, guid: 9b9fda4aaad554642af9a893bc1138d5, type: 3}
-      propertyPath: craftingRecipes.Array.data[0].result
-      value: Arrow
-      objectReference: {fileID: 0}
-    - target: {fileID: 1835633127579326031, guid: 9b9fda4aaad554642af9a893bc1138d5, type: 3}
-      propertyPath: craftingRecipes.Array.data[0].requiredItems.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1835633127579326031, guid: 9b9fda4aaad554642af9a893bc1138d5, type: 3}
-      propertyPath: craftingRecipes.Array.data[0].requiredItems.Array.data[0]
-      value: Wood
-      objectReference: {fileID: 0}
-    - target: {fileID: 1835633127579326031, guid: 9b9fda4aaad554642af9a893bc1138d5, type: 3}
-      propertyPath: craftingRecipes.Array.data[0].requiredItems.Array.data[1]
-      value: Wood
-      objectReference: {fileID: 0}
     - target: {fileID: 3569047395199897384, guid: 9b9fda4aaad554642af9a893bc1138d5, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -470,10 +450,6 @@ PrefabInstance:
     - target: {fileID: 3569047395199897391, guid: 9b9fda4aaad554642af9a893bc1138d5, type: 3}
       propertyPath: m_Name
       value: HUD
-      objectReference: {fileID: 0}
-    - target: {fileID: 5661540398761569979, guid: 9b9fda4aaad554642af9a893bc1138d5, type: 3}
-      propertyPath: itemName
-      value: Arrow
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b9fda4aaad554642af9a893bc1138d5, type: 3}

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ItemCounter : MonoBehaviour
 {
-    [SerializeField] private string itemName;
+    // [SerializeField] private string itemName;
     [SerializeField] private int maxCount;
     [SerializeField] private TextMeshProUGUI nameDisplay;
     [SerializeField] private TextMeshProUGUI countDisplay;
@@ -15,15 +15,18 @@ public class ItemCounter : MonoBehaviour
 
     private void Start()
     {
-        nameDisplay.text = itemName;
+        nameDisplay.text = gameObject.name;
         countDisplay.text = _itemCount.ToString();
     }
 
+    /*
     public string GetName()
     {
         return itemName;
     }
+    */
 
+    /*
     public bool CompareAndAdd(string testName)
     {
         if (testName != itemName)
@@ -31,6 +34,7 @@ public class ItemCounter : MonoBehaviour
 
         return AddItem();
     }
+    */
 
     public bool AddItem()
     {
@@ -44,6 +48,7 @@ public class ItemCounter : MonoBehaviour
         return false;
     }
 
+    /*
     public void CompareAndRemove(string testName)
     {
         if (testName != itemName)
@@ -51,6 +56,7 @@ public class ItemCounter : MonoBehaviour
 
         _itemCount--;
     }
+    */
     
     public bool GetItem()
     {
@@ -71,6 +77,4 @@ public class ItemCounter : MonoBehaviour
         
         return false;
     }
-
-
 }

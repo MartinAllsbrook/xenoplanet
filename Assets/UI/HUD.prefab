@@ -1099,12 +1099,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 200c60f72518ba644abe936630163a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemCounters:
+  initialItemsArray:
   - {fileID: 5365617697412448113}
   - {fileID: 734027659435122676}
   - {fileID: 1191621187331838409}
   - {fileID: 8972546082031633863}
-  craftingRecipes: []
+  - {fileID: 5661540398761569979}
 --- !u!1 &5175390171156384791
 GameObject:
   m_ObjectHideFlags: 0
@@ -2024,13 +2024,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3371996617546165271, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
-      propertyPath: itemName
-      value: Scrap Metal
-      objectReference: {fileID: 0}
     - target: {fileID: 6052065519026441411, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
       propertyPath: m_Name
-      value: Item Counter (1)
+      value: Scrap Metal
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
@@ -2141,13 +2137,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3371996617546165271, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
-      propertyPath: itemName
-      value: Tech Trash
-      objectReference: {fileID: 0}
     - target: {fileID: 6052065519026441411, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
       propertyPath: m_Name
-      value: Item Counter (2)
+      value: Tech Trash
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
@@ -2258,13 +2250,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3371996617546165271, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
-      propertyPath: itemName
-      value: Explosives
-      objectReference: {fileID: 0}
     - target: {fileID: 6052065519026441411, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
       propertyPath: m_Name
-      value: Item Counter (3)
+      value: Explosives
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
@@ -2375,16 +2363,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3371996617546165271, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
-      propertyPath: itemName
-      value: Arrows
-      objectReference: {fileID: 0}
     - target: {fileID: 6052065519026441411, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
       propertyPath: m_Name
-      value: Item Counter (4)
+      value: Arrows
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
+--- !u!114 &5661540398761569979 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3371996617546165271, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
+  m_PrefabInstance: {fileID: 6942978262592946860}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6367ac615e5a63489ad8b7d8343693e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7960711467925518443 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1017893877912746695, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
@@ -2481,17 +2476,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3371996617546165271, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
-      propertyPath: itemName
-      value: Wood
-      objectReference: {fileID: 0}
     - target: {fileID: 6052065519026441411, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
       propertyPath: m_Name
-      value: Item Counter
-      objectReference: {fileID: 0}
-    - target: {fileID: 6052065519026441411, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      value: Wood
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}

@@ -22,7 +22,7 @@ public class ItemPickup : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log(itemName);
-            if (Inventory.Instance.PickUpItem(itemName))
+            if (Inventory.Instance.AddItem(itemName))
                 Destroy(gameObject);
         }
     }

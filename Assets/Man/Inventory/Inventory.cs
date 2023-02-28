@@ -7,17 +7,35 @@ using UnityEngine.InputSystem;
 public class Inventory : MonoBehaviour
 {
     public static Inventory Instance;
-    
-    [SerializeField] private ItemCounter[] itemCounters;
-    [SerializeField] private CraftingRecipe[] craftingRecipes;
+
+    [SerializeField] private ItemCounter[] initialItemsArray;
+
+    private Dictionary<string, ItemCounter> _itemCounters;
+
+    // [SerializeField] private ItemCounter[] itemCounters;
+    // [SerializeField] private CraftingRecipe[] craftingRecipes;
 
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
+
+        _itemCounters = new Dictionary<string, ItemCounter>();
+
+        foreach (var itemCounter in initialItemsArray)
+        {
+            Debug.Log("ItemCounter Name: " + itemCounter.name);
+            Debug.Log("GameObject Name: " + itemCounter.gameObject.name);
+            _itemCounters.Add(itemCounter.gameObject.name, itemCounter);
+        }
     }
 
-    public bool PickUpItem(string itemName)
+    public bool AddItem(string itemName)
+    {
+        return _itemCounters[itemName].AddItem();
+    }
+
+    /*public bool PickUpItem(string itemName)
     {
         for (int i = 0; i < itemCounters.Length; i++)
         {
@@ -63,7 +81,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    /*//Assuming you have a array of ItemCounters called itemCounters
+    /#1#/Assuming you have a array of ItemCounters called itemCounters
     public bool CheckItems(string[] items)
     {
         //Loop through each string in the array
@@ -101,7 +119,7 @@ public class Inventory : MonoBehaviour
         }
 
         return count;
-    }*/
+    }#1#
     
     //Assuming you have a array of ItemCounters called itemCounters
     public bool CheckItems(string[] items)
@@ -133,5 +151,5 @@ public class Inventory : MonoBehaviour
     
         //If no false condition was met, return true
         return true;
-    }
+    }*/
 }

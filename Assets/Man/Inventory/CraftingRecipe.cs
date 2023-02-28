@@ -9,7 +9,6 @@ public class CraftingRecipe
     [SerializeField] private string[] requiredItems;
     [SerializeField] private string result;
 
-
     public string[] GetRequiredItems()
     {
         return requiredItems;
@@ -19,7 +18,4 @@ public class CraftingRecipe
     {
         return testName == result;
     }
-    
-    
-    
 }
