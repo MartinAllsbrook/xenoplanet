@@ -19,9 +19,9 @@ public class ItemCounter : MonoBehaviour
         countDisplay.text = _itemCount.ToString();
     }
 
-    public bool CompareName(string testName)
+    public string GetName()
     {
-        return testName == itemName;
+        return itemName;
     }
 
     public bool CompareAndAdd(string testName)
@@ -44,6 +44,14 @@ public class ItemCounter : MonoBehaviour
         return false;
     }
 
+    public void CompareAndRemove(string testName)
+    {
+        if (testName != itemName)
+            return;
+
+        _itemCount--;
+    }
+    
     public bool GetItem()
     {
         if (_itemCount > 0)
@@ -53,6 +61,14 @@ public class ItemCounter : MonoBehaviour
             return true;
         }
 
+        return false;
+    }
+
+    public bool CheckAmount(int amount)
+    {
+        if (amount > _itemCount)
+            return true;
+        
         return false;
     }
 

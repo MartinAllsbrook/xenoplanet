@@ -8,11 +8,7 @@ public class CraftingRecipe
 {
     [SerializeField] private string[] requiredItems;
     [SerializeField] private string result;
-    
-    /*public CraftingRecipe(string[] requiredItems)
-    {
-        _requiredItems = requiredItems;
-    }*/
+
 
     public string[] GetRequiredItems()
     {
