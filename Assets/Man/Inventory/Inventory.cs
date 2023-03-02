@@ -66,18 +66,23 @@ public class Inventory : MonoBehaviour
         
         return true;
     }
+
+    private void OnCraft()
+    {
+        if (!CraftItem("Arrows"))
+        {
+            Debug.Log("Not Enough Items");
+            // TODO: Make this display a message on the hud instead
+        }
+    }
     
-    public void TestCraft(InputAction.CallbackContext context)
+    /*public void GetOpenInput(InputAction.CallbackContext context)
     {
         if (context.action.WasPerformedThisFrame())
         {
-            if (!CraftItem("Arrows"))
-            {
-                Debug.Log("Not Enough Items");
-                // TODO: Make this display a message on the hud instead
-            }
+            
         }
-    }
+    }*/
     
     /*public bool PickUpItem(string itemName)
     {

@@ -31,7 +31,7 @@ public class HUDController : MonoBehaviour
     {
         // InputManager.Instance.toggleInventory.AddListener(ToggleInventory);
         // TerrainLoader.Instance.terrainReady.AddListener(DoneLoading);
-        // inventory.gameObject.SetActive(false);
+        inventory.gameObject.SetActive(false);
     }
 
     // Set arrow display
@@ -66,18 +66,18 @@ public class HUDController : MonoBehaviour
 
     public void ToggleInventory(InputAction.CallbackContext context)
     {
-        // if (inventoryOpen)
-        // {
-        //     inventory.gameObject.SetActive(false);
-        //     crosshaireController.gameObject.SetActive(true);
-        //     inventoryOpen = false;
-        // }
-        // else
-        // {
-        //     inventory.gameObject.SetActive(true);
-        //     crosshaireController.gameObject.SetActive(false);
-        //     inventoryOpen = true;
-        // }
+        if (inventoryOpen)
+        {
+            inventory.gameObject.SetActive(false);
+            crosshaireController.gameObject.SetActive(true);
+            inventoryOpen = false;
+        }
+        else
+        {
+            inventory.gameObject.SetActive(true);
+            crosshaireController.gameObject.SetActive(false);
+            inventoryOpen = true;
+        }
     }
     
     // A function that takes an integer and sets the text to that integer
