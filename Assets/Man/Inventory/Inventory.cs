@@ -10,9 +10,13 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] private ItemCounter[] initialItemsArray;
     [SerializeField] private CraftingRecipe[] initialRecipesArray;
+    // [SerializeField] private float moveCooldown;
     
     private Dictionary<string, ItemCounter> _itemCounters;
     private Dictionary<string, CraftingRecipe> _craftingRecipes;
+    private ItemCounter _selectedItemCounter;
+    private int _selectedCounterIndex = 2;
+    private bool _readyToMove;
 
     private void Awake()
     {
@@ -30,6 +34,12 @@ public class Inventory : MonoBehaviour
             craftingRecipe.MakeDictionary();
             _craftingRecipes.Add(craftingRecipe.GetName(), craftingRecipe);
         }
+    }
+
+    private void Start()
+    {
+        _selectedItemCounter = initialItemsArray[_selectedCounterIndex];
+        _selectedItemCounter.ToggleSelected();
     }
 
     public bool AddItem(string itemName)
@@ -74,6 +84,53 @@ public class Inventory : MonoBehaviour
             Debug.Log("Not Enough Items");
             // TODO: Make this display a message on the hud instead
         }
+    }
+    
+    public void GetInventoryInput(InputAction.CallbackContext context)
+    {
+        if (context.action.WasPerformedThisFrame())
+        {
+            Vector2 moveDirection = context.ReadValue<Vector2>();
+            
+            if (moveDirection.x > 0 && _readyToMove)
+            {
+                MoveSelected(false);
+                _readyToMove = false;
+            }
+            else if (moveDirection.x < 0 && _readyToMove)
+            {
+                MoveSelected(true);
+                _readyToMove = false;
+            }
+
+            if (moveDirection.x == 0f && !_readyToMove)
+            {
+                _readyToMove = true;
+            }
+        }
+    }
+
+    private void MoveSelected(bool moveLeft)
+    {
+        // Calculate index
+        if (moveLeft)
+        {
+            if (_selectedCounterIndex <= 0)
+                _selectedCounterIndex = initialItemsArray.Length - 1;
+            else
+                _selectedCounterIndex--;
+        }
+        else
+        {
+            if (_selectedCounterIndex >= initialItemsArray.Length - 1)
+                _selectedCounterIndex = 0;
+            else
+                _selectedCounterIndex++;
+        }
+        
+        _selectedItemCounter.ToggleSelected();
+        _selectedItemCounter = initialItemsArray[_selectedCounterIndex];
+        _selectedItemCounter.ToggleSelected();
     }
     
     /*public void GetOpenInput(InputAction.CallbackContext context)
