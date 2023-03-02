@@ -1105,6 +1105,11 @@ MonoBehaviour:
   - {fileID: 1191621187331838409}
   - {fileID: 8972546082031633863}
   - {fileID: 5661540398761569979}
+  initialRecipesArray:
+  - requiredItems:
+    - Wood
+    requiredItemCounts: 02000000
+    result: Arrows
 --- !u!1 &5175390171156384791
 GameObject:
   m_ObjectHideFlags: 0

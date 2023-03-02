@@ -9,11 +9,10 @@ public class Inventory : MonoBehaviour
     public static Inventory Instance;
 
     [SerializeField] private ItemCounter[] initialItemsArray;
-
+    [SerializeField] private CraftingRecipe[] initialRecipesArray;
+    
     private Dictionary<string, ItemCounter> _itemCounters;
-
-    // [SerializeField] private ItemCounter[] itemCounters;
-    // [SerializeField] private CraftingRecipe[] craftingRecipes;
+    private Dictionary<string, CraftingRecipe> _craftingRecipes;
 
     private void Awake()
     {
@@ -21,12 +20,15 @@ public class Inventory : MonoBehaviour
             Instance = this;
 
         _itemCounters = new Dictionary<string, ItemCounter>();
+        _craftingRecipes = new Dictionary<string, CraftingRecipe>();
 
         foreach (var itemCounter in initialItemsArray)
-        {
-            Debug.Log("ItemCounter Name: " + itemCounter.name);
-            Debug.Log("GameObject Name: " + itemCounter.gameObject.name);
             _itemCounters.Add(itemCounter.gameObject.name, itemCounter);
+
+        foreach (var craftingRecipe in initialRecipesArray)
+        {
+            craftingRecipe.MakeDictionary();
+            _craftingRecipes.Add(craftingRecipe.GetName(), craftingRecipe);
         }
     }
 
@@ -35,6 +37,48 @@ public class Inventory : MonoBehaviour
         return _itemCounters[itemName].AddItem();
     }
 
+    private bool CraftItem(string itemToCraft)
+    {
+        var recipe = _craftingRecipes[itemToCraft].GetRequiredItems();
+        var requiredItems = recipe.Keys;
+        
+        // Check to make sure player has the required items 
+        foreach (var requiredItem in requiredItems)
+        {
+            int itemCount = recipe[requiredItem];
+            Debug.Log(requiredItem + " : " + itemCount);
+            
+            if (!_itemCounters[requiredItem].CheckAmount(itemCount))
+                return false;
+        }
+
+        foreach (var requiredItem in requiredItems)
+        {
+            int itemCount = recipe[requiredItem];
+            _itemCounters[requiredItem].RemoveItems(itemCount);
+        }
+
+        if (!_itemCounters[itemToCraft].AddItem())
+        {
+            // TODO: Make this drop the crafted item.
+            Debug.LogError(itemToCraft + " item slot full!");
+        }
+        
+        return true;
+    }
+    
+    public void TestCraft(InputAction.CallbackContext context)
+    {
+        if (context.action.WasPerformedThisFrame())
+        {
+            if (!CraftItem("Arrows"))
+            {
+                Debug.Log("Not Enough Items");
+                // TODO: Make this display a message on the hud instead
+            }
+        }
+    }
+    
     /*public bool PickUpItem(string itemName)
     {
         for (int i = 0; i < itemCounters.Length; i++)
@@ -44,14 +88,6 @@ public class Inventory : MonoBehaviour
         }
 
         return false;
-    }
-
-    public void TestCraft(InputAction.CallbackContext context)
-    {
-        if (context.action.WasPerformedThisFrame())
-        {
-            CraftItem("Arrow");
-        }
     }
 
     private void CraftItem(string itemName)

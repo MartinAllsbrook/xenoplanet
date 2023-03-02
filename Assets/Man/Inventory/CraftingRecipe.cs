@@ -7,15 +7,28 @@ using UnityEngine;
 public class CraftingRecipe
 {
     [SerializeField] private string[] requiredItems;
+    [SerializeField] private int[] requiredItemCounts;
     [SerializeField] private string result;
 
-    public string[] GetRequiredItems()
+    private Dictionary<string, int> _recipeDictionary;
+
+    public void MakeDictionary()
     {
-        return requiredItems;
+        _recipeDictionary = new Dictionary<string, int>();
+
+        for (int i = 0; i < requiredItems.Length; i++)
+        {
+            _recipeDictionary.Add(requiredItems[i], requiredItemCounts[i]);
+        }
+    }
+    
+    public Dictionary<string, int> GetRequiredItems()
+    {
+        return _recipeDictionary;
     }
 
-    public bool CompareName(string testName)
+    public string GetName()
     {
-        return testName == result;
+        return result;
     }
 }

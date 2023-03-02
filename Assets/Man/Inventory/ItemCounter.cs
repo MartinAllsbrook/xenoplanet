@@ -58,21 +58,21 @@ public class ItemCounter : MonoBehaviour
     }
     */
     
-    public bool GetItem()
+    public void RemoveItems(int numItems)
     {
-        if (_itemCount > 0)
+        if (_itemCount - numItems >= 0)
         {
-            _itemCount--;
+            _itemCount -= numItems;
             countDisplay.text = _itemCount.ToString();
-            return true;
+            return;
         }
-
-        return false;
+        
+        Debug.LogError("Somehow player doesn't have enough items");
     }
 
     public bool CheckAmount(int amount)
     {
-        if (amount > _itemCount)
+        if (amount <= _itemCount)
             return true;
         
         return false;
