@@ -78,33 +78,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "PadDown",
-                    "type": "Button",
-                    "id": "2a402f53-dc60-46c8-8ecb-0d00e7fee535",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "PadLeft",
-                    "type": "Button",
-                    "id": "3d06e8be-2886-421c-be35-4faead29d556",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "PadRight",
-                    "type": "Button",
-                    "id": "b205b63e-344d-4582-b922-01879c52a363",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "FireGrapple",
                     "type": "Button",
                     "id": "b83af148-3f22-4019-8ac1-521d0f68e866",
@@ -353,39 +326,6 @@
                 },
                 {
                     "name": "",
-                    "id": "1780d0a9-c0c6-44d3-a2a3-f6650034f4fc",
-                    "path": "<Gamepad>/dpad/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PadDown",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "cddd58d5-de1a-4bb2-b719-b7f0d0e0aefb",
-                    "path": "<Gamepad>/dpad/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PadLeft",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9cd7fab6-b7b5-4719-a15e-ddb995bceb25",
-                    "path": "<Gamepad>/dpad/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PadRight",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "b3f97fd2-3038-4726-89e9-c37ffe8e56c6",
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
@@ -448,6 +388,24 @@
                     "type": "PassThrough",
                     "id": "d337e7aa-59f3-42d7-87ec-764390de76cb",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Craft Item",
+                    "type": "Button",
+                    "id": "b25bc241-e92a-42f2-83d2-4845d296027e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Discard Item",
+                    "type": "Button",
+                    "id": "a4f83bb0-0007-4acf-b2e8-892fa477f63a",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -530,6 +488,28 @@
                     "action": "MoveCursor",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "94490dcf-b08b-491c-854f-2caedd2cae2e",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Craft Item",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1df89213-e12e-4ba3-851d-8a60a1f8dae9",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Discard Item",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

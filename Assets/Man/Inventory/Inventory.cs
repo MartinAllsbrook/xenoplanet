@@ -79,12 +79,23 @@ public class Inventory : MonoBehaviour
 
     private void OnCraft()
     {
-        if (!CraftItem("Arrows"))
+        string itemToCraft = _selectedItemCounter.name;
+        if (!CraftItem(itemToCraft))
         {
             Debug.Log("Not Enough Items");
             // TODO: Make this display a message on the hud instead
         }
     }
+
+    #region Get Inputs
+
+    public void GetCraftInput(InputAction.CallbackContext context)
+    {
+        if (context.action.WasPerformedThisFrame())
+            OnCraft();    
+    }
+
+    #endregion
     
     public void GetInventoryInput(InputAction.CallbackContext context)
     {
