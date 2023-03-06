@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     [Range(0, 4)] [SerializeField] private float PlayerDoubleJumpMultiplier;
     [Range(0, 2)] [SerializeField] private float PlayerAirMoveMultiplier;
     [Range(0, 100)] [SerializeField] private float PlayerFallForce;
+    [Range(0, 100)] [SerializeField] private float PlayerClimbSpeed;
     [SerializeField] private bool CanSecondJump;
     [SerializeField] private bool directionalSecondJump;
     
@@ -60,7 +61,6 @@ public class PlayerMovement : MonoBehaviour
     
     
     [HideInInspector]public bool isGrounded;
-    private bool isClimbing;
     private bool wasGrounded;
     private bool isJumping;
     
@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
         // Start by checking if the player is grounded
         PreformChecks();
 
-        if (isClimbing)
+        if (CheckClimbing())
         {
             Climb();
         }
@@ -177,7 +177,12 @@ public class PlayerMovement : MonoBehaviour
             
             if (CheckSlope())
                 camDirection = Vector3.ProjectOnPlane(camDirection, groundHitInfo.normal).normalized;
-            
+
+            if (CheckClimbing())
+            {
+                camDirection = Vector3.Cross(climbHitInfo.normal, camDirection);
+            }
+
             if(_playerFollower.isAiming)
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
@@ -204,7 +209,9 @@ public class PlayerMovement : MonoBehaviour
 
         private void Climb()
         {
-            camDirection = Vector3.ProjectOnPlane(camDirection, climbHitInfo.normal).normalized;
+            // camDirection = Vector3.ProjectOnPlane(camDirection, climbHitInfo.normal).normalized;
+            Debug.Log("climb");
+            // _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, PlayerClimbSpeed, _rigidbody.velocity.y);
         }
 
     #endregion
@@ -307,7 +314,7 @@ public class PlayerMovement : MonoBehaviour
         return false;
     }
 
-    private void CheckClimbing()
+    private bool CheckClimbing()
     {
         if (Physics.CheckSphere(climbCheck.position, 0.2f, WhatIsClimb))
         {
@@ -315,34 +322,39 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (Vector3.Angle(climbHitInfo.normal, Vector3.up) > MaxSlopeAngle)
                 {
-                    isClimbing = true;
                     Debug.Log("climbing");
-                    Debug.Log(climbHitInfo.collider.name);
+                    Debug.Log(climbHitInfo.normal);
+                    return true;
                 }
             }
         }
-
-        // if (Physics.CheckSphere(climbCheck.position, 0.1f, WhatIsClimb))
-        // {
-        //     Debug.Log("climbing");
-        //     isClimbing = true;
-        // }
+        return false;
     }
     
     private void CheckGravity()
     {
         _rigidbody.useGravity = !CheckSlope();
+        _rigidbody.useGravity = !CheckClimbing();
     }
 
     private void CheckForward()
     {
         if (!isGrounded)
         {
-            playerForward = transform.forward;
+            camDirection = transform.forward;
             return;
         }
+        
+        if (CheckSlope())
+            camDirection = Vector3.ProjectOnPlane(camDirection, groundHitInfo.normal).normalized;
 
-        playerForward = Vector3.Cross(groundHitInfo.normal, -transform.right);
+        if (CheckClimbing())
+        {
+            camDirection = Vector3.Cross(climbHitInfo.normal, camDirection);
+        }
+        
+
+        camDirection = Vector3.Cross(groundHitInfo.normal, -transform.right);
     }
 
     private void CheckSlowTime()
@@ -357,6 +369,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     
+
     #endregion
 
     private void InvokeEvents()

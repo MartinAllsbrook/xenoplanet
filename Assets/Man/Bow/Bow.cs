@@ -27,7 +27,7 @@ public class Bow : MonoBehaviour
     [SerializeField] private Transform arrowAimer;
     [SerializeField] private CinemachineImpulseSource ImpulseSource;
 
-    [SerializeField] private TMP_Text _numArrowsText;
+    // [SerializeField] private TMP_Text _numArrowsText;
     
     private float chargeTime = 0;
     private float strength = 0;
@@ -144,7 +144,7 @@ public class Bow : MonoBehaviour
     void GetNumArrows()
     {
         _numArrows = arrows.Length;
-        _numArrowsText.text = _numArrows.ToString();
+        // _numArrowsText.text = _numArrows.ToString();
     }
     
     private void Melee()
