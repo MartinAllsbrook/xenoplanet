@@ -23,16 +23,16 @@ public class Bow : MonoBehaviour
     [SerializeField] private float maxChargeTime;
     
     [SerializeField] private GameObject mainCamera;
-    [SerializeField] private CinemachineFreeLook thirdPersonCamera;
+    // [SerializeField] private CinemachineFreeLook thirdPersonCamera;
     [SerializeField] private Transform arrowAimer;
-    [SerializeField] private CinemachineImpulseSource ImpulseSource;
+    [SerializeField] private CinemachineImpulseSource impulseSource;
 
     // [SerializeField] private TMP_Text _numArrowsText;
     
-    private float chargeTime = 0;
-    private float strength = 0;
-    private int selectedArrow = 0;
-    private ParticleSystem meleeParticleSystem;
+    private float _chargeTime = 0;
+    private float _strength = 0;
+    private int _selectedArrowIndex = 0;
+    private ParticleSystem _meleeParticleSystem;
     private bool _chargingInput = false;
     private bool _aimingInput = false;
     private float _numArrows;
@@ -40,6 +40,8 @@ public class Bow : MonoBehaviour
     public bool isAiming;
     private bool _readyToFire = true;
     private bool _aimingCoroutinesRunning;
+
+    #region Basic Unity Event Functions
 
     private void Awake()
     {
@@ -50,8 +52,8 @@ public class Bow : MonoBehaviour
 
     private void Start()
     {
-        meleeParticleSystem = GetComponent<ParticleSystem>();
-        ImpulseSource = GetComponent<CinemachineImpulseSource>();
+        _meleeParticleSystem = GetComponent<ParticleSystem>();
+        impulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
     private void Update()
@@ -61,7 +63,9 @@ public class Bow : MonoBehaviour
             ChargeArrow();
     }
 
-    #region GetInputs
+    #endregion
+
+    #region Get Inputs
 
     public void GetChargingInput(InputAction.CallbackContext context)
     {
@@ -100,26 +104,25 @@ public class Bow : MonoBehaviour
 
     private void CycleArrow()
     {
-        // Cycle through arrows
-        selectedArrow++;
-        if (selectedArrow >= arrows.Length)
-            selectedArrow = 0;
+        // Start by cycling arrow index
+        _selectedArrowIndex++;
+        if (_selectedArrowIndex >= arrows.Length)
+            _selectedArrowIndex = 0;
         
         // Update hud
-        HUDController.Instance.SetArrow(arrows[selectedArrow].GetComponent<Arrow>().ArrowName);
+        HUDController.Instance.SetArrow(arrows[_selectedArrowIndex].GetComponent<Arrow>().ArrowName);
     }
     
     // "Charge" arrow based on how long the player is holding the trigger
     private void ChargeArrow()
     {
         // The longer the player holds the trigger the slower strength builds up
-        chargeTime += Time.deltaTime;
-        strength = 1 - maxChargeTime / (chargeTime + maxChargeTime);
+        _chargeTime += Time.deltaTime;
+        _strength = 1 - maxChargeTime / (_chargeTime + maxChargeTime);
 
         // Change fov to match arrow charge
         // thirdPersonCamera.m_Lens.FieldOfView = strength * 4 + 45;
         // ChargeZoom();
-
     }
 
     private void FireArrow()
@@ -127,18 +130,17 @@ public class Bow : MonoBehaviour
         Vector3 spawnPosition = Player.Instance.transform.position + Vector3.up * 2;
         Vector3 arrowDirection = CalculateAimPosition(spawnPosition);
 
-        var arrowInstance = Instantiate(arrows[selectedArrow], spawnPosition, Quaternion.LookRotation(arrowDirection));
-            
-        // Add force to the arrow equal to strength
-        arrowInstance.GetComponent<Arrow>().Fire(strength);
+        var arrowInstance = Instantiate(arrows[_selectedArrowIndex], spawnPosition, Quaternion.LookRotation(arrowDirection));
+        
+        arrowInstance.GetComponent<Arrow>().Fire(_strength); // Add force to the arrow equal to strength 
         
         // Reset FOV and vars
         // thirdPersonCamera.m_Lens.FieldOfView = 45;
-        strength = 0;
-        chargeTime = 0;
+        _strength = 0;
+        _chargeTime = 0;
         
         //Impulse
-        ImpulseSource.GenerateImpulse();
+        impulseSource.GenerateImpulse();
     }
 
     void GetNumArrows()
@@ -150,8 +152,9 @@ public class Bow : MonoBehaviour
     private void Melee()
     {
         Debug.Log("Melee");
-        meleeParticleSystem.Play();
+        _meleeParticleSystem.Play();
         Ray ray = CreateRayFromCamera();
+        
         if (Physics.Raycast(ray, out RaycastHit hit, 20, aimingLayerMask))
         {
             if ((hit.point - transform.position).magnitude > meleeDistance)
@@ -159,14 +162,13 @@ public class Bow : MonoBehaviour
 
             if (hit.transform.CompareTag("Enemy") || hit.transform.CompareTag("Breakable Environment"))
                 hit.transform.gameObject.GetComponent<BreakableObject>().Health = -meleeDamage;
-            
         }
-            
     }
     
     public Vector3 CalculateAimPosition(Vector3 spawnPosition)
     {
         Ray ray = CreateRayFromCamera();
+        
         if (Physics.Raycast(ray, out RaycastHit hit, maxAimDistance, aimingLayerMask))
             arrowAimer.position = hit.point;
         else
@@ -180,6 +182,5 @@ public class Bow : MonoBehaviour
         Vector3 origin = mainCamera.transform.position;
         Vector3 direction = mainCamera.transform.forward;
         return new Ray(origin, direction);
-        
     }
 }
