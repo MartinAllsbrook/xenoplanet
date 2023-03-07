@@ -1164,6 +1164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitmarker: {fileID: 6748082677144400816}
   crossHair: {fileID: 3569047394696756419}
+  numArrowsDisplay: {fileID: 797267414}
   startColor: {r: 1, g: 1, b: 1, a: 0}
   endColor: {r: 0.23113209, g: 0.95533156, b: 1, a: 1}
   duration: 0.15

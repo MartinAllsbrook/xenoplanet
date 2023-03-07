@@ -12,7 +12,7 @@ public class BreakableObject : MonoBehaviour
         private get { return health; }
         set
         {
-            Debug.Log("Damage Taken: " + value);
+            // Debug.Log("Damage Taken: " + value);
             
             // Loose health
             health += value;

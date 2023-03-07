@@ -103,7 +103,7 @@ public class Player : MonoBehaviour
     public void ChangeHealth(float ammount)
     {
         var newHealth = health + ammount;
-        Debug.Log(ammount);
+        // Debug.Log(ammount);
         if (newHealth > 0 && newHealth <= 100)
             health = newHealth;
         else if (newHealth > 100)

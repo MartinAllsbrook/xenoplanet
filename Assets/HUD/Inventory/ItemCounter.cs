@@ -28,11 +28,12 @@ public class ItemCounter : MonoBehaviour
         _unselectedColor = backgroundImage.color;
     }
 
-    public bool AddItem()
+    public bool UpdateCount(int delta)
     {
-        if (_itemCount < maxCount)
+        int newCount = _itemCount + delta;
+        if (newCount <= maxCount && newCount >= 0)
         {
-            _itemCount++;
+            _itemCount = newCount;
             countDisplay.text = _itemCount.ToString();
             return true;
         }
@@ -40,17 +41,18 @@ public class ItemCounter : MonoBehaviour
         return false;
     }
 
-    public void RemoveItems(int numItems)
+    /*public bool RemoveItems(int numItems)
     {
         if (_itemCount - numItems >= 0)
         {
             _itemCount -= numItems;
             countDisplay.text = _itemCount.ToString();
-            return;
+            return true;
         }
         
         Debug.LogError("Somehow player doesn't have enough items");
-    }
+        return false;
+    }*/
 
     public bool CheckAmount(int amount)
     {

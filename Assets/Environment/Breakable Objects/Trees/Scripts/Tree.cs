@@ -71,7 +71,7 @@ public class Tree : BreakableObject
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.layer);
+        // Debug.Log(collision.gameObject.layer);
         if (collision.gameObject.layer == 6)
         {
             _impulseSource.GenerateImpulse();

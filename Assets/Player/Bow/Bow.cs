@@ -21,7 +21,7 @@ public class Bow : MonoBehaviour
     [SerializeField] private float meleeDistance;
     [SerializeField] private float meleeDamage;
     [SerializeField] private float maxChargeTime;
-    
+
     [SerializeField] private GameObject mainCamera;
     // [SerializeField] private CinemachineFreeLook thirdPersonCamera;
     [SerializeField] private Transform arrowAimer;
@@ -29,17 +29,17 @@ public class Bow : MonoBehaviour
 
     // [SerializeField] private TMP_Text _numArrowsText;
     
-    private float _chargeTime = 0;
-    private float _strength = 0;
+    // private float _chargeTime = 0;
+    // private float _strength = 0;
+    // private bool _chargingInput = false;
+    // private bool _aimingInput = false;
+    // private bool _readyToFire = true;
+    // public bool isAiming;
+
     private int _selectedArrowIndex = 0;
     private ParticleSystem _meleeParticleSystem;
-    private bool _chargingInput = false;
+    private int _numArrows;
     private bool _chargeArrow = false;
-    private bool _aimingInput = false;
-    private float _numArrows;
-    
-    public bool isAiming;
-    private bool _readyToFire = true;
     private bool _aimingCoroutinesRunning;
 
     #region Basic Unity Event Functions
@@ -55,14 +55,8 @@ public class Bow : MonoBehaviour
     {
         _meleeParticleSystem = GetComponent<ParticleSystem>();
         impulseSource = GetComponent<CinemachineImpulseSource>();
+        Inventory.OnUpdateCount.AddListener(UpdateNumArrows);
     }
-
-    /*private void Update()
-    {
-        // GetNumArrows();
-        if (_chargingInput)
-            ChargeArrow();
-    }*/
 
     #endregion
 
@@ -71,14 +65,8 @@ public class Bow : MonoBehaviour
     // Gets the right trigger input and uses it to control the bow
     public void GetChargingInput(InputAction.CallbackContext context)
     {
-        // Will be true if trigger is held, false if not // Shouldn't be necessary with rework 
-        /*_chargingInput = context.action.WasPerformedThisFrame(); 
-        if (context.action.WasReleasedThisFrame() && _readyToFire)
-        {
-            _readyToFire = false;
-            FireArrow();
-            StartCoroutine(ReadyBow());
-        }*/
+        if (_numArrows <= 0)
+            return;
 
         if (context.action.WasPressedThisFrame()) // On RT down
         {
@@ -86,18 +74,12 @@ public class Bow : MonoBehaviour
             StartCoroutine(FireArrowRoutine());
         }
 
-        if (context.action.WasReleasedThisFrame())
+        if (context.action.WasReleasedThisFrame()) // On RT up
         {
             _chargeArrow = false;
         }
     }
-
-    /*IEnumerator ReadyBow()
-    {
-        yield return new WaitForSeconds(0.02f);
-        _readyToFire = true;
-    }*/
-
+    
     public void GetMeleeInput(InputAction.CallbackContext context)
     {
         if (context.action.WasPerformedThisFrame())
@@ -111,10 +93,11 @@ public class Bow : MonoBehaviour
     }
 
     #endregion
-
+    
+    // Controls the bow along with the _chargeArrow boolean variable
     IEnumerator FireArrowRoutine()
     {
-        float deltaTime = 0.01f;
+        const float deltaTime = 0.01f;
         float chargeTime = 0f;
         float strength = 0f;
         
@@ -126,17 +109,23 @@ public class Bow : MonoBehaviour
             yield return new WaitForSeconds(deltaTime);
         }
         
-        // Fire the arrow now that it is done charging this should be a separate method
-        Vector3 spawnPosition = Player.Instance.transform.position + Vector3.up * 2;
+        FireArrow(strength); // Once trigger is released, fire the arrow
+
+        yield return null;
+    }
+
+    private void FireArrow(float strength)
+    {
+        Debug.Log("Fire Arrow");
+        Vector3 spawnPosition = Player.Instance.transform.position + Vector3.up * 2; // Could move reference to player instance outside this
         Vector3 arrowDirection = CalculateAimPosition(spawnPosition);
 
         var arrowInstance = Instantiate(arrows[_selectedArrowIndex], spawnPosition, Quaternion.LookRotation(arrowDirection));
         arrowInstance.GetComponent<Arrow>().Fire(strength); // Add force to the arrow equal to strength using arrow API
         
-        Inventory.Instance.RemoveItem(arrows[_selectedArrowIndex].name + 's');  // Remove arrow from inventory
+        Inventory.Instance.UpdateItemCount(arrows[_selectedArrowIndex].name + 's', -1);  // Remove arrow from inventory
+        
         impulseSource.GenerateImpulse(); // Generate an impulse when arrows are fired
-
-        yield return null;
     }
 
     private void CycleArrow()
@@ -146,11 +135,7 @@ public class Bow : MonoBehaviour
         if (_selectedArrowIndex >= arrows.Length)
             _selectedArrowIndex = 0;
         
-        // Update stuff
-        GameObject arrowGameObject = arrows[_selectedArrowIndex].gameObject;
-        
-        _numArrows = Inventory.Instance.GetItemCount(arrowGameObject.name);
-        HUDController.Instance.SetArrow(arrowGameObject.name);
+        HUDController.Instance.SetArrow(arrows[_selectedArrowIndex].name);
     }
     
     /*// "Charge" arrow based on how long the player is holding the trigger
@@ -184,11 +169,12 @@ public class Bow : MonoBehaviour
         impulseSource.GenerateImpulse(); // Generate an impulse when arrows are fired
     }*/
 
-    /*void GetNumArrows()
+    void UpdateNumArrows()
     {
-        // _numArrows = arrows.Length;
-        // _numArrowsText.text = _numArrows.ToString();
-    }*/
+        string arrowName = arrows[_selectedArrowIndex].name + 's';
+        _numArrows = Inventory.Instance.GetItemCount(arrowName);
+        HUDController.Instance.SetNumArrows(_numArrows);
+    }
     
     private void Melee()
     {

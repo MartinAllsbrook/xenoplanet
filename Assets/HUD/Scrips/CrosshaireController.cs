@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.TextCore;
 using UnityEngine.UI;
@@ -9,6 +10,7 @@ public class CrosshaireController : MonoBehaviour
 {
     [SerializeField] private GameObject hitmarker;
     [SerializeField] private GameObject crossHair;
+    [SerializeField] private TextMeshProUGUI numArrowsDisplay;
     
     // Reference to the UI image component
     private Image image;
@@ -29,6 +31,11 @@ public class CrosshaireController : MonoBehaviour
         image = crossHair.GetComponent<Image>();
     }
 
+    public void SetNumArrows(int numArrows)
+    {
+        numArrowsDisplay.text = numArrows.ToString();
+    }
+
     // A coroutine that changes the color of the image using lerp
     private IEnumerator FadeIn()
     {
@@ -39,6 +46,7 @@ public class CrosshaireController : MonoBehaviour
         {
             float t = (Time.time - startTime) / duration; // Calculate the fraction of the transition
             image.color = Color.Lerp(startColor, endColor, t); // Lerp the color of the image
+            numArrowsDisplay.color = Color.Lerp(startColor, endColor, t); // Lerp the color of the text
             
             yield return null;
         }
@@ -55,6 +63,7 @@ public class CrosshaireController : MonoBehaviour
         {
             float t = (Time.time - startTime) / duration; // Calculate the fraction of the transition
             image.color = Color.Lerp(endColor, startColor, t); // Lerp the color of the image
+            numArrowsDisplay.color = Color.Lerp(endColor, startColor, t); // Lerp the color of the text
             
             yield return null;
         }

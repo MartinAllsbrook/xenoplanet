@@ -64,6 +64,11 @@ public class HUDController : MonoBehaviour
         crosshaireController.HideCrossHair();
     }
 
+    public void SetNumArrows(int numArrows)
+    {
+        crosshaireController.SetNumArrows(numArrows);
+    }
+
     public void ToggleInventory(InputAction.CallbackContext context)
     {
         if (inventoryOpen)

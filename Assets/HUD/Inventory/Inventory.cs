@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class Inventory : MonoBehaviour
 {
     public static Inventory Instance;
+    public static UnityEvent OnUpdateCount;
 
     [SerializeField] private ItemCounter[] initialItemsArray;
     [SerializeField] private CraftingRecipe[] initialRecipesArray;
@@ -22,6 +24,9 @@ public class Inventory : MonoBehaviour
     {
         if (Instance == null)
             Instance = this;
+
+        if (OnUpdateCount == null)
+            OnUpdateCount = new UnityEvent();
 
         _itemCounters = new Dictionary<string, ItemCounter>();
         _craftingRecipes = new Dictionary<string, CraftingRecipe>();
@@ -42,16 +47,17 @@ public class Inventory : MonoBehaviour
         _selectedItemCounter.ToggleSelected();
     }
 
-    public bool AddItem(string itemName)
+    public bool UpdateItemCount(string itemName, int deltaCount)
     {
-        return _itemCounters[itemName].AddItem();
+        if (_itemCounters[itemName].UpdateCount(deltaCount))
+        {
+            OnUpdateCount.Invoke();
+            return true;
+        }
+
+        return false;
     }
 
-    public void RemoveItem(string itemName)
-    {
-        _itemCounters[itemName].RemoveItems(1);
-    }
-    
     public int GetItemCount(string itemName)
     {
         return _itemCounters[itemName].GetAmmount();
@@ -66,7 +72,7 @@ public class Inventory : MonoBehaviour
         foreach (var requiredItem in requiredItems)
         {
             int itemCount = recipe[requiredItem];
-            Debug.Log(requiredItem + " : " + itemCount);
+            // Debug.Log(requiredItem + " : " + itemCount);
             
             if (!_itemCounters[requiredItem].CheckAmount(itemCount))
                 return false;
@@ -75,10 +81,10 @@ public class Inventory : MonoBehaviour
         foreach (var requiredItem in requiredItems)
         {
             int itemCount = recipe[requiredItem];
-            _itemCounters[requiredItem].RemoveItems(itemCount);
+            UpdateItemCount(requiredItem, -itemCount); // Negative to remove items
         }
 
-        if (!_itemCounters[itemToCraft].AddItem())
+        if (!UpdateItemCount(itemToCraft, 1))
         {
             // TODO: Make this drop the crafted item.
             Debug.LogError(itemToCraft + " item slot full!");
