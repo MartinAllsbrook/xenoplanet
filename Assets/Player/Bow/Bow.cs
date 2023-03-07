@@ -58,7 +58,7 @@ public class Bow : MonoBehaviour
 
     private void Update()
     {
-        GetNumArrows();
+        // GetNumArrows();
         if (_chargingInput)
             ChargeArrow();
     }
@@ -109,8 +109,11 @@ public class Bow : MonoBehaviour
         if (_selectedArrowIndex >= arrows.Length)
             _selectedArrowIndex = 0;
         
-        // Update hud
-        HUDController.Instance.SetArrow(arrows[_selectedArrowIndex].GetComponent<Arrow>().ArrowName);
+        // Update stuff
+        GameObject arrowGameObject = arrows[_selectedArrowIndex].gameObject;
+        
+        _numArrows = Inventory.Instance.GetItemCount(arrowGameObject.name);
+        HUDController.Instance.SetArrow(arrowGameObject.name);
     }
     
     // "Charge" arrow based on how long the player is holding the trigger
@@ -134,18 +137,19 @@ public class Bow : MonoBehaviour
         
         arrowInstance.GetComponent<Arrow>().Fire(_strength); // Add force to the arrow equal to strength 
         
+        Inventory.Instance.RemoveItem(arrows[_selectedArrowIndex].name + 's');  // Remove arrow from inventory
+
         // Reset FOV and vars
         // thirdPersonCamera.m_Lens.FieldOfView = 45;
         _strength = 0;
         _chargeTime = 0;
         
-        //Impulse
-        impulseSource.GenerateImpulse();
+        impulseSource.GenerateImpulse(); // Generate an impulse when arrows are fired
     }
 
     void GetNumArrows()
     {
-        _numArrows = arrows.Length;
+        // _numArrows = arrows.Length;
         // _numArrowsText.text = _numArrows.ToString();
     }
     

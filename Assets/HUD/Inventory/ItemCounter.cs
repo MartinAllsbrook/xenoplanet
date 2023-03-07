@@ -28,23 +28,6 @@ public class ItemCounter : MonoBehaviour
         _unselectedColor = backgroundImage.color;
     }
 
-    /*
-    public string GetName()
-    {
-        return itemName;
-    }
-    */
-
-    /*
-    public bool CompareAndAdd(string testName)
-    {
-        if (testName != itemName)
-            return false;
-
-        return AddItem();
-    }
-    */
-
     public bool AddItem()
     {
         if (_itemCount < maxCount)
@@ -57,16 +40,6 @@ public class ItemCounter : MonoBehaviour
         return false;
     }
 
-    /*
-    public void CompareAndRemove(string testName)
-    {
-        if (testName != itemName)
-            return;
-
-        _itemCount--;
-    }
-    */
-    
     public void RemoveItems(int numItems)
     {
         if (_itemCount - numItems >= 0)
@@ -85,6 +58,11 @@ public class ItemCounter : MonoBehaviour
             return true;
         
         return false;
+    }
+
+    public int GetAmmount()
+    {
+        return _itemCount;
     }
 
     public void ToggleSelected()
