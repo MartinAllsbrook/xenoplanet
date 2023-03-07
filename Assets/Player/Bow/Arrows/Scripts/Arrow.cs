@@ -11,13 +11,7 @@ public class Arrow : MonoBehaviour
     [SerializeField] private float maxDamage;
     [SerializeField] private float maxForce;
     [SerializeField] private float arrowUp;
-    [SerializeField] private string arrowName;
-    public string ArrowName
-    {
-        get { return this.arrowName; }
-        private set {}
-    }
-    
+
     // Arrow damage var and prop to be accessed by target
     private float damage = 0;
     public float Damage

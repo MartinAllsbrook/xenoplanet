@@ -629,7 +629,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3101116443294278124}
-  m_LocalRotation: {x: -0.014260462, y: -0.16847129, z: -0.002437579, w: 0.9856004}
+  m_LocalRotation: {x: -0.0142603945, y: -0.16847129, z: -0.0024375673, w: 0.9856004}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1109,7 +1109,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3101116444492686526}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.295227, y: 1.4399986, z: -6.5176697}
+  m_LocalPosition: {x: 2.295227, y: 1.44, z: -6.5176697}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1300,7 +1300,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3101116444868585975}
-  m_LocalRotation: {x: -0.014260462, y: -0.16847129, z: -0.002437579, w: 0.9856004}
+  m_LocalRotation: {x: -0.0142603945, y: -0.16847129, z: -0.0024375673, w: 0.9856004}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1378,7 +1378,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3101116445073189307}
-  m_LocalRotation: {x: -0.014260462, y: -0.16847129, z: -0.002437579, w: 0.9856004}
+  m_LocalRotation: {x: -0.0142603945, y: -0.16847129, z: -0.0024375673, w: 0.9856004}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1492,8 +1492,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3307781902392146132}
-  m_LocalRotation: {x: -0.014260462, y: -0.16847129, z: -0.002437579, w: 0.9856004}
-  m_LocalPosition: {x: 2.295227, y: 1.4399986, z: -6.5176697}
+  m_LocalRotation: {x: -0.0142603945, y: -0.16847129, z: -0.0024375673, w: 0.9856004}
+  m_LocalPosition: {x: 2.295227, y: 1.44, z: -6.5176697}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1971,6 +1971,7 @@ MonoBehaviour:
   PlayerDoubleJumpMultiplier: 1
   PlayerAirMoveMultiplier: 1
   PlayerFallForce: 10
+  PlayerClimbSpeed: 0
   CanSecondJump: 1
   directionalSecondJump: 0
   _playerFollower: {fileID: 854709611}
@@ -2148,8 +2149,20 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
-        m_MethodName: TestCraft
+        m_TargetAssemblyTypeName: HUDController, Assembly-CSharp
+        m_MethodName: ToggleInventory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5871221131373447264}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OpenInventory
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2161,18 +2174,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: e867ffd0-9b9a-42de-8719-8b6e8dc27efd
     m_ActionName: Player/PadUp[/XInputControllerWindows/dpad/up]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 2a402f53-dc60-46c8-8ecb-0d00e7fee535
-    m_ActionName: Player/PadDown[/XInputControllerWindows/dpad/down]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 3d06e8be-2886-421c-be35-4faead29d556
-    m_ActionName: Player/PadLeft[/XInputControllerWindows/dpad/left]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b205b63e-344d-4582-b922-01879c52a363
-    m_ActionName: Player/PadRight[/XInputControllerWindows/dpad/right]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3643135492808573079}
@@ -2264,8 +2265,8 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: HUDController, Assembly-CSharp
-        m_MethodName: ReadMove
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: GetInventoryInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2293,6 +2294,26 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 466e75ea-c7f4-4ac0-b2bd-2069660f6c72
     m_ActionName: Player/Use Object[/XInputControllerWindows/buttonWest]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: GetCraftInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b25bc241-e92a-42f2-83d2-4845d296027e
+    m_ActionName: Inventory/Craft Item[/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a4f83bb0-0007-4acf-b2e8-892fa477f63a
+    m_ActionName: Inventory/Discard Item[/XInputControllerWindows/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -2629,11 +2650,8 @@ MonoBehaviour:
   meleeDamage: 30
   maxChargeTime: 2
   mainCamera: {fileID: 3307781902392146132}
-  thirdPersonCamera: {fileID: 3101116444492686521}
   arrowAimer: {fileID: 1919678411}
-  ImpulseSource: {fileID: 1577006788}
-  _numArrowsText: {fileID: 0}
-  isAiming: 0
+  impulseSource: {fileID: 0}
 --- !u!114 &3643135492808573079
 MonoBehaviour:
   m_ObjectHideFlags: 0

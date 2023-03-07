@@ -104,7 +104,6 @@ MonoBehaviour:
   maxDamage: 60
   maxForce: 3000
   arrowUp: 0.02
-  arrowName: Normal
 --- !u!54 &-43158751508159289
 Rigidbody:
   m_ObjectHideFlags: 0

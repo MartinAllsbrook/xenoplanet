@@ -4827,7 +4827,7 @@ GameObject:
   - component: {fileID: 135257644589340876}
   - component: {fileID: 1479035195779734685}
   m_Layer: 11
-  m_Name: Flack Arrow
+  m_Name: Flak Arrow
   m_TagString: Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4842,7 +4842,7 @@ Transform:
   m_GameObject: {fileID: 3416325244853850123}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 230.34041, y: 20.943998, z: 264.0966}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7333517709302875484}
@@ -4942,9 +4942,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrowRigidbody: {fileID: 2792159186334025496}
-  baseDamage: 2
-  baseForce: 500
-  arrowName: Flack Arrow
+  maxDamage: 0
+  maxForce: 0
+  arrowUp: 0
   explodeParticles: {fileID: 5065590562593492601, guid: 6689370d9bf0f6343a0a9b040326513a, type: 3}
   enemies:
     serializedVersion: 2

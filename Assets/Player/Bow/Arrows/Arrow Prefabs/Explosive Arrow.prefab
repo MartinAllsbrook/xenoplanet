@@ -4842,7 +4842,7 @@ Transform:
   m_GameObject: {fileID: 6564256316830937675}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 230.34041, y: 20.943998, z: 264.0966}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1275704390781249308}
@@ -4942,9 +4942,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrowRigidbody: {fileID: 5966821036017870168}
-  baseDamage: 20
-  baseForce: 400
-  arrowName: Explosive
+  maxDamage: 0
+  maxForce: 0
+  arrowUp: 0
   explodeParticles: {fileID: 5065590562593492601, guid: 6689370d9bf0f6343a0a9b040326513a, type: 3}
   enemies:
     serializedVersion: 2
