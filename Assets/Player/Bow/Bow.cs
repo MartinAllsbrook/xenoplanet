@@ -135,6 +135,7 @@ public class Bow : MonoBehaviour
         if (_selectedArrowIndex >= arrows.Length)
             _selectedArrowIndex = 0;
         
+        UpdateNumArrows();
         HUDController.Instance.SetArrow(arrows[_selectedArrowIndex].name);
     }
     

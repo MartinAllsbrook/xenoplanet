@@ -10,7 +10,7 @@ public class Arrow : MonoBehaviour
     [SerializeField] protected Rigidbody arrowRigidbody;
     [SerializeField] private float maxDamage;
     [SerializeField] private float maxForce;
-    [SerializeField] private float arrowUp;
+    private const float ArrowUp = 0.02f;
 
     // Arrow damage var and prop to be accessed by target
     private float damage = 0;
@@ -23,7 +23,7 @@ public class Arrow : MonoBehaviour
     // Fire: Add fore and set damage of arrow
     public void Fire(float strength)
     {
-        arrowRigidbody.AddForce(strength * maxForce * (transform.forward + transform.up * arrowUp));
+        arrowRigidbody.AddForce(strength * maxForce * (transform.forward + transform.up * ArrowUp));
         damage = maxDamage * strength;
     }
     
