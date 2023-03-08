@@ -16,6 +16,7 @@ public class ItemCounter : MonoBehaviour
     [SerializeField] private Image backgroundImage;
     [SerializeField] private TextMeshProUGUI nameDisplay;
     [SerializeField] private TextMeshProUGUI countDisplay;
+    [SerializeField] public ItemPickup ItemPickup;
 
     private int _itemCount;
     private Color _unselectedColor;
@@ -40,19 +41,6 @@ public class ItemCounter : MonoBehaviour
 
         return false;
     }
-
-    /*public bool RemoveItems(int numItems)
-    {
-        if (_itemCount - numItems >= 0)
-        {
-            _itemCount -= numItems;
-            countDisplay.text = _itemCount.ToString();
-            return true;
-        }
-        
-        Debug.LogError("Somehow player doesn't have enough items");
-        return false;
-    }*/
 
     public bool CheckAmount(int amount)
     {
@@ -79,5 +67,40 @@ public class ItemCounter : MonoBehaviour
             backgroundImage.color = selectedColor;
             _selected = true;
         }
+    }
+
+    public void UseItem(bool use)
+    {
+        if (!CheckAmount(1))
+            return;
+        
+        UseHandler useHandler = GetComponent<UseHandler>();
+
+        if (useHandler == null)
+        {
+            Debug.LogError("No UseHandler attached");
+            return;
+        }
+
+        if (use)
+            useHandler.StartUsing();
+        else
+            useHandler.StopUsing();
+    }
+    
+    public void StopUsing()
+    {
+        UseHandler useHandler = GetComponent<UseHandler>();
+
+        if (useHandler == null)
+        {
+            Debug.LogError("No UseHandler attached");
+            return;
+        }
+        
+        if (!UpdateCount(-1))
+            return;
+        
+        useHandler.StartUsing();
     }
 }

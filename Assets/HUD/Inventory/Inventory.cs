@@ -103,12 +103,48 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    private void OnDrop()
+    {
+        var itemCounter = _selectedItemCounter;
+        
+        // Remove item from inventory, return if item cannot be removed
+        if (!itemCounter.UpdateCount(-1))
+            return;
+
+        var playerTransform = Player.Instance.transform;
+        Vector3 spawnPosition = playerTransform.position + (playerTransform.forward * 2) + (Vector3.up * 5);
+        Instantiate(itemCounter.ItemPickup, spawnPosition, new Quaternion(0,0,0,0));
+    }
+
+    private void OnUse(bool use)
+    {
+        if (use)
+            _selectedItemCounter.UseItem(use);
+        else
+            _selectedItemCounter.UseItem(use);
+    }
+
     #region Get Inputs
 
     public void GetCraftInput(InputAction.CallbackContext context)
     {
-        if (context.action.WasPerformedThisFrame())
+        if (context.action.WasPressedThisFrame())
             OnCraft();    
+    }
+
+    public void GetDropInput(InputAction.CallbackContext context)
+    {
+        if (context.action.WasPressedThisFrame())
+            OnDrop();
+    }
+
+    public void GetUseInput(InputAction.CallbackContext context)
+    {
+        if (context.action.WasPressedThisFrame())
+            OnUse(true);
+
+        if (context.action.WasReleasedThisFrame())
+            OnUse(false);
     }
 
     #endregion

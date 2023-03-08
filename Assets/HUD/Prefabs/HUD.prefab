@@ -1954,12 +1954,30 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3371996617546165271, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
   m_PrefabInstance: {fileID: 1648156207609578430}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 4981593412141223805}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6367ac615e5a63489ad8b7d8343693e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4981593412141223805 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6052065519026441411, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
+  m_PrefabInstance: {fileID: 1648156207609578430}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1427997667571889254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4981593412141223805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45c76f070ef9b964c88ebef6ebe2a93e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useTime: 3
 --- !u!1001 &2128758172781861358
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2164,6 +2182,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3371996617546165271, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
+      propertyPath: ItemPickup
+      value: 
+      objectReference: {fileID: 1221427625222491817, guid: 3ea26d7b3d2c2e143959505caa9f0fde, type: 3}
     - target: {fileID: 6052065519026441411, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
       propertyPath: m_Name
       value: Scrap Metal
@@ -2390,6 +2412,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3371996617546165271, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
+      propertyPath: ItemPickup
+      value: 
+      objectReference: {fileID: 1221427625222491817, guid: d2edf5afa86f63d498c4160a64414116, type: 3}
     - target: {fileID: 6052065519026441411, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
       propertyPath: m_Name
       value: Tech Trash
@@ -2616,6 +2642,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3371996617546165271, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
+      propertyPath: ItemPickup
+      value: 
+      objectReference: {fileID: 1221427625222491817, guid: db866ef7fabeb444da8324188811a247, type: 3}
     - target: {fileID: 6052065519026441411, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
       propertyPath: m_Name
       value: Explosives
@@ -2842,6 +2872,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3371996617546165271, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
+      propertyPath: ItemPickup
+      value: 
+      objectReference: {fileID: 1221427625222491817, guid: 06ed67bd55c54e04896a29454752dbed, type: 3}
     - target: {fileID: 6052065519026441411, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
       propertyPath: m_Name
       value: Wood
