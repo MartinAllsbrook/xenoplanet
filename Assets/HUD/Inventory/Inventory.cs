@@ -128,19 +128,19 @@ public class Inventory : MonoBehaviour
 
     public void GetCraftInput(InputAction.CallbackContext context)
     {
-        if (context.action.WasPressedThisFrame())
+        if (context.action.WasPerformedThisFrame())
             OnCraft();    
     }
 
     public void GetDropInput(InputAction.CallbackContext context)
     {
-        if (context.action.WasPressedThisFrame())
+        if (context.action.WasPerformedThisFrame())
             OnDrop();
     }
 
     public void GetUseInput(InputAction.CallbackContext context)
     {
-        if (context.action.WasPressedThisFrame())
+        if (context.action.WasPerformedThisFrame())
             OnUse(true);
 
         if (context.action.WasReleasedThisFrame())
