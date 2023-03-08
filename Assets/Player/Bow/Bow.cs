@@ -68,10 +68,11 @@ public class Bow : MonoBehaviour
         if (_numArrows <= 0)
             return;
 
-        if (context.action.WasPressedThisFrame()) // On RT down
+        if (context.action.WasPressedThisFrame() && !_chargeArrow) // On RT down
         {
             _chargeArrow = true;
             StartCoroutine(FireArrowRoutine());
+            return;
         }
 
         if (context.action.WasReleasedThisFrame()) // On RT up

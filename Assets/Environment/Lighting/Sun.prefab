@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f98e9520979cbef4eb9c0aee0e985f58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayLength: 60
+  dayLength: 500
   fogColorCurve:
     serializedVersion: 2
     m_Curve:
