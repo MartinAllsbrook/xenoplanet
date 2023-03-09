@@ -113,7 +113,7 @@ public class Inventory : MonoBehaviour
 
         var playerTransform = Player.Instance.transform;
         Vector3 spawnPosition = playerTransform.position + (playerTransform.forward * 2) + (Vector3.up * 5);
-        Instantiate(itemCounter.ItemPickup, spawnPosition, new Quaternion(0,0,0,0));
+        Instantiate(itemCounter.associatedItemPickup, spawnPosition, new Quaternion(0,0,0,0));
     }
 
     private void OnUse(bool use)

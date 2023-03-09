@@ -21,7 +21,7 @@ public class ItemPickup : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log(itemName);
+            // Debug.Log(itemName);
             if (Inventory.Instance.UpdateItemCount(itemName, 1))
                 Destroy(gameObject);
         }

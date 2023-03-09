@@ -9,19 +9,24 @@ public class UseHandler : MonoBehaviour
     
     private bool _using;
     private float _timePassed;
-    
+    private ItemCounter _itemCounter;
+
+    private void Start()
+    {
+        _itemCounter = GetComponent<ItemCounter>();
+    }
+
     public void StartUsing()
     {
-        Debug.Log("Start using, Using: " + _using);
-        
+        // Debug.Log("Start using, Using: " + _using);
         if (!_using)
             _using = true;
     }
 
     public void StopUsing()
     {
-        Debug.Log("Stop using Using: " + _using);
-
+        // Debug.Log("Stop using Using: " + _using);
+        _itemCounter.SetUsePercent(0);
         _using = false;
         _timePassed = 0;
     }
@@ -38,12 +43,13 @@ public class UseHandler : MonoBehaviour
         if (_using)
         {
             _timePassed += Time.deltaTime;
-            Debug.Log("Time Passed: " + _timePassed);
+            _itemCounter.SetUsePercent(_timePassed/useTime);
+            // Debug.Log("Time Passed: " + _timePassed);
         }
     }
 
     protected virtual void UseItem()
     {
-        GetComponent<ItemCounter>().UpdateCount(-1);
+        _itemCounter.UpdateCount(-1);
     }
 }

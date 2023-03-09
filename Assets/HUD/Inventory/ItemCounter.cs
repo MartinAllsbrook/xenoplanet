@@ -16,17 +16,24 @@ public class ItemCounter : MonoBehaviour
     [SerializeField] private Image backgroundImage;
     [SerializeField] private TextMeshProUGUI nameDisplay;
     [SerializeField] private TextMeshProUGUI countDisplay;
-    [SerializeField] public ItemPickup ItemPickup;
+    [SerializeField] public ItemPickup associatedItemPickup;
+    [SerializeField] private RectTransform progressEmpty;
+    [SerializeField] private RectTransform progressFull;
 
+    private float _rightPercent;
+    private float _leftPercent;
+    
     private int _itemCount;
     private Color _unselectedColor;
     private bool _selected;
 
-    private void Start()
-    {
+    private void Start() {
         nameDisplay.text = gameObject.name;
         countDisplay.text = _itemCount.ToString();
         _unselectedColor = backgroundImage.color;
+
+        _rightPercent = progressEmpty.anchorMax.x;
+        _leftPercent = progressEmpty.anchorMin.x;
     }
 
     public bool UpdateCount(int delta)
@@ -87,20 +94,15 @@ public class ItemCounter : MonoBehaviour
         else
             useHandler.StopUsing();
     }
-    
-    public void StopUsing()
-    {
-        UseHandler useHandler = GetComponent<UseHandler>();
 
-        if (useHandler == null)
-        {
-            Debug.LogError("No UseHandler attached");
-            return;
-        }
-        
-        if (!UpdateCount(-1))
-            return;
-        
-        useHandler.StartUsing();
+    public void SetUsePercent(float percentComplete)
+    {
+        float widthPercent = _rightPercent - _leftPercent;
+
+        float fullWidth = widthPercent * percentComplete;
+        float emptyWidth = widthPercent * (1 - percentComplete);
+
+        progressEmpty.anchorMin = new Vector2(_rightPercent - emptyWidth, progressEmpty.anchorMin.y);
+        progressFull.anchorMax = new Vector2(_leftPercent + fullWidth, progressFull.anchorMax.y);
     }
 }
