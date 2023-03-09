@@ -26,6 +26,7 @@ public class Bow : MonoBehaviour
     // [SerializeField] private CinemachineFreeLook thirdPersonCamera;
     [SerializeField] private Transform arrowAimer;
     [SerializeField] private CinemachineImpulseSource impulseSource;
+    [SerializeField] private CrosshaireController crosshaireController;
 
     // [SerializeField] private TMP_Text _numArrowsText;
     
@@ -108,8 +109,11 @@ public class Bow : MonoBehaviour
             strength = 1 - maxChargeTime / (chargeTime + maxChargeTime);
 
             yield return new WaitForSeconds(deltaTime);
+            
+            crosshaireController.SetCrossHairWidth(strength);
         }
-        
+
+        crosshaireController.SetCrossHairWidth(1);
         FireArrow(strength); // Once trigger is released, fire the arrow
 
         yield return null;

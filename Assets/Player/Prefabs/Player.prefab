@@ -2680,6 +2680,7 @@ MonoBehaviour:
   mainCamera: {fileID: 3307781902392146132}
   arrowAimer: {fileID: 1919678411}
   impulseSource: {fileID: 0}
+  crosshaireController: {fileID: 0}
 --- !u!114 &3643135492808573079
 MonoBehaviour:
   m_ObjectHideFlags: 0

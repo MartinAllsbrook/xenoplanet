@@ -9,11 +9,13 @@ using UnityEngine.UI;
 public class CrosshaireController : MonoBehaviour
 {
     [SerializeField] private GameObject hitmarker;
-    [SerializeField] private GameObject crossHair;
+    [SerializeField] private GameObject crossHairCenter;
+    [SerializeField] private GameObject crossHairLeft;
+    [SerializeField] private GameObject crossHairRight;
     [SerializeField] private TextMeshProUGUI numArrowsDisplay;
-    
-    // Reference to the UI image component
-    private Image image;
+
+    [SerializeField] private float minCrossHairWidth;
+    [SerializeField] private float maxCrossHairWidth;
 
     // The start and end colors for the transition
     public Color startColor = Color.white;
@@ -26,9 +28,21 @@ public class CrosshaireController : MonoBehaviour
     private Coroutine fadeInRoutine;
     private Coroutine fadeOutRoutine;
 
+    private Image _crossHairCenterImage;
+    private Image _crossHairLeftImage;
+    private Image _crossHairRightImage;
+    
+    private RectTransform _crossHairLeftRectTransform;
+    private RectTransform _crossHairRightRectTransform;
+
     private void Start()
     {
-        image = crossHair.GetComponent<Image>();
+        _crossHairCenterImage = crossHairCenter.GetComponent<Image>();
+        _crossHairLeftImage = crossHairLeft.GetComponent<Image>();
+        _crossHairRightImage = crossHairRight.GetComponent<Image>();
+        
+        _crossHairLeftRectTransform = crossHairLeft.GetComponent<RectTransform>();
+        _crossHairRightRectTransform = crossHairRight.GetComponent<RectTransform>();
     }
 
     public void SetNumArrows(int numArrows)
@@ -45,15 +59,13 @@ public class CrosshaireController : MonoBehaviour
         while (Time.time - startTime < duration)
         {
             float t = (Time.time - startTime) / duration; // Calculate the fraction of the transition
-            image.color = Color.Lerp(startColor, endColor, t); // Lerp the color of the image
-            numArrowsDisplay.color = Color.Lerp(startColor, endColor, t); // Lerp the color of the text
-            
+            SetColor(Color.Lerp(startColor, endColor, t));
             yield return null;
         }
 
-        image.color = endColor;
+        SetColor(endColor);
     }
-    
+
     private IEnumerator FadeOut()
     {
         // Get the current time
@@ -62,13 +74,19 @@ public class CrosshaireController : MonoBehaviour
         while (Time.time - startTime < duration)
         {
             float t = (Time.time - startTime) / duration; // Calculate the fraction of the transition
-            image.color = Color.Lerp(endColor, startColor, t); // Lerp the color of the image
-            numArrowsDisplay.color = Color.Lerp(endColor, startColor, t); // Lerp the color of the text
-            
+            SetColor(Color.Lerp(endColor, startColor, t)); // Lerp the color of the text
             yield return null;
         }
 
-        image.color = startColor;
+        SetColor(startColor);
+    }
+
+    private void SetColor(Color color)
+    {
+        _crossHairCenterImage.color = color;
+        _crossHairLeftImage.color = color;
+        _crossHairRightImage.color = color;
+        numArrowsDisplay.color = startColor;
     }
 
     public void PlayHitMarker()
@@ -98,5 +116,15 @@ public class CrosshaireController : MonoBehaviour
         if (fadeInRoutine != null)
             StopCoroutine(fadeInRoutine);
         StartCoroutine(FadeOut());
+    }
+
+    public void SetCrossHairWidth(float percent)
+    {
+        float width = maxCrossHairWidth - minCrossHairWidth;
+        float position = minCrossHairWidth + width * (1 - percent);
+        Debug.Log(width);
+        _crossHairLeftRectTransform.anchoredPosition = new Vector2(-position, _crossHairLeftRectTransform.anchoredPosition.y);
+        _crossHairRightRectTransform.anchoredPosition = new Vector2(position, _crossHairLeftRectTransform.anchoredPosition.y);
+
     }
 }
