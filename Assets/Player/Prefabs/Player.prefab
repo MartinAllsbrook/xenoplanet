@@ -2673,7 +2673,7 @@ MonoBehaviour:
   aimingLayerMask:
     serializedVersion: 2
     m_Bits: 192
-  maxAimDistance: 60
+  maxAimDistance: 120
   meleeDistance: 3
   meleeDamage: 30
   chargeExponent: 3

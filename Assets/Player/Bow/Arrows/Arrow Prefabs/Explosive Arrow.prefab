@@ -145,6 +145,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1243089095373271837}
     m_Modifications:
+    - target: {fileID: 3291580475997897716, guid: 97216c245dbb64b4b9750a6447830b45, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3291580475997897716, guid: 97216c245dbb64b4b9750a6447830b45, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 0.5004902
+      objectReference: {fileID: 0}
+    - target: {fileID: 3291580475997897716, guid: 97216c245dbb64b4b9750a6447830b45, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3291580475997897716, guid: 97216c245dbb64b4b9750a6447830b45, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3291580475997897716, guid: 97216c245dbb64b4b9750a6447830b45, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0.5019608
+      objectReference: {fileID: 0}
     - target: {fileID: 6849873220570545268, guid: 97216c245dbb64b4b9750a6447830b45, type: 3}
       propertyPath: m_RootOrder
       value: 0
