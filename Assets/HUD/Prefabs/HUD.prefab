@@ -1190,7 +1190,7 @@ MonoBehaviour:
   crossHairLeft: {fileID: 3617485224218738220}
   crossHairRight: {fileID: 8607835812814475734}
   numArrowsDisplay: {fileID: 797267414}
-  minCrossHairWidth: 10
+  minCrossHairWidth: 20
   maxCrossHairWidth: 50
   startColor: {r: 1, g: 1, b: 1, a: 0}
   endColor: {r: 0.23113209, g: 0.95533156, b: 1, a: 1}

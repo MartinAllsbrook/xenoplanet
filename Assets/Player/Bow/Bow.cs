@@ -20,7 +20,8 @@ public class Bow : MonoBehaviour
     [SerializeField] private float maxAimDistance;
     [SerializeField] private float meleeDistance;
     [SerializeField] private float meleeDamage;
-    [SerializeField] private float maxChargeTime;
+    [SerializeField] private float chargeExponent;
+    [SerializeField] private float chargeTimeMultiplier;
 
     [SerializeField] private GameObject mainCamera;
     // [SerializeField] private CinemachineFreeLook thirdPersonCamera;
@@ -106,14 +107,14 @@ public class Bow : MonoBehaviour
         while (_chargeArrow) // Eventually charge arrow will be set to false by GetChargeInput()
         {
             chargeTime += deltaTime;
-            strength = 1 - maxChargeTime / (chargeTime + maxChargeTime);
+            strength = 1 - 1 / (Mathf.Pow((chargeTime * chargeTimeMultiplier), chargeExponent) + 1);
 
             yield return new WaitForSeconds(deltaTime);
             
             crosshaireController.SetCrossHairWidth(strength);
         }
 
-        crosshaireController.SetCrossHairWidth(1);
+        crosshaireController.SetCrossHairWidth(0);
         FireArrow(strength); // Once trigger is released, fire the arrow
 
         yield return null;

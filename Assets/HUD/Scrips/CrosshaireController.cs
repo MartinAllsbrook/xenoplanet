@@ -86,7 +86,7 @@ public class CrosshaireController : MonoBehaviour
         _crossHairCenterImage.color = color;
         _crossHairLeftImage.color = color;
         _crossHairRightImage.color = color;
-        numArrowsDisplay.color = startColor;
+        numArrowsDisplay.color = color;
     }
 
     public void PlayHitMarker()
@@ -122,7 +122,8 @@ public class CrosshaireController : MonoBehaviour
     {
         float width = maxCrossHairWidth - minCrossHairWidth;
         float position = minCrossHairWidth + width * (1 - percent);
-        Debug.Log(width);
+        Debug.Log("Percent: " + percent);
+        Debug.Log("Position: " + position);
         _crossHairLeftRectTransform.anchoredPosition = new Vector2(-position, _crossHairLeftRectTransform.anchoredPosition.y);
         _crossHairRightRectTransform.anchoredPosition = new Vector2(position, _crossHairLeftRectTransform.anchoredPosition.y);
 
