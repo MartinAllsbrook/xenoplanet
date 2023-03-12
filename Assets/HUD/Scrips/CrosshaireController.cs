@@ -122,8 +122,8 @@ public class CrosshaireController : MonoBehaviour
     {
         float width = maxCrossHairWidth - minCrossHairWidth;
         float position = minCrossHairWidth + width * (1 - percent);
-        Debug.Log("Percent: " + percent);
-        Debug.Log("Position: " + position);
+        // Debug.Log("Percent: " + percent);
+        // Debug.Log("Position: " + position);
         _crossHairLeftRectTransform.anchoredPosition = new Vector2(-position, _crossHairLeftRectTransform.anchoredPosition.y);
         _crossHairRightRectTransform.anchoredPosition = new Vector2(position, _crossHairLeftRectTransform.anchoredPosition.y);
 

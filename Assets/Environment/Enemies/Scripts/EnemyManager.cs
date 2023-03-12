@@ -22,14 +22,22 @@ public class EnemyManager : MonoBehaviour
     {
         while (true)
         {
-            Debug.Log("SpawnEnemy");
             Vector2 randomPoint = RandomPointInAnnulus(innerRadius, outerRadius);
             
-            Ray ray = new Ray(new Vector3(randomPoint.x + _playerTransform.position.x, 100f, randomPoint.y + _playerTransform.position.z), Vector3.down);
-            Physics.Raycast(ray, out RaycastHit hit, 100);
-            Vector3 spawnPosition = hit.point + Vector3.up * 4;
-            Instantiate(enemy, spawnPosition, new Quaternion(0,0,0,0));
-            yield return new WaitForSeconds(spawnRandomEnemyTime);
+            Debug.Log("Attempt to spawn at: " + randomPoint);
+
+            randomPoint += new Vector2(_playerTransform.position.x, _playerTransform.position.z);
+                
+            // Debug.Log("point 2: " + randomPoint);
+
+            Ray ray = new Ray(new Vector3(randomPoint.x, 100f, randomPoint.y), Vector3.down);
+            if (Physics.Raycast(ray, out RaycastHit hit, 150))
+            {
+                Vector3 spawnPosition = hit.point + Vector3.up * 4;
+                Instantiate(enemy, spawnPosition, new Quaternion(0,0,0,0));
+                Debug.Log("spawn successful");
+                yield return new WaitForSeconds(spawnRandomEnemyTime);
+            }
         }
     }
     

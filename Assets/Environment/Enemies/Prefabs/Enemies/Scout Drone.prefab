@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d89ff02310030c74385e75ec217086df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 25
+  health: 50
   itemDrops:
   - dropChance: 100
     dropTries: 1
@@ -209,7 +209,7 @@ MonoBehaviour:
     dropTries: 1
     drop: {fileID: 3980989105184464102, guid: db866ef7fabeb444da8324188811a247, type: 3}
   deathParticles: {fileID: 6195871198001566187, guid: 5b8ca04c0ed3fed49a823c9ce5d0fa1f, type: 3}
-  viewDistance: 128
+  viewDistance: 64
   visible:
     serializedVersion: 2
     m_Bits: 72
