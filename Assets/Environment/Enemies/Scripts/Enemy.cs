@@ -11,7 +11,9 @@ public class Enemy : BreakableObject
     [SerializeField] protected LayerMask visible;
     [SerializeField] protected float idleDistance;
     [SerializeField] protected IndicatorLight canSeePlayerIndicator;
-    
+    [SerializeField] protected float fov;
+    [SerializeField] protected LaserGun laserGun;
+
     protected Vector3 targetLocation;
     protected Vector3 lastPlayerLocation;
     protected bool canSeePlayer;
@@ -36,24 +38,6 @@ public class Enemy : BreakableObject
         canSeePlayerIndicator.Flashing = !canSeePlayer;
     }
 
-    /*protected virtual void OnCollisionEnter(Collision collision)
-    {
-        // If the enemy collided with an arrow
-        if (collision.gameObject.CompareTag("Arrow"))
-        {
-            // Get arrow script, and arrow damage from script
-            Arrow arrow = collision.gameObject.GetComponent<Arrow>();
-            float damage = arrow.Damage;
-                
-            // Loose health
-            health -= damage;
-            
-            // If enemy has no more health destroy it
-            if (health <= 0)
-                Die();
-        }
-    }*/
-
     // Generate a random position
     protected virtual Vector3 GenerateRandomTarget()
     {
@@ -63,7 +47,7 @@ public class Enemy : BreakableObject
             transform.position.z + Random.Range(-idleDistance, idleDistance));
     }
 
-    protected virtual bool CanSeePlayer(out RaycastHit hitOut)
+    protected bool CanSeePlayer(out RaycastHit hitOut)
     {
         Vector3 direction = Player.Instance.transform.position + new Vector3(0, 1, 0) - transform.position;
         Ray ray = new Ray(transform.position, direction);
@@ -73,13 +57,18 @@ public class Enemy : BreakableObject
             {
                 // Debug.Log(playerVisible);
                 // playerVisible.Invoke();
-                canSeePlayer = true;
-                hitOut = hit;
-                return true;
+                Vector3 playerDirection = (hit.point - transform.position).normalized;
+                Debug.DrawRay(transform.position, playerDirection, Color.green);
+                Debug.DrawRay(transform.position, laserGun.transform.forward, Color.red);
+                var angle = Vector3.Angle(laserGun.transform.forward, playerDirection);
+                if (angle < fov)
+                {
+                    Debug.Log(angle);
+                    canSeePlayer = true;
+                    hitOut = hit;
+                    return true;
+                }
             }
-            canSeePlayer = false;
-            hitOut = hit;
-            return false;
         }
         canSeePlayer = false;
         hitOut = hit;

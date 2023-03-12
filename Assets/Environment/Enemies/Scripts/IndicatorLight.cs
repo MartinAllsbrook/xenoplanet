@@ -7,7 +7,7 @@ public class IndicatorLight : MonoBehaviour
 {
     [SerializeField] private Color onColor;
     [SerializeField] private Color offColor;
-    
+    [SerializeField] private float flashTime;
     private bool lightOn = true;
     private bool flashing = false;
 
@@ -55,7 +55,7 @@ public class IndicatorLight : MonoBehaviour
         while (true)
         {
             ToggleLight();
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(flashTime);
         }
     }
 

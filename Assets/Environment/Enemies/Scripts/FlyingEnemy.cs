@@ -15,8 +15,6 @@ public class FlyingEnemy : Enemy
     [SerializeField] protected float slowdownDistance;
     [SerializeField] protected float lookSpeed;
     
-    [SerializeField] protected LaserGun laserGun;
-
     protected Vector3 currentVelocity;
     protected float locationTolerance;
     
@@ -53,8 +51,7 @@ public class FlyingEnemy : Enemy
                 // laserGun.transform.LookAt(groundHit.point);
             }
             Idle();
-        }        
-        
+        }
     }
 
     protected virtual void Attack()
