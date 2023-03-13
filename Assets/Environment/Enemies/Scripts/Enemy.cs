@@ -58,12 +58,12 @@ public class Enemy : BreakableObject
                 // Debug.Log(playerVisible);
                 // playerVisible.Invoke();
                 Vector3 playerDirection = (hit.point - transform.position).normalized;
-                Debug.DrawRay(transform.position, playerDirection, Color.green);
-                Debug.DrawRay(transform.position, laserGun.transform.forward, Color.red);
+                // Debug.DrawRay(transform.position, playerDirection, Color.green);
+                // Debug.DrawRay(transform.position, laserGun.transform.forward, Color.red);
                 var angle = Vector3.Angle(laserGun.transform.forward, playerDirection);
                 if (angle < fov)
                 {
-                    Debug.Log(angle);
+                    // Debug.Log(angle);
                     canSeePlayer = true;
                     hitOut = hit;
                     return true;

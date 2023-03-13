@@ -49,6 +49,14 @@ public class ItemCounter : MonoBehaviour
         return false;
     }
 
+    public bool CanStore()
+    {
+        if (_itemCount < maxCount)
+            return true;
+
+        return false;
+    }
+
     public bool CheckAmount(int amount)
     {
         if (amount <= _itemCount)

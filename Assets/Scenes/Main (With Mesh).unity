@@ -204,6 +204,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sun
       objectReference: {fileID: 0}
+    - target: {fileID: 2277116756983606292, guid: 74dd41bd1c66c89419e27f380e906f05, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74dd41bd1c66c89419e27f380e906f05, type: 3}
 --- !u!114 &801875721 stripped
@@ -338,7 +342,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1547993014
 Transform:
   m_ObjectHideFlags: 0
@@ -465,6 +469,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 3569047395199897391, guid: 9b9fda4aaad554642af9a893bc1138d5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b9fda4aaad554642af9a893bc1138d5, type: 3}
 --- !u!114 &1594577064 stripped
@@ -552,6 +560,10 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 2156d660c8fcfee40b7fbadbd6d248a5, type: 3}
       propertyPath: m_Name
       value: BackdropMountains
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 2156d660c8fcfee40b7fbadbd6d248a5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -190522342460779035, guid: 2156d660c8fcfee40b7fbadbd6d248a5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -661,6 +673,22 @@ PrefabInstance:
       propertyPath: _numArrowsText
       value: 
       objectReference: {fileID: 1740618503}
+    - target: {fileID: 3101116443294278126, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.09147568
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101116444868585969, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.09147568
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101116445073189285, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.09147568
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307781902392146137, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.09147568
+      objectReference: {fileID: 0}
     - target: {fileID: 5871221131373447265, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1024,6 +1052,10 @@ PrefabInstance:
     - target: {fileID: 5871221131373447293, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5871221131373447293, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8281142011264349468, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_Materials.Array.data[0]

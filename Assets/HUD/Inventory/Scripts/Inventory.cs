@@ -195,5 +195,9 @@ public class Inventory : MonoBehaviour
         _selectedItemCounter = initialItemsArray[_selectedCounterIndex];
         _selectedItemCounter.ToggleSelected();
     }
-    
+
+    public bool CanStore(string itemName)
+    {
+        return _itemCounters[itemName].CanStore();
+    }
 }
