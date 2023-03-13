@@ -55,7 +55,8 @@ public class FlyingEnemy : Enemy
     }
 
     protected virtual void Attack()
-    { 
+    {
+        throw new NotImplementedException();
     }
 
     protected void Idle()

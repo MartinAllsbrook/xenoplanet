@@ -46,7 +46,7 @@ public class MeshTerrainManager : MonoBehaviour
         {
             return;
         }
-        /*var lastXCell = _xPlayerCell;
+        var lastXCell = _xPlayerCell;
         var lastZCell = _zPlayerCell;
         
         UpdatePlayerCell();
@@ -63,24 +63,20 @@ public class MeshTerrainManager : MonoBehaviour
                 LoadRow(deltaZCell, true);
             else
                 LoadRow(deltaXCell, false);
-        }*/
+        }
     }
 
     private void CreateInitialChunks()
     {
         _activeChunks = new GameObject[_terrainSize, _terrainSize];
-        for (int x = 0; x < _terrainSize; x++)
+        for (int x = -_terrainSize; x < _terrainSize * 2; x++)
         {
-            for (var z = 0; z < _terrainSize; z++)
+            for (var z = -_terrainSize; z < _terrainSize * 2; z++)
             {
-                _activeChunks[x, z] = LoadChunk(new Vector2Int(x,z));
-            }
-        }
-        for (int x = _terrainSize; x < _terrainSize + 15; x++)
-        {
-            for (var z = 0; z < _terrainSize; z++)
-            {
-                LoadChunk(new Vector2Int(x,z));
+                if (x < _terrainSize && z < _terrainSize && x >= 0 && z >= 0)
+                    _activeChunks[x, z] = LoadChunk(new Vector2Int(x,z));
+                else
+                    LoadInactiveChunk(new Vector2Int(x,z));
             }
         }
     }
@@ -111,7 +107,7 @@ public class MeshTerrainManager : MonoBehaviour
             firstRowIndex = 0;
         }
 
-        // Delete last row
+        // Deactivate last row
         for (int j = 0; j < length; j++)
         {
             _activeChunks[j, lastRowIndex].SetActive(false);
@@ -169,7 +165,7 @@ public class MeshTerrainManager : MonoBehaviour
             firstRowIndex = 0;
         }
 
-        // Delete last row
+        // Deactivate last row
         for (int j = 0; j < length; j++)
         {
             _activeChunks[lastRowIndex, j].SetActive(false);
@@ -210,16 +206,19 @@ public class MeshTerrainManager : MonoBehaviour
     
     private GameObject LoadChunk(Vector2Int chunkPosition)
     {
+        // Activate generated chunk
         for (int i = 0; i < _loadedChunks.Count; i++)
         {
             if (chunkPosition == _loadedChunks[i].GetPosition())
             {
-                // Debug.Log("It's working");
-                GameObject savedChunk = _loadedChunks[i].gameObject;
-                savedChunk.SetActive(true);
-                return savedChunk;
+                MeshTerrainChunk savedChunk = _loadedChunks[i]; // Get Chunk
+                savedChunk.gameObject.SetActive(true);
+                savedChunk.CheckLatePlace(); 
+                return savedChunk.gameObject; // Return the gameObject
             }
         }
+        
+        // Generate new chunk
         GameObject newChunk = Instantiate(terrainChunk, new Vector3(chunkPosition.x * (_chunkSize - 1), 0, chunkPosition.y * (_chunkSize - 1)), _zeroRotation);
         newChunk.GetComponent<MeshTerrainChunk>().SetTerrain(_seeds, true);
         _loadedChunks.Add(newChunk.GetComponent<MeshTerrainChunk>());

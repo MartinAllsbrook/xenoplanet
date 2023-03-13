@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class TreeScatter : MonoBehaviour
 {
@@ -11,11 +14,13 @@ public class TreeScatter : MonoBehaviour
     [SerializeField] private float minHeight;
     [SerializeField] private float minMoisture;
     
-    public void PlaceTrees(ChunkData chunkData, int size)
+    public delegate void GenericDelegate();
+
+    public void PlaceTrees(ChunkData chunkData, int size, GenericDelegate callBack)
     {
-        StartCoroutine(PlaceTreesRoutine(transform, chunkData, size));
+        StartCoroutine(PlaceTreesRoutine(transform, chunkData, size, callBack));
     }
-    private IEnumerator PlaceTreesRoutine(Transform parent, ChunkData chunkData, int size)
+    private IEnumerator PlaceTreesRoutine(Transform parent, ChunkData chunkData, int size, GenericDelegate callBack)
     {
         Quaternion zero = new Quaternion(0, 0, 0, 0);
         for (int xI = 0; xI < numTrees; xI++)
@@ -39,6 +44,8 @@ public class TreeScatter : MonoBehaviour
                 yield return null;
             }
         }
+
+        callBack();
     }
     
     

@@ -27,11 +27,14 @@ public class MeshTerrainChunk : MonoBehaviour
     [SerializeField] private MapGenerator mapGenerator;
     [SerializeField] private LandMarkGenerator landMarkGenerator;
     [SerializeField] private TreeScatter treeScatter;
-    private const int _size = 65;
+    private const int Size = 65;
     
+    private bool _placedGrass;
+    private bool _placedTrees;
+
     public void SetTerrain(int[] seeds, bool makeActive)
     {
-        var position = transform.position / (_size - 1);
+        var position = transform.position / (Size - 1);
         _chunkPosition = new Vector2Int((int) position.x, (int) position.z);
         // Debug.Log(_chunkPosition);
         
@@ -42,16 +45,26 @@ public class MeshTerrainChunk : MonoBehaviour
         {
             _chunkData = chunkData;
             
-            landMarkGenerator.PlaceLandMark(ref _chunkData, _size);
+            landMarkGenerator.PlaceLandMark(ref _chunkData, Size);
             
             // Create Mesh
             CreateShape();
             UpdateMesh();
-            
-            chunkGrassManager.PlaceGrass(_chunkData);
-            treeScatter.PlaceTrees(_chunkData, _size);
-            
-            if(!makeActive)
+
+            // If this chunk is being made active load the trees and grass 
+            if (makeActive)
+            {
+                chunkGrassManager.PlaceGrass(_chunkData, () =>
+                {
+                    _placedGrass = true;
+                });
+                
+                treeScatter.PlaceTrees(_chunkData, Size, () =>
+                {
+                    _placedTrees = true;
+                });
+            }
+            else // Else set it to be inactive
                 gameObject.SetActive(false);
         });
     }
@@ -72,11 +85,11 @@ public class MeshTerrainChunk : MonoBehaviour
 
     private void CreateVertecies()
     {
-        _vertices = new Vector3[(_size) * (_size)];
+        _vertices = new Vector3[(Size) * (Size)];
 
-        for (int i = 0, z = 0; z <= _size - 1; z++)
+        for (int i = 0, z = 0; z <= Size - 1; z++)
         {
-            for (int x = 0; x <= _size - 1; x++)
+            for (int x = 0; x <= Size - 1; x++)
             {
                 _vertices[i] = new Vector3(x, _chunkData.GetHeight(x, z), z);
                 i++;
@@ -86,20 +99,20 @@ public class MeshTerrainChunk : MonoBehaviour
 
     private void CreateTriangles(ref ChunkData chunkData)
     {
-        _triangles = new int[(_size - 1) * (_size - 1) * 6];
+        _triangles = new int[(Size - 1) * (Size - 1) * 6];
         int vertexIndex = 0;
         int trangleIndex = 0;
         
-        for (int z = 0; z < _size - 1; z++)
+        for (int z = 0; z < Size - 1; z++)
         {
-            for (int x = 0; x < _size - 1; x++)
+            for (int x = 0; x < Size - 1; x++)
             {
                 _triangles[trangleIndex + 0] = vertexIndex + 0;
-                _triangles[trangleIndex + 1] = vertexIndex + _size;
+                _triangles[trangleIndex + 1] = vertexIndex + Size;
                 _triangles[trangleIndex + 2] = vertexIndex + 1;
                 _triangles[trangleIndex + 3] = vertexIndex + 1;
-                _triangles[trangleIndex + 4] = vertexIndex + _size;
-                _triangles[trangleIndex + 5] = vertexIndex + _size + 1;
+                _triangles[trangleIndex + 4] = vertexIndex + Size;
+                _triangles[trangleIndex + 5] = vertexIndex + Size + 1;
                 vertexIndex++;
                 trangleIndex += 6;
             }
@@ -112,11 +125,11 @@ public class MeshTerrainChunk : MonoBehaviour
     {
         uvs = new Vector2[_vertices.Length];
         
-        for (int i = 0, z = 0; z <= _size - 1; z++)
+        for (int i = 0, z = 0; z <= Size - 1; z++)
         {
-            for (int x = 0; x <= _size - 1; x++)
+            for (int x = 0; x <= Size - 1; x++)
             {
-                uvs[i] = new Vector2((float) x / _size, (float) z / _size);
+                uvs[i] = new Vector2((float) x / Size, (float) z / Size);
                 i++;
             }
         }
@@ -157,11 +170,30 @@ public class MeshTerrainChunk : MonoBehaviour
     
     public int GetChunkSize()
     {
-        return _size;
+        return Size;
     }
 
     public Vector2Int GetPosition()
     {
         return _chunkPosition;
+    }
+
+    public void CheckLatePlace()
+    {
+        if (!_placedGrass)
+        {
+            chunkGrassManager.PlaceGrass(_chunkData, () =>
+            {
+                _placedGrass = true;
+            });
+        }
+
+        if (!_placedTrees)
+        {
+            treeScatter.PlaceTrees(_chunkData, Size, () =>
+            {
+                _placedGrass = true;
+            });
+        }
     }
 }
