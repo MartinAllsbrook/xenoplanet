@@ -89,14 +89,15 @@ public class CrosshaireController : MonoBehaviour
         numArrowsDisplay.color = color;
     }
 
-    public void PlayHitMarker()
+    public void PlayHitMarker(Color color)
     {
-        StartCoroutine(HitMarker());
+        StartCoroutine(HitMarker(color));
     }
 
-    IEnumerator HitMarker()
+    IEnumerator HitMarker(Color color)
     {
         hitmarker.SetActive(true);
+        hitmarker.GetComponent<Image>().color = color;
         yield return new WaitForSeconds(0.1f);
         hitmarker.SetActive(false);
         yield return null;

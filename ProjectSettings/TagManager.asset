@@ -13,6 +13,7 @@ TagManager:
   - Breakable Environment
   - Rock Dude
   - Terrain
+  - EnemyCritical
   layers:
   - Default
   - TransparentFX

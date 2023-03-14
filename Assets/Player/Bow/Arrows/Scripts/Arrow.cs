@@ -9,6 +9,7 @@ public class Arrow : MonoBehaviour
 {
     [SerializeField] protected Rigidbody arrowRigidbody;
     [SerializeField] private float maxDamage;
+    [SerializeField] private float criticalMultiplier;
     [SerializeField] private float maxForce;
     private const float ArrowUp = 0.005f;
 
@@ -35,17 +36,29 @@ public class Arrow : MonoBehaviour
 
     protected virtual void OnCollisionEnter(Collision collision)
     {
-        // Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.CompareTag("Enemy"))
-        {
-            HUDController.Instance.PlayHitMarker();
-            collision.gameObject.GetComponent<Enemy>().Health = -damage;
-        }
+            CheckEnemyHit(collision);
+        
         if (collision.gameObject.CompareTag("Breakable Environment"))
-        {
             collision.gameObject.GetComponent<BreakableObject>().Health = -(damage / 2); // Deal less damage to breakable objects with arrows
-        }
-        // On collision destroy arrow
+        
         Destroy(gameObject);
+    }
+
+    private void CheckEnemyHit(Collision collision)
+    { 
+        // Check if the collider we hit was the enemies critical hit collider
+        foreach (var contactPoint in collision.contacts)
+        {
+            Debug.Log(contactPoint.otherCollider.tag);
+            if (contactPoint.otherCollider.CompareTag("EnemyCritical"))
+            {
+                HUDController.Instance.PlayCriticalMarker();
+                collision.gameObject.GetComponent<Enemy>().Health = -damage * criticalMultiplier;
+                return;
+            }
+        }
+        HUDController.Instance.PlayHitMarker();
+        collision.gameObject.GetComponent<Enemy>().Health = -damage;
     }
 }

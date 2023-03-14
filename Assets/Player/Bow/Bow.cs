@@ -123,7 +123,8 @@ public class Bow : MonoBehaviour
     private void FireArrow(float strength)
     {
         Debug.Log("Fire Arrow");
-        Vector3 spawnPosition = Player.Instance.transform.position + Vector3.up * 1.6f; // Could move reference to player instance outside this
+        // Vector3 spawnPosition = Player.Instance.transform.position + Vector3.up * 1.6f; // Could move reference to player instance outside this
+        Vector3 spawnPosition = mainCamera.transform.position; // Could move reference to player instance outside this
         Vector3 arrowDirection = CalculateAimPosition(spawnPosition);
 
         var arrowInstance = Instantiate(arrows[_selectedArrowIndex], spawnPosition, Quaternion.LookRotation(arrowDirection));

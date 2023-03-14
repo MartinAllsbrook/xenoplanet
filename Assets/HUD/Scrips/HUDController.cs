@@ -51,7 +51,12 @@ public class HUDController : MonoBehaviour
 
     public void PlayHitMarker()
     {
-        crosshaireController.PlayHitMarker();
+        crosshaireController.PlayHitMarker(Color.cyan);
+    }
+    
+    public void PlayCriticalMarker()
+    {
+        crosshaireController.PlayHitMarker(Color.red);
     }
 
     public void ShowCrossHair()
