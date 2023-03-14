@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrowRigidbody: {fileID: -43158751508159289}
-  maxDamage: 50
+  maxDamage: 25
   maxForce: 3000
 --- !u!54 &-43158751508159289
 Rigidbody:

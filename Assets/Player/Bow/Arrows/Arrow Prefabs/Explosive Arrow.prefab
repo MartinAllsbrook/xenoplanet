@@ -102,7 +102,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!65 &8471655722130848396
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrowRigidbody: {fileID: 5966821036017870168}
-  maxDamage: 50
+  maxDamage: 25
   maxForce: 3000
   explodeParticles: {fileID: 5065590562593492601, guid: 6689370d9bf0f6343a0a9b040326513a, type: 3}
   enemies:
@@ -137,7 +137,7 @@ MonoBehaviour:
     m_Bits: 128
   explosionRadius: 10
   explosionFalloff: 0
-  maxExplosionDamage: 10
+  maxExplosionDamage: 40
 --- !u!1001 &1534570055326731909
 PrefabInstance:
   m_ObjectHideFlags: 0

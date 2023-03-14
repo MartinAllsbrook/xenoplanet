@@ -47,8 +47,16 @@ public class EnemyManager : MonoBehaviour
         var randomDirection = Random.insideUnitCircle.normalized;
         // A variable that holds a random distance between minRadius and maxRadius
         var randomDistance = Random.Range(minRadius, maxRadius);
-        // Return a vector 2 that is the product of randomDirection and randomDistance
-        return randomDirection * randomDistance;
+        // A variable that holds a random point in the annulus arc
+        var randomPoint = randomDirection * randomDistance;
+        // Check if the x value of the random point is negative
+        if (Mathf.Sign(randomPoint.x) == -1f)
+        {
+            // If so, multiply it by -1 to make it positive
+            randomPoint.x *= -1;
+        }
+        // Return the random point with a positive x value
+        return randomPoint;
     }
 
     // Update is called once per frame
