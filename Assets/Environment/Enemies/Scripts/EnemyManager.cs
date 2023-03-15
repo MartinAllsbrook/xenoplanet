@@ -24,7 +24,7 @@ public class EnemyManager : MonoBehaviour
         {
             Vector2 randomPoint = RandomPointInAnnulus(innerRadius, outerRadius);
             
-            Debug.Log("Attempt to spawn at: " + randomPoint);
+            // Debug.Log("Attempt to spawn at: " + randomPoint);
 
             randomPoint += new Vector2(_playerTransform.position.x, _playerTransform.position.z);
                 
@@ -35,7 +35,7 @@ public class EnemyManager : MonoBehaviour
             {
                 Vector3 spawnPosition = hit.point + Vector3.up * 4;
                 Instantiate(enemy, spawnPosition, new Quaternion(0,0,0,0));
-                Debug.Log("spawn successful");
+                // Debug.Log("spawn successful");
                 yield return new WaitForSeconds(spawnRandomEnemyTime);
             }
         }

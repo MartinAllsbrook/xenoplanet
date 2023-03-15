@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    [SerializeField] private Weapon weapon;
-    [SerializeField] private float lookSpeed;
+    [SerializeField] protected Weapon weapon;
+    [SerializeField] protected float lookSpeed;
     
     public void Attack()
     {
         weapon.Use();
     }
 
-    public void LookTowards(Vector3 lookDirection)
+    public virtual void LookTowards(Vector3 lookDirection)
     {
         var weaponRotation = Quaternion.RotateTowards(
             weapon.transform.rotation,
@@ -22,8 +22,5 @@ public class Turret : MonoBehaviour
         Quaternion turretRotation = Quaternion.Euler(0, weaponRotation.eulerAngles.y, 0);
         transform.rotation = turretRotation;
         weapon.transform.rotation = weaponRotation;
-        
-
     }
-    
 }
