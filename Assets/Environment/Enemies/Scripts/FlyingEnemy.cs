@@ -13,50 +13,9 @@ public class FlyingEnemy : Enemy
     [SerializeField] protected float speed;
     [SerializeField] protected float accelerationTime;
     [SerializeField] protected float slowdownDistance;
-    [SerializeField] protected float lookSpeed;
     
     protected Vector3 currentVelocity;
     protected float locationTolerance;
-    
-    protected void Update()
-    {
-        base.Update();
-        locationTolerance = range[0];
-        // If the enemy can currently see the player
-        if (CanSeePlayer(out RaycastHit hit))
-        {
-            // Debug.Log(hit);
-            var rotation = Quaternion.RotateTowards(
-                laserGun.transform.rotation,
-                Quaternion.LookRotation(Player.Instance.transform.position + Vector3.up - transform.position),
-                lookSpeed);
-            laserGun.transform.rotation = rotation; 
-            targetLocation = hit.transform.position;
-            if ((hit.transform.position - transform.position).magnitude < range[1])
-                Attack();
-            MoveTo(targetLocation);
-
-        }
-        // Else the enemy cannot see the player
-        else
-        {
-            Ray ray = new Ray(targetLocation, Vector3.down);
-            if (Physics.Raycast(ray, out RaycastHit groundHit, 512, visible))
-            {
-                var rotation = Quaternion.RotateTowards(
-                    laserGun.transform.rotation,
-                    Quaternion.LookRotation(groundHit.point - transform.position),
-                    lookSpeed);
-                laserGun.transform.rotation = rotation; 
-                // laserGun.transform.LookAt(groundHit.point);
-            }
-            Idle();
-        }
-    }
-
-    protected virtual void Attack()
-    {
-    }
 
     protected void Idle()
     {

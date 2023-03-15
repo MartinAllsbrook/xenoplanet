@@ -7,12 +7,14 @@ using Random = UnityEngine.Random;
 
 public class Enemy : BreakableObject
 {
-    [SerializeField] protected float viewDistance;
-    [SerializeField] protected LayerMask visible;
     [SerializeField] protected float idleDistance;
-    [SerializeField] protected IndicatorLight canSeePlayerIndicator;
+    [SerializeField] protected float viewDistance;
     [SerializeField] protected float fov;
-    [SerializeField] protected LaserGun laserGun;
+
+    [SerializeField] protected LayerMask visible;
+    [SerializeField] protected IndicatorLight canSeePlayerIndicator;
+    
+    [SerializeField] protected Turret turret;
 
     protected Vector3 targetLocation;
     protected Vector3 lastPlayerLocation;
@@ -43,7 +45,7 @@ public class Enemy : BreakableObject
     {
         return new Vector3(
             transform.position.x + Random.Range(-idleDistance, idleDistance), 
-            transform.position.x + Random.Range(0, idleDistance),
+            transform.position.y + Random.Range(0, idleDistance),
             transform.position.z + Random.Range(-idleDistance, idleDistance));
     }
 
@@ -55,12 +57,8 @@ public class Enemy : BreakableObject
         {
             if (hit.transform.gameObject.CompareTag("Player"))
             {
-                // Debug.Log(playerVisible);
-                // playerVisible.Invoke();
                 Vector3 playerDirection = (hit.point - transform.position).normalized;
-                // Debug.DrawRay(transform.position, playerDirection, Color.green);
-                // Debug.DrawRay(transform.position, laserGun.transform.forward, Color.red);
-                var angle = Vector3.Angle(laserGun.transform.forward, playerDirection);
+                var angle = Vector3.Angle(turret.transform.forward, playerDirection);
                 if (angle < fov)
                 {
                     // Debug.Log(angle);

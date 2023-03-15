@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
  
-public class LaserGun : MonoBehaviour
+public class LaserGun : Weapon
 {
     [SerializeField] private GameObject laser;
 
@@ -14,7 +14,7 @@ public class LaserGun : MonoBehaviour
         coolDown = coolDownTime;
     }
     
-    public void Charge()
+    public override void Use()
     {
         if (coolDown > 0)
             coolDown -= Time.deltaTime;
