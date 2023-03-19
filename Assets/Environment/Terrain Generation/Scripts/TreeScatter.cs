@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -22,9 +23,19 @@ public class TreeScatter : MonoBehaviour
     }
     private IEnumerator PlaceTreesRoutine(Transform parent, ChunkData chunkData, int size, GenericDelegate callBack)
     {
-        Quaternion zero = new Quaternion(0, 0, 0, 0);
+        Stopwatch timer = new Stopwatch();
+        timer.Start();
+        
+        Quaternion rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
         for (int xI = 0; xI < numTrees; xI++)
         {
+            if (timer.ElapsedMilliseconds > 3)
+            {
+                yield return null;
+                timer.Reset();
+                timer.Start();
+            }
+            
             for (int zI = 0; zI < numTrees; zI++)
             {
                 float treeSpacing = (float) size / numTrees;
@@ -37,14 +48,12 @@ public class TreeScatter : MonoBehaviour
                 float moisture = chunkData.GetMoisture(x, z);
                 if (height > minHeight && moisture > minMoisture)
                 {
-                    Instantiate(trees[treeIndex], new Vector3(parent.position.x + x, height, parent.position.z + z), zero, parent);
+                    Instantiate(trees[treeIndex], new Vector3(parent.position.x + x, height, parent.position.z + z), rotation, parent);
                 }
-
-                
-                yield return null;
             }
         }
-
+        timer.Stop();
+        
         callBack();
     }
     

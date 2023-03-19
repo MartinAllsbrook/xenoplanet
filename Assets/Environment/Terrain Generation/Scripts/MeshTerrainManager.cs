@@ -11,14 +11,15 @@ public class MeshTerrainManager : MonoBehaviour
     [SerializeField] private GameObject terrainChunk;
     [SerializeField] private int terrainRadius;
     
-    private int _terrainSize;
 
     private GameObject[,] _activeChunks;
     private List<MeshTerrainChunk> _loadedChunks; 
     private int[] _seeds;
     
     private int _chunkSize;
-
+    private int _terrainSize;
+    private int _numPreloadedChunks;
+    
     private int _xPlayerCell;
     private int _zPlayerCell;
     
@@ -27,6 +28,7 @@ public class MeshTerrainManager : MonoBehaviour
     private void Start()
     {
         _terrainSize = terrainRadius * 2 + 1;
+        _numPreloadedChunks = _terrainSize * 3 * _terrainSize * 3;
         _chunkSize = terrainChunk.GetComponent<MeshTerrainChunk>().GetChunkSize();
         _seeds = new int[3];
         _seeds[0] = Random.Range(2000, 10000);
@@ -69,9 +71,9 @@ public class MeshTerrainManager : MonoBehaviour
     private void CreateInitialChunks()
     {
         _activeChunks = new GameObject[_terrainSize, _terrainSize];
-        for (int x = -_terrainSize; x < _terrainSize * 2; x++)
+        for (int x = 0; x < _terrainSize; x++)
         {
-            for (var z = -_terrainSize; z < _terrainSize * 2; z++)
+            for (var z = 0; z < _terrainSize; z++)
             {
                 if (x < _terrainSize && z < _terrainSize && x >= 0 && z >= 0)
                     _activeChunks[x, z] = LoadChunk(new Vector2Int(x,z));
