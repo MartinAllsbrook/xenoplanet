@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private float spawnRandomEnemyTime;
-    [SerializeField] private GameObject enemy;
+    [SerializeField] private GameObject[] enemys;
     [SerializeField] private float innerRadius;
     [SerializeField] private float outerRadius;
 
@@ -34,7 +34,8 @@ public class EnemyManager : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit, 150))
             {
                 Vector3 spawnPosition = hit.point + Vector3.up * 4;
-                Instantiate(enemy, spawnPosition, new Quaternion(0,0,0,0));
+                int randomIndex = Random.Range(0, enemys.Length);
+                Instantiate(enemys[randomIndex], spawnPosition, new Quaternion(0,0,0,0));
                 // Debug.Log("spawn successful");
                 yield return new WaitForSeconds(spawnRandomEnemyTime);
             }

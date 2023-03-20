@@ -2759,7 +2759,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRandomEnemyTime: 60
-  enemy: {fileID: 2994207794475489708, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+  enemys:
+  - {fileID: 4054296639640991252, guid: f8a08ea71ac625445af0ddb46f1f2a8d, type: 3}
+  - {fileID: 2994207794475489708, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
   innerRadius: 64
   outerRadius: 256
 --- !u!4 &785804512
@@ -3229,7 +3231,7 @@ PrefabInstance:
       objectReference: {fileID: 315015811}
     - target: {fileID: 3101116443294278126, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.09147571
+      value: -0.0024375324
       objectReference: {fileID: 0}
     - target: {fileID: 5785631924081323794, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_Radius
