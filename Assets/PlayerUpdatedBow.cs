@@ -8,6 +8,7 @@ public class PlayerUpdatedBow : MonoBehaviour
     private PlayerUpdatedController _playerUpdatedController;
 
     private CinemachineFreeLook.Orbit[] _startOrbits;
+    private float _aimProgress;
     [SerializeField] private CinemachineFreeLook.Orbit[] _aimOrbit;
 
     // Start is called before the first frame update
@@ -26,9 +27,20 @@ public class PlayerUpdatedBow : MonoBehaviour
     public void Aim(bool input)
     {
         if (input)
-            _playerUpdatedController.thirdPersonCamera.m_Orbits = LerpOrbitArray(_startOrbits, _aimOrbit, 1f);
+        {
+            if (_aimProgress < 1)
+                _aimProgress += Time.fixedDeltaTime;
+            else
+                _aimProgress = 1;
+        }
         else
-            _playerUpdatedController.thirdPersonCamera.m_Orbits = _startOrbits;
+        {
+            if (_aimProgress > 0)
+                _aimProgress -= Time.fixedDeltaTime;
+            else
+                _aimProgress = 0;
+        }        
+        _playerUpdatedController.thirdPersonCamera.m_Orbits = LerpOrbitArray(_startOrbits, _aimOrbit, _aimProgress);
     }
     
     private CinemachineFreeLook.Orbit[] LerpOrbitArray(CinemachineFreeLook.Orbit[] a, CinemachineFreeLook.Orbit[] b, float t)
