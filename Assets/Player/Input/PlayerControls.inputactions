@@ -228,7 +228,7 @@
                 {
                     "name": "",
                     "id": "079ebda8-ff92-4795-8175-171afb9600ec",
-                    "path": "<XInputController>/buttonEast",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "Xbox",
