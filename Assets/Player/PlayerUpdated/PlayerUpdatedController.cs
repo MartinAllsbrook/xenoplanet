@@ -57,12 +57,23 @@ public class PlayerUpdatedController : MonoBehaviour
         if (_moveInput.magnitude > 0.2f)
         {
             _playerMovement.AirControl(_playerChecks.IsGrounded());
-            _playerMovement.Rotate(_moveInput);
-            _playerMovement.Move(_playerChecks.CheckSlope(), _playerChecks.groundHitInfo.normal);
+            if (!_aimingInput)
+            {
+                _playerMovement.Rotate(_moveInput);
+                _playerMovement.Move(_playerChecks.CheckSlope(), _playerChecks.groundHitInfo.normal);
+            }
+            else
+                _playerMovement.Strafe(_playerChecks.CheckSlope(), _playerChecks.groundHitInfo.normal, _moveInput);
         }
         
         _playerMovement.Fall(_playerChecks.IsGrounded());
         _playerBow.Aim(_aimingInput);
+        if (_aimingInput)
+        {
+            var projectedPlane = Vector3.ProjectOnPlane(mainCamera.transform.forward, Vector3.up);
+            Vector2 rotation = new Vector2(projectedPlane.x, projectedPlane.z);
+            _playerMovement.RotateForAim(rotation);
+        }
     }
 
     private void Update()

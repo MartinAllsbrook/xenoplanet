@@ -41,8 +41,18 @@ public class PlayerUpdatedMovement : MonoBehaviour
         
         //Actual Move
         _rigidbody.AddForce(_camDirection.normalized * (_calcMoveSpeed * 100), ForceMode.Force);
-
     }
+
+    public void Strafe(bool onSlope, Vector3 groundNormal, Vector2 input)
+    {
+        if (onSlope)
+            _camDirection = Vector3.ProjectOnPlane(_camDirection, groundNormal).normalized;
+        
+        //Actual Move
+        Vector3 moveDirection = input.y * transform.forward + input.x * transform.right;
+        _rigidbody.AddForce(moveDirection * (_calcMoveSpeed * 100), ForceMode.Force);
+    }
+
     public void Sprint(bool input)
     {
         if(input)
@@ -74,17 +84,26 @@ public class PlayerUpdatedMovement : MonoBehaviour
     }
     
     
-    public void Rotate(Vector2 input)
+    public void Rotate(Vector2 direction)
     {
-        _targetAngle = Mathf.Atan2(input.x, input.y) * Mathf.Rad2Deg + _playerUpdatedController.mainCamera.transform.eulerAngles.y;
+        _targetAngle = (Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg + _playerUpdatedController.mainCamera.transform.eulerAngles.y);
+        
         _angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetAngle, ref _turnVelocity, 0.1f);
 
         _camDirection = Quaternion.Euler(0f, _angle, 0f) * Vector3.forward;
-        
         transform.rotation = Quaternion.Euler(0f, _angle, 0f);
     }
-    
-    
+
+    public void RotateForAim(Vector2 direction)
+    {
+        Vector3 lookTowards = new Vector3(direction.x, 0, direction.y);
+
+        Quaternion lookRotation = Quaternion.LookRotation(lookTowards);
+        Quaternion newRotation = Quaternion.RotateTowards(transform.rotation, lookRotation, 5);
+        
+        _camDirection = newRotation * Vector3.forward;
+        transform.rotation = newRotation;
+    }
     
     public void Jump(bool input)
     {
