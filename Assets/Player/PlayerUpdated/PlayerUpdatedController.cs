@@ -74,7 +74,7 @@ public class PlayerUpdatedController : MonoBehaviour
         }
         
         _playerMovement.Fall(_playerChecks.IsGrounded());
-        // _playerBow.Aim(_aimingInput);
+        _playerBow.Aim(_aimingInput);
         if (_aimingInput)
         {
             var projectedPlane = Vector3.ProjectOnPlane(mainCamera.transform.forward, Vector3.up);
