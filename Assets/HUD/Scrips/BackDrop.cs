@@ -5,14 +5,7 @@ using UnityEngine;
 public class BackDrop : MonoBehaviour
 {
     [SerializeField] private float playerOffset;
-    private Transform _playerTransform;
-    // Start is called before the first frame update
-    void Start()
-    {
-        _playerTransform = Player.Instance.transform;
-    }
-
-    // Update is called once per frame
+    [SerializeField] private Transform _playerTransform;
     void Update()
     {
         transform.position = new Vector3(_playerTransform.position.x, playerOffset, _playerTransform.position.z);

@@ -10,6 +10,7 @@ public class MeshTerrainManager : MonoBehaviour
 {
     [SerializeField] private GameObject terrainChunk;
     [SerializeField] private int terrainRadius;
+    [SerializeField] private Transform playerTransform;
     
     private int _terrainSize;
 
@@ -234,7 +235,7 @@ public class MeshTerrainManager : MonoBehaviour
 
     private void UpdatePlayerCell()
     {
-        var playerPosition = Player.Instance.transform.position;
+        var playerPosition = playerTransform.position;
         _xPlayerCell = (int) MathF.Floor(playerPosition.x / (_chunkSize - 1));
         _zPlayerCell = (int) MathF.Floor(playerPosition.z / (_chunkSize - 1));
     }
