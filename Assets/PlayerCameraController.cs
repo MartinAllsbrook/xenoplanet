@@ -7,8 +7,13 @@ public class PlayerCameraController : MonoBehaviour
 {
     [SerializeField] private Transform cameraFollow;
     [SerializeField] private float roatationSpeed;
-    
+
+    [SerializeField] private float baseCameraHeight;
+    [SerializeField] private float crouchCameraHeight;
+
     private Quaternion cameraRotation;
+
+    private bool _crouching;
 
     private void Start()
     {
@@ -40,5 +45,20 @@ public class PlayerCameraController : MonoBehaviour
     private void Update()
     {
         cameraFollow.rotation = cameraRotation;
+    }
+
+    public void SetCrouch(bool crouch)
+    {
+        float cameraHeight;
+        
+        if (crouch && !_crouching)
+            cameraHeight = crouchCameraHeight;
+        else if (!crouch && _crouching)
+            cameraHeight = baseCameraHeight;
+        else 
+            return;
+
+        _crouching = crouch;
+        cameraFollow.position = transform.position + Vector3.up * cameraHeight;
     }
 }

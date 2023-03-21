@@ -54,6 +54,7 @@ public class PlayerUpdatedController : MonoBehaviour
         {
             _playerMovement.Sprint(_sprintInput);
             _playerMovement.Crouch(_crouchInput);
+            _playerCameraController.SetCrouch(_crouchInput);
             _playerMovement.Jump(_jumpInput);
             _playerMovement.Aim(_aimingInput);
         }
