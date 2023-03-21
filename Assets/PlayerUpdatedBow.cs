@@ -1,23 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerUpdatedBow : MonoBehaviour
 {
-    private PlayerUpdatedController _playerUpdatedController;
-
-    private CinemachineFreeLook.Orbit[] _startOrbits;
-    private float _aimProgress;
-
+    private PlayerUpdatedController _playerUpdatedController; // TODO: HMMMMMMM?
+    // private CinemachineFreeLook.Orbit[] _startOrbits;
+    
+    [Header("Cameras")]
     [SerializeField] private GameObject moveCamera;
     [SerializeField] private GameObject aimCamera;
+
+    [Header("References")]
+    [SerializeField] private CrosshaireController crosshairController;
+    [SerializeField] private GameObject[] arrows;
+
+    [Header("Values")]
+    [SerializeField] private float chargeTimeCoefficient;
+    [SerializeField] private float chargeTimeExponent;
     
+    private float _aimProgress;
+    private float _chargeTime = 0f;
+    private float _strength = 0f;
+    private int _selectedArrowIndex = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         _playerUpdatedController = GetComponent<PlayerUpdatedController>();
-        _startOrbits = _playerUpdatedController.thirdPersonCamera.m_Orbits;
+        // _startOrbits = _playerUpdatedController.thirdPersonCamera.m_Orbits;
     }
 
     // Update is called once per frame
@@ -28,19 +41,48 @@ public class PlayerUpdatedBow : MonoBehaviour
 
     public void Aim(bool input)
     {
-        if (input && !aimCamera.activeInHierarchy)
+        if (input)
         {
-            aimCamera.SetActive(true);
-            moveCamera.SetActive(false);
+            if (!aimCamera.activeInHierarchy)
+            {
+                aimCamera.SetActive(true);
+                moveCamera.SetActive(false);
+            }
+            ChargeArrow();
         }
         else if(!input && !moveCamera.activeInHierarchy)
         {
             moveCamera.SetActive(true);
             aimCamera.SetActive(false);
+            _chargeTime = 0;
         }        
-        // _playerUpdatedController.thirdPersonCamera.m_Orbits = LerpOrbitArray(_startOrbits, _aimOrbit, _aimProgress);
+    }
+
+    public void Fire()
+    {
+        Debug.Log("Fire Arrow");
+        // Vector3 spawnPosition = Player.Instance.transform.position + Vector3.up * 1.6f; // Could move reference to player instance outside this
+        Vector3 spawnPosition = transform.position + Vector3.up * 1.6f; // Could move reference to player instance outside this
+        Vector3 arrowDirection = _playerUpdatedController.mainCamera.transform.forward;
+
+        var arrowInstance = Instantiate(arrows[0], spawnPosition, Quaternion.LookRotation(arrowDirection));
+        arrowInstance.GetComponent<Arrow>().Fire(_strength); // Add force to the arrow equal to strength using arrow API
+        _chargeTime = 0;
+
+        // Inventory.Instance.UpdateItemCount(arrows[_selectedArrowIndex].name + 's', -1);  // Remove arrow from inventory
+        
+        // impulseSource.GenerateImpulse(); // Generate an impulse when arrows are fired
     }
     
+    private void ChargeArrow()
+    {
+        _chargeTime += Time.fixedDeltaTime; 
+        _strength = 1 - 1 / (Mathf.Pow((_chargeTime * chargeTimeCoefficient), chargeTimeExponent) + 1);
+            
+        crosshairController.SetCrossHairWidth(_strength);
+    }
+    
+    /*
     private CinemachineFreeLook.Orbit[] LerpOrbitArray(CinemachineFreeLook.Orbit[] a, CinemachineFreeLook.Orbit[] b, float t)
     {
         CinemachineFreeLook.Orbit[] result = new CinemachineFreeLook.Orbit[a.Length];
@@ -50,6 +92,7 @@ public class PlayerUpdatedBow : MonoBehaviour
         }
         return result;
     }
+    */
     
     private CinemachineFreeLook.Orbit LerpOrbit(CinemachineFreeLook.Orbit a,CinemachineFreeLook.Orbit b, float t)
     {

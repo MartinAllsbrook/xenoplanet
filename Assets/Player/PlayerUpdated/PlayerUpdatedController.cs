@@ -129,6 +129,11 @@ public class PlayerUpdatedController : MonoBehaviour
         {
             _aimingInput = context.action.WasPerformedThisFrame(); 
         }
+        public void GetFire(InputAction.CallbackContext context)
+        {
+            if (context.action.WasPressedThisFrame())
+                _playerBow.Fire();    
+        }
         public void GetSprint(InputAction.CallbackContext context)
         {
             _sprintInput = context.action.WasPerformedThisFrame(); 
