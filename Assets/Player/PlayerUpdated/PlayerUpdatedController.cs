@@ -13,6 +13,7 @@ public class PlayerUpdatedController : MonoBehaviour
     private PlayerUpdatedChecks _playerChecks;
     private PlayerUpdatedAnimations _playerAnimations;
     private PlayerUpdatedBow _playerBow;
+    private PlayerCameraController _playerCameraController;
     
     //Player References
     public CinemachineFreeLook thirdPersonCamera;
@@ -38,6 +39,7 @@ public class PlayerUpdatedController : MonoBehaviour
         _playerChecks = GetComponent<PlayerUpdatedChecks>();
         _playerAnimations = GetComponent<PlayerUpdatedAnimations>();
         _playerBow = GetComponent<PlayerUpdatedBow>();
+        _playerCameraController = GetComponent<PlayerCameraController>();
     }
 
     private void FixedUpdate()
@@ -54,6 +56,11 @@ public class PlayerUpdatedController : MonoBehaviour
             _playerMovement.Jump(_jumpInput);
         }
 
+        if (_cameraInput.magnitude > 0.2f)
+        {
+            _playerCameraController.SetCameraRotation(_cameraInput);
+        }
+
         if (_moveInput.magnitude > 0.2f)
         {
             _playerMovement.AirControl(_playerChecks.IsGrounded());
@@ -67,7 +74,7 @@ public class PlayerUpdatedController : MonoBehaviour
         }
         
         _playerMovement.Fall(_playerChecks.IsGrounded());
-        _playerBow.Aim(_aimingInput);
+        // _playerBow.Aim(_aimingInput);
         if (_aimingInput)
         {
             var projectedPlane = Vector3.ProjectOnPlane(mainCamera.transform.forward, Vector3.up);
@@ -112,7 +119,7 @@ public class PlayerUpdatedController : MonoBehaviour
         public void GetCamera(InputAction.CallbackContext context)
         {
             _cameraInput = context.ReadValue<Vector2>();
-            _playerMovement.CameraControl(_cameraInput);
+            // _playerMovement.CameraControl(_cameraInput);
         }
         public void GetMove(InputAction.CallbackContext context)
         {
