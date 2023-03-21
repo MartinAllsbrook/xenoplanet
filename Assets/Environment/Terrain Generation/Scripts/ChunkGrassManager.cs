@@ -28,8 +28,9 @@ public class ChunkGrassManager : MonoBehaviour
     
     public delegate void GenericDelegate();
 
-    public void PlaceGrass(ChunkData chunkData, GenericDelegate callback)
+    public void PlaceGrass(ChunkData chunkData, Vector3 position, GenericDelegate callback)
     {
+        transform.position = position;
         StartCoroutine(PlaceGrassRoutine(chunkData, callback));
     }
 
@@ -59,7 +60,12 @@ public class ChunkGrassManager : MonoBehaviour
             }
             else
             {
-                grass[i].transform.position = new Vector3(transform.position.x + x + Random.Range(-0.25f, 0.25f), height + Random.Range(-0.1f, 0.1f), transform.position.z + z + Random.Range(-0.25f, 0.25f));
+                // TODO: Change trasform position
+                grass[i].transform.position = new Vector3(
+                    transform.position.x + x + Random.Range(-0.25f, 0.25f), 
+                    height + Random.Range(-0.1f, 0.1f), 
+                    transform.position.z + z + Random.Range(-0.25f, 0.25f));
+                
                 grass[i].transform.rotation = Quaternion.Euler(0,Random.Range(0,360),0);
                 grass[i].transform.up = chunkData.GetNormal(x, z);
             }

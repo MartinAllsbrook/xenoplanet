@@ -9,12 +9,14 @@ using Random = UnityEngine.Random;
 public class MeshTerrainManager : MonoBehaviour
 {
     [SerializeField] private GameObject terrainChunk;
+    [SerializeField] private GameObject grassChunk;
     [SerializeField] private int terrainRadius;
     [SerializeField] private Transform playerTransform;
     
     private int _terrainSize;
 
     private GameObject[,] _activeChunks;
+    private GameObject[,] _grassChunks;
     private List<MeshTerrainChunk> _loadedChunks; 
     private int[] _seeds;
     
@@ -70,6 +72,16 @@ public class MeshTerrainManager : MonoBehaviour
     private void CreateInitialChunks()
     {
         _activeChunks = new GameObject[_terrainSize, _terrainSize];
+        _grassChunks = new GameObject[_terrainSize, _terrainSize];
+
+        for (int x = 0; x < _terrainSize; x++)
+        {
+            for (int z = 0; z < _terrainSize; z++)
+            {
+                _grassChunks[x,z] = Instantiate(grassChunk);
+            }
+        }
+        
         for (int x = -_terrainSize; x < _terrainSize * 2; x++)
         {
             for (var z = -_terrainSize; z < _terrainSize * 2; z++)
@@ -207,6 +219,9 @@ public class MeshTerrainManager : MonoBehaviour
     
     private GameObject LoadChunk(Vector2Int chunkPosition)
     {
+        Stopwatch timer = new Stopwatch();
+        timer.Start();
+        
         // Activate generated chunk
         for (int i = 0; i < _loadedChunks.Count; i++)
         {
@@ -215,22 +230,42 @@ public class MeshTerrainManager : MonoBehaviour
                 MeshTerrainChunk savedChunk = _loadedChunks[i]; // Get Chunk
                 savedChunk.gameObject.SetActive(true);
                 savedChunk.CheckLatePlace(); 
+                
+                // TESTING TESTING
+                timer.Stop();
+                Debug.Log("Loaded chunk activate time: " + timer.ElapsedMilliseconds);
+                // TESTING TESTING
+                
                 return savedChunk.gameObject; // Return the gameObject
             }
         }
         
         // Generate new chunk
-        GameObject newChunk = Instantiate(terrainChunk, new Vector3(chunkPosition.x * (_chunkSize - 1), 0, chunkPosition.y * (_chunkSize - 1)), _zeroRotation);
-        newChunk.GetComponent<MeshTerrainChunk>().SetTerrain(_seeds, true);
+        GameObject newChunk = Instantiate(terrainChunk, new Vector3(chunkPosition.x * (_chunkSize - 1), 0, chunkPosition.y * (_chunkSize - 1)), _zeroRotation,transform);
+        // newChunk.GetComponent<MeshTerrainChunk>().SetTerrain(_seeds, true);
         _loadedChunks.Add(newChunk.GetComponent<MeshTerrainChunk>());
+        
+        // TESTING TESTING
+        timer.Stop();
+        Debug.Log("New ACTIVE chunk load time: " + timer.ElapsedMilliseconds);
+        // TESTING TESTING
+        
         return newChunk;
     }
     
     private void LoadInactiveChunk(Vector2Int chunkPosition)
     {
-        GameObject newChunk = Instantiate(terrainChunk, new Vector3(chunkPosition.x * (_chunkSize - 1), 0, chunkPosition.y * (_chunkSize - 1)), _zeroRotation);
-        newChunk.GetComponent<MeshTerrainChunk>().SetTerrain(_seeds, false);
+        Stopwatch timer = new Stopwatch();
+        timer.Start();
+        
+        GameObject newChunk = Instantiate(terrainChunk, new Vector3(chunkPosition.x * (_chunkSize - 1), 0, chunkPosition.y * (_chunkSize - 1)), _zeroRotation,transform);
+        // newChunk.GetComponent<MeshTerrainChunk>().SetTerrain(_seeds, false);
         _loadedChunks.Add(newChunk.GetComponent<MeshTerrainChunk>());
+        
+        // TESTING TESTING
+        timer.Stop();
+        Debug.Log("New INACTIVE chunk load time: " + timer.ElapsedMilliseconds);
+        // TESTING TESTING
     }
 
     private void UpdatePlayerCell()

@@ -9,8 +9,10 @@ using Random = UnityEngine.Random;
 public class TestingInstantiation : MonoBehaviour
 {
     [SerializeField] private GameObject terrtainChunk;
-
+    [SerializeField] private ChunkGrassManager chunkGrassManager;
+    
     private int[] _seeds;
+    
     private void Start()
     {
         _seeds = new int[3];
@@ -26,10 +28,10 @@ public class TestingInstantiation : MonoBehaviour
         Stopwatch timer = new Stopwatch();
         timer.Start();
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 1; i++)
         {
             var newChunk = Instantiate(terrtainChunk, new Vector3(i * 65, 0, 0), new Quaternion(0,0,0,0));
-            // newChunk.GetComponent<MeshTerrainChunk>().SetTerrain(_seeds, true);
+            newChunk.GetComponent<MeshTerrainChunk>().SetTerrain(_seeds, true, chunkGrassManager);
         }
         timer.Stop();
         Debug.Log(timer.Elapsed);
