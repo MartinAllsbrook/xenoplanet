@@ -5,12 +5,13 @@ using UnityEngine;
 public class PlayerUpdatedMovement : MonoBehaviour
 {
     [Header("Movement Speeds")]
-    [Range(0,50)] [SerializeField] private float _movementSpeed;
-    [Range(0,2)] [SerializeField] private float _sprintMultiplier;
-    [Range(0,1)] [SerializeField] private float _crouchMultiplier;
-    [Range(0,1)] [SerializeField] private float _airControlMultiplier;
-    [Range(0,100)] [SerializeField] private float _jumpForce;
-    [Range(0,50)] [SerializeField] private float _fallForce;
+    [Range(0,50)] [SerializeField] private float movementSpeed;
+    [Range(0,2)] [SerializeField] private float sprintMultiplier;
+    [Range(0,1)] [SerializeField] private float crouchMultiplier;
+    [Range(0, 1)] [SerializeField] private float aimMultiplier;
+    [Range(0,1)] [SerializeField] private float airControlMultiplier;
+    [Range(0,100)] [SerializeField] private float jumpForce;
+    [Range(0,50)] [SerializeField] private float fallForce;
     
     
     //Script References
@@ -53,17 +54,23 @@ public class PlayerUpdatedMovement : MonoBehaviour
         _rigidbody.AddForce(moveDirection * (_calcMoveSpeed * 100), ForceMode.Force);
     }
 
+    public void Aim(bool input)
+    {
+        if(input)
+            _calcMoveSpeed = movementSpeed * aimMultiplier;
+    }
+
     public void Sprint(bool input)
     {
         if(input)
-            _calcMoveSpeed = _movementSpeed * _sprintMultiplier;
+            _calcMoveSpeed = movementSpeed * sprintMultiplier;
         else
-            _calcMoveSpeed = _movementSpeed;
+            _calcMoveSpeed = movementSpeed;
     }
     public void Crouch(bool input)
     {
         if (input)
-            _calcMoveSpeed = _movementSpeed * _crouchMultiplier;
+            _calcMoveSpeed = movementSpeed * crouchMultiplier;
 
         //Add code for colider!
     }
@@ -71,7 +78,7 @@ public class PlayerUpdatedMovement : MonoBehaviour
     {
         if (!isGrounded)
         {
-            _calcMoveSpeed = _movementSpeed * _airControlMultiplier;
+            _calcMoveSpeed = movementSpeed * airControlMultiplier;
         }
     }
 
@@ -79,7 +86,7 @@ public class PlayerUpdatedMovement : MonoBehaviour
     {
         if (_rigidbody.velocity.y < 2f && !isGrounded)
         {
-            _rigidbody.AddForce(-Vector3.up * (_fallForce * 10), ForceMode.Impulse);
+            _rigidbody.AddForce(-Vector3.up * (fallForce * 10), ForceMode.Impulse);
         }
     }
     
@@ -110,17 +117,10 @@ public class PlayerUpdatedMovement : MonoBehaviour
         if (input)
         {
             _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, 0f, _rigidbody.velocity.z);
-            _rigidbody.AddForce(Vector3.up * (_jumpForce * 10), ForceMode.Impulse);
+            _rigidbody.AddForce(Vector3.up * (jumpForce * 10), ForceMode.Impulse);
         }
     }
-    
 
-    public void CameraControl(Vector2 input)
-    {
-        _playerUpdatedController.thirdPersonCamera.m_XAxis.m_InputAxisValue = -input.x;
-        _playerUpdatedController.thirdPersonCamera.m_YAxis.m_InputAxisValue = -input.y;
-    }
-    
     private void OnDrawGizmos()
     {
         Debug.Log(_camDirection.normalized);

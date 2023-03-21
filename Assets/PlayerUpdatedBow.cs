@@ -16,10 +16,14 @@ public class PlayerUpdatedBow : MonoBehaviour
     [Header("References")]
     [SerializeField] private CrosshaireController crosshairController;
     [SerializeField] private GameObject[] arrows;
+    [SerializeField] private CinemachineImpulseSource impulseSource;
 
     [Header("Values")]
     [SerializeField] private float chargeTimeCoefficient;
     [SerializeField] private float chargeTimeExponent;
+    [SerializeField] private float maxImpulseForce;
+    /*[SerializeField] private float fovReduction;
+    [SerializeField] private float fov;*/
     
     private float _aimProgress;
     private float _chargeTime = 0f;
@@ -54,6 +58,7 @@ public class PlayerUpdatedBow : MonoBehaviour
         {
             moveCamera.SetActive(true);
             aimCamera.SetActive(false);
+            
             _chargeTime = 0;
         }        
     }
@@ -70,15 +75,16 @@ public class PlayerUpdatedBow : MonoBehaviour
         _chargeTime = 0;
 
         // Inventory.Instance.UpdateItemCount(arrows[_selectedArrowIndex].name + 's', -1);  // Remove arrow from inventory
-        
-        // impulseSource.GenerateImpulse(); // Generate an impulse when arrows are fired
+
+        impulseSource.GenerateImpulse(_strength * maxImpulseForce); // Generate an impulse when arrows are fired
     }
     
     private void ChargeArrow()
     {
         _chargeTime += Time.fixedDeltaTime; 
         _strength = 1 - 1 / (Mathf.Pow((_chargeTime * chargeTimeCoefficient), chargeTimeExponent) + 1);
-            
+
+        // _playerUpdatedController.aimCamera.m_Lens.FieldOfView = fov - _strength * fovReduction;
         crosshairController.SetCrossHairWidth(_strength);
     }
     

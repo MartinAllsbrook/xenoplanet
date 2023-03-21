@@ -16,7 +16,8 @@ public class PlayerUpdatedController : MonoBehaviour
     private PlayerCameraController _playerCameraController;
     
     //Player References
-    public CinemachineFreeLook thirdPersonCamera;
+    public CinemachineVirtualCamera moveCamera;
+    public CinemachineVirtualCamera aimCamera;
     public Camera mainCamera;
 
     //Inputs
@@ -54,14 +55,15 @@ public class PlayerUpdatedController : MonoBehaviour
             _playerMovement.Sprint(_sprintInput);
             _playerMovement.Crouch(_crouchInput);
             _playerMovement.Jump(_jumpInput);
+            _playerMovement.Aim(_aimingInput);
         }
 
-        if (_cameraInput.magnitude > 0.2f)
+        if (_cameraInput.magnitude > 0.01f)
         {
             _playerCameraController.SetCameraRotation(_cameraInput);
         }
 
-        if (_moveInput.magnitude > 0.2f)
+        if (_moveInput.magnitude > 0.01f)
         {
             _playerMovement.AirControl(_playerChecks.IsGrounded());
             if (!_aimingInput)
