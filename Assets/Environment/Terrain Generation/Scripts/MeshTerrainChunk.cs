@@ -23,7 +23,7 @@ public class MeshTerrainChunk : MonoBehaviour
     }*/
 
     // [SerializeField] private BiomeTexture[] biomeTextures;
-    private ChunkGrassManager _chunkGrassManager;
+    // private ChunkGrassManager _chunkGrassManager;
     [SerializeField] private MapGenerator mapGenerator;
     [SerializeField] private LandMarkGenerator landMarkGenerator;
     [SerializeField] private TreeScatter treeScatter;
@@ -32,11 +32,10 @@ public class MeshTerrainChunk : MonoBehaviour
     private bool _placedGrass;
     private bool _placedTrees;
 
-    public void SetTerrain(int[] seeds, bool makeActive, ChunkGrassManager grassManager)
+    public void SetTerrain(int[] seeds, bool makeActive)
     {
         var position = transform.position / (Size - 1);
         _chunkPosition = new Vector2Int((int) position.x, (int) position.z);
-        _chunkGrassManager = grassManager;
         
         _mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = _mesh;
@@ -54,11 +53,6 @@ public class MeshTerrainChunk : MonoBehaviour
             // If this chunk is being made active load the trees and grass 
             if (makeActive)
             {
-                _chunkGrassManager.PlaceGrass(_chunkData, transform.position, () =>
-                {
-                    _placedGrass = true;
-                });
-                
                 treeScatter.PlaceTrees(_chunkData, Size, () =>
                 {
                     _placedTrees = true;
@@ -66,6 +60,14 @@ public class MeshTerrainChunk : MonoBehaviour
             }
             else // Else set it to be inactive
                 gameObject.SetActive(false);
+        });
+    }
+
+    public void AddGrass(ChunkGrassManager grassManager)
+    {
+        grassManager.PlaceGrass(_chunkData, transform.position, () =>
+        {
+            _placedGrass = true;
         });
     }
 
@@ -180,14 +182,6 @@ public class MeshTerrainChunk : MonoBehaviour
 
     public void CheckLatePlace()
     {
-        if (!_placedGrass)
-        {
-            _chunkGrassManager.PlaceGrass(_chunkData, transform.position, () =>
-            {
-                _placedGrass = true;
-            });
-        }
-
         if (!_placedTrees)
         {
             treeScatter.PlaceTrees(_chunkData, Size, () =>

@@ -2705,7 +2705,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a08310a78dc3ad04fa9f3d64a4b5383d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  terrainChunk: {fileID: 9051413243473054194, guid: d09ef82256ab88144a51a5adbaf93309, type: 3}
+  terrainChunk: {fileID: 9051413243473054194, guid: 0786cf3101d53094e84ad9fbd0728927, type: 3}
+  grassChunk: {fileID: 197149187758417668, guid: a573f61475090c048b7c127494f9ce42, type: 3}
   terrainRadius: 2
   playerTransform: {fileID: 965868798}
 --- !u!4 &580536431

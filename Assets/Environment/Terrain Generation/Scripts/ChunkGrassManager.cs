@@ -60,7 +60,7 @@ public class ChunkGrassManager : MonoBehaviour
             }
             else
             {
-                // TODO: Change trasform position
+                grass[i].SetActive(true);
                 grass[i].transform.position = new Vector3(
                     transform.position.x + x + Random.Range(-0.25f, 0.25f), 
                     height + Random.Range(-0.1f, 0.1f), 
