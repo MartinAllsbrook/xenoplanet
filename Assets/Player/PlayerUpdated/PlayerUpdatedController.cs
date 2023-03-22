@@ -14,6 +14,7 @@ public class PlayerUpdatedController : MonoBehaviour
     private PlayerUpdatedAnimations _playerAnimations;
     private PlayerUpdatedBow _playerBow;
     private PlayerCameraController _playerCameraController;
+    private MeleeController _meleeController;
     
     //Player References
     public CinemachineVirtualCamera moveCamera;
@@ -41,6 +42,7 @@ public class PlayerUpdatedController : MonoBehaviour
         _playerAnimations = GetComponent<PlayerUpdatedAnimations>();
         _playerBow = GetComponent<PlayerUpdatedBow>();
         _playerCameraController = GetComponent<PlayerCameraController>();
+        _meleeController = GetComponent<MeleeController>();
     }
 
     private void FixedUpdate()
@@ -134,8 +136,15 @@ public class PlayerUpdatedController : MonoBehaviour
         }
         public void GetFire(InputAction.CallbackContext context)
         {
-            if (context.action.WasPressedThisFrame())
+            // On fire down
+            if (context.started)
                 _playerBow.Fire();    
+        }
+        public void GetMelee(InputAction.CallbackContext context)
+        {
+            // On melee down
+            if (context.started)
+                _meleeController.Melee();
         }
         public void GetSprint(InputAction.CallbackContext context)
         {

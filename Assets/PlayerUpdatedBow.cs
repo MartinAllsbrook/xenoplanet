@@ -65,8 +65,6 @@ public class PlayerUpdatedBow : MonoBehaviour
 
     public void Fire()
     {
-        Debug.Log("Fire Arrow");
-        // Vector3 spawnPosition = Player.Instance.transform.position + Vector3.up * 1.6f; // Could move reference to player instance outside this
         Vector3 spawnPosition = transform.position + Vector3.up * 1.6f; // Could move reference to player instance outside this
         Vector3 arrowDirection = _playerUpdatedController.mainCamera.transform.forward;
 

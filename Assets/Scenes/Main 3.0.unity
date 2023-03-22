@@ -4111,6 +4111,7 @@ GameObject:
   - component: {fileID: 965868805}
   - component: {fileID: 965868804}
   - component: {fileID: 965868803}
+  - component: {fileID: 965868809}
   - component: {fileID: 965868802}
   - component: {fileID: 965868801}
   - component: {fileID: 965868800}
@@ -4370,7 +4371,19 @@ MonoBehaviour:
     m_ActionId: b83af148-3f22-4019-8ac1-521d0f68e866
     m_ActionName: Player/FireGrapple[/XboxOneGampadMacOSWireless/rightShoulder]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 965868808}
+        m_TargetAssemblyTypeName: PlayerUpdatedController, Assembly-CSharp
+        m_MethodName: GetMelee
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 63a1c3a1-3fe4-4dc4-9310-1e4081659653
     m_ActionName: Player/Melee[/XboxOneGampadMacOSWireless/rightStickPress]
   - m_PersistentCalls:
@@ -4531,6 +4544,21 @@ MonoBehaviour:
   OnCrouchEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &965868809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965868797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeb83e401980a834e94dbb6bda6aa892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleeOffset: 0.7
+  meleeRadius: 2
+  meleeDamage: 50
 --- !u!1001 &968586358
 PrefabInstance:
   m_ObjectHideFlags: 0
