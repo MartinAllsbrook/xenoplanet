@@ -9,39 +9,27 @@ using UnityEngine.Rendering;
 
 public class InputManager : MonoBehaviour
 {
-    public static InputManager Instance;
+    // public static InputManager Instance;
     
-    private PlayerControls _playerControls;
+    // private PlayerControls _playerControls;
     private PlayerInput _playerInput;
-    [SerializeField] private Grapple _grapple;
+    
+    // private bool _readyToJump = false;
+    // private bool _inventoryOpen = false;
+    // private float _fireStrength;
 
-    private bool readyToJump = false;
-    private float _fireStrength;
-
-    private bool inventoryOpen = false;
-
-    public UnityEvent toggleInventory;
-    public UnityEvent select;
-    public UnityEvent hotbarNext;
-    public UnityEvent hotbarPrev;
-    public UnityEvent useItem;
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-        
-        if (toggleInventory == null) toggleInventory = new UnityEvent();
-        if (select == null) select = new UnityEvent();
-        if (hotbarNext == null) hotbarNext = new UnityEvent();
-        if (hotbarPrev == null) hotbarPrev = new UnityEvent();
-        if (useItem == null) useItem = new UnityEvent();
+        // Create singleton..... TODO: REMOVE THIS LMAO 
+        /*if (Instance == null)
+            Instance = this;*/
 
-        _playerInput = GetComponent<PlayerInput>();
-        _playerControls = new PlayerControls();
-        _fireStrength = 0;
+        _playerInput = GetComponent<PlayerInput>(); 
+        // _playerControls = new PlayerControls();
+        // _fireStrength = 0;
     }
 
-    private void OnEnable()
+    /*private void OnEnable()
     {
         _playerControls.Player.Enable();
     }
@@ -49,7 +37,7 @@ public class InputManager : MonoBehaviour
     private void OnDisable()
     {
         _playerControls.Player.Disable();
-    }
+    }*/
 
     private void Start()
     {
@@ -73,7 +61,7 @@ public class InputManager : MonoBehaviour
         // ControlChecks();
     }
 
-    private void ControlChecks()
+    /*private void ControlChecks()
     {
         // if (_playerControls.Player.PadRight.WasPerformedThisFrame())
         //     hotbarNext.Invoke();
@@ -107,18 +95,18 @@ public class InputManager : MonoBehaviour
             // _playerControls.Inventory.Disable();
         }
             // _playerControls.actions("Player");
-    }
+    }*/
 
     public void CloseInventory(InputAction.CallbackContext context)
     {
-        if (context.action.WasPerformedThisFrame())
+        if (context.started)
             _playerInput.SwitchCurrentActionMap("Player");
         
     }
 
     public void OpenInventory(InputAction.CallbackContext context)
     {
-        if (context.action.WasPerformedThisFrame())
+        if (context.started)
             _playerInput.SwitchCurrentActionMap("Inventory");
     }
 
@@ -138,7 +126,7 @@ public class InputManager : MonoBehaviour
     // Toggles inventory state on and off
     
     
-    private void ToggleInventory()
+    /*private void ToggleInventory()
     {
         // Call event
         toggleInventory.Invoke();
@@ -148,5 +136,5 @@ public class InputManager : MonoBehaviour
             inventoryOpen = false;
         else
             inventoryOpen = true;
-    }
+    }*/
 }

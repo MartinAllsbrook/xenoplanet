@@ -8,27 +8,30 @@ using UnityEngine.InputSystem;
 
 public class PlayerUpdatedController : MonoBehaviour
 {
-    //Script References
+    #region Script References
     private PlayerUpdatedMovement _playerMovement;
     private PlayerUpdatedChecks _playerChecks;
     private PlayerUpdatedAnimations _playerAnimations;
     private PlayerUpdatedBow _playerBow;
     private PlayerCameraController _playerCameraController;
     private MeleeController _meleeController;
-    
-    //Player References
+    #endregion
+
+    #region Player Referances
     public CinemachineVirtualCamera moveCamera;
     public CinemachineVirtualCamera aimCamera;
     public Camera mainCamera;
+    #endregion
 
-    //Inputs
+    #region Input Values
     private bool _jumpInput;
     private Vector2 _moveInput;
     private bool _sprintInput;
     private bool _crouchInput;
     private Vector2 _cameraInput;
     private bool _aimingInput;
-    
+    #endregion
+
     //Events
     [SerializeField] UnityEvent OnJumpEvent;
     [SerializeField] UnityEvent OnLandEvent;
@@ -137,7 +140,7 @@ public class PlayerUpdatedController : MonoBehaviour
         public void GetFire(InputAction.CallbackContext context)
         {
             // On fire down
-            if (context.started)
+            if (context.performed)
                 _playerBow.Fire();    
         }
         public void GetMelee(InputAction.CallbackContext context)

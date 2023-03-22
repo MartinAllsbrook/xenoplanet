@@ -33,7 +33,9 @@ public class InventoryController : MonoBehaviour
 
     private void Start()
     {
+        /*
         InputManager.Instance.select.AddListener(Select);
+    */
     }
 
     private void Update()

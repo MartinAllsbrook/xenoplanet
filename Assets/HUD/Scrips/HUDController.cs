@@ -76,17 +76,22 @@ public class HUDController : MonoBehaviour
 
     public void ToggleInventory(InputAction.CallbackContext context)
     {
-        if (inventoryOpen)
+        if (context.started)
         {
-            inventory.gameObject.SetActive(false);
-            crosshaireController.gameObject.SetActive(true);
-            inventoryOpen = false;
-        }
-        else
-        {
-            inventory.gameObject.SetActive(true);
-            crosshaireController.gameObject.SetActive(false);
-            inventoryOpen = true;
+            if (inventoryOpen)
+            {
+                Debug.Log("Close");
+                inventory.gameObject.SetActive(false);
+                crosshaireController.gameObject.SetActive(true);
+                inventoryOpen = false;
+            }
+            else
+            {
+                Debug.Log("Open");
+                inventory.gameObject.SetActive(true);
+                crosshaireController.gameObject.SetActive(false);
+                inventoryOpen = true;
+            }        
         }
     }
     
