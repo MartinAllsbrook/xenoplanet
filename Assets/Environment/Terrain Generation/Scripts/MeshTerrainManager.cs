@@ -229,8 +229,8 @@ public class MeshTerrainManager : MonoBehaviour
     
     private GameObject LoadChunk(Vector2Int chunkPosition, ChunkGrassManager grassManager)
     {
-        Stopwatch timer = new Stopwatch();
-        timer.Start();
+        /*Stopwatch timer = new Stopwatch();
+        timer.Start();*/
         
         // Activate generated chunk
         for (int i = 0; i < _loadedChunks.Count; i++)
@@ -242,10 +242,10 @@ public class MeshTerrainManager : MonoBehaviour
                 savedChunk.CheckLatePlace(); 
                 savedChunk.AddGrass(grassManager);
 
-                // TESTING TESTING
+                /*// TESTING TESTING
                 timer.Stop();
                 Debug.Log("Loaded chunk activate time: " + timer.ElapsedMilliseconds);
-                // TESTING TESTING
+                // TESTING TESTING*/
                 
                 return savedChunk.gameObject; // Return the gameObject
             }
@@ -260,27 +260,27 @@ public class MeshTerrainManager : MonoBehaviour
         
         _loadedChunks.Add(newChunk.GetComponent<MeshTerrainChunk>());
         
-        // TESTING TESTING
+        /*// TESTING TESTING
         timer.Stop();
         Debug.Log("New ACTIVE chunk load time: " + timer.ElapsedMilliseconds);
-        // TESTING TESTING
+        // TESTING TESTING*/
         
         return newChunk;
     }
     
     private void LoadInactiveChunk(Vector2Int chunkPosition)
     {
-        Stopwatch timer = new Stopwatch();
-        timer.Start();
+        /*Stopwatch timer = new Stopwatch();
+        timer.Start();*/
         
         GameObject newChunk = Instantiate(terrainChunk, new Vector3(chunkPosition.x * (_chunkSize - 1), 0, chunkPosition.y * (_chunkSize - 1)), _zeroRotation,transform);
         newChunk.GetComponent<MeshTerrainChunk>().SetTerrain(_seeds, false);
         _loadedChunks.Add(newChunk.GetComponent<MeshTerrainChunk>());
         
-        // TESTING TESTING
+        /*// TESTING TESTING
         timer.Stop();
         Debug.Log("New INACTIVE chunk load time: " + timer.ElapsedMilliseconds);
-        // TESTING TESTING
+        // TESTING TESTING*/
     }
 
     private void UpdatePlayerCell()

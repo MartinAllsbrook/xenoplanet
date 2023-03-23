@@ -19,9 +19,8 @@ public class Enemy : BreakableObject
     protected Vector3 targetLocation;
     protected Vector3 lastPlayerLocation;
     protected bool canSeePlayer;
-
-    // private UnityEvent playerVisible;
     
+    // private UnityEvent playerVisible;
     protected virtual void Awake()
     {
         base.Awake();

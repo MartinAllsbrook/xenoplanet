@@ -123,7 +123,7 @@ public class PlayerUpdatedMovement : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Debug.Log(_camDirection.normalized);
+        // Debug.Log(_camDirection.normalized);
         Gizmos.color = Color.yellow;
         Gizmos.DrawRay(transform.position, transform.forward * 2f);
     }

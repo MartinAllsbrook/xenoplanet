@@ -11,10 +11,9 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private float innerRadius;
     [SerializeField] private float outerRadius;
 
-    private Transform _playerTransform;
+    [SerializeField] private Transform playerTransform;
     private void Start()
     {
-        _playerTransform = Player.Instance.transform;
         StartCoroutine(SpawnEnemiesRoutine());
     }
 
@@ -26,7 +25,7 @@ public class EnemyManager : MonoBehaviour
             
             // Debug.Log("Attempt to spawn at: " + randomPoint);
 
-            randomPoint += new Vector2(_playerTransform.position.x, _playerTransform.position.z);
+            randomPoint += new Vector2(playerTransform.position.x, playerTransform.position.z);
                 
             // Debug.Log("point 2: " + randomPoint);
 
