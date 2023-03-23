@@ -14,6 +14,8 @@ public class PlayerUpdatedAnimations : MonoBehaviour
     private static readonly int Speed = Animator.StringToHash("Speed");
     private static readonly int Crouch = Animator.StringToHash("Crouch");
     private static readonly int Jump = Animator.StringToHash("Jump");
+    private static readonly int Strafe = Animator.StringToHash("Strafe");
+    private static readonly int X = Animator.StringToHash("xDir");
 
     void Start()
     {
@@ -23,6 +25,11 @@ public class PlayerUpdatedAnimations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    }
+
+    public void DirectionAnimation(float dirX)
+    {
+        animator.SetFloat(X, dirX);
     }
 
     public void MoveAnimation()
@@ -37,6 +44,11 @@ public class PlayerUpdatedAnimations : MonoBehaviour
     public void JumpAnimation()
     {
         animator.SetTrigger(Jump);
+    }
+
+    public void StrafeAnimation(bool isAiming)
+    {
+        animator.SetBool(Strafe, isAiming);
     }
     
     

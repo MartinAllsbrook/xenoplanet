@@ -34,14 +34,9 @@ public class PlayerUpdatedBow : MonoBehaviour
     void Start()
     {
         _playerUpdatedController = GetComponent<PlayerUpdatedController>();
-        // _startOrbits = _playerUpdatedController.thirdPersonCamera.m_Orbits;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void Aim(bool input)
     {
@@ -88,17 +83,6 @@ public class PlayerUpdatedBow : MonoBehaviour
         crosshairController.SetCrossHairWidth(_strength);
     }
     
-    /*
-    private CinemachineFreeLook.Orbit[] LerpOrbitArray(CinemachineFreeLook.Orbit[] a, CinemachineFreeLook.Orbit[] b, float t)
-    {
-        CinemachineFreeLook.Orbit[] result = new CinemachineFreeLook.Orbit[a.Length];
-        for (int i = 0; i < a.Length; i++)
-        {
-            result[i] = LerpOrbit(a[i], b[i], t);
-        }
-        return result;
-    }
-    */
     
     private CinemachineFreeLook.Orbit LerpOrbit(CinemachineFreeLook.Orbit a,CinemachineFreeLook.Orbit b, float t)
     {
