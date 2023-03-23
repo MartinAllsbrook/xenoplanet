@@ -149,6 +149,15 @@ public class PlayerUpdatedController : MonoBehaviour
             if (context.started)
                 _meleeController.Melee();
         }
+        public void GetCycleArrow(InputAction.CallbackContext context)
+        {
+            // On cycle arrow down
+            if (context.started)
+            {
+                if (!_aimingInput)
+                    _playerBow.CycleArrow();
+            }
+        }
         public void GetSprint(InputAction.CallbackContext context)
         {
             _sprintInput = context.action.WasPerformedThisFrame(); 

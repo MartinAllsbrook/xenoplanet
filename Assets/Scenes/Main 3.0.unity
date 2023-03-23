@@ -2692,6 +2692,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db866ef7fabeb444da8324188811a247, type: 3}
+--- !u!1 &575079273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 575079274}
+  - component: {fileID: 575079275}
+  m_Layer: 3
+  m_Name: ItemPickupCollider
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &575079274
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575079273}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 965868798}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &575079275
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575079273}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &580536429
 GameObject:
   m_ObjectHideFlags: 0
@@ -3048,17 +3093,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1163398293835165605, guid: 4d61cb79fef77d74c8bef06d00726992, type: 3}
   m_PrefabInstance: {fileID: 1163398293550297419}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &664270445 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3618141963820217388, guid: 4d61cb79fef77d74c8bef06d00726992, type: 3}
-  m_PrefabInstance: {fileID: 1163398293550297419}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a09029fcf6994f54db134035a4a9277b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &674412670 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6564893937776499297, guid: d2edf5afa86f63d498c4160a64414116, type: 3}
@@ -4193,6 +4227,7 @@ Transform:
   - {fileID: 1342178168}
   - {fileID: 1269928826}
   - {fileID: 1521090036}
+  - {fileID: 575079274}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4413,7 +4448,19 @@ MonoBehaviour:
     m_ActionId: cfca7ff1-e9a5-4c66-8a18-92023bd3a3b6
     m_ActionName: Player/Fire[/XboxOneGampadMacOSWireless/rightTrigger,/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 965868808}
+        m_TargetAssemblyTypeName: PlayerUpdatedController, Assembly-CSharp
+        m_MethodName: GetCycleArrow
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 452f3474-9ff5-4c03-bcae-da1207dd9872
     m_ActionName: Player/CycleArrows[/XboxOneGampadMacOSWireless/buttonNorth,/Keyboard/q]
   - m_PersistentCalls:
@@ -4614,6 +4661,8 @@ MonoBehaviour:
   crosshairController: {fileID: 3257246179193726763}
   arrows:
   - {fileID: 8552387443009401812, guid: eeb0ec5fde229a148a41b776d4a0c62d, type: 3}
+  - {fileID: 6564256316830937675, guid: 5774ebc7947634245b4ffb3ddc297906, type: 3}
+  - {fileID: 3416325244853850123, guid: d4e452000a4ebcd458ed2ad2ee3b5b53, type: 3}
   impulseSource: {fileID: 965868799}
   chargeTimeCoefficient: 3
   chargeTimeExponent: 2
@@ -6331,17 +6380,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1163398293835165605, guid: 4d61cb79fef77d74c8bef06d00726992, type: 3}
   m_PrefabInstance: {fileID: 2128758174300481130}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1365780712 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3618141963820217388, guid: 4d61cb79fef77d74c8bef06d00726992, type: 3}
-  m_PrefabInstance: {fileID: 2128758174300481130}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a09029fcf6994f54db134035a4a9277b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1369013779
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7783,17 +7821,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1163398293835165605, guid: 4d61cb79fef77d74c8bef06d00726992, type: 3}
   m_PrefabInstance: {fileID: 8217407896908140746}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1731314784 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3618141963820217388, guid: 4d61cb79fef77d74c8bef06d00726992, type: 3}
-  m_PrefabInstance: {fileID: 8217407896908140746}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a09029fcf6994f54db134035a4a9277b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1733109132
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11807,11 +11834,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ff0dfe5a4e2c945bdda7758edfea69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hotbarTiles:
-  - {fileID: 664270445}
-  - {fileID: 1365780712}
-  - {fileID: 1731314784}
-  _selectedTile: 0
 --- !u!224 &6572389838451167682
 RectTransform:
   m_ObjectHideFlags: 0

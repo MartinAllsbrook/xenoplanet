@@ -28,19 +28,33 @@ public class PlayerUpdatedBow : MonoBehaviour
     private float _aimProgress;
     private float _chargeTime = 0f;
     private float _strength = 0f;
+    
     private int _selectedArrowIndex = 0;
+    private int _numArrows;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         _playerUpdatedController = GetComponent<PlayerUpdatedController>();
+        Inventory.OnUpdateCount.AddListener(UpdateNumArrows);
         // _startOrbits = _playerUpdatedController.thirdPersonCamera.m_Orbits;
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    private void UpdateNumArrows()
     {
-
+        string arrowName = arrows[_selectedArrowIndex].name + 's';
+        _numArrows = Inventory.Instance.GetItemCount(arrowName);
+        HUDController.Instance.SetNumArrows(_numArrows);
+    }
+    
+    public void CycleArrow()
+    {
+        // Start by cycling arrow index
+        _selectedArrowIndex++;
+        if (_selectedArrowIndex >= arrows.Length)
+            _selectedArrowIndex = 0;
+        
+        UpdateNumArrows();
+        HUDController.Instance.SetArrow(arrows[_selectedArrowIndex].name);
     }
 
     public void Aim(bool input)
@@ -65,20 +79,25 @@ public class PlayerUpdatedBow : MonoBehaviour
 
     public void Fire()
     {
-        Vector3 spawnPosition = transform.position + Vector3.up * 1.6f; // Could move reference to player instance outside this
+        if (_numArrows <= 0)
+            return;
+
+        Vector3 spawnPosition = transform.position + Vector3.up * 1.6f; 
         Vector3 arrowDirection = _playerUpdatedController.mainCamera.transform.forward;
 
         var arrowInstance = Instantiate(arrows[0], spawnPosition, Quaternion.LookRotation(arrowDirection));
         arrowInstance.GetComponent<Arrow>().Fire(_strength); // Add force to the arrow equal to strength using arrow API
         _chargeTime = 0;
 
-        // Inventory.Instance.UpdateItemCount(arrows[_selectedArrowIndex].name + 's', -1);  // Remove arrow from inventory
-
+        Inventory.Instance.UpdateItemCount(arrows[_selectedArrowIndex].name + 's', -1);  // Remove arrow from inventory
         impulseSource.GenerateImpulse(_strength * maxImpulseForce); // Generate an impulse when arrows are fired
     }
     
     private void ChargeArrow()
     {
+        if (_numArrows <= 0)
+            return;
+        
         _chargeTime += Time.fixedDeltaTime; 
         _strength = 1 - 1 / (Mathf.Pow((_chargeTime * chargeTimeCoefficient), chargeTimeExponent) + 1);
 
