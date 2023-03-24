@@ -12,7 +12,6 @@ public class PlayerUpdatedBow : MonoBehaviour
     [Header("Cameras")]
     [SerializeField] private GameObject moveCamera;
     [SerializeField] private GameObject aimCamera;
-    [SerializeField] private GameObject ballTemp;
 
     [Header("References")]
     [SerializeField] private CrosshaireController crosshairController;
