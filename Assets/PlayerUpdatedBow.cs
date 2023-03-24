@@ -12,6 +12,7 @@ public class PlayerUpdatedBow : MonoBehaviour
     [Header("Cameras")]
     [SerializeField] private GameObject moveCamera;
     [SerializeField] private GameObject aimCamera;
+    [SerializeField] private GameObject ballTemp;
 
     [Header("References")]
     [SerializeField] private CrosshaireController crosshairController;
@@ -22,6 +23,11 @@ public class PlayerUpdatedBow : MonoBehaviour
     [SerializeField] private float chargeTimeCoefficient;
     [SerializeField] private float chargeTimeExponent;
     [SerializeField] private float maxImpulseForce;
+    [SerializeField] private float sphereCastRadius;
+    [SerializeField] private float maxAimDistance;
+    
+    [SerializeField] private LayerMask enemiesLayerMask;
+    
     /*[SerializeField] private float fovReduction;
     [SerializeField] private float fov;*/
     
@@ -83,9 +89,9 @@ public class PlayerUpdatedBow : MonoBehaviour
             return;
 
         Vector3 spawnPosition = transform.position + Vector3.up * 1.6f; 
-        Vector3 arrowDirection = _playerUpdatedController.mainCamera.transform.forward;
+        Quaternion arrowDirection = CalculateAimDirection(spawnPosition);
 
-        var arrowInstance = Instantiate(arrows[0], spawnPosition, Quaternion.LookRotation(arrowDirection));
+        var arrowInstance = Instantiate(arrows[0], spawnPosition, arrowDirection);
         arrowInstance.GetComponent<Arrow>().Fire(_strength); // Add force to the arrow equal to strength using arrow API
         _chargeTime = 0;
 
@@ -116,6 +122,23 @@ public class PlayerUpdatedBow : MonoBehaviour
         return result;
     }
     */
+    
+    private Quaternion CalculateAimDirection(Vector3 spawnPosition)
+    {
+        Transform mainCameraTransform = _playerUpdatedController.mainCamera.transform;
+        
+        Vector3 origin = mainCameraTransform.position;
+        Vector3 direction = mainCameraTransform.forward;
+        Ray ray = new Ray(origin, direction);
+
+        Vector3 aimDirection;
+        if (Physics.SphereCast(ray, sphereCastRadius, out RaycastHit hit, maxAimDistance, enemiesLayerMask))
+            aimDirection = hit.point - spawnPosition;
+        else
+            aimDirection = mainCameraTransform.forward;
+        
+        return Quaternion.LookRotation(aimDirection);
+    }
     
     private CinemachineFreeLook.Orbit LerpOrbit(CinemachineFreeLook.Orbit a,CinemachineFreeLook.Orbit b, float t)
     {

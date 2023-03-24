@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 829557173644731252}
   - component: {fileID: 8610833184453640126}
   - component: {fileID: 3025918574150016417}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 4054296639037660079}
   - component: {fileID: 4054296639037660078}
   - component: {fileID: 4054296639037660077}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 4054296639214693568}
   - component: {fileID: 4054296639214693631}
   - component: {fileID: 4054296639214693630}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,7 +323,7 @@ GameObject:
   - component: {fileID: 4054296639441911103}
   - component: {fileID: 4054296639441911102}
   - component: {fileID: 4054296639441911101}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -421,7 +421,7 @@ GameObject:
   - component: {fileID: 4054296639512293129}
   - component: {fileID: 4054296639512293128}
   - component: {fileID: 4054296639512293127}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -518,7 +518,7 @@ GameObject:
   - component: {fileID: 8376967908232942932}
   - component: {fileID: 1205421719}
   - component: {fileID: 6373564424095134725}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Beamer
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -571,7 +571,7 @@ MonoBehaviour:
     dropTries: 2
     drop: {fileID: 3980989105184464102, guid: d2edf5afa86f63d498c4160a64414116, type: 3}
   deathParticles: {fileID: 6195871198001566187, guid: 5b8ca04c0ed3fed49a823c9ce5d0fa1f, type: 3}
-  idleDistance: 10
+  idleDistance: 30
   viewDistance: 64
   fov: 90
   visible:
@@ -630,7 +630,7 @@ GameObject:
   - component: {fileID: 4054296640087871251}
   - component: {fileID: 4054296640087871250}
   - component: {fileID: 4054296640087871249}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -728,7 +728,7 @@ GameObject:
   - component: {fileID: 4054296640107062822}
   - component: {fileID: 4054296640107062821}
   - component: {fileID: 4054296640107062820}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -825,7 +825,7 @@ GameObject:
   - component: {fileID: 4054296640324314569}
   - component: {fileID: 4054296640324314568}
   - component: {fileID: 4054296640324314567}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -925,9 +925,9 @@ GameObject:
   - component: {fileID: 4054296640808178710}
   - component: {fileID: 6746070255207092896}
   - component: {fileID: 8417471612684424897}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Eye
-  m_TagString: EnemyCritical
+  m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -941,8 +941,8 @@ Transform:
   m_GameObject: {fileID: 4054296640808178708}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4182606, y: 0.4182606, z: 0.4182606}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.66, y: 0.66, z: 0.66}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4054296639640991253}
   m_RootOrder: 7
@@ -1135,6 +1135,10 @@ PrefabInstance:
     - target: {fileID: 2729793261956897294, guid: c4fe319c829d11d4395d5830bc39b101, type: 3}
       propertyPath: m_Name
       value: MinimapBall
+      objectReference: {fileID: 0}
+    - target: {fileID: 2729793261956897294, guid: c4fe319c829d11d4395d5830bc39b101, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3072495918351914326, guid: c4fe319c829d11d4395d5830bc39b101, type: 3}
       propertyPath: m_RootOrder

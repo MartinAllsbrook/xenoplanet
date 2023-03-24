@@ -64,7 +64,7 @@ public class PlayerUpdatedController : MonoBehaviour
             _playerMovement.Aim(_aimingInput);
         }
 
-        if (_cameraInput.magnitude > 0.01f)
+        if (_cameraInput.magnitude > 0.001f)
         {
             _playerCameraController.SetCameraRotation(_cameraInput);
         }
