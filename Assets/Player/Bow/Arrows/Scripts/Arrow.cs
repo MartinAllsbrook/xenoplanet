@@ -11,6 +11,8 @@ public class Arrow : MonoBehaviour
     [SerializeField] private float maxDamage;
     [SerializeField] private float criticalMultiplier;
     [SerializeField] private float maxForce;
+    [SerializeField] private AudioSource arrowLandAudio;
+    
     private const float ArrowUp = 0.005f;
 
     // Arrow damage var and prop to be accessed by target
@@ -36,13 +38,17 @@ public class Arrow : MonoBehaviour
 
     protected virtual void OnCollisionEnter(Collision collision)
     {
+        arrowLandAudio.Play();
+        
         if (collision.gameObject.CompareTag("Enemy"))
             CheckEnemyHit(collision);
         
         if (collision.gameObject.CompareTag("Breakable Environment"))
             collision.gameObject.GetComponent<BreakableObject>().Health = -(damage / 2); // Deal less damage to breakable objects with arrows
         
-        Destroy(gameObject);
+        Destroy(arrowRigidbody);
+        Destroy(this);
+        transform.SetParent(collision.transform);
     }
 
     private void CheckEnemyHit(Collision collision)

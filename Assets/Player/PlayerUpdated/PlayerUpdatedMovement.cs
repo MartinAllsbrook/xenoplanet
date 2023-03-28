@@ -12,8 +12,10 @@ public class PlayerUpdatedMovement : MonoBehaviour
     [Range(0,1)] [SerializeField] private float airControlMultiplier;
     [Range(0,100)] [SerializeField] private float jumpForce;
     [Range(0,50)] [SerializeField] private float fallForce;
-    
-    
+
+    [Header("Sounds")] 
+    [SerializeField] private AudioSource walkingAudio;
+
     //Script References
     private PlayerUpdatedController _playerUpdatedController;
     private Rigidbody _rigidbody;
@@ -25,9 +27,7 @@ public class PlayerUpdatedMovement : MonoBehaviour
     private Vector3 _camDirection;
     private float _turnVelocity;
     private Vector3 _currVelocity;
-    
-    
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +40,7 @@ public class PlayerUpdatedMovement : MonoBehaviour
         if (onSlope)
             _camDirection = Vector3.ProjectOnPlane(_camDirection, groundNormal).normalized;
         
-        //Actual Move
+        //Actual Movee
         _rigidbody.AddForce(_camDirection.normalized * (_calcMoveSpeed * 100), ForceMode.Force);
     }
 

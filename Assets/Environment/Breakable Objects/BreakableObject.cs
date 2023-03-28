@@ -7,6 +7,9 @@ using Random = UnityEngine.Random;
 public class BreakableObject : MonoBehaviour
 {
     [SerializeField] protected float health;
+
+    [SerializeField] protected AudioSource deathSound;
+    
     public virtual float Health
     {
         private get { return health; }
@@ -43,9 +46,9 @@ public class BreakableObject : MonoBehaviour
     
     protected virtual void Die()
     {
-        // Instantiate the enemies death particle system
         Instantiate(deathParticles, transform.position, transform.rotation);
-        //  Instatiate 
+        deathSound.Play();
+
         for (int i = 0; i < itemDrops.Length; i++)
         {
             for (int j = 0; j < itemDrops[i].dropTries; j++)

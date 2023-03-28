@@ -13,7 +13,6 @@ public class CrosshaireController : MonoBehaviour
     [SerializeField] private GameObject crossHairLeft;
     [SerializeField] private GameObject crossHairRight;
     [SerializeField] private TextMeshProUGUI numArrowsDisplay;
-
     [SerializeField] private float minCrossHairWidth;
     [SerializeField] private float maxCrossHairWidth;
 
@@ -35,6 +34,8 @@ public class CrosshaireController : MonoBehaviour
     private RectTransform _crossHairLeftRectTransform;
     private RectTransform _crossHairRightRectTransform;
 
+    private AudioSource _hitMarkerSound;
+
     private void Start()
     {
         _crossHairCenterImage = crossHairCenter.GetComponent<Image>();
@@ -43,6 +44,8 @@ public class CrosshaireController : MonoBehaviour
         
         _crossHairLeftRectTransform = crossHairLeft.GetComponent<RectTransform>();
         _crossHairRightRectTransform = crossHairRight.GetComponent<RectTransform>();
+
+        _hitMarkerSound = GetComponent<AudioSource>();
     }
 
     public void SetNumArrows(int numArrows)
@@ -92,6 +95,7 @@ public class CrosshaireController : MonoBehaviour
     public void PlayHitMarker(Color color)
     {
         StartCoroutine(HitMarker(color));
+        _hitMarkerSound.Play();
     }
 
     IEnumerator HitMarker(Color color)

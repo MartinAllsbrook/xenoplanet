@@ -12,6 +12,8 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] private ItemCounter[] initialItemsArray;
     [SerializeField] private CraftingRecipe[] initialRecipesArray;
+    [SerializeField] private AudioSource craftAudio;
+    
     // [SerializeField] private float moveCooldown;
     
     private Dictionary<string, ItemCounter> _itemCounters;
@@ -90,6 +92,7 @@ public class Inventory : MonoBehaviour
             Debug.LogError(itemToCraft + " item slot full!");
         }
         
+        craftAudio.Play();
         return true;
     }
 

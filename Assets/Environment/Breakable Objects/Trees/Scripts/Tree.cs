@@ -7,7 +7,6 @@ using Random = UnityEngine.Random;
 
 public class Tree : BreakableObject
 {
-
     private CinemachineImpulseSource _impulseSource;
 
     private void Start()
@@ -32,11 +31,15 @@ public class Tree : BreakableObject
         if (gameObject.GetComponent<CapsuleCollider>())
             Destroy(gameObject.GetComponent<CapsuleCollider>());
         
+        deathSound.Play();
         yield return new WaitForSeconds(2.5f);
+        
         // Instantiate the objects death particle system
         Instantiate(deathParticles, transform.position + transform.up * 2, new Quaternion(0,0,0,0));
+        
         yield return new WaitForSeconds(1f);
-        _impulseSource.GenerateImpulse();
+        
+        _impulseSource.GenerateImpulse(); // Whats going on here?
         Disappear();
     }
     

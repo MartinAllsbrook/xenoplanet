@@ -17,7 +17,8 @@ public class PlayerUpdatedBow : MonoBehaviour
     [SerializeField] private CrosshaireController crosshairController;
     [SerializeField] private GameObject[] arrows;
     [SerializeField] private CinemachineImpulseSource impulseSource;
-
+    [SerializeField] private AudioSource bowDrawAudio;
+    
     [Header("Values")]
     [SerializeField] private float chargeTimeCoefficient;
     [SerializeField] private float chargeTimeExponent;
@@ -70,6 +71,9 @@ public class PlayerUpdatedBow : MonoBehaviour
             {
                 aimCamera.SetActive(true);
                 moveCamera.SetActive(false);
+                
+                if (_numArrows > 0)
+                    bowDrawAudio.Play();
             }
             ChargeArrow();
         }
@@ -77,6 +81,7 @@ public class PlayerUpdatedBow : MonoBehaviour
         {
             moveCamera.SetActive(true);
             aimCamera.SetActive(false);
+            bowDrawAudio.Stop();
             
             _chargeTime = 0;
         }        
@@ -84,9 +89,6 @@ public class PlayerUpdatedBow : MonoBehaviour
 
     public void Fire()
     {
-        if (_numArrows <= 0)
-            return;
-
         Vector3 spawnPosition = transform.position + Vector3.up * 1.6f; 
         Quaternion arrowDirection = CalculateAimDirection(spawnPosition);
 
