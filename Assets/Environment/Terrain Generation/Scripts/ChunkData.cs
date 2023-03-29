@@ -24,7 +24,7 @@ public class ChunkData
         // NumBiomes = numBiomes;
     }
 
-    private void GeneratePlanes()
+    public void GeneratePlanes()
     {
         _planes = new Plane[_size - 1, _size - 1];
 

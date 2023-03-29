@@ -78,7 +78,7 @@ public class LandMarkGenerator : MonoBehaviour
                 }
             }
         }
-
+        chunkData.GeneratePlanes();
         Instantiate(landMark.structure, new Vector3(xPosition + transform.position.x, height, zPosition + transform.position.z), new Quaternion(0, 0, 0, 0), transform);
     }
 }

@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class RotateTest : MonoBehaviour
 {
-
-    [SerializeField] private float rotateAmount;
-
     // Update is called once per frame
-    void Update()
+    void Start()
     {
-        transform.Rotate(0, rotateAmount * Time.deltaTime, 0);
+        transform.Rotate(0, 45, 0);
     }
 };

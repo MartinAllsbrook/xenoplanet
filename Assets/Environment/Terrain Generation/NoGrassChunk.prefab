@@ -298,7 +298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266e07cf532efd64c969835ab93232a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkGrassManager: {fileID: 0}
   mapGenerator: {fileID: 8693317222589726818}
   landMarkGenerator: {fileID: 6731353280582895152}
   treeScatter: {fileID: -8145085250426399479}

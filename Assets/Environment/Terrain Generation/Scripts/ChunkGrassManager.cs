@@ -54,10 +54,10 @@ public class ChunkGrassManager : MonoBehaviour
             var height = chunkData.GetHeight(x, z);
             var moisture = chunkData.GetMoisture(x, z);
 
-            if (height + Random.Range(-minGrassHeight/2, 0) < minGrassHeight + Random.Range(0f, 0.2f) || moisture < 0.45)
-            {
+            if (height + Random.Range(-minGrassHeight/2, 0) < minGrassHeight + Random.Range(0f, 0.2f) || moisture < 0.45) 
                 grass[i].SetActive(false);
-            }
+            else if (Vector3.Angle(chunkData.GetNormal(x, z), Vector3.up) + Random.Range(-4, 4) > 35)
+                grass[i].SetActive(false);
             else
             {
                 grass[i].SetActive(true);
@@ -66,12 +66,30 @@ public class ChunkGrassManager : MonoBehaviour
                     height + Random.Range(-0.1f, 0.1f), 
                     transform.position.z + z + Random.Range(-0.25f, 0.25f));
                 
-                grass[i].transform.rotation = Quaternion.Euler(0,Random.Range(0,360),0);
+                // Working for upVector
+                // /*
+                // grass[i].transform.rotation = Quaternion.Euler(0,Random.Range(0,360),0);
+                // */
+                
+                // Working for completely random rotation
                 grass[i].transform.up = chunkData.GetNormal(x, z);
+                grass[i].transform.Rotate(0, Random.Range(0,360), 0);
+                // grass[i].transform.rotation *= Quaternion.AngleAxis(Random.Range(0,360), chunkData.GetNormal(x, z));
+                
+                // Working for completely random rotation
+                // grass[i].transform.rotation = Quaternion.LookRotation(Random.insideUnitSphere, Vector3.up);
             }
         }
         timer.Stop();
         callback();
         yield return null;
+    }
+    
+    public static Quaternion RandomQuaternion(Vector3 upVector)
+    {
+        Vector3 randomDirection = Random.insideUnitSphere;
+        randomDirection.y = Mathf.Abs(randomDirection.y);
+        Quaternion rotation = Quaternion.LookRotation(randomDirection, upVector);
+        return rotation;
     }
 }
