@@ -8,8 +8,6 @@ public class BreakableObject : MonoBehaviour
 {
     [SerializeField] protected float health;
 
-    [SerializeField] protected AudioSource deathSound;
-    
     public virtual float Health
     {
         private get { return health; }
@@ -47,7 +45,6 @@ public class BreakableObject : MonoBehaviour
     protected virtual void Die()
     {
         Instantiate(deathParticles, transform.position, transform.rotation);
-        deathSound.Play();
 
         for (int i = 0; i < itemDrops.Length; i++)
         {

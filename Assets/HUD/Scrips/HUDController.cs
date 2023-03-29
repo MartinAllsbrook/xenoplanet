@@ -18,6 +18,9 @@ public class HUDController : MonoBehaviour
     [SerializeField] private GameObject loadingScreen;
     [SerializeField] private TextMeshProUGUI intuitionDisplay;
 
+    [Header("Audio")] 
+    [SerializeField] private AudioSource openInventoryAudio;
+
     private bool inventoryOpen = false;
 
     private void Awake()
@@ -91,7 +94,9 @@ public class HUDController : MonoBehaviour
                 inventory.gameObject.SetActive(true);
                 crosshaireController.gameObject.SetActive(false);
                 inventoryOpen = true;
-            }        
+            }
+            
+            openInventoryAudio.Play();
         }
     }
     

@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 public class Tree : BreakableObject
 {
     private CinemachineImpulseSource _impulseSource;
+    [SerializeField] private AudioSource deathSound;
 
     private void Start()
     {

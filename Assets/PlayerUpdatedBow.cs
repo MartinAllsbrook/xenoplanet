@@ -17,8 +17,11 @@ public class PlayerUpdatedBow : MonoBehaviour
     [SerializeField] private CrosshaireController crosshairController;
     [SerializeField] private GameObject[] arrows;
     [SerializeField] private CinemachineImpulseSource impulseSource;
-    [SerializeField] private AudioSource bowDrawAudio;
     
+    [Header("References")]
+    [SerializeField] private AudioSource bowDrawAudio;
+    [SerializeField] private AudioSource bowFireAudio;
+
     [Header("Values")]
     [SerializeField] private float chargeTimeCoefficient;
     [SerializeField] private float chargeTimeExponent;
@@ -96,6 +99,7 @@ public class PlayerUpdatedBow : MonoBehaviour
         arrowInstance.GetComponent<Arrow>().Fire(_strength); // Add force to the arrow equal to strength using arrow API
         _chargeTime = 0;
 
+        bowFireAudio.Play();
         Inventory.Instance.UpdateItemCount(arrows[_selectedArrowIndex].name + 's', -1);  // Remove arrow from inventory
         impulseSource.GenerateImpulse(_strength * maxImpulseForce); // Generate an impulse when arrows are fired
     }

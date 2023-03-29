@@ -12,6 +12,8 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] private ItemCounter[] initialItemsArray;
     [SerializeField] private CraftingRecipe[] initialRecipesArray;
+    
+    [Header("Audio")]
     [SerializeField] private AudioSource craftAudio;
     
     // [SerializeField] private float moveCooldown;
