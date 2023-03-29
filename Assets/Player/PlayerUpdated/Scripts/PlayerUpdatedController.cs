@@ -14,6 +14,7 @@ public class PlayerUpdatedController : MonoBehaviour
     private PlayerUpdatedAnimations _playerAnimations;
     private PlayerUpdatedBow _playerBow;
     private PlayerCameraController _playerCameraController;
+    private PlayerDash _playerDash;
     
     //Player References
     public CinemachineVirtualCamera moveCamera;
@@ -27,6 +28,7 @@ public class PlayerUpdatedController : MonoBehaviour
     private bool _crouchInput;
     private Vector2 _cameraInput;
     private bool _aimingInput;
+    private bool _abilityInput;
     
     //Events
     [SerializeField] UnityEvent OnJumpEvent;
@@ -41,14 +43,17 @@ public class PlayerUpdatedController : MonoBehaviour
         _playerAnimations = GetComponent<PlayerUpdatedAnimations>();
         _playerBow = GetComponent<PlayerUpdatedBow>();
         _playerCameraController = GetComponent<PlayerCameraController>();
+        _playerDash = GetComponent<PlayerDash>();
     }
 
     private void FixedUpdate()
     {
-        _playerChecks.SetDrag();
+        // _playerChecks.SetDrag();
         
         // if(!_aimingInput)
         //     _playerMovement.Rotate();
+        if(!_aimingInput)
+            _playerDash.Dash(_abilityInput, moveCamera);
         
         if (_playerChecks.IsGrounded())
         {
@@ -154,6 +159,10 @@ public class PlayerUpdatedController : MonoBehaviour
         public void GetJump(InputAction.CallbackContext context)
         {
             _jumpInput = context.action.WasPerformedThisFrame(); 
+        }
+        public void GetAbility(InputAction.CallbackContext context)
+        {
+             _abilityInput = context.action.WasPerformedThisFrame(); 
         }
     #endregion
 
