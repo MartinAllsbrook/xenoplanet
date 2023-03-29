@@ -343,10 +343,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   treeUniformity: 1.2
   numTrees: 8
-  trees:
-  - {fileID: 5498463890674725543, guid: b95bc43270c6b9048863507a1af8e50e, type: 3}
-  - {fileID: 747859701670009950, guid: 520f9ab697ac4104f8fbb4f080b7cfbd, type: 3}
-  - {fileID: 2178281070436689963, guid: 3c15000e97ee8be42a59e366418b5c2d, type: 3}
+  treeGroups:
+  - trees:
+    - {fileID: 5498463890674725543, guid: b95bc43270c6b9048863507a1af8e50e, type: 3}
+    - {fileID: 747859701670009950, guid: 520f9ab697ac4104f8fbb4f080b7cfbd, type: 3}
+    - {fileID: 2178281070436689963, guid: 3c15000e97ee8be42a59e366418b5c2d, type: 3}
+    minMoisture: 50
+  - trees:
+    - {fileID: 7295565647549083207, guid: afb4147c0a55e0e458c75b164cd01418, type: 3}
+    - {fileID: 8826354705480561022, guid: 2fd98d6864e84db40a330531d4976123, type: 3}
+    - {fileID: 8826354705480561022, guid: 2fd98d6864e84db40a330531d4976123, type: 3}
+    - {fileID: 8826354705480561022, guid: 31695ec91881c594ea4a93e4c7717d56, type: 3}
+    - {fileID: 8826354705480561022, guid: 31695ec91881c594ea4a93e4c7717d56, type: 3}
+    minMoisture: 25
+  - trees:
+    - {fileID: 8826354705480561022, guid: 11a8891e8a0172a42859fb2c9cb4aae8, type: 3}
+    - {fileID: 8826354705480561022, guid: 268f5c8d84e285f49ae0e85bdce5cbd0, type: 3}
+    - {fileID: 8826354705480561022, guid: 3628f02c0f1792349af9cf27ebd68154, type: 3}
+    - {fileID: 8218204736594959539, guid: 8f5c6f6a700c6e045a97b08515ebf92a, type: 3}
+    minMoisture: 2
   minHeight: 3
   minMoisture: 50
 --- !u!114 &6731353280582895152

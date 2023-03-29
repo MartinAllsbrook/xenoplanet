@@ -7,10 +7,17 @@ using Random = UnityEngine.Random;
 
 public class TreeScatter : MonoBehaviour
 {
+    [Serializable]
+    public class MyTreeGroup
+    {
+        public GameObject[] trees;
+        public float minMoisture;
+    }
+    
     [Range(1, 10)]
     [SerializeField] private float treeUniformity;
     [SerializeField] private int numTrees;
-    [SerializeField] private GameObject[] trees;
+    [SerializeField] private MyTreeGroup[] treeGroups;
     [SerializeField] private float minHeight;
     [SerializeField] private float minMoisture;
     
@@ -22,7 +29,6 @@ public class TreeScatter : MonoBehaviour
     }
     private IEnumerator PlaceTreesRoutine(Transform parent, ChunkData chunkData, int size, GenericDelegate callBack)
     {
-        Quaternion zero = new Quaternion(0, 0, 0, 0);
         for (int xI = 0; xI < numTrees; xI++)
         {
             for (int zI = 0; zI < numTrees; zI++)
@@ -30,16 +36,8 @@ public class TreeScatter : MonoBehaviour
                 float treeSpacing = (float) size / numTrees;
                 float x = xI * treeSpacing + Random.Range(0f, treeSpacing / treeUniformity);
                 float z = zI * treeSpacing + Random.Range(0f, treeSpacing / treeUniformity);
-
-                int treeIndex = Random.Range(0, trees.Length);
-
-                float height = chunkData.GetHeight(x, z);
-                float moisture = chunkData.GetMoisture(x, z);
-                if (height > minHeight && moisture > minMoisture)
-                {
-                    Instantiate(trees[treeIndex], new Vector3(parent.position.x + x, height, parent.position.z + z), zero, parent);
-                }
-
+                
+                PlaceTree(x, z, parent, chunkData);
                 
                 yield return null;
             }
@@ -47,6 +45,24 @@ public class TreeScatter : MonoBehaviour
 
         callBack();
     }
-    
-    
+
+    private void PlaceTree(float x, float z, Transform parent, ChunkData chunkData)
+    {
+        float height = chunkData.GetHeight(x, z);
+        if (height < minHeight)
+            return;
+                
+        float moisture = chunkData.GetMoisture(x, z);
+        foreach (MyTreeGroup treeGroup in treeGroups)
+        {
+            if (treeGroup.minMoisture < moisture)
+            {
+                int treeIndex = Random.Range(0, treeGroup.trees.Length);
+                
+                Quaternion zero = new Quaternion(0, 0, 0, 0);
+                Instantiate(treeGroup.trees[treeIndex], new Vector3(parent.position.x + x, height, parent.position.z + z), zero, parent);
+                return;
+            } 
+        }
+    }
 }
