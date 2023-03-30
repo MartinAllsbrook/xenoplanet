@@ -15,6 +15,7 @@ public class PlayerUpdatedController : MonoBehaviour
     private PlayerUpdatedBow _playerBow;
     private PlayerCameraController _playerCameraController;
     private MeleeController _meleeController;
+    private Player _player;
     #endregion
 
     #region Player Referances
@@ -46,6 +47,7 @@ public class PlayerUpdatedController : MonoBehaviour
         _playerBow = GetComponent<PlayerUpdatedBow>();
         _playerCameraController = GetComponent<PlayerCameraController>();
         _meleeController = GetComponent<MeleeController>();
+        _player = GetComponent<Player>();
     }
 
     private void FixedUpdate()
@@ -175,6 +177,12 @@ public class PlayerUpdatedController : MonoBehaviour
         public void GetJump(InputAction.CallbackContext context)
         {
             _jumpInput = context.action.WasPerformedThisFrame(); 
+        }
+        public void GetUse(InputAction.CallbackContext context)
+        {
+            // On melee down
+            if (context.started)
+                _player.UseObject();
         }
     #endregion
 

@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     // A transform that stores the main camera
     [SerializeField] private Transform mainCamera;
     [SerializeField] private float health;
+    [SerializeField] private LayerMask interactable;
 
     private int _intuition;
     private Rigidbody playerRigidbody;
@@ -49,39 +50,43 @@ public class Player : MonoBehaviour
         // TerrainLoader.Instance.terrainReady.AddListener(OnGameStart); // Add game start event listener
     }
 
-    public void UseObject(InputAction.CallbackContext context)
+    public void UseObject()
     {
-        if (context.action.WasPerformedThisFrame())
-        {
-            FireRaycast();
-        }
+        FireUseRaycast();
     }
 
-    private void FireRaycast()
+    private void FireUseRaycast()
     {
-        // Create a ray with the origin and direction of the main camera
         Ray ray = new Ray(mainCamera.position, mainCamera.forward);
 
-        // Create a variable to store the hit information
         RaycastHit hit;
 
-        // Check if the ray hits anything
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, 25, interactable))
         {
-            // Check if the hit object has the tag "Rock Dude"
             if (hit.collider.CompareTag("Rock Dude"))
             {
-                // Get the ManaReward component of the hit object
                 RockDude rockDude = hit.collider.GetComponent<RockDude>();
 
-                // Check if the ManaReward component is not null
                 if (rockDude != null)
                 {
-                    // Call the UseReward method and store the value
                     int rewardValue = rockDude.UseReward();
 
-                    // Call another function called SetMana and pass it the reward value
                     ChangeIntuition(rewardValue);
+                    return;
+                }
+            }
+
+            if (hit.collider.CompareTag("Loot Crate"))
+            {
+                LootCrate lootCrate = hit.collider.GetComponent<LootCrate>();
+                
+                if (!lootCrate.Lootable()) 
+                    return;
+
+                string[] lootedItems = lootCrate.LootItems();
+                foreach (string lootedItem in lootedItems)
+                {
+                    Inventory.Instance.UpdateItemCount(lootedItem, 1);
                 }
             }
         }
@@ -90,9 +95,7 @@ public class Player : MonoBehaviour
     private void ChangeIntuition(int ammount)
     {
         if (_intuition >= 0)
-        {
             _intuition += ammount;
-        }
         else
             _intuition = 0;
         
