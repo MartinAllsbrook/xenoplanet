@@ -7,11 +7,10 @@ public class LandMarkGenerator : MonoBehaviour
     [System.Serializable]
     public class LandMark
     {
-        // public int textureIndex;
         public int width;
         public int length;
         public GameObject structure;
-
+        
     }
     [SerializeField] public LandMark[] landMarks;
     

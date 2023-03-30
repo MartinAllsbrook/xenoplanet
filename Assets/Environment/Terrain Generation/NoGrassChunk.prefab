@@ -393,6 +393,9 @@ MonoBehaviour:
   - width: 5
     length: 5
     structure: {fileID: 6771069638219516206, guid: b789492782018423da67821cad85d189, type: 3}
+  - width: 7
+    length: 13
+    structure: {fileID: 3444537472386960547, guid: e2f9c9ba2b913cd4aad5845642a87bbf, type: 3}
 --- !u!1 &9171656918851668070
 GameObject:
   m_ObjectHideFlags: 0
