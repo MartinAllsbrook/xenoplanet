@@ -56,7 +56,7 @@ public class ChunkGrassManager : MonoBehaviour
 
             if (height + Random.Range(-minGrassHeight/2, 0) < minGrassHeight + Random.Range(0f, 0.2f) || moisture < 0.45) 
                 grass[i].SetActive(false);
-            else if (Vector3.Angle(chunkData.GetNormal(x, z), Vector3.up) + Random.Range(-4, 4) > 35)
+            else if (chunkData.GetSlope(x, z) + Random.Range(-5, 5) > 37)
                 grass[i].SetActive(false);
             else
             {

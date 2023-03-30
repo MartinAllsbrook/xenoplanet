@@ -17,6 +17,7 @@ public class LandMarkGenerator : MonoBehaviour
     
     public void PlaceLandMark(ref ChunkData chunkData, int size)
     {
+        
         // Choose random landmark
         LandMark landMark = landMarks[Random.Range(0, landMarks.Length)];
         
@@ -39,6 +40,10 @@ public class LandMarkGenerator : MonoBehaviour
         //     "x: " + xPosition + " " + xSmoothStart + " " + xSmoothEnd + 
         //     " z: " + zPosition + " " + zSmoothStart + " " + zSmoothEnd);
         
+        float slope = chunkData.GetSlope(xPosition, zPosition);
+        if (slope > 25)
+            return;
+
         float height = chunkData.GetHeight(xPosition, zPosition);
         
         for (int x = xSmoothStart; x <= xSmoothEnd; x++)

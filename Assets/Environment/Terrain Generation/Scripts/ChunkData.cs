@@ -69,7 +69,7 @@ public class ChunkData
         int xFloor = (int) Mathf.Floor(x);
         int zFloor = (int) Mathf.Floor(z);
         
-        Vector3 normal = _planes[xFloor, zFloor].normal;
+        Vector3 normal = -_planes[xFloor, zFloor].normal;
 
         return Vector3.Angle(normal, Vector3.up);
     }

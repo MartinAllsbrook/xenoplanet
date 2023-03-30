@@ -51,7 +51,11 @@ public class TreeScatter : MonoBehaviour
         float height = chunkData.GetHeight(x, z);
         if (height < minHeight)
             return;
-                
+
+        float slope = chunkData.GetSlope(x, z);
+        if (slope > 40)
+            return;
+        
         float moisture = chunkData.GetMoisture(x, z);
         foreach (MyTreeGroup treeGroup in treeGroups)
         {

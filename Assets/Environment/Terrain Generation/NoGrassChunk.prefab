@@ -345,6 +345,13 @@ MonoBehaviour:
   numTrees: 8
   treeGroups:
   - trees:
+    - {fileID: 1414986000072148107, guid: d1fc7a53db5225a4d81ac8bd129580a9, type: 3}
+    - {fileID: 6092079821196374153, guid: 08329793fdf85e745bd6cde8a4bf4cdd, type: 3}
+    - {fileID: 1593765234075905597, guid: 8876a75bbb16f144ca60706ba19edb3e, type: 3}
+    - {fileID: 4230437984756147204, guid: 84266ec7fa49180469a6305e2eca469b, type: 3}
+    - {fileID: 2214715005106248943, guid: 6a6c7f57f91368e40b544fc7959b8840, type: 3}
+    minMoisture: 75
+  - trees:
     - {fileID: 5498463890674725543, guid: b95bc43270c6b9048863507a1af8e50e, type: 3}
     - {fileID: 747859701670009950, guid: 520f9ab697ac4104f8fbb4f080b7cfbd, type: 3}
     - {fileID: 2178281070436689963, guid: 3c15000e97ee8be42a59e366418b5c2d, type: 3}

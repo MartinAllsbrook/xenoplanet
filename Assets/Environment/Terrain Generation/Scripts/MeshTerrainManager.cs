@@ -25,7 +25,7 @@ public class MeshTerrainManager : MonoBehaviour
     private int _xPlayerCell;
     private int _zPlayerCell;
 
-    private int _grassArrayLength = 3;
+    private int _grassArrayLength = 5;
     
     private readonly Quaternion _zeroRotation = new Quaternion(0, 0, 0, 0);
     
@@ -83,6 +83,7 @@ public class MeshTerrainManager : MonoBehaviour
         }
         
         _grassChunks = new GameObject[_grassArrayLength, _grassArrayLength];
+        int radius = (_grassArrayLength - 1) / 2;
         for (int x = 0; x < _grassArrayLength; x++)
         {
             for (int z = 0; z < _grassArrayLength; z++)
@@ -90,7 +91,7 @@ public class MeshTerrainManager : MonoBehaviour
                 _grassChunks[x,z] = Instantiate(grassChunk);
                 
                 int terrainCenter = terrainRadius;
-                Vector2Int grassChunkPosition = new Vector2Int(terrainCenter + x - 1, terrainCenter + z - 1);
+                Vector2Int grassChunkPosition = new Vector2Int(terrainCenter + x - radius, terrainCenter + z - radius);
                 
                 MeshTerrainChunk chunk = _activeChunks[grassChunkPosition.x, grassChunkPosition.y].GetComponent<MeshTerrainChunk>();
                 chunk.AddGrass(_grassChunks[x,z].GetComponent<ChunkGrassManager>());
@@ -109,6 +110,7 @@ public class MeshTerrainManager : MonoBehaviour
     private GameObject[,] ShiftGrass(GameObject[,] arr, int size, string direction)
     {
         GameObject[,] newArr = new GameObject[size, size];
+        int radius = (size - 1) / 2;
         switch (direction)
         {
             case "up":
@@ -121,7 +123,7 @@ public class MeshTerrainManager : MonoBehaviour
                     newArr[i, size - 1] = arr[i, 0]; // last row = first row
                     
                     int terrainCenter = terrainRadius;
-                    Vector2Int grassChunkPosition = new Vector2Int(terrainCenter + i - 1, terrainCenter + 1);
+                    Vector2Int grassChunkPosition = new Vector2Int(terrainCenter + i - radius, terrainCenter + radius);
                     MeshTerrainChunk chunk = _activeChunks[grassChunkPosition.x, grassChunkPosition.y].GetComponent<MeshTerrainChunk>();
                     chunk.AddGrass(newArr[i, size - 1].GetComponent<ChunkGrassManager>());
                 }
@@ -136,7 +138,7 @@ public class MeshTerrainManager : MonoBehaviour
                     newArr[i, 0] = arr[i, size - 1];
                     
                     int terrainCenter = terrainRadius;
-                    Vector2Int grassChunkPosition = new Vector2Int(terrainCenter + i - 1, terrainCenter - 1);
+                    Vector2Int grassChunkPosition = new Vector2Int(terrainCenter + i - radius, terrainCenter - radius);
                     MeshTerrainChunk chunk = _activeChunks[grassChunkPosition.x, grassChunkPosition.y].GetComponent<MeshTerrainChunk>();
                     chunk.AddGrass(newArr[i, 0].GetComponent<ChunkGrassManager>());
                 }
@@ -151,7 +153,7 @@ public class MeshTerrainManager : MonoBehaviour
                     newArr[size - 1, i] = arr[0, i];
                     
                     int terrainCenter = terrainRadius;
-                    Vector2Int grassChunkPosition = new Vector2Int(terrainCenter + 1, terrainCenter + i - 1);
+                    Vector2Int grassChunkPosition = new Vector2Int(terrainCenter + radius, terrainCenter + i - radius);
                     MeshTerrainChunk chunk = _activeChunks[grassChunkPosition.x, grassChunkPosition.y].GetComponent<MeshTerrainChunk>();
                     chunk.AddGrass(newArr[size - 1, i].GetComponent<ChunkGrassManager>());
                 }
@@ -166,7 +168,7 @@ public class MeshTerrainManager : MonoBehaviour
                     newArr[0, i] = arr[size - 1, i];
                     
                     int terrainCenter = terrainRadius;
-                    Vector2Int grassChunkPosition = new Vector2Int(terrainCenter - 1, terrainCenter + i - 1);
+                    Vector2Int grassChunkPosition = new Vector2Int(terrainCenter - radius, terrainCenter + i - radius);
                     MeshTerrainChunk chunk = _activeChunks[grassChunkPosition.x, grassChunkPosition.y].GetComponent<MeshTerrainChunk>();
                     chunk.AddGrass(newArr[0, i].GetComponent<ChunkGrassManager>());
                 }
