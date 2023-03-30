@@ -384,20 +384,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   landMarks:
-  - width: 2
-    length: 2
+  - innerRadius: 3
+    outerRadius: 6
     structure: {fileID: 4912536176927435191, guid: 79fcbcf8e20894cd6b18a883d15232d9, type: 3}
-  - width: 3
-    length: 3
+  - innerRadius: 4
+    outerRadius: 8
     structure: {fileID: 8017870580866997984, guid: 7d14a5837ab5c744e9ec565dd1ea42a1, type: 3}
-  - width: 5
-    length: 5
+  - innerRadius: 5
+    outerRadius: 10
     structure: {fileID: 6771069638219516206, guid: b789492782018423da67821cad85d189, type: 3}
-  - width: 8
-    length: 8
+  - innerRadius: 9
+    outerRadius: 18
     structure: {fileID: 3444537472386960547, guid: e2f9c9ba2b913cd4aad5845642a87bbf, type: 3}
-  - width: 4
-    length: 4
+  - innerRadius: 3
+    outerRadius: 6
     structure: {fileID: 6437144620522830140, guid: 921df1dae0d50cf43a3df296c9549f81, type: 3}
 --- !u!1 &9171656918851668070
 GameObject:

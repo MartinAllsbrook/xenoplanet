@@ -7,8 +7,8 @@ public class LandMarkGenerator : MonoBehaviour
     [System.Serializable]
     public class LandMark
     {
-        public int width;
-        public int length;
+        public int innerRadius;
+        public int outerRadius;
         public GameObject structure;
         
     }
@@ -16,73 +16,46 @@ public class LandMarkGenerator : MonoBehaviour
     
     public void PlaceLandMark(ref ChunkData chunkData, int size)
     {
-        
-        // Choose random landmark
         LandMark landMark = landMarks[Random.Range(0, landMarks.Length)];
         
-        int width = landMark.width;
-        int length = landMark.length;
-        int xPosition = Random.Range(width * 2, size - width * 2);
-        int zPosition = Random.Range(length * 2, size - length * 2);
-        
-        int xStart = xPosition - width;
-        int xEnd = xPosition + width;
-        int xSmoothStart = xPosition - width * 2;
-        int xSmoothEnd = xPosition + width * 2;
-        
-        int zStart = zPosition - length;
-        int zEnd = zPosition + length;
-        int zSmoothStart = zPosition - length * 2;
-        int zSmoothEnd = zPosition + length * 2;
-        
-        // Debug.Log(
-        //     "x: " + xPosition + " " + xSmoothStart + " " + xSmoothEnd + 
-        //     " z: " + zPosition + " " + zSmoothStart + " " + zSmoothEnd);
-        
+        int innerRadius = landMark.innerRadius;
+        int outerRadius = landMark.outerRadius;
+        int xPosition = Random.Range(outerRadius, size - outerRadius);
+        int zPosition = Random.Range(outerRadius, size - outerRadius);
+
         float slope = chunkData.GetSlope(xPosition, zPosition);
         if (slope > 25)
             return;
 
         float height = chunkData.GetHeight(xPosition, zPosition);
-        
-        for (int x = xSmoothStart; x <= xSmoothEnd; x++)
-        { 
-            for (int z = zSmoothStart; z <= zSmoothEnd; z++)
+
+        for (int x = -outerRadius; x <= outerRadius; x++)
+        {
+            for (int z = -outerRadius; z <= outerRadius; z++)
             {
-                // If we are near the center of the land mark
-                if (x >= xStart && x <= xEnd && z >= zStart && z <= zEnd)
-                {
-                    chunkData.SetHeight(x, z, height);
-                    chunkData.SetMoisture(x, z, 0f);
-                }
-                // Else smooth the transition
-                else
-                {
-                    int xDistance = Mathf.Abs(x - xPosition);
-                    int zDistance = Mathf.Abs(z - zPosition);
-                    
-                    // Use the greater distance
-                    int usedDistance;
-                    float percent;
-                    if (xDistance < zDistance)
-                    {
-                        usedDistance = zDistance;
-                        usedDistance -= length;
-                        percent = (float) usedDistance / length;
-                    }
-                    else
-                    {
-                        usedDistance = xDistance;
-                        usedDistance -= width;
-                        percent = (float) usedDistance / width;
-                    }
-                    
-                    var newHeight = height * (1 - percent) + chunkData.GetHeight(x,z) * percent;
-                    chunkData.SetHeight(x, z, newHeight);
-                }
+                float percent = DistanceBetweenCircles(innerRadius, outerRadius, new Vector2(x, z));
+                float newHeight = Mathf.Lerp(chunkData.GetHeight(xPosition + x, zPosition + z), height, percent);
+                chunkData.SetHeight(xPosition + x, zPosition + z, newHeight);
+                if (percent >= 0.99)
+                    chunkData.SetMoisture(xPosition + x, zPosition + z, 0);
             }
         }
+        
         chunkData.GeneratePlanes();
-        Instantiate(landMark.structure, new Vector3(xPosition + transform.position.x, height, zPosition + transform.position.z), new Quaternion(0, 0, 0, 0), transform);
+        GameObject newLandMark = Instantiate(landMark.structure, new Vector3(xPosition + transform.position.x, height, zPosition + transform.position.z), new Quaternion(0, 0, 0, 0), transform);
+        newLandMark.transform.Rotate(0f, Random.Range(0f, 360f), 0f);
+    }
+    
+    public float DistanceBetweenCircles(int innerRadius, int outerRadius, Vector2 testPoint)
+    {
+        float distance = Vector2.Distance(Vector2.zero, testPoint);
+        if (distance <= innerRadius)
+            return 1f;
+        
+        if (distance >= outerRadius)
+            return 0f;
+        
+        float t = (distance - innerRadius) / (outerRadius - innerRadius);
+        return Mathf.Lerp(1f, 0f, t);
     }
 }
