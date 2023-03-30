@@ -1457,7 +1457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terrainChunk: {fileID: 9051413243473054194, guid: 0786cf3101d53094e84ad9fbd0728927, type: 3}
-  grassChunk: {fileID: 197149187758417668, guid: a573f61475090c048b7c127494f9ce42, type: 3}
+  grassChunk: {fileID: 5807528289878105957, guid: a573f61475090c048b7c127494f9ce42, type: 3}
   terrainRadius: 4
   playerTransform: {fileID: 965868798}
 --- !u!4 &580536431
@@ -2743,6 +2743,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 680720608}
   health: 100
+  interactable:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!82 &965868812
 AudioSource:
   m_ObjectHideFlags: 0

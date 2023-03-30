@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using UnityEditor;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 using Random = UnityEngine.Random;
@@ -21,7 +22,8 @@ public class ChunkGrassManager : MonoBehaviour
         {
             for (int z = 0; z < 64; z++)
             {
-                grass[x * 64 + z] = Instantiate(patch, new Vector3(x, 10, z), new Quaternion(0, 0, 0, 0), transform);
+                grass[x * 64 + z] = PrefabUtility.InstantiatePrefab(patch, transform) as GameObject;
+                // grass[x * 64 + z] = Instantiate(patch, new Vector3(x, 10, z), new Quaternion(0, 0, 0, 0), transform);
             }
         }
     }*/
