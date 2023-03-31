@@ -8,67 +8,70 @@ using Debug = UnityEngine.Debug;
 [RequireComponent(typeof(MeshFilter))]
 public class MeshTerrainChunk : MonoBehaviour
 {
-    private Mesh _mesh;
+    // References
+    private MapGenerator _mapGenerator;
+    private LandMarkGenerator _landMarkGenerator;
+    private TreeScatter _treeScatter;
+    private EnemySpawner _enemySpawner;
+        
+    // General Data
     private ChunkData _chunkData;
+    private const int Size = 65;
+    private Vector2Int _chunkPosition;
+
+    // Mesh Data
+    private Mesh _mesh;
     private Vector3[] _vertices;
     private int[] _triangles;
-    private Vector2[] uvs;
-    private Vector2Int _chunkPosition;
-    
-    /*[Serializable]
-    class BiomeTexture
-    {
-        public int biomeCode;
-        public int textureIndex;
-    }*/
+    private Vector2[] _uvs;
 
-    // [SerializeField] private BiomeTexture[] biomeTextures;
-    // private ChunkGrassManager _chunkGrassManager;
-    [SerializeField] private MapGenerator mapGenerator;
-    [SerializeField] private LandMarkGenerator landMarkGenerator;
-    [SerializeField] private TreeScatter treeScatter;
-    private const int Size = 65;
-    
-    private bool _placedGrass;
+    // States
     private bool _placedTrees;
 
-    public void SetTerrain(int[] seeds, bool makeActive)
+    private void Start()
     {
+
+    }
+
+    public void SetTerrain(int[] seeds)
+    {
+        _mapGenerator = GetComponent<MapGenerator>();
+        _landMarkGenerator = GetComponent<LandMarkGenerator>();
+        _treeScatter = GetComponent<TreeScatter>();
+        _enemySpawner = GetComponent<EnemySpawner>();
+        
         var position = transform.position / (Size - 1);
         _chunkPosition = new Vector2Int((int) position.x, (int) position.z);
         
         _mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = _mesh;
         
-        mapGenerator.GenerateMap(_chunkPosition, seeds, chunkData =>
+        _mapGenerator.GenerateMap(_chunkPosition, seeds, chunkData =>
         {
-            _chunkData = chunkData;
-            
-            landMarkGenerator.PlaceLandMark(ref _chunkData, Size);
-            
-            // Create Mesh
-            CreateShape();
-            UpdateMesh();
+            Debug.Log(chunkData);
+            AfterMapsGenerated(chunkData);
+        });
+    }
 
-            // If this chunk is being made active load the trees and grass 
-            if (makeActive)
-            {
-                treeScatter.PlaceTrees(_chunkData, Size, () =>
-                {
-                    _placedTrees = true;
-                });
-            }
-            else // Else set it to be inactive
-                gameObject.SetActive(false);
+    private void AfterMapsGenerated(ChunkData chunkData)
+    {
+        _chunkData = chunkData;
+            
+        _landMarkGenerator.PlaceLandMark(ref _chunkData, Size);
+            
+        // Create Mesh
+        CreateShape();
+        UpdateMesh();
+
+        _treeScatter.PlaceTrees(_chunkData, Size, () =>
+        {
+            _placedTrees = true;
         });
     }
 
     public void AddGrass(ChunkGrassManager grassManager)
     {
-        grassManager.PlaceGrass(_chunkData, transform.position, () =>
-        {
-            _placedGrass = true;
-        });
+        grassManager.PlaceGrass(_chunkData, transform.position);
     }
 
     /*private void Update()
@@ -125,13 +128,13 @@ public class MeshTerrainChunk : MonoBehaviour
 
     private void CreateUVs()
     {
-        uvs = new Vector2[_vertices.Length];
+        _uvs = new Vector2[_vertices.Length];
         
         for (int i = 0, z = 0; z <= Size - 1; z++)
         {
             for (int x = 0; x <= Size - 1; x++)
             {
-                uvs[i] = new Vector2((float) x / Size, (float) z / Size);
+                _uvs[i] = new Vector2((float) x / Size, (float) z / Size);
                 i++;
             }
         }
@@ -145,7 +148,7 @@ public class MeshTerrainChunk : MonoBehaviour
         // _mesh.subMeshCount = 1;
         // _mesh.SetTriangles(_triangles, 0);
         _mesh.triangles = _triangles;
-        _mesh.uv = uvs;
+        _mesh.uv = _uvs;
         
         MeshCollider collider = gameObject.AddComponent<MeshCollider>(); //collider.material = physicMaterial;
      
@@ -184,9 +187,9 @@ public class MeshTerrainChunk : MonoBehaviour
     {
         if (!_placedTrees)
         {
-            treeScatter.PlaceTrees(_chunkData, Size, () =>
+            _treeScatter.PlaceTrees(_chunkData, Size, () =>
             {
-                _placedGrass = true;
+                _placedTrees = true;
             });
         }
     }

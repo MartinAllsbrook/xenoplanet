@@ -88,7 +88,7 @@ public class MeshTerrainManager : MonoBehaviour
         {
             for (int z = 0; z < _grassArrayLength; z++)
             {
-                _grassChunks[x,z] = Instantiate(grassChunk);
+                _grassChunks[x,z] = Instantiate(grassChunk, transform);
                 
                 int terrainCenter = terrainRadius;
                 Vector2Int grassChunkPosition = new Vector2Int(terrainCenter + x - radius, terrainCenter + z - radius);
@@ -342,7 +342,7 @@ public class MeshTerrainManager : MonoBehaviour
         GameObject newChunk = Instantiate(terrainChunk, new Vector3(chunkPosition.x * (_chunkSize - 1), 0, chunkPosition.y * (_chunkSize - 1)), _zeroRotation,transform);
         
         var chunk = newChunk.GetComponent<MeshTerrainChunk>();
-        chunk.SetTerrain(_seeds, true);
+        chunk.SetTerrain(_seeds);
         // chunk.AddGrass(grassManager);
         
         _loadedChunks.Add(newChunk.GetComponent<MeshTerrainChunk>());
@@ -354,21 +354,6 @@ public class MeshTerrainManager : MonoBehaviour
         
         return newChunk;
     }
-
-    /*private void LoadInactiveChunk(Vector2Int chunkPosition)
-    {
-        /*Stopwatch timer = new Stopwatch();
-        timer.Start();#1#
-        
-        GameObject newChunk = Instantiate(terrainChunk, new Vector3(chunkPosition.x * (_chunkSize - 1), 0, chunkPosition.y * (_chunkSize - 1)), _zeroRotation,transform);
-        newChunk.GetComponent<MeshTerrainChunk>().SetTerrain(_seeds, false);
-        _loadedChunks.Add(newChunk.GetComponent<MeshTerrainChunk>());
-        
-        /#1#/ TESTING TESTING
-        timer.Stop();
-        Debug.Log("New INACTIVE chunk load time: " + timer.ElapsedMilliseconds);
-        // TESTING TESTING#1#
-    }*/
 
     private void UpdatePlayerCell()
     {

@@ -14,15 +14,21 @@ public class TreeScatter : MonoBehaviour
         public float minMoisture;
     }
     
-    [Range(1, 10)]
-    [SerializeField] private float treeUniformity;
+    [Header("Trees and Plants")]
+    [Range(1, 10)] [SerializeField] private float treeUniformity;
     [SerializeField] private int numTrees;
     [SerializeField] private MyTreeGroup[] treeGroups;
     [SerializeField] private float minHeight;
-    [SerializeField] private float minMoisture;
+    
+    [Header("Rocks")]
     [SerializeField] private float rockSpawnChance;
     [SerializeField] private GameObject[] rocks;
 
+    [Header("Water Plants")] 
+    [SerializeField] private float waterPlantHeight;
+    [SerializeField] private float waterPlantMoisture;
+    [SerializeField] private GameObject[] waterPlants;
+    
     private Quaternion _zero = new Quaternion(0, 0, 0, 0);
     
     public delegate void GenericDelegate();
@@ -54,9 +60,15 @@ public class TreeScatter : MonoBehaviour
     private void PlaceTree(float x, float z, Transform parent, ChunkData chunkData)
     {
         float height = chunkData.GetHeight(x, z);
+        if (height < waterPlantHeight)
+        {
+            SpawnWaterPlant(x, z, chunkData);
+            return;
+        }
+        
         if (height < minHeight)
             return;
-
+        
         if (Random.Range(0, 101) < rockSpawnChance)
         {
             SpawnRock(x, z, height, parent, chunkData);
@@ -91,5 +103,19 @@ public class TreeScatter : MonoBehaviour
         
         newRock.transform.up = chunkData.GetNormal(x, z);
         newRock.transform.Rotate(0, Random.Range(0,360), 0);
+    }
+
+    private void SpawnWaterPlant(float x, float z, ChunkData chunkData)
+    {
+        if (chunkData.GetMoisture(x, z) < waterPlantMoisture)
+            return;
+
+        int plantIndex = Random.Range(0, waterPlants.Length);
+        GameObject plant = waterPlants[plantIndex];
+
+        Vector3 position = new Vector3(transform.position.x + x, waterPlantHeight, transform.position.z + z);
+        GameObject newPlant = Instantiate(plant, position, _zero, transform);
+        
+        newPlant.transform.Rotate(0, Random.Range(0,360), 0);
     }
 }

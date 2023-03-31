@@ -298,9 +298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266e07cf532efd64c969835ab93232a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapGenerator: {fileID: 8693317222589726818}
-  landMarkGenerator: {fileID: 6731353280582895152}
-  treeScatter: {fileID: -8145085250426399479}
 --- !u!114 &8693317222589726818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,11 +347,17 @@ MonoBehaviour:
     - {fileID: 1593765234075905597, guid: 8876a75bbb16f144ca60706ba19edb3e, type: 3}
     - {fileID: 4230437984756147204, guid: 84266ec7fa49180469a6305e2eca469b, type: 3}
     - {fileID: 2214715005106248943, guid: 6a6c7f57f91368e40b544fc7959b8840, type: 3}
-    minMoisture: 75
+    minMoisture: 70
   - trees:
     - {fileID: 5498463890674725543, guid: b95bc43270c6b9048863507a1af8e50e, type: 3}
+    - {fileID: 5498463890674725543, guid: b95bc43270c6b9048863507a1af8e50e, type: 3}
+    - {fileID: 747859701670009950, guid: 520f9ab697ac4104f8fbb4f080b7cfbd, type: 3}
     - {fileID: 747859701670009950, guid: 520f9ab697ac4104f8fbb4f080b7cfbd, type: 3}
     - {fileID: 2178281070436689963, guid: 3c15000e97ee8be42a59e366418b5c2d, type: 3}
+    - {fileID: 2178281070436689963, guid: 3c15000e97ee8be42a59e366418b5c2d, type: 3}
+    - {fileID: 8826354705480561022, guid: 2fd98d6864e84db40a330531d4976123, type: 3}
+    - {fileID: 8826354705480561022, guid: 31695ec91881c594ea4a93e4c7717d56, type: 3}
+    - {fileID: 7295565647549083207, guid: afb4147c0a55e0e458c75b164cd01418, type: 3}
     minMoisture: 50
   - trees:
     - {fileID: 7295565647549083207, guid: afb4147c0a55e0e458c75b164cd01418, type: 3}
@@ -362,7 +365,7 @@ MonoBehaviour:
     - {fileID: 8826354705480561022, guid: 2fd98d6864e84db40a330531d4976123, type: 3}
     - {fileID: 8826354705480561022, guid: 31695ec91881c594ea4a93e4c7717d56, type: 3}
     - {fileID: 8826354705480561022, guid: 31695ec91881c594ea4a93e4c7717d56, type: 3}
-    minMoisture: 25
+    minMoisture: 30
   - trees:
     - {fileID: 8826354705480561022, guid: 11a8891e8a0172a42859fb2c9cb4aae8, type: 3}
     - {fileID: 8826354705480561022, guid: 268f5c8d84e285f49ae0e85bdce5cbd0, type: 3}
@@ -370,7 +373,6 @@ MonoBehaviour:
     - {fileID: 8218204736594959539, guid: 8f5c6f6a700c6e045a97b08515ebf92a, type: 3}
     minMoisture: 2
   minHeight: 3
-  minMoisture: 50
   rockSpawnChance: 5
   rocks:
   - {fileID: 4558653281136513159, guid: e324a80ae6a2fba45a862b75c2904c08, type: 3}
@@ -385,6 +387,13 @@ MonoBehaviour:
   - {fileID: 7799845222656826423, guid: a59c1eec8a9ef304b98c08b8353d7c99, type: 3}
   - {fileID: 2348084914169473605, guid: d12ba0ce0d0a4154e93175ac37ccaad4, type: 3}
   - {fileID: 2735547322499512778, guid: b155a187a1eed794280055ca669789d1, type: 3}
+  waterPlantHeight: 2
+  waterPlantMoisture: 50
+  waterPlants:
+  - {fileID: 6791409835941839285, guid: 7a4803f4d8cf48f458bfee8f91dc04f2, type: 3}
+  - {fileID: 4538240294927231109, guid: db2008e20eb21ff47a5fff043312cd06, type: 3}
+  - {fileID: 589317509946762782, guid: 93cb5c5f77f630044867f3de33f0f138, type: 3}
+  - {fileID: 545024079249053711, guid: d10c5f6d54c679846bb006cd79df0bec, type: 3}
 --- !u!114 &6731353280582895152
 MonoBehaviour:
   m_ObjectHideFlags: 0

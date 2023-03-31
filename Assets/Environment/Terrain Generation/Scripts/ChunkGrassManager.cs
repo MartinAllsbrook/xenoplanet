@@ -10,10 +10,8 @@ using Random = UnityEngine.Random;
 public class ChunkGrassManager : MonoBehaviour
 {
     [SerializeField] private float minGrassHeight;
-    // [SerializeField] private GameObject patch;
     [SerializeField] private GameObject[] grass;
     [SerializeField] private float grassVariation;
-    // [SerializeField] private Transform grassHolder;
     
     /*private void Start()
     {
@@ -30,13 +28,13 @@ public class ChunkGrassManager : MonoBehaviour
     
     public delegate void GenericDelegate();
 
-    public void PlaceGrass(ChunkData chunkData, Vector3 position, GenericDelegate callback)
+    public void PlaceGrass(ChunkData chunkData, Vector3 position)
     {
         transform.position = position;
-        StartCoroutine(PlaceGrassRoutine(chunkData, callback));
+        StartCoroutine(PlaceGrassRoutine(chunkData));
     }
 
-    private IEnumerator PlaceGrassRoutine(ChunkData chunkData, GenericDelegate callback)
+    private IEnumerator PlaceGrassRoutine(ChunkData chunkData)
     {
         Stopwatch timer = new Stopwatch();
         timer.Start();
@@ -83,7 +81,6 @@ public class ChunkGrassManager : MonoBehaviour
             }
         }
         timer.Stop();
-        callback();
         yield return null;
     }
     
