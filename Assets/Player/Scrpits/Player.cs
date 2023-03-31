@@ -60,9 +60,11 @@ public class Player : MonoBehaviour
         Ray ray = new Ray(mainCamera.position, mainCamera.forward);
 
         RaycastHit hit;
-
+        
         if (Physics.Raycast(ray, out hit, 25, interactable))
         {
+            Debug.Log(hit.collider.tag);
+
             if (hit.collider.CompareTag("Rock Dude"))
             {
                 RockDude rockDude = hit.collider.GetComponent<RockDude>();

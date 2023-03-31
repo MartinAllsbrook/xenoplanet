@@ -28,7 +28,9 @@ public class LandMarkGenerator : MonoBehaviour
             return;
 
         float height = chunkData.GetHeight(xPosition, zPosition);
-
+        if (height < 4)
+            return;
+            
         for (int x = -outerRadius; x <= outerRadius; x++)
         {
             for (int z = -outerRadius; z <= outerRadius; z++)

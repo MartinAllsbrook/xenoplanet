@@ -92,6 +92,10 @@ public class PlayerUpdatedBow : MonoBehaviour
 
     public void Fire()
     {
+        // Debug.Log(aimCamera.activeInHierarchy || _numArrows <= 0);
+        if (!aimCamera.activeInHierarchy || _numArrows <= 0)
+            return;
+        
         Vector3 spawnPosition = transform.position + Vector3.up * 1.6f; 
         Quaternion arrowDirection = CalculateAimDirection(spawnPosition);
 

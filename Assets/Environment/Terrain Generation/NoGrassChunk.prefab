@@ -385,7 +385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   landMarks:
   - innerRadius: 3
-    outerRadius: 6
+    outerRadius: 12
     structure: {fileID: 4912536176927435191, guid: 79fcbcf8e20894cd6b18a883d15232d9, type: 3}
   - innerRadius: 4
     outerRadius: 8
@@ -394,13 +394,13 @@ MonoBehaviour:
     outerRadius: 10
     structure: {fileID: 6771069638219516206, guid: b789492782018423da67821cad85d189, type: 3}
   - innerRadius: 8
-    outerRadius: 16
+    outerRadius: 20
     structure: {fileID: 3444537472386960547, guid: e2f9c9ba2b913cd4aad5845642a87bbf, type: 3}
   - innerRadius: 3
-    outerRadius: 6
-    structure: {fileID: 6437144620522830140, guid: 921df1dae0d50cf43a3df296c9549f81, type: 3}
-  - innerRadius: 6
     outerRadius: 12
+    structure: {fileID: 6437144620522830140, guid: 921df1dae0d50cf43a3df296c9549f81, type: 3}
+  - innerRadius: 8
+    outerRadius: 20
     structure: {fileID: 4016124040862073528, guid: 802e24fcc64e59445a7b2e2751b65188, type: 3}
 --- !u!1 &9171656918851668070
 GameObject:

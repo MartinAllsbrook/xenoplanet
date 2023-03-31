@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1009671789312666486}
   - component: {fileID: 2667992176192904107}
   - component: {fileID: 8108430476923935911}
-  - component: {fileID: 920387851714925133}
+  - component: {fileID: 8407495457861796749}
   m_Layer: 6
   m_Name: Loot Barrel
   m_TagString: Loot Crate
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1014980866146009314}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.38988435, y: 0, z: 0.85085416}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -152,8 +152,8 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!64 &920387851714925133
-MeshCollider:
+--- !u!136 &8407495457861796749
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -162,10 +162,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: -1
-  m_Mesh: {fileID: 4300002, guid: 7e201de8da5ad0044b81c4ae83c44a93, type: 3}
+  m_Radius: 0.67
+  m_Height: 1.65
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.75, z: 0}
 --- !u!1 &4493674497741096532
 GameObject:
   m_ObjectHideFlags: 0

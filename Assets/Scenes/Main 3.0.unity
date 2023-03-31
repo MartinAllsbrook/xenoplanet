@@ -2479,7 +2479,19 @@ MonoBehaviour:
     m_ActionId: f6d987eb-52bb-4674-980b-94fcab234ab8
     m_ActionName: Player/Zoom[/XboxOneGampadMacOSWireless/leftTrigger]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 965868808}
+        m_TargetAssemblyTypeName: PlayerUpdatedController, Assembly-CSharp
+        m_MethodName: GetUse
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 466e75ea-c7f4-4ac0-b2bd-2069660f6c72
     m_ActionName: Player/Use Object[/XboxOneGampadMacOSWireless/buttonWest]
   - m_PersistentCalls:
@@ -2741,11 +2753,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e622fa3a3ec733844ae2f7d9a26b53bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 680720608}
+  mainCamera: {fileID: 1318790549}
   health: 100
   interactable:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!82 &965868812
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4342,11 +4354,11 @@ MonoBehaviour:
   m_AvoidObstacles: 1
   m_DistanceLimit: 0
   m_MinimumOcclusionTime: 0
-  m_CameraRadius: 0.5
+  m_CameraRadius: 1.19
   m_Strategy: 1
   m_MaximumEffort: 4
-  m_SmoothingTime: 0
-  m_Damping: 0
+  m_SmoothingTime: 0.379
+  m_Damping: 0.84
   m_DampingWhenOccluded: 0
   m_OptimalTargetDistance: 0
 --- !u!114 &1641547000
