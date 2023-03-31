@@ -17,7 +17,7 @@ public class LandMarkGenerator : MonoBehaviour
     public void PlaceLandMark(ref ChunkData chunkData, int size)
     {
         LandMark landMark = landMarks[Random.Range(0, landMarks.Length)];
-        
+        Debug.Log(landMark.structure.name);
         int innerRadius = landMark.innerRadius;
         int outerRadius = landMark.outerRadius;
         int xPosition = Random.Range(outerRadius, size - outerRadius);

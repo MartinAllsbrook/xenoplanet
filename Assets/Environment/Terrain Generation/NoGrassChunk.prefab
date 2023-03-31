@@ -416,6 +416,12 @@ MonoBehaviour:
   - innerRadius: 8
     outerRadius: 20
     structure: {fileID: 4016124040862073528, guid: 802e24fcc64e59445a7b2e2751b65188, type: 3}
+  - innerRadius: 16
+    outerRadius: 25
+    structure: {fileID: 5399029941019288926, guid: fa15ca17658a9b54995ec89c494fd1ec, type: 3}
+  - innerRadius: 7
+    outerRadius: 14
+    structure: {fileID: 5399029941019288926, guid: 567b70ec69ae41b49b3424408bf011e6, type: 3}
 --- !u!1 &9171656918851668070
 GameObject:
   m_ObjectHideFlags: 0
