@@ -371,6 +371,20 @@ MonoBehaviour:
     minMoisture: 2
   minHeight: 3
   minMoisture: 50
+  rockSpawnChance: 5
+  rocks:
+  - {fileID: 4558653281136513159, guid: e324a80ae6a2fba45a862b75c2904c08, type: 3}
+  - {fileID: 274401323133569128, guid: a9bf4bbda1a61c4478ea933ec2f1ce23, type: 3}
+  - {fileID: 2204947185588910408, guid: 9b776ded2a0268d41900e7aea1ecd72a, type: 3}
+  - {fileID: 2040823662338913329, guid: acfbc4841ee80124eacf3dc2674d6dfc, type: 3}
+  - {fileID: 1574517445381067862, guid: 666459c1a8106a2428958da99c13216c, type: 3}
+  - {fileID: 6244098182526460031, guid: 3ba9a115bc93dda41ab78340a2a6d2d6, type: 3}
+  - {fileID: 4783231407828179101, guid: 85a17042e6c826548be18263d433193c, type: 3}
+  - {fileID: 5848076655689168604, guid: b849b42754fefb84484cfde695952e47, type: 3}
+  - {fileID: 1100287646043265743, guid: 96d56f7ac40642d4eb4fc71aa6896382, type: 3}
+  - {fileID: 7799845222656826423, guid: a59c1eec8a9ef304b98c08b8353d7c99, type: 3}
+  - {fileID: 2348084914169473605, guid: d12ba0ce0d0a4154e93175ac37ccaad4, type: 3}
+  - {fileID: 2735547322499512778, guid: b155a187a1eed794280055ca669789d1, type: 3}
 --- !u!114 &6731353280582895152
 MonoBehaviour:
   m_ObjectHideFlags: 0

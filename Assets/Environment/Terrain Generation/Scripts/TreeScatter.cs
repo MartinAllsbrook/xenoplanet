@@ -20,6 +20,10 @@ public class TreeScatter : MonoBehaviour
     [SerializeField] private MyTreeGroup[] treeGroups;
     [SerializeField] private float minHeight;
     [SerializeField] private float minMoisture;
+    [SerializeField] private float rockSpawnChance;
+    [SerializeField] private GameObject[] rocks;
+
+    private Quaternion _zero = new Quaternion(0, 0, 0, 0);
     
     public delegate void GenericDelegate();
 
@@ -27,6 +31,7 @@ public class TreeScatter : MonoBehaviour
     {
         StartCoroutine(PlaceTreesRoutine(transform, chunkData, size, callBack));
     }
+    
     private IEnumerator PlaceTreesRoutine(Transform parent, ChunkData chunkData, int size, GenericDelegate callBack)
     {
         for (int xI = 0; xI < numTrees; xI++)
@@ -52,6 +57,12 @@ public class TreeScatter : MonoBehaviour
         if (height < minHeight)
             return;
 
+        if (Random.Range(0, 101) < rockSpawnChance)
+        {
+            SpawnRock(x, z, height, parent, chunkData);
+            return;
+        }
+
         float slope = chunkData.GetSlope(x, z);
         if (slope > 40)
             return;
@@ -63,10 +74,22 @@ public class TreeScatter : MonoBehaviour
             {
                 int treeIndex = Random.Range(0, treeGroup.trees.Length);
                 
-                Quaternion zero = new Quaternion(0, 0, 0, 0);
-                Instantiate(treeGroup.trees[treeIndex], new Vector3(parent.position.x + x, height, parent.position.z + z), zero, parent);
+                GameObject tree = Instantiate(treeGroup.trees[treeIndex], new Vector3(parent.position.x + x, height, parent.position.z + z), _zero, parent);
+                tree.transform.Rotate(0, Random.Range(0,360), 0);
                 return;
             } 
         }
+    }
+
+    private void SpawnRock(float x, float z, float height, Transform parent, ChunkData chunkData)
+    {
+        int rockIndex = Random.Range(0, rocks.Length);
+        GameObject rock = rocks[rockIndex];
+        
+        Vector3 position = new Vector3(transform.position.x + x, height, transform.position.z + z);
+        GameObject newRock = Instantiate(rock, position, _zero, parent);
+        
+        newRock.transform.up = chunkData.GetNormal(x, z);
+        newRock.transform.Rotate(0, Random.Range(0,360), 0);
     }
 }
