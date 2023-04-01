@@ -59,6 +59,9 @@ public class TreeScatter : MonoBehaviour
 
     private void PlaceTree(float x, float z, Transform parent, ChunkData chunkData)
     {
+        if (Random.Range(0, 101) > chunkData.GetDensity(x, z))
+            return;
+
         float height = chunkData.GetHeight(x, z);
         if (height < waterPlantHeight)
         {

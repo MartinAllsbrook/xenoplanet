@@ -211,6 +211,7 @@ GameObject:
   - component: {fileID: 8693317222589726818}
   - component: {fileID: -8145085250426399479}
   - component: {fileID: 6731353280582895152}
+  - component: {fileID: 1286491529174665466}
   m_Layer: 6
   m_Name: NoGrassChunk
   m_TagString: Terrain
@@ -322,9 +323,8 @@ MonoBehaviour:
   moistureRedistributionFactor: 1
   maxMoisture: 100
   strangenessOctaves:
-  - 0.2
-  - 0.5
-  strangenessRedistributionFactor: 1
+  - 0.75
+  strangenessRedistributionFactor: 2
   maxStrangeness: 100
 --- !u!114 &-8145085250426399479
 MonoBehaviour:
@@ -338,8 +338,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 751f00048df698c46bbcf1205911a1ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  treeUniformity: 1.2
-  numTrees: 8
+  treeUniformity: 1.98
+  numTrees: 14
   treeGroups:
   - trees:
     - {fileID: 1414986000072148107, guid: d1fc7a53db5225a4d81ac8bd129580a9, type: 3}
@@ -373,7 +373,7 @@ MonoBehaviour:
     - {fileID: 8218204736594959539, guid: 8f5c6f6a700c6e045a97b08515ebf92a, type: 3}
     minMoisture: 2
   minHeight: 3
-  rockSpawnChance: 5
+  rockSpawnChance: 3
   rocks:
   - {fileID: 4558653281136513159, guid: e324a80ae6a2fba45a862b75c2904c08, type: 3}
   - {fileID: 274401323133569128, guid: a9bf4bbda1a61c4478ea933ec2f1ce23, type: 3}
@@ -431,6 +431,21 @@ MonoBehaviour:
   - innerRadius: 7
     outerRadius: 14
     structure: {fileID: 5399029941019288926, guid: 567b70ec69ae41b49b3424408bf011e6, type: 3}
+--- !u!114 &1286491529174665466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9051413243473054194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22474d97539440d44a649c56d4f1bfdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemys:
+  - {fileID: 2994207794475489708, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
+  spawnChance: 25
 --- !u!1 &9171656918851668070
 GameObject:
   m_ObjectHideFlags: 0

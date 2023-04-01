@@ -63,6 +63,9 @@ public class MeshTerrainChunk : MonoBehaviour
         CreateShape();
         UpdateMesh();
 
+        if (_chunkPosition.magnitude > 10)
+            _enemySpawner.SpawnEnemy();
+
         _treeScatter.PlaceTrees(_chunkData, Size, () =>
         {
             _placedTrees = true;

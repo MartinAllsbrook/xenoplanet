@@ -63,6 +63,14 @@ public class ChunkData
 
         return _moistureMap[xFloor, zFloor];
     }
+    
+    public float GetDensity(float x, float z)
+    {
+        int xFloor = (int) Mathf.Floor(x);
+        int zFloor = (int) Mathf.Floor(z);
+
+        return _strangenessMap[xFloor, zFloor];
+    }
 
     public float GetSlope(float x, float z)
     {
