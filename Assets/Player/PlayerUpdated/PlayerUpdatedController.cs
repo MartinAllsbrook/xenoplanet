@@ -172,7 +172,15 @@ public class PlayerUpdatedController : MonoBehaviour
         }
         public void GetCrouch(InputAction.CallbackContext context)
         {
-            _crouchInput = context.action.WasPerformedThisFrame(); 
+            if (context.performed)
+            {
+                Debug.Log("performed");
+                if (_crouchInput)
+                    _crouchInput = false;
+                else
+                    _crouchInput = true;
+            }
+            // _crouchInput = context.action.WasPerformedThisFrame(); 
         }
         public void GetJump(InputAction.CallbackContext context)
         {

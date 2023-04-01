@@ -12,7 +12,8 @@ public class PlayerUpdatedBow : MonoBehaviour
     [Header("Cameras")]
     [SerializeField] private GameObject moveCamera;
     [SerializeField] private GameObject aimCamera;
-
+    [SerializeField] private Transform mainCamera;
+    
     [Header("References")]
     [SerializeField] private CrosshaireController crosshairController;
     [SerializeField] private GameObject[] arrows;
@@ -96,14 +97,15 @@ public class PlayerUpdatedBow : MonoBehaviour
         if (!aimCamera.activeInHierarchy || _numArrows <= 0)
             return;
         
-        Vector3 spawnPosition = transform.position + Vector3.up * 1.6f; 
-        Quaternion arrowDirection = CalculateAimDirection(spawnPosition);
+        Vector3 spawnPosition = _playerUpdatedController.mainCamera.transform.position; 
+        Quaternion arrowDirection = Quaternion.LookRotation(_playerUpdatedController.mainCamera.transform.forward);
 
-        var arrowInstance = Instantiate(arrows[0], spawnPosition, arrowDirection);
+        var arrowInstance = Instantiate(arrows[_selectedArrowIndex], spawnPosition, arrowDirection);
         arrowInstance.GetComponent<Arrow>().Fire(_strength); // Add force to the arrow equal to strength using arrow API
         _chargeTime = 0;
 
         bowFireAudio.Play();
+        bowDrawAudio.Play();
         Inventory.Instance.UpdateItemCount(arrows[_selectedArrowIndex].name + 's', -1);  // Remove arrow from inventory
         impulseSource.GenerateImpulse(_strength * maxImpulseForce); // Generate an impulse when arrows are fired
     }

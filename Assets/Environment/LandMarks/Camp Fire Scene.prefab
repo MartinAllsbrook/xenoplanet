@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8293433539792535292}
   - component: {fileID: 6988116753749788514}
   - component: {fileID: 437446061402706880}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Smoke Particles (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4823,7 +4823,7 @@ GameObject:
   - component: {fileID: 2491413623176261688}
   - component: {fileID: 2013070063777669069}
   - component: {fileID: 1396341771940266901}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Smoke Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9633,7 +9633,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8017870580642319898}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bench
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9667,7 +9667,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8017870580866997987}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Camp Fire Scene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9705,6 +9705,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8017870580866997987}
     m_Modifications:
+    - target: {fileID: 1159599782, guid: 1524b724e50071f47a7d0b92a6948368, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1159599784, guid: 1524b724e50071f47a7d0b92a6948368, type: 3}
       propertyPath: m_Color.b
       value: 0.3066038
@@ -9721,9 +9725,25 @@ PrefabInstance:
       propertyPath: m_Intensity
       value: 3.45
       objectReference: {fileID: 0}
+    - target: {fileID: 1906950015, guid: 1524b724e50071f47a7d0b92a6948368, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1182432073739930, guid: 1524b724e50071f47a7d0b92a6948368, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1232004554315616, guid: 1524b724e50071f47a7d0b92a6948368, type: 3}
       propertyPath: m_Name
       value: TFF_Fire_01A
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232004554315616, guid: 1524b724e50071f47a7d0b92a6948368, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1423382434730488, guid: 1524b724e50071f47a7d0b92a6948368, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4558397995094870, guid: 1524b724e50071f47a7d0b92a6948368, type: 3}
       propertyPath: m_RootOrder
@@ -9827,6 +9847,10 @@ PrefabInstance:
     - target: {fileID: 6720491052572833137, guid: b2eb1f15660df4f4bbcb07389f6a2806, type: 3}
       propertyPath: m_Name
       value: TFF_Wood_Plank_02A
+      objectReference: {fileID: 0}
+    - target: {fileID: 6720491052572833137, guid: b2eb1f15660df4f4bbcb07389f6a2806, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6720491052572928337, guid: b2eb1f15660df4f4bbcb07389f6a2806, type: 3}
       propertyPath: m_RootOrder
@@ -9942,6 +9966,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TFF_Rock_Small_05A
       objectReference: {fileID: 0}
+    - target: {fileID: 7734347712533311796, guid: 515124c2b678a624aab273df36fc040a, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 515124c2b678a624aab273df36fc040a, type: 3}
 --- !u!4 &292978704004600009 stripped
@@ -9959,6 +9987,10 @@ PrefabInstance:
     - target: {fileID: 1005171171890641205, guid: 37e175973f8fe5f4aabfc8d0ec06c835, type: 3}
       propertyPath: m_Name
       value: TFF_Stone_Slab_02A
+      objectReference: {fileID: 0}
+    - target: {fileID: 1005171171890641205, guid: 37e175973f8fe5f4aabfc8d0ec06c835, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1005171171890996501, guid: 37e175973f8fe5f4aabfc8d0ec06c835, type: 3}
       propertyPath: m_RootOrder
@@ -10033,6 +10065,10 @@ PrefabInstance:
     - target: {fileID: 2230125787057552054, guid: c277cbe22bc6485408c60bfac1cde71a, type: 3}
       propertyPath: m_Name
       value: TFF_Camp_Fire_01A
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230125787057552054, guid: c277cbe22bc6485408c60bfac1cde71a, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2230125787057972886, guid: c277cbe22bc6485408c60bfac1cde71a, type: 3}
       propertyPath: m_RootOrder
@@ -10140,6 +10176,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TFF_Wood_Log_01A
       objectReference: {fileID: 0}
+    - target: {fileID: 848678051681599916, guid: 7e1ea7f74612bf2409227fd7b13be9d1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e1ea7f74612bf2409227fd7b13be9d1, type: 3}
 --- !u!4 &7242402696123429921 stripped
@@ -10157,6 +10197,10 @@ PrefabInstance:
     - target: {fileID: 2225471985321404540, guid: 8675a68ceb6c1e048a68267417757d73, type: 3}
       propertyPath: m_Name
       value: TFF_Wood_Log_02A
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225471985321404540, guid: 8675a68ceb6c1e048a68267417757d73, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2225471985321636956, guid: 8675a68ceb6c1e048a68267417757d73, type: 3}
       propertyPath: m_RootOrder
@@ -10219,6 +10263,10 @@ PrefabInstance:
     - target: {fileID: 4030430141933448729, guid: c27ead8d057c46847adb147c2e1ff641, type: 3}
       propertyPath: m_Name
       value: TFF_Rock_Small_02A
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030430141933448729, guid: c27ead8d057c46847adb147c2e1ff641, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4030430141933941305, guid: c27ead8d057c46847adb147c2e1ff641, type: 3}
       propertyPath: m_RootOrder
@@ -10289,6 +10337,10 @@ PrefabInstance:
     - target: {fileID: 2184874480338919190, guid: 7a1ba496be1afb54e929ae8dafda3ab6, type: 3}
       propertyPath: m_Name
       value: TFF_Stone_Slab_01A
+      objectReference: {fileID: 0}
+    - target: {fileID: 2184874480338919190, guid: 7a1ba496be1afb54e929ae8dafda3ab6, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2184874480339075894, guid: 7a1ba496be1afb54e929ae8dafda3ab6, type: 3}
       propertyPath: m_RootOrder
