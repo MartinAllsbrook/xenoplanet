@@ -41,30 +41,24 @@ public class MeshTerrainManager : MonoBehaviour
         _loadedChunks = new List<MeshTerrainChunk>();
         
         CreateInitialChunks();
+        CreateFinalMonument();
         UpdatePlayerCell();
     }
 
     private void Update()
     {
-        // TODO: Remove when no longer needed
-        if (terrainRadius == 0)
-        {
-            return;
-        }
         var lastXCell = _xPlayerCell;
         var lastZCell = _zPlayerCell;
         
         UpdatePlayerCell();
-        
-        // Debug.Log("X cell: " + _xPlayerCell + " Z cell: " + _zPlayerCell);
-        
+
         var deltaXCell = _xPlayerCell - lastXCell;
         var deltaZCell = _zPlayerCell - lastZCell;
         
         if (deltaXCell != 0 || deltaZCell != 0)
         {
             bool loadZ = deltaZCell != 0;
-            if (loadZ)
+            if (loadZ) 
                 LoadRow(deltaZCell, true);
             else
                 LoadRow(deltaXCell, false);
@@ -88,6 +82,7 @@ public class MeshTerrainManager : MonoBehaviour
         {
             for (int z = 0; z < _grassArrayLength; z++)
             {
+                // Create Grass Chunk
                 _grassChunks[x,z] = Instantiate(grassChunk, transform);
                 
                 int terrainCenter = terrainRadius;
@@ -99,6 +94,19 @@ public class MeshTerrainManager : MonoBehaviour
         }
     }
 
+    private void CreateFinalMonument()
+    {
+        Vector2Int center = new Vector2Int(10, 10);
+        for (int x = -1; x <= 1; x++)
+        {
+            for (int z = -1; z <= 1; z++)
+            {
+                Vector2Int chunkPosition = center + new Vector2Int(x, z);
+                LoadChunk(chunkPosition, new Vector2Int(x, z));
+            }
+        }
+    }
+    
     private void LoadRow(int deltaCell, bool loadZ)
     {
         if (loadZ)
@@ -316,42 +324,25 @@ public class MeshTerrainManager : MonoBehaviour
     
     private GameObject LoadChunk(Vector2Int chunkPosition)
     {
-        /*Stopwatch timer = new Stopwatch();
-        timer.Start();*/
-        
-        // Activate generated chunk
         for (int i = 0; i < _loadedChunks.Count; i++)
         {
             if (chunkPosition == _loadedChunks[i].GetPosition())
             {
                 MeshTerrainChunk savedChunk = _loadedChunks[i]; // Get Chunk
                 savedChunk.gameObject.SetActive(true);
-                savedChunk.CheckLatePlace(); 
-                // savedChunk.AddGrass(grassManager);
+                savedChunk.CheckLatePlace();
 
-                /*// TESTING TESTING
-                timer.Stop();
-                Debug.Log("Loaded chunk activate time: " + timer.ElapsedMilliseconds);
-                // TESTING TESTING*/
-                
                 return savedChunk.gameObject; // Return the gameObject
             }
         }
         
-        // Generate new chunk
         GameObject newChunk = Instantiate(terrainChunk, new Vector3(chunkPosition.x * (_chunkSize - 1), 0, chunkPosition.y * (_chunkSize - 1)), _zeroRotation,transform);
         
         var chunk = newChunk.GetComponent<MeshTerrainChunk>();
         chunk.SetTerrain(_seeds);
-        // chunk.AddGrass(grassManager);
         
-        _loadedChunks.Add(newChunk.GetComponent<MeshTerrainChunk>());
-        
-        /*// TESTING TESTING
-        timer.Stop();
-        Debug.Log("New ACTIVE chunk load time: " + timer.ElapsedMilliseconds);
-        // TESTING TESTING*/
-        
+        _loadedChunks.Add(chunk);
+
         return newChunk;
     }
 
@@ -360,5 +351,17 @@ public class MeshTerrainManager : MonoBehaviour
         var playerPosition = playerTransform.position;
         _xPlayerCell = (int) MathF.Floor(playerPosition.x / (_chunkSize - 1));
         _zPlayerCell = (int) MathF.Floor(playerPosition.z / (_chunkSize - 1));
+    }
+    
+    private GameObject LoadChunk(Vector2Int chunkPosition, Vector2Int monumentRelative)
+    {
+        GameObject newChunk = Instantiate(terrainChunk, new Vector3(chunkPosition.x * (_chunkSize - 1), 0, chunkPosition.y * (_chunkSize - 1)), _zeroRotation,transform);
+        
+        var chunk = newChunk.GetComponent<MeshTerrainChunk>();
+        chunk.SetTerrain(_seeds, monumentRelative);
+
+        _loadedChunks.Add(chunk);
+
+        return newChunk;
     }
 }

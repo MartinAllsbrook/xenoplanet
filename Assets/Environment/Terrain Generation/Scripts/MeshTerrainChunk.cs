@@ -48,9 +48,49 @@ public class MeshTerrainChunk : MonoBehaviour
         
         _mapGenerator.GenerateMap(_chunkPosition, seeds, chunkData =>
         {
-            Debug.Log(chunkData);
             AfterMapsGenerated(chunkData);
         });
+    }
+
+    public void SetTerrain(int[] seeds, Vector2Int monumentRelative)
+    {
+        _mapGenerator = GetComponent<MapGenerator>();
+        _landMarkGenerator = GetComponent<LandMarkGenerator>();
+        _treeScatter = GetComponent<TreeScatter>();
+        _enemySpawner = GetComponent<EnemySpawner>();
+        
+        var position = transform.position / (Size - 1);
+        _chunkPosition = new Vector2Int((int) position.x, (int) position.z);
+        
+        _mesh = new Mesh();
+        GetComponent<MeshFilter>().mesh = _mesh;
+        
+        _mapGenerator.GenerateMap(_chunkPosition, seeds, chunkData =>
+        {
+            _chunkData = chunkData;
+            
+            // _landMarkGenerator.PlaceLandMark(ref _chunkData, Size);
+            PlaceMonument(monumentRelative);
+            // Create Mesh
+            CreateShape();
+            UpdateMesh();
+
+            if (_chunkPosition.magnitude > 10)
+                _enemySpawner.SpawnEnemy();
+
+            _treeScatter.PlaceTrees(_chunkData, Size, () =>
+            {
+                _placedTrees = true;
+            });            
+
+        });
+        
+    }
+
+    public void PlaceMonument(Vector2Int relativeChunkPosition)
+    {
+        MonumentGenerator monumentGenerator = gameObject.GetComponent<MonumentGenerator>();
+        monumentGenerator.Generate(relativeChunkPosition, _chunkData);
     }
 
     private void AfterMapsGenerated(ChunkData chunkData)

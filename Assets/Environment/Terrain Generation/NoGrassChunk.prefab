@@ -212,6 +212,7 @@ GameObject:
   - component: {fileID: -8145085250426399479}
   - component: {fileID: 6731353280582895152}
   - component: {fileID: 1286491529174665466}
+  - component: {fileID: 6615727896811812090}
   m_Layer: 6
   m_Name: NoGrassChunk
   m_TagString: Terrain
@@ -431,6 +432,30 @@ MonoBehaviour:
   - innerRadius: 7
     outerRadius: 14
     structure: {fileID: 5399029941019288926, guid: 567b70ec69ae41b49b3424408bf011e6, type: 3}
+  terraformAuthority:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &1286491529174665466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -446,6 +471,46 @@ MonoBehaviour:
   enemys:
   - {fileID: 2994207794475489708, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
   spawnChance: 10
+--- !u!114 &6615727896811812090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9051413243473054194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd9bda01b251c04781ed3c4b22214bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monument: {fileID: 8300136093979041033, guid: b9b682971b0cc8441947d878fafae71a, type: 3}
+  innerRadius: 32
+  outerRadius: 125
+  monumentPosition: {x: 32, y: 20, z: 32}
+  terraformAuthority:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &9171656918851668070
 GameObject:
   m_ObjectHideFlags: 0

@@ -99,4 +99,9 @@ public class ChunkData
     {
         _moistureMap[x, z] = moisture;
     }
+
+    public int GetSize()
+    {
+        return _size;
+    }
 }

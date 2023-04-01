@@ -166,7 +166,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _GrassBlend: 0.342
+    - _GrassBlend: 0.427
     - _GrassBlendAmount: 0.097
     - _GrassSlopeThreshold: 0.396
     - _HeightTransition: 0

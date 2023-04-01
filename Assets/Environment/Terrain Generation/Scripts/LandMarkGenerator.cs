@@ -13,7 +13,7 @@ public class LandMarkGenerator : MonoBehaviour
         
     }
     [SerializeField] public LandMark[] landMarks;
-    
+    [SerializeField] private AnimationCurve terraformAuthority;
     public void PlaceLandMark(ref ChunkData chunkData, int size)
     {
         LandMark landMark = landMarks[Random.Range(0, landMarks.Length)];
@@ -57,6 +57,6 @@ public class LandMarkGenerator : MonoBehaviour
             return 0f;
         
         float t = (distance - innerRadius) / (outerRadius - innerRadius);
-        return Mathf.Lerp(1f, 0f, t);
+        return terraformAuthority.Evaluate(t);
     }
 }
