@@ -2,15 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RockDude : MonoBehaviour
+public class IntuitionSource : MonoBehaviour
 {
     // A integer that stores the mana reward value
-    public int manaReward;
-
-    // A particle system to play when the reward is used
-    [SerializeField] private ParticleSystem unusedParticleSystem;
-    [SerializeField] private ParticleSystem onUseParticleSystem;
-
+    [SerializeField] private int manaReward;
+    
     // A bool that indicates whether the reward has been used or not
     public bool used;
 
@@ -20,9 +16,7 @@ public class RockDude : MonoBehaviour
         // Check if the reward has been used or not
         if (!used)
         {
-            // Play the particle system
-            onUseParticleSystem.Play();
-            unusedParticleSystem.Stop();
+            Consume();
 
             // Set used to true
             used = true;
@@ -31,5 +25,10 @@ public class RockDude : MonoBehaviour
             return manaReward;
         }
         return 0;
+    }
+
+    protected virtual void Consume()
+    {
+        
     }
 }

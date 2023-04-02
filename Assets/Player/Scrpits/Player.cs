@@ -65,13 +65,13 @@ public class Player : MonoBehaviour
         {
             Debug.Log(hit.collider.tag);
 
-            if (hit.collider.CompareTag("Rock Dude"))
+            if (hit.collider.CompareTag("Intuition Source"))
             {
-                RockDude rockDude = hit.collider.GetComponent<RockDude>();
+                IntuitionSource intuitionSource = hit.collider.GetComponent<IntuitionSource>();
 
-                if (rockDude != null)
+                if (intuitionSource != null)
                 {
-                    int rewardValue = rockDude.UseReward();
+                    int rewardValue = intuitionSource.UseReward();
 
                     ChangeIntuition(rewardValue);
                     return;

@@ -15,6 +15,7 @@ TagManager:
   - Terrain
   - EnemyCritical
   - Loot Crate
+  - Intuition Source
   layers:
   - Default
   - TransparentFX
