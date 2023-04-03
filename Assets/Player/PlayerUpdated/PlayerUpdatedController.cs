@@ -16,7 +16,6 @@ public class PlayerUpdatedController : MonoBehaviour
     private PlayerCameraController _playerCameraController;
     private MeleeController _meleeController;
     private Player _player;
-    private PlayerDash _playerDash;
     #endregion
 
     #region Player Referances
@@ -32,7 +31,6 @@ public class PlayerUpdatedController : MonoBehaviour
     private bool _crouchInput;
     private Vector2 _cameraInput;
     private bool _aimingInput;
-    private bool _abilityInput;
     #endregion
 
     //Events
@@ -40,7 +38,7 @@ public class PlayerUpdatedController : MonoBehaviour
     [SerializeField] UnityEvent OnLandEvent;
     [SerializeField] UnityEvent OnSprintEvent;
     [SerializeField] UnityEvent OnCrouchEvent;
-
+    
     void Start()
     {
         _playerMovement = GetComponent<PlayerUpdatedMovement>();
@@ -50,18 +48,15 @@ public class PlayerUpdatedController : MonoBehaviour
         _playerCameraController = GetComponent<PlayerCameraController>();
         _meleeController = GetComponent<MeleeController>();
         _player = GetComponent<Player>();
-        _playerDash = GetComponent<PlayerDash>();
     }
 
     private void FixedUpdate()
     {
-        // _playerChecks.SetDrag();
-
+        _playerChecks.SetDrag();
+        
         // if(!_aimingInput)
         //     _playerMovement.Rotate();
-        if(!_aimingInput)
-            _playerDash.Dash(_abilityInput, moveCamera);
-
+        
         if (_playerChecks.IsGrounded())
         {
             _playerMovement.Sprint(_sprintInput);
@@ -87,7 +82,7 @@ public class PlayerUpdatedController : MonoBehaviour
             else
                 _playerMovement.Strafe(_playerChecks.CheckSlope(), _playerChecks.groundHitInfo.normal, _moveInput);
         }
-
+        
         _playerMovement.Fall(_playerChecks.IsGrounded());
         _playerBow.Aim(_aimingInput);
         if (_aimingInput)
@@ -148,13 +143,13 @@ public class PlayerUpdatedController : MonoBehaviour
         }
         public void GetAim(InputAction.CallbackContext context)
         {
-            _aimingInput = context.action.WasPerformedThisFrame();
+            _aimingInput = context.action.WasPerformedThisFrame(); 
         }
         public void GetFire(InputAction.CallbackContext context)
         {
             // On fire down
             if (context.performed)
-                _playerBow.Fire();
+                _playerBow.Fire();    
         }
         public void GetMelee(InputAction.CallbackContext context)
         {
@@ -173,7 +168,7 @@ public class PlayerUpdatedController : MonoBehaviour
         }
         public void GetSprint(InputAction.CallbackContext context)
         {
-            _sprintInput = context.action.WasPerformedThisFrame();
+            _sprintInput = context.action.WasPerformedThisFrame(); 
         }
         public void GetCrouch(InputAction.CallbackContext context)
         {
@@ -185,11 +180,11 @@ public class PlayerUpdatedController : MonoBehaviour
                 else
                     _crouchInput = true;
             }
-            // _crouchInput = context.action.WasPerformedThisFrame();
+            // _crouchInput = context.action.WasPerformedThisFrame(); 
         }
         public void GetJump(InputAction.CallbackContext context)
         {
-            _jumpInput = context.action.WasPerformedThisFrame();
+            _jumpInput = context.action.WasPerformedThisFrame(); 
         }
         public void GetUse(InputAction.CallbackContext context)
         {
@@ -197,14 +192,10 @@ public class PlayerUpdatedController : MonoBehaviour
             if (context.started)
                 _player.UseObject();
         }
-        public void GetAbility(InputAction.CallbackContext context)
-        {
-             _abilityInput = context.action.WasPerformedThisFrame();
-        }
     #endregion
 
     private void OnDrawGizmos()
     {
-
+        
     }
 }

@@ -105,7 +105,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Ability",
+                    "name": "Use Object",
                     "type": "Button",
                     "id": "466e75ea-c7f4-4ac0-b2bd-2069660f6c72",
                     "expectedControlType": "Button",
@@ -364,7 +364,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Ability",
+                    "action": "Use Object",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
