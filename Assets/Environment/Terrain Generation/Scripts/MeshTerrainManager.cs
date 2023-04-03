@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.Events;
 using Debug = UnityEngine.Debug;
 using Random = UnityEngine.Random;
 
@@ -26,12 +27,18 @@ public class MeshTerrainManager : MonoBehaviour
     private int _zPlayerCell;
 
     private int _grassArrayLength = 5;
+    private UnityEvent _onChunkLoaded;
+    private int _numLoadedChunks = 0;
+    private int _chunksToLoad;
     
     private readonly Quaternion _zeroRotation = new Quaternion(0, 0, 0, 0);
     
     private void Start()
     {
         _terrainSize = terrainRadius * 2 + 1;
+        _chunksToLoad = _terrainSize * _terrainSize;
+        _onChunkLoaded = new UnityEvent();
+        
         _chunkSize = terrainChunk.GetComponent<MeshTerrainChunk>().GetChunkSize();
         _seeds = new int[3];
         _seeds[0] = Random.Range(2000, 10000);
@@ -39,7 +46,8 @@ public class MeshTerrainManager : MonoBehaviour
         _seeds[2] = Random.Range(2000, 10000);
 
         _loadedChunks = new List<MeshTerrainChunk>();
-        
+        _onChunkLoaded.AddListener(OnChunkLoaded);
+
         CreateInitialChunks();
         CreateFinalMonument();
         UpdatePlayerCell();
@@ -92,6 +100,20 @@ public class MeshTerrainManager : MonoBehaviour
                 chunk.AddGrass(_grassChunks[x,z].GetComponent<ChunkGrassManager>());
             }
         }
+    }
+
+    private void OnChunkLoaded()
+    {
+        _numLoadedChunks++;
+        Debug.Log("Num chunks: " + _numLoadedChunks + " Chunks needed: " + _chunksToLoad);
+        if (_numLoadedChunks >= _chunksToLoad)
+            DoneLoading();
+    }
+
+    private void DoneLoading()
+    {
+        HUDController.Instance.DoneLoading();
+        Player.Instance.OnGameStart();
     }
 
     private void CreateFinalMonument()
@@ -339,7 +361,7 @@ public class MeshTerrainManager : MonoBehaviour
         GameObject newChunk = Instantiate(terrainChunk, new Vector3(chunkPosition.x * (_chunkSize - 1), 0, chunkPosition.y * (_chunkSize - 1)), _zeroRotation,transform);
         
         var chunk = newChunk.GetComponent<MeshTerrainChunk>();
-        chunk.SetTerrain(_seeds);
+        chunk.SetTerrain(_seeds, _onChunkLoaded);
         
         _loadedChunks.Add(chunk);
 

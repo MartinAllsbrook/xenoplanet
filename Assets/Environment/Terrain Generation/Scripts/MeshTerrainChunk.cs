@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.Events;
 using Debug = UnityEngine.Debug;
 
 [RequireComponent(typeof(MeshFilter))]
@@ -27,13 +28,8 @@ public class MeshTerrainChunk : MonoBehaviour
 
     // States
     private bool _placedTrees;
-
-    private void Start()
-    {
-
-    }
-
-    public void SetTerrain(int[] seeds)
+    
+    public void SetTerrain(int[] seeds, UnityEvent onLoadEvent)
     {
         _mapGenerator = GetComponent<MapGenerator>();
         _landMarkGenerator = GetComponent<LandMarkGenerator>();
@@ -48,7 +44,7 @@ public class MeshTerrainChunk : MonoBehaviour
         
         _mapGenerator.GenerateMap(_chunkPosition, seeds, chunkData =>
         {
-            AfterMapsGenerated(chunkData);
+            AfterMapsGenerated(chunkData, onLoadEvent);
         });
     }
 
@@ -93,7 +89,7 @@ public class MeshTerrainChunk : MonoBehaviour
         monumentGenerator.Generate(relativeChunkPosition, _chunkData);
     }
 
-    private void AfterMapsGenerated(ChunkData chunkData)
+    private void AfterMapsGenerated(ChunkData chunkData, UnityEvent onLoadEvent)
     {
         _chunkData = chunkData;
             
@@ -108,6 +104,7 @@ public class MeshTerrainChunk : MonoBehaviour
 
         _treeScatter.PlaceTrees(_chunkData, Size, () =>
         {
+            onLoadEvent.Invoke();
             _placedTrees = true;
         });
     }

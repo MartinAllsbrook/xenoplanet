@@ -78,7 +78,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "FireGrapple",
+                    "name": "Dash",
                     "type": "Button",
                     "id": "b83af148-3f22-4019-8ac1-521d0f68e866",
                     "expectedControlType": "Button",
@@ -105,7 +105,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Use Object",
+                    "name": "Ability",
                     "type": "Button",
                     "id": "466e75ea-c7f4-4ac0-b2bd-2069660f6c72",
                     "expectedControlType": "Button",
@@ -331,7 +331,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "FireGrapple",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -364,7 +364,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Use Object",
+                    "action": "Ability",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

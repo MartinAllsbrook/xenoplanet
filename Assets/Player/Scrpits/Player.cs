@@ -177,11 +177,13 @@ public class Player : MonoBehaviour
         }
     }*/
 
-    private void OnGameStart()
+    public void OnGameStart()
     {
         Debug.Log("start");
         playerRigidbody.useGravity = true;
-        
+        GetComponent<PlayerUpdatedMovement>().enabled = true;
+        GetComponent<PlayerUpdatedController>().enabled = true;
+
         Ray ray = new Ray(transform.position, Vector3.down);
         if (Physics.Raycast(ray, out RaycastHit hit, 600)) // May want to add a layermask to this
         {

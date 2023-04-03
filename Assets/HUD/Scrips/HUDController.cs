@@ -120,7 +120,7 @@ public class HUDController : MonoBehaviour
         // inventory.PickUpItem(item);
     }
 
-    private void DoneLoading()
+    public void DoneLoading()
     {
         loadingScreen.SetActive(false);
     }
