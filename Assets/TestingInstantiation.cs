@@ -32,7 +32,7 @@ public class TestingInstantiation : MonoBehaviour
         {
             var newChunk = Instantiate(terrtainChunk, new Vector3(i * 65, 0, 0), new Quaternion(0,0,0,0));
             var chunk = newChunk.GetComponent<MeshTerrainChunk>();
-            chunk.SetTerrain(_seeds);
+            // chunk.SetTerrain(_seeds);
             chunk.AddGrass(chunkGrassManager);
         }
         timer.Stop();
