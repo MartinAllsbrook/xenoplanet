@@ -78,7 +78,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "FireGrapple",
+                    "name": "Dash",
                     "type": "Button",
                     "id": "b83af148-3f22-4019-8ac1-521d0f68e866",
                     "expectedControlType": "Button",
@@ -331,7 +331,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "FireGrapple",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

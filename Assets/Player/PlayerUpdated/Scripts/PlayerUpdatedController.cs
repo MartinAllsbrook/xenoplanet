@@ -55,7 +55,7 @@ public class PlayerUpdatedController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // _playerChecks.SetDrag();
+        _playerChecks.SetDrag();
 
         // if(!_aimingInput)
         //     _playerMovement.Rotate();
