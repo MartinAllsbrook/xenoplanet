@@ -14,7 +14,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform mainCamera;
     [SerializeField] private float health;
     [SerializeField] private LayerMask interactable;
-
+    [SerializeField] private AudioSource rechargeSound;
+    
     private int _intuition;
     private Rigidbody playerRigidbody;
     /*public UnityEvent playerVisible;
@@ -91,6 +92,13 @@ public class Player : MonoBehaviour
                     Inventory.Instance.UpdateItemCount(lootedItem, 1);
                 }
             }
+
+            if (hit.collider.CompareTag("Culdron"))
+            {
+                Culdron culdron = hit.collider.GetComponent<Culdron>();
+                
+                culdron.Use();
+            }
         }
     }
 
@@ -107,6 +115,10 @@ public class Player : MonoBehaviour
     
     public void ChangeHealth(float ammount)
     {
+        if (ammount > 0)
+        {
+            rechargeSound.Play();
+        }
         var newHealth = health + ammount;
         // Debug.Log(ammount);
         if (newHealth > 0 && newHealth <= 100)

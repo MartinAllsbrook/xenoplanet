@@ -2870,6 +2870,7 @@ MonoBehaviour:
   interactable:
     serializedVersion: 2
     m_Bits: 64
+  rechargeSound: {fileID: 965868812}
 --- !u!82 &965868812
 AudioSource:
   m_ObjectHideFlags: 0

@@ -16,6 +16,7 @@ TagManager:
   - EnemyCritical
   - Loot Crate
   - Intuition Source
+  - Culdron
   layers:
   - Default
   - TransparentFX
