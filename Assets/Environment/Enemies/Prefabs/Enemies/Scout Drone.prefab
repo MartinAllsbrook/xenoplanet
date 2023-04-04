@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6203616474048152507}
   - component: {fileID: 2682631488596450742}
   - component: {fileID: 5048466363264313609}
-  - component: {fileID: 2581389326928525835}
   m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
@@ -84,20 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &2581389326928525835
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 739068919914661140}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &943852371134018989
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,7 +94,6 @@ GameObject:
   - component: {fileID: 6925439580942522427}
   - component: {fileID: 8339055262388925011}
   - component: {fileID: 3874009008908401576}
-  - component: {fileID: 3533797173151900694}
   m_Layer: 7
   m_Name: Capsule
   m_TagString: Untagged
@@ -182,20 +166,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3533797173151900694
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 943852371134018989}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1360891203850278061
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,6 +292,7 @@ GameObject:
   - component: {fileID: 13254093690092374}
   - component: {fileID: 6870540376460656178}
   - component: {fileID: -5020787161464821209}
+  - component: {fileID: 7310890827617421742}
   m_Layer: 7
   m_Name: Scout Drone
   m_TagString: Enemy
@@ -557,6 +528,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!136 &7310890827617421742
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2994207794475489708}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.78
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.32, z: 0}
 --- !u!1 &3007492307914605218
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,7 +650,6 @@ GameObject:
   - component: {fileID: 8906956529745740228}
   - component: {fileID: 2789810391327283946}
   - component: {fileID: 3463576401287001797}
-  - component: {fileID: 5091311862006955485}
   - component: {fileID: 2037568943235113879}
   - component: {fileID: 7681649409747954229}
   - component: {fileID: 8641439640894998964}
@@ -741,19 +725,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5091311862006955485
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3052237141266634455}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!108 &2037568943235113879
 Light:
   m_ObjectHideFlags: 0
@@ -991,7 +962,6 @@ GameObject:
   - component: {fileID: 8101486690724024723}
   - component: {fileID: 5325379026445101712}
   - component: {fileID: 8027265672889934447}
-  - component: {fileID: 1421084938409187893}
   m_Layer: 7
   m_Name: Head
   m_TagString: Untagged
@@ -1064,20 +1034,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1421084938409187893
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7178029133839480593}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &8037294214531387948
 GameObject:
   m_ObjectHideFlags: 0

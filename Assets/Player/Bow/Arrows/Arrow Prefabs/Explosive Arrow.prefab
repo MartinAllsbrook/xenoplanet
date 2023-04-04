@@ -130,8 +130,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrowRigidbody: {fileID: 5966821036017870168}
-  maxDamage: 25
-  criticalMultiplier: 0
+  maxDamage: 30
+  criticalMultiplier: 3.5
   maxForce: 3000
   arrowLandAudio: {fileID: 1431239359441060432}
   explodeParticles: {fileID: 5065590562593492601, guid: 6689370d9bf0f6343a0a9b040326513a, type: 3}
@@ -140,7 +140,7 @@ MonoBehaviour:
     m_Bits: 128
   explosionRadius: 10
   explosionFalloff: 0
-  maxExplosionDamage: 40
+  maxExplosionDamage: 50
 --- !u!82 &1431239359441060432
 AudioSource:
   m_ObjectHideFlags: 0

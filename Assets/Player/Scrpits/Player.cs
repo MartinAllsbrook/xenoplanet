@@ -134,12 +134,12 @@ public class Player : MonoBehaviour
 
     public void DealDamage(float amount)
     {
-        if (amount >= 0)
+        if (amount <= 0)
             return;
 
         if (shield <= 0)
         {
-            float newHealth = health + amount;
+            float newHealth = health - amount;
             if (newHealth > 0)
             {
                 damageSound.Play();
@@ -152,6 +152,22 @@ public class Player : MonoBehaviour
             {
                 health = 0;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+        }
+        else
+        {
+            float newShield = shield - amount;
+            if (newShield > 0)
+            {
+                damageSound.Play();
+                shield = newShield;
+                HUDController.Instance.SetShield(shield);
+            }
+            else
+            {
+                shield = 0;
+                HUDController.Instance.SetShield(shield);
+                DealDamage(-newShield);
             }
         }
     }
