@@ -13,6 +13,7 @@ public class MeshTerrainManager : MonoBehaviour
     [SerializeField] private GameObject grassChunk;
     [SerializeField] private int terrainRadius;
     [SerializeField] private Transform playerTransform;
+    [SerializeField] private LoadingScreen loadingScreen;
     
     private int _terrainSize;
 
@@ -105,7 +106,6 @@ public class MeshTerrainManager : MonoBehaviour
     private void OnChunkLoaded()
     {
         _numLoadedChunks++;
-        Debug.Log("Num chunks: " + _numLoadedChunks + " Chunks needed: " + _chunksToLoad);
         if (_numLoadedChunks >= _chunksToLoad)
             DoneLoading();
     }

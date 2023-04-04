@@ -104,6 +104,7 @@ public class MeshTerrainChunk : MonoBehaviour
 
         _treeScatter.PlaceTrees(_chunkData, Size, () =>
         {
+            Debug.Log("Invoke");
             onLoadEvent.Invoke();
             _placedTrees = true;
         });
