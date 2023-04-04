@@ -44,6 +44,6 @@ public class BeamShooter : Weapon
         float laserCharge = 1 - 1 / (Mathf.Pow(_chargeTime * chargeTimeCoefficient, chargeExponent) + 1);
         // Set line renderer's width
         _laserBeam.widthMultiplier = widthCoefficient * laserCharge * Random.Range(0.85f, 1.0f);
-        Player.Instance.ChangeHealth(-damageCoefficient * laserCharge);
+        Player.Instance.DealDamage(damageCoefficient * laserCharge);
     }
 }

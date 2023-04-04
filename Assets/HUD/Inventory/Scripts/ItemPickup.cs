@@ -8,7 +8,7 @@ public class ItemPickup : MonoBehaviour
     private float _floatHeight = 1f;
     private float _rotateSpeed = 1f;
     private float _fallSpeed = 0.1f;
-    [SerializeField] private string itemName;
+    [SerializeField] public string itemName;
     [SerializeField] private float maxDistance;
     [SerializeField] private float forceMultiplier;
 
@@ -17,16 +17,6 @@ public class ItemPickup : MonoBehaviour
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            // Debug.Log(itemName);
-            if (Inventory.Instance.UpdateItemCount(itemName, 1))
-                Destroy(gameObject);
-        }    
     }
 
     private void OnTriggerStay(Collider trigger)

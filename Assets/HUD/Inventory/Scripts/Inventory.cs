@@ -15,7 +15,6 @@ public class Inventory : MonoBehaviour
     
     [Header("Audio")]
     [SerializeField] private AudioSource craftAudio;
-    
     // [SerializeField] private float moveCooldown;
     
     private Dictionary<string, ItemCounter> _itemCounters;

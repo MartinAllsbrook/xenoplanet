@@ -61,7 +61,7 @@ public class EnemyTurret : Enemy
             if (objectHit.CompareTag("Player"))
             {
                 Player playerStats = objectHit.GetComponent<Player>();
-                playerStats.ChangeHealth(-_laserCharge);
+                playerStats.DealDamage(_laserCharge);
             }
 
             _laserCharge += (1 - _laserCharge) * Time.deltaTime * chargeMultiplier;

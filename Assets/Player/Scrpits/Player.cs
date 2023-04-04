@@ -13,8 +13,14 @@ public class Player : MonoBehaviour
     // A transform that stores the main camera
     [SerializeField] private Transform mainCamera;
     [SerializeField] private float health;
+    [SerializeField] private float shield;
     [SerializeField] private LayerMask interactable;
+    
+    [Header("Audio")]
     [SerializeField] private AudioSource rechargeSound;
+    [SerializeField] private AudioSource collectAudio;
+    [SerializeField] private AudioSource healSound;
+    [SerializeField] private AudioSource damageSound;
     
     private int _intuition;
     private Rigidbody playerRigidbody;
@@ -33,6 +39,20 @@ public class Player : MonoBehaviour
                 OnSpotted();
         }
     }*/
+    
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Item Pickup"))
+        {
+            GameObject item = collision.gameObject;
+            string itemName = item.GetComponent<ItemPickup>().itemName;
+            if (Inventory.Instance.UpdateItemCount(itemName, 1))
+            {
+                Destroy(item);
+                collectAudio.Play();
+            }
+        }    
+    }
     
     private void Awake()
     {
@@ -102,41 +122,82 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void ChangeIntuition(int ammount)
+    private void ChangeIntuition(int amount)
     {
         if (_intuition >= 0)
-            _intuition += ammount;
+            _intuition += amount;
         else
             _intuition = 0;
         
         HUDController.Instance.SetIntuition(_intuition);
     }
 
-    
-    public void ChangeHealth(float ammount)
+    public void DealDamage(float amount)
     {
-        if (ammount > 0)
+        if (amount >= 0)
+            return;
+
+        if (shield <= 0)
         {
-            rechargeSound.Play();
+            float newHealth = health + amount;
+            if (newHealth > 0)
+            {
+                damageSound.Play();
+                health = newHealth;
+                HUDController.Instance.SetHealth(health);
+                PostFXController.Instance.SetVignette(100 - health);
+                PostFXController.Instance.SetChromaticAberration(100 - health);
+            }
+            else
+            {
+                health = 0;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
-        var newHealth = health + ammount;
-        // Debug.Log(ammount);
+    }
+
+    public void AddHealth(float amount)
+    {
+        if (amount <= 0 || health >= 100)
+            return;
+        
+        var newHealth = health + amount;
         if (newHealth > 0 && newHealth <= 100)
+        {
             health = newHealth;
-        else if (newHealth > 100)
+            healSound.Play();
+            HUDController.Instance.SetHealth(health);
+            PostFXController.Instance.SetVignette(100 - health);
+            PostFXController.Instance.SetChromaticAberration(100 - health);
+        }
+        else
         {
             health = 100;
+            healSound.Play();
+            HUDController.Instance.SetHealth(health);
+            PostFXController.Instance.SetVignette(100 - health);
+            PostFXController.Instance.SetChromaticAberration(100 - health);
         }
-        else if (newHealth <= 0)
-        {
-            health = 0;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
+    }
+
+    public void AddShield(float ammount)
+    {
+        if (ammount <= 0 || shield >= 100)
+            return;
         
-        // Communicate new health
-        HUDController.Instance.SetHealth(health);
-        PostFXController.Instance.SetVignette(100 - health);
-        PostFXController.Instance.SetChromaticAberration(100 - health);
+        var newShield = shield + ammount;
+        if (newShield > 0 && newShield <= 100)
+        {
+            shield = newShield;
+            rechargeSound.Play();
+            HUDController.Instance.SetShield(shield);
+        }
+        else
+        {
+            shield = 100;
+            rechargeSound.Play();
+            HUDController.Instance.SetShield(shield);
+        }
     }
 
     /*private void LateUpdate()

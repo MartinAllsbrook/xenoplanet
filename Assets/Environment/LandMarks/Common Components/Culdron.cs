@@ -9,7 +9,7 @@ public class Culdron : MonoBehaviour
     {
         if (!_used)
         {
-            Player.Instance.ChangeHealth(25);
+            Player.Instance.AddShield(25);
             _used = true;
         }
     }

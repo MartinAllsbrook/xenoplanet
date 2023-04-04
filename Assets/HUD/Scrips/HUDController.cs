@@ -10,14 +10,19 @@ using Image = UnityEngine.UIElements.Image;
 public class HUDController : MonoBehaviour
 {
     public static HUDController Instance;
-
-    [SerializeField] private TextMeshProUGUI arrowDisplay;
-    [SerializeField] private RectTransform healthBar;
+    
     [SerializeField] private CrosshaireController crosshaireController;
     [SerializeField] private Inventory inventory;
     [SerializeField] private GameObject loadingScreen;
+    
+    [Header("Displays")]
     [SerializeField] private TextMeshProUGUI intuitionDisplay;
+    [SerializeField] private TextMeshProUGUI arrowDisplay;
 
+    [Header("Health")]
+    [SerializeField] private RectTransform healthBar;
+    [SerializeField] private RectTransform shieldBar;
+    
     [Header("Audio")] 
     [SerializeField] private AudioSource openInventoryAudio;
 
@@ -50,6 +55,13 @@ public class HUDController : MonoBehaviour
         // Debug.Log("Health: " + health);
         var width = health * 5;
         healthBar.sizeDelta = new Vector2(width, healthBar.sizeDelta.y);
+    }
+    
+    public void SetShield(float shield)
+    {
+        // Debug.Log("Health: " + health);
+        var width = shield * 5;
+        shieldBar.sizeDelta = new Vector2(width, shieldBar.sizeDelta.y);
     }
 
     public void PlayHitMarker()

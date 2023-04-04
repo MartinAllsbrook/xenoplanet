@@ -44,10 +44,45 @@ public class MeshTerrainChunk : MonoBehaviour
         
         _mapGenerator.GenerateMap(_chunkPosition, seeds, chunkData =>
         {
-            AfterMapsGenerated(chunkData, onLoadEvent);
+            _chunkData = chunkData;
+            
+            _landMarkGenerator.PlaceLandMark(ref _chunkData, Size);
+            
+            // Create Mesh
+            CreateShape();
+            UpdateMesh();
+
+            if (_chunkPosition.magnitude > 10)
+                _enemySpawner.SpawnEnemy();
+
+            _treeScatter.PlaceTrees(_chunkData, Size, () =>
+            {
+                // Debug.Log("Invoke");
+                onLoadEvent.Invoke();
+                _placedTrees = true;
+            });
         });
     }
-
+    
+    public void SetTerrain(int[] seeds)
+    {
+        _mapGenerator = GetComponent<MapGenerator>();
+        _landMarkGenerator = GetComponent<LandMarkGenerator>();
+        _treeScatter = GetComponent<TreeScatter>();
+        _enemySpawner = GetComponent<EnemySpawner>();
+        
+        var position = transform.position / (Size - 1);
+        _chunkPosition = new Vector2Int((int) position.x, (int) position.z);
+        
+        _mesh = new Mesh();
+        GetComponent<MeshFilter>().mesh = _mesh;
+        
+        _mapGenerator.GenerateMap(_chunkPosition, seeds, chunkData =>
+        {
+            AfterMapsGenerated(chunkData);
+        });
+    }
+    
     public void SetTerrain(int[] seeds, Vector2Int monumentRelative)
     {
         _mapGenerator = GetComponent<MapGenerator>();
@@ -89,7 +124,7 @@ public class MeshTerrainChunk : MonoBehaviour
         monumentGenerator.Generate(relativeChunkPosition, _chunkData);
     }
 
-    private void AfterMapsGenerated(ChunkData chunkData, UnityEvent onLoadEvent)
+    private void AfterMapsGenerated(ChunkData chunkData)
     {
         _chunkData = chunkData;
             
@@ -104,8 +139,6 @@ public class MeshTerrainChunk : MonoBehaviour
 
         _treeScatter.PlaceTrees(_chunkData, Size, () =>
         {
-            Debug.Log("Invoke");
-            onLoadEvent.Invoke();
             _placedTrees = true;
         });
     }

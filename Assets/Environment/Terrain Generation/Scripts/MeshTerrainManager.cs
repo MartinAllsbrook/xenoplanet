@@ -81,7 +81,7 @@ public class MeshTerrainManager : MonoBehaviour
         {
             for (var z = 0; z < _terrainSize; z++)
             {
-                _activeChunks[x, z] = LoadChunk(new Vector2Int(x,z));
+                _activeChunks[x, z] = LoadChunk(new Vector2Int(x,z), _onChunkLoaded);
             }
         }
         
@@ -361,7 +361,7 @@ public class MeshTerrainManager : MonoBehaviour
         GameObject newChunk = Instantiate(terrainChunk, new Vector3(chunkPosition.x * (_chunkSize - 1), 0, chunkPosition.y * (_chunkSize - 1)), _zeroRotation,transform);
         
         var chunk = newChunk.GetComponent<MeshTerrainChunk>();
-        chunk.SetTerrain(_seeds, _onChunkLoaded);
+        chunk.SetTerrain(_seeds);
         
         _loadedChunks.Add(chunk);
 
@@ -386,4 +386,16 @@ public class MeshTerrainManager : MonoBehaviour
 
         return newChunk;
     }
+    
+    private GameObject LoadChunk(Vector2Int chunkPosition, UnityEvent onLoad)
+    {
+        GameObject newChunk = Instantiate(terrainChunk, new Vector3(chunkPosition.x * (_chunkSize - 1), 0, chunkPosition.y * (_chunkSize - 1)), _zeroRotation,transform);
+        
+        var chunk = newChunk.GetComponent<MeshTerrainChunk>();
+        chunk.SetTerrain(_seeds, onLoad);
+
+        _loadedChunks.Add(chunk);
+
+        return newChunk;
+    } 
 }
