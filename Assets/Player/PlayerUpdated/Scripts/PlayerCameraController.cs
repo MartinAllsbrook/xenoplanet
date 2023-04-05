@@ -6,7 +6,8 @@ using UnityEngine;
 public class PlayerCameraController : MonoBehaviour
 {
     [SerializeField] private Transform cameraFollow;
-    [SerializeField] private float roatationSpeed;
+    [SerializeField] private float rotationSpeed;
+    [SerializeField] private float aimRotationSpeed;
 
     [SerializeField] private float baseCameraHeight;
     [SerializeField] private float crouchCameraHeight;
@@ -20,11 +21,19 @@ public class PlayerCameraController : MonoBehaviour
         cameraRotation = cameraFollow.rotation;
     }
 
-    public void SetCameraRotation(Vector2 input)
+    public void SetCameraRotation(Vector2 input, bool aimInput)
     {
-        cameraRotation *= Quaternion.AngleAxis(input.x * roatationSpeed, Vector3.up);
-        
-        cameraRotation *= Quaternion.AngleAxis(input.y * -roatationSpeed, Vector3.right);
+        if (aimInput)
+        {
+            cameraRotation *= Quaternion.AngleAxis(input.x * aimRotationSpeed, Vector3.up);
+            cameraRotation *= Quaternion.AngleAxis(input.y * -aimRotationSpeed, Vector3.right);
+        }
+        else
+        {
+            cameraRotation *= Quaternion.AngleAxis(input.x * rotationSpeed, Vector3.up);
+            cameraRotation *= Quaternion.AngleAxis(input.y * -rotationSpeed, Vector3.right);
+        }
+
 
         var angles = cameraRotation.eulerAngles;
         angles.z = 0;

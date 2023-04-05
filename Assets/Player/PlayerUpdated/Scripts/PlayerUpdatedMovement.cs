@@ -41,7 +41,7 @@ public class PlayerUpdatedMovement : MonoBehaviour
             _camDirection = Vector3.ProjectOnPlane(_camDirection, groundNormal).normalized;
         
         //Actual Movee
-        _rigidbody.AddForce((_calcMoveSpeed * 100) * Time.fixedDeltaTime * _camDirection.normalized, ForceMode.Force);
+        _rigidbody.AddForce((_calcMoveSpeed * 100) * _camDirection.normalized, ForceMode.Force);
     }
 
     public void Strafe(bool onSlope, Vector3 groundNormal, Vector2 input)
@@ -51,7 +51,7 @@ public class PlayerUpdatedMovement : MonoBehaviour
         
         //Actual Move
         Vector3 moveDirection = input.y * transform.forward + input.x * transform.right;
-        _rigidbody.AddForce((_calcMoveSpeed * 100) * Time.fixedDeltaTime * moveDirection, ForceMode.Force);
+        _rigidbody.AddForce((_calcMoveSpeed * 100) * moveDirection, ForceMode.Force);
     }
 
     public void Aim(bool input)
@@ -86,7 +86,7 @@ public class PlayerUpdatedMovement : MonoBehaviour
     {
         if (_rigidbody.velocity.y < 2f && !isGrounded)
         {
-            _rigidbody.AddForce(Time.fixedDeltaTime * (fallForce * 10) * -Vector3.up, ForceMode.Impulse);
+            _rigidbody.AddForce((fallForce * 10) * -Vector3.up, ForceMode.Impulse);
         }
     }
     

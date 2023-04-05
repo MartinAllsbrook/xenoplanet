@@ -5042,7 +5042,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraFollow: {fileID: 1220513250}
-  roatationSpeed: 4
+  rotationSpeed: 0
+  aimRotationSpeed: 0
   baseCameraHeight: 1.6
   crouchCameraHeight: 1
 --- !u!114 &1715329198
@@ -7203,6 +7204,14 @@ PrefabInstance:
       propertyPath: moveCamera
       value: 
       objectReference: {fileID: 1641547000}
+    - target: {fileID: 2593575259806208424, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
+      propertyPath: rotationSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593575259806208424, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
+      propertyPath: aimRotationSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2593575259806208425, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -7229,11 +7238,11 @@ PrefabInstance:
       objectReference: {fileID: 1835633129032968651}
     - target: {fileID: 2593575259806208429, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: fallForce
-      value: 250
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2593575259806208429, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: movementSpeed
-      value: 1000
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2593575259806208431, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: aimCamera
