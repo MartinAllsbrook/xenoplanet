@@ -91,7 +91,6 @@ public class PlayerUpdatedController : MonoBehaviour
             Vector2 rotation = new Vector2(projectedPlane.x, projectedPlane.z);
             _playerMovement.RotateForAim(rotation);
         }
-        
         _playerCameraController.SetCameraRotation(_cameraInput);
     }
 
