@@ -4603,6 +4603,27 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1127324763}
+--- !u!1 &1679658061 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3404531260172313661, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
+  m_PrefabInstance: {fileID: 2593575259947691179}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1679658064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679658061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eead91f6551614160a444f4a65dec0cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activeTime: 5
+  _meshRefreshRate: 0.02
+  _destroyTime: 3
+  _material: {fileID: 2100000, guid: 845835406864044f59ed5be3e5fb7a79, type: 2}
 --- !u!224 &1687652419 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1017893877912746695, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
@@ -7258,7 +7279,7 @@ PrefabInstance:
       objectReference: {fileID: 3257246179193726763}
     - target: {fileID: 2593575259947691181, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: _dashForce
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2593575259947691181, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: _meshTrail
@@ -7270,7 +7291,7 @@ PrefabInstance:
       objectReference: {fileID: 1641547000}
     - target: {fileID: 2593575259947691181, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: _dashUpwardForce
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
