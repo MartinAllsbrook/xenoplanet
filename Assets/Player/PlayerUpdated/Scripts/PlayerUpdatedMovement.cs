@@ -5,13 +5,13 @@ using UnityEngine;
 public class PlayerUpdatedMovement : MonoBehaviour
 {
     [Header("Movement Speeds")]
-    [Range(0,50)] [SerializeField] private float movementSpeed;
+    [SerializeField] private float movementSpeed;
     [Range(0,2)] [SerializeField] private float sprintMultiplier;
     [Range(0,1)] [SerializeField] private float crouchMultiplier;
     [Range(0, 1)] [SerializeField] private float aimMultiplier;
     [Range(0,1)] [SerializeField] private float airControlMultiplier;
     [Range(0,100)] [SerializeField] private float jumpForce;
-    [Range(0,50)] [SerializeField] private float fallForce;
+    [SerializeField] private float fallForce;
 
     [Header("Sounds")] 
     [SerializeField] private AudioSource walkingAudio;
@@ -41,7 +41,7 @@ public class PlayerUpdatedMovement : MonoBehaviour
             _camDirection = Vector3.ProjectOnPlane(_camDirection, groundNormal).normalized;
         
         //Actual Movee
-        _rigidbody.AddForce(_camDirection.normalized * (_calcMoveSpeed * 100), ForceMode.Force);
+        _rigidbody.AddForce((_calcMoveSpeed * 100) * Time.fixedDeltaTime * _camDirection.normalized, ForceMode.Force);
     }
 
     public void Strafe(bool onSlope, Vector3 groundNormal, Vector2 input)
@@ -51,7 +51,7 @@ public class PlayerUpdatedMovement : MonoBehaviour
         
         //Actual Move
         Vector3 moveDirection = input.y * transform.forward + input.x * transform.right;
-        _rigidbody.AddForce(moveDirection * (_calcMoveSpeed * 100), ForceMode.Force);
+        _rigidbody.AddForce((_calcMoveSpeed * 100) * Time.fixedDeltaTime * moveDirection, ForceMode.Force);
     }
 
     public void Aim(bool input)
@@ -86,7 +86,7 @@ public class PlayerUpdatedMovement : MonoBehaviour
     {
         if (_rigidbody.velocity.y < 2f && !isGrounded)
         {
-            _rigidbody.AddForce(-Vector3.up * (fallForce * 10), ForceMode.Impulse);
+            _rigidbody.AddForce(Time.fixedDeltaTime * (fallForce * 10) * -Vector3.up, ForceMode.Impulse);
         }
     }
     

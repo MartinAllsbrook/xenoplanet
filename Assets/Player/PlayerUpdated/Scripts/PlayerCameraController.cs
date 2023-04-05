@@ -40,10 +40,6 @@ public class PlayerCameraController : MonoBehaviour
         }
 
         cameraRotation.eulerAngles = angles;
-    }
-
-    private void Update()
-    {
         cameraFollow.rotation = cameraRotation;
     }
 
