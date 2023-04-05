@@ -40,11 +40,11 @@ public class PlayerCameraController : MonoBehaviour
         }
 
         cameraRotation.eulerAngles = angles;
+        cameraFollow.rotation = cameraRotation;
     }
 
     private void Update()
     {
-        cameraFollow.rotation = cameraRotation;
     }
 
     public void SetCrouch(bool crouch)

@@ -71,11 +71,6 @@ public class PlayerUpdatedController : MonoBehaviour
             _playerMovement.Aim(_aimingInput);
         }
 
-        if (_cameraInput.magnitude > 0.001f)
-        {
-            _playerCameraController.SetCameraRotation(_cameraInput);
-        }
-
         if (_moveInput.magnitude > 0.01f)
         {
             _playerMovement.AirControl(_playerChecks.IsGrounded());
@@ -96,6 +91,7 @@ public class PlayerUpdatedController : MonoBehaviour
             Vector2 rotation = new Vector2(projectedPlane.x, projectedPlane.z);
             _playerMovement.RotateForAim(rotation);
         }
+        _playerCameraController.SetCameraRotation(_cameraInput);
     }
 
     private void Update()
