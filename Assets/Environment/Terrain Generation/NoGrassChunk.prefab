@@ -126,7 +126,7 @@ Transform:
   m_GameObject: {fileID: 4053064579700949992}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 32.5, y: 2, z: 32.5}
-  m_LocalScale: {x: 111, y: 111, z: 111}
+  m_LocalScale: {x: 110, y: 110, z: 110}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5795291650182373755}
@@ -513,9 +513,6 @@ MonoBehaviour:
   - innerRadius: 4
     outerRadius: 8
     structure: {fileID: 8017870580866997984, guid: 7d14a5837ab5c744e9ec565dd1ea42a1, type: 3}
-  - innerRadius: 5
-    outerRadius: 10
-    structure: {fileID: 6771069638219516206, guid: b789492782018423da67821cad85d189, type: 3}
   - innerRadius: 8
     outerRadius: 20
     structure: {fileID: 3444537472386960547, guid: e2f9c9ba2b913cd4aad5845642a87bbf, type: 3}
