@@ -244,16 +244,15 @@ public class Player : MonoBehaviour
         }
     }*/
 
-    /*private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Item Pickup"))
+        if (other.gameObject.CompareTag("Shield Source"))
         {
-            // ItemPickup itemPickup = other.gameObject.GetComponent<ItemPickup>();
-            string itemName = other.GetComponent<ItemPickup>().GetName();
-            Debug.Log("Picked up: " + itemName);
-            HUDController.Instance.PickUpItem(itemName);
+            MushroomCircle mushroomCircle = other.gameObject.GetComponent<MushroomCircle>();
+            
+            AddShield(mushroomCircle.Use());
         }
-    }*/
+    }
 
     /*private void OnCollisionEnter(Collision collision)
     {
