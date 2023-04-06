@@ -569,7 +569,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemys:
   - {fileID: 2994207794475489708, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
-  spawnChance: 10
+  spawnChance: 4
+  minDistance: 9
 --- !u!114 &6615727896811812090
 MonoBehaviour:
   m_ObjectHideFlags: 0

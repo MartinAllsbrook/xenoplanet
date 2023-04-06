@@ -346,8 +346,8 @@ MonoBehaviour:
     drop: {fileID: 3980989105184464102, guid: db866ef7fabeb444da8324188811a247, type: 3}
   deathParticles: {fileID: 6195871198001566187, guid: 5b8ca04c0ed3fed49a823c9ce5d0fa1f, type: 3}
   idleDistance: 20
-  viewDistance: 64
-  fov: 90
+  viewDistance: 48
+  fov: 80
   visible:
     serializedVersion: 2
     m_Bits: 72
@@ -1420,15 +1420,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3072495918351914326, guid: c4fe319c829d11d4395d5830bc39b101, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 4.9698
       objectReference: {fileID: 0}
     - target: {fileID: 3072495918351914326, guid: c4fe319c829d11d4395d5830bc39b101, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 4.9698
       objectReference: {fileID: 0}
     - target: {fileID: 3072495918351914326, guid: c4fe319c829d11d4395d5830bc39b101, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 4.9698
       objectReference: {fileID: 0}
     - target: {fileID: 3072495918351914326, guid: c4fe319c829d11d4395d5830bc39b101, type: 3}
       propertyPath: m_LocalPosition.x

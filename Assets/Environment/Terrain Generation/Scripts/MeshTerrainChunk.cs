@@ -52,8 +52,7 @@ public class MeshTerrainChunk : MonoBehaviour
             CreateShape();
             UpdateMesh();
 
-            if (_chunkPosition.magnitude > 10)
-                _enemySpawner.SpawnEnemy();
+            _enemySpawner.SpawnEnemy(_chunkPosition.magnitude);
 
             _treeScatter.PlaceTrees(_chunkData, Size, () =>
             {
@@ -106,8 +105,7 @@ public class MeshTerrainChunk : MonoBehaviour
             CreateShape();
             UpdateMesh();
 
-            if (_chunkPosition.magnitude > 10)
-                _enemySpawner.SpawnEnemy();
+            _enemySpawner.SpawnEnemy(_chunkPosition.magnitude);
 
             _treeScatter.PlaceTrees(_chunkData, Size, () =>
             {
@@ -134,8 +132,7 @@ public class MeshTerrainChunk : MonoBehaviour
         CreateShape();
         UpdateMesh();
 
-        if (_chunkPosition.magnitude > 10)
-            _enemySpawner.SpawnEnemy();
+        _enemySpawner.SpawnEnemy(_chunkPosition.magnitude);
 
         _treeScatter.PlaceTrees(_chunkData, Size, () =>
         {

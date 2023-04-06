@@ -65,7 +65,7 @@ public class PlayerUpdatedController : MonoBehaviour
             _playerDash.Dash(_abilityInput, moveCamera);
 
         if (_playerChecks.IsGrounded())
-        {
+        { 
             _playerMovement.Sprint(_sprintInput);
             _playerMovement.Crouch(_crouchInput);
             _playerCameraController.SetCrouch(_crouchInput);

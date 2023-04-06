@@ -8,10 +8,14 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] enemys;
     [SerializeField] private int spawnChance;
-
-    public void SpawnEnemy()
+    [SerializeField] private int minDistance;
+    
+    public void SpawnEnemy(float distance)
     {
-        if (Random.Range(1,101) < spawnChance )
+        if (distance < minDistance)
+            return;
+        
+         if (Random.Range(1,101) < spawnChance )
             return;
 
         var x = Random.Range(1, 65);
