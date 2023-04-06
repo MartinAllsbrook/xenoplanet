@@ -120,7 +120,7 @@ MonoBehaviour:
   - Explosive Arrows
   - Explosive Arrows
   - Flak Arrows
-  - Repair Pack
+  - Repair Packs
   maxNumItems: 4
 --- !u!82 &7347535433411636641
 AudioSource:

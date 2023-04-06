@@ -23,7 +23,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 28464
+  controlID: 34123
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 28465
+  controlID: 34124
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -201,7 +201,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 5cb986fc06d386fcb80c09ffbc1009ffc0d7ceff2cedffff10fbffffe0da0200d0db0200b07d0300
+      m_ExpandedIDs: eee383fcc4ad84fcc8ad84fca4b886fca8b886fc5cb986fc06d386fcb80c09ffbc1009ffc0d7ceff2cedffff10fbffffe0da0200d0db0200b07d03003c0c0700640c0700
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -217,7 +217,7 @@ MonoBehaviour:
         m_IsRenaming: 0
         m_OriginalEventType: 11
         m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 13}
+        m_ClientGUIView: {fileID: 4}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 28408
+  controlID: 34014
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -497,7 +497,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 0
-      snapOffset: {x: 0, y: 0}
+      snapOffset: {x: 0, y: 25}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Particles
@@ -678,8 +678,8 @@ MonoBehaviour:
     y: 820
     width: 1517
     height: 487
-  m_MinSize: {x: 232, y: 271}
-  m_MaxSize: {x: 10002, y: 10021}
+  m_MinSize: {x: 230, y: 250}
+  m_MaxSize: {x: 10000, y: 10000}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 10}
@@ -1771,22 +1771,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Environment/LandMarks/MantaRay/Textures/Rock1
+    - Assets/Environment/Enemies/Prefabs/Components
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Environment/LandMarks/MantaRay/Textures/Rock1
+  - Assets/Environment/Enemies/Prefabs/Components
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\Martin\Desktop\GitHub\capstone-game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 207}
-    m_SelectedIDs: 4c610600
-    m_LastClickedID: 418124
-    m_ExpandedIDs: 0000000018ac02001aac02001cac02001eac020020ac020022ac020024ac020026ac020028ac02002aac02002cac02002eac020030ac020032ac020034ac020036ac020038ac02003aac02003cac02003eac020040ac020042ac020044ac020046ac020048ac020064ac0200de41030000ca9a3b
+    scrollPos: {x: 0, y: 46}
+    m_SelectedIDs: aaac0200
+    m_LastClickedID: 175274
+    m_ExpandedIDs: 0000000018ac02001aac02001cac02001eac020020ac020022ac020024ac020026ac020028ac02002aac02002cac02002eac020030ac020032ac020034ac020036ac020038ac02003aac02003cac02003eac020040ac020042ac020044ac020046ac020048ac020062ac020064ac020000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1889,8 +1889,8 @@ MonoBehaviour:
     y: 0
     width: 572
     height: 1307
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
