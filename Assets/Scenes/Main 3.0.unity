@@ -4603,27 +4603,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1127324763}
---- !u!1 &1679658061 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3404531260172313661, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
-  m_PrefabInstance: {fileID: 2593575259947691179}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1679658064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1679658061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eead91f6551614160a444f4a65dec0cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _activeTime: 5
-  _meshRefreshRate: 0.02
-  _destroyTime: 3
-  _material: {fileID: 2100000, guid: 845835406864044f59ed5be3e5fb7a79, type: 2}
 --- !u!224 &1687652419 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1017893877912746695, guid: 1be58e512c5dd8940b8f272b58ce5497, type: 3}
@@ -7225,14 +7204,6 @@ PrefabInstance:
       propertyPath: moveCamera
       value: 
       objectReference: {fileID: 1641547000}
-    - target: {fileID: 2593575259806208424, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
-      propertyPath: rotationSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2593575259806208424, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
-      propertyPath: aimRotationSpeed
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2593575259806208425, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -7257,14 +7228,6 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1835633129032968651}
-    - target: {fileID: 2593575259806208429, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
-      propertyPath: fallForce
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2593575259806208429, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
-      propertyPath: movementSpeed
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 2593575259806208431, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: aimCamera
       value: 
@@ -7278,21 +7241,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3257246179193726763}
     - target: {fileID: 2593575259947691181, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
-      propertyPath: _dashForce
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2593575259947691181, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
-      propertyPath: _meshTrail
-      value: 
-      objectReference: {fileID: 611355274}
-    - target: {fileID: 2593575259947691181, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: _virtualCamera
       value: 
       objectReference: {fileID: 1641547000}
-    - target: {fileID: 2593575259947691181, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
-      propertyPath: _dashUpwardForce
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
 --- !u!224 &2625872383839722642

@@ -99,6 +99,17 @@ public class Player : MonoBehaviour
                 }
             }
 
+            if (hit.collider.CompareTag("Final Crystal"))
+            {
+                FinalCrystal finalCrystal = hit.collider.GetComponent<FinalCrystal>();
+
+                if (_intuition >= finalCrystal.GetRequiredIntuition() && !finalCrystal.Charged())
+                {
+                    finalCrystal.Charge();
+                    ChangeIntuition(-finalCrystal.GetRequiredIntuition());
+                }
+            }
+
             if (hit.collider.CompareTag("Loot Crate"))
             {
                 LootCrate lootCrate = hit.collider.GetComponent<LootCrate>();
