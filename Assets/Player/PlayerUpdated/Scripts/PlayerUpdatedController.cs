@@ -51,6 +51,8 @@ public class PlayerUpdatedController : MonoBehaviour
         _meleeController = GetComponent<MeleeController>();
         _player = GetComponent<Player>();
         _playerDash = GetComponent<PlayerDash>();
+        
+        HUDController.Instance.HideCrossHair();
     }
 
     private void FixedUpdate()
@@ -85,6 +87,7 @@ public class PlayerUpdatedController : MonoBehaviour
 
         _playerMovement.Fall(_playerChecks.IsGrounded());
         _playerBow.Aim(_aimingInput);
+        
         if (_aimingInput)
         {
             var projectedPlane = Vector3.ProjectOnPlane(mainCamera.transform.forward, Vector3.up);
@@ -145,6 +148,16 @@ public class PlayerUpdatedController : MonoBehaviour
         public void GetAim(InputAction.CallbackContext context)
         {
             _aimingInput = context.action.WasPerformedThisFrame();
+            
+            if (context.started)
+            {
+                HUDController.Instance.ShowCrossHair();
+            }
+
+            if (context.canceled)
+            {
+                HUDController.Instance.HideCrossHair();
+            }
         }
         public void GetFire(InputAction.CallbackContext context)
         {
