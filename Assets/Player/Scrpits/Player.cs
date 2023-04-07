@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     public static Player Instance;
+    public Transform playerLookAt;
     
     // A transform that stores the main camera
     [SerializeField] private Transform mainCamera;

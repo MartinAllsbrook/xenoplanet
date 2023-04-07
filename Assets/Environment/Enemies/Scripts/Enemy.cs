@@ -24,13 +24,12 @@ public class Enemy : BreakableObject
     protected virtual void Awake()
     {
         base.Awake();
-        targetLocation = GenerateRandomTarget();
     }
 
-    protected virtual void Start()
+    private void Start()
     {
-        // if (playerVisible == null)
-        //     playerVisible = Player.Instance.playerVisible;
+        // Start by generating a random target location to go to
+        targetLocation = GenerateRandomTarget();
     }
 
     protected virtual void Update()
@@ -50,7 +49,7 @@ public class Enemy : BreakableObject
 
     protected bool CanSeePlayer(out RaycastHit hitOut)
     {
-        Vector3 direction = Player.Instance.transform.position + new Vector3(0, 1, 0) - transform.position;
+        Vector3 direction = Player.Instance.playerLookAt.position - transform.position;
         Ray ray = new Ray(transform.position, direction);
         if (Physics.Raycast(ray, out RaycastHit hit, viewDistance, visible))
         {
