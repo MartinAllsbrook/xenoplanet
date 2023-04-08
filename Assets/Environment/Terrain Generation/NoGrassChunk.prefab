@@ -565,8 +565,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemys:
-  - {fileID: 2994207794475489708, guid: 7c23a8653e83c554187dfc3d84bca28c, type: 3}
-  spawnChance: 4
+  - {fileID: 384853752773575301, guid: f4f33eabf21564d2481fff616d6f492e, type: 3}
+  spawnChance: 2
   minDistance: 9
 --- !u!114 &6615727896811812090
 MonoBehaviour:
