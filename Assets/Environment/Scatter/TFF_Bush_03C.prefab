@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 7295565647546118727}
   - component: {fileID: 7295565647547084935}
   - component: {fileID: 1185008444384577099}
-  m_Layer: 0
+  - component: {fileID: 3112054968437223347}
+  m_Layer: 15
   m_Name: TFF_Bush_03C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,6 +109,20 @@ LODGroup:
     renderers:
     - renderer: {fileID: 4916881558402322090}
   m_Enabled: 1
+--- !u!136 &3112054968437223347
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7295565647549083207}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.87
+  m_Height: 0
+  m_Direction: 1
+  m_Center: {x: 0.06, y: 1.08, z: 0.17}
 --- !u!1001 &4916881558400292554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -118,6 +133,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 12067aa4e2b2f924da1cec9eb911ce5b, type: 3}
       propertyPath: m_Name
       value: TFF_Bush_03C_LOD_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 12067aa4e2b2f924da1cec9eb911ce5b, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 12067aa4e2b2f924da1cec9eb911ce5b, type: 3}
       propertyPath: m_IsActive

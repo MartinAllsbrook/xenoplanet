@@ -58,6 +58,20 @@ public class Enemy : BreakableObject
             }
         }
     }
+    
+    private void AlertEnemies(Vector3 position)
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, viewDistance, enemies);
+        foreach (var col in colliders)
+        {
+            if (col.CompareTag("Enemy"))
+            {
+                Enemy enemy = col.GetComponent<Enemy>();
+                enemy.SetTarget(position);
+                enemy.SetCanSeePlayer(true);
+            }
+        }
+    }
 
     public void SetTarget(Vector3 target)
     {
@@ -77,6 +91,11 @@ public class Enemy : BreakableObject
             position.z + Random.Range(-idleDistance, idleDistance));
     }
 
+    public void SetCanSeePlayer(bool canSee)
+    {
+        canSeePlayer = canSee;
+    }
+
     protected bool CanSeePlayer(out RaycastHit hitOut)
     {
         Vector3 direction = Player.Instance.playerLookAt.position - transform.position;
@@ -91,6 +110,7 @@ public class Enemy : BreakableObject
                 {
                     // Debug.Log(angle);
                     canSeePlayer = true;
+                    AlertEnemies(hit.point);
                     hitOut = hit;
                     return true;
                 }

@@ -6,23 +6,24 @@ public class LootCrate : MonoBehaviour
 {
     [SerializeField] private string[] possibleItems;
     [SerializeField] private int maxNumItems;
+    [SerializeField] private GameObject hudMarker;
     
-    private AudioSource lootedAudioSource;
-    private bool looted = false;
+    private AudioSource _lootedAudioSource;
+    private bool _looted = false;
     
     void Start()
     {
-        lootedAudioSource = GetComponent<AudioSource>();
+        _lootedAudioSource = GetComponent<AudioSource>();
     }
 
     public bool Lootable()
     {
-        return !looted;
+        return !_looted;
     }
 
     public string[] LootItems()
     { 
-        lootedAudioSource.Play();
+        _lootedAudioSource.Play();
         
         int numItems = Random.Range(1, maxNumItems);
 
@@ -34,8 +35,9 @@ public class LootCrate : MonoBehaviour
             string item = possibleItems[itemIndex];
             lootedItems[i] = item;
         }
-
-        looted = true;
+        
+        hudMarker.SetActive(false);
+        _looted = true;
         return lootedItems;
     }
 }

@@ -57,6 +57,7 @@ MonoBehaviour:
   - Explosives
   - Tech Trash
   maxNumItems: 3
+  hudMarker: {fileID: 6819147407839436676}
 --- !u!82 &8108430476923935911
 AudioSource:
   m_ObjectHideFlags: 0
@@ -476,5 +477,10 @@ PrefabInstance:
 --- !u!4 &6819147407839436673 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7562620956601387682, guid: b094d8c3f0e74e04ba81ae50041918f5, type: 3}
+  m_PrefabInstance: {fileID: 3914096198267245859}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6819147407839436676 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7562620956601387687, guid: b094d8c3f0e74e04ba81ae50041918f5, type: 3}
   m_PrefabInstance: {fileID: 3914096198267245859}
   m_PrefabAsset: {fileID: 0}

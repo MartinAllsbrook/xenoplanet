@@ -123,6 +123,7 @@ MonoBehaviour:
   - Flak Arrows
   - Repair Packs
   maxNumItems: 4
+  hudMarker: {fileID: 558481748108261221}
 --- !u!82 &7347535433411636641
 AudioSource:
   m_ObjectHideFlags: 0
@@ -279,5 +280,10 @@ PrefabInstance:
 --- !u!4 &558481748108261216 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7562620956601387682, guid: b094d8c3f0e74e04ba81ae50041918f5, type: 3}
+  m_PrefabInstance: {fileID: 8013015901302341058}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &558481748108261221 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7562620956601387687, guid: b094d8c3f0e74e04ba81ae50041918f5, type: 3}
   m_PrefabInstance: {fileID: 8013015901302341058}
   m_PrefabAsset: {fileID: 0}
