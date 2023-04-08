@@ -12,6 +12,7 @@ public class Enemy : BreakableObject
     [SerializeField] protected float fov;
 
     [SerializeField] protected LayerMask visible;
+    [SerializeField] private LayerMask enemies;
     [SerializeField] protected IndicatorLight canSeePlayerIndicator;
     
     [SerializeField] protected Turret turret;
@@ -38,13 +39,42 @@ public class Enemy : BreakableObject
         canSeePlayerIndicator.Flashing = !canSeePlayer;
     }
 
+    public override void ChangeHealth(float change)
+    {
+        base.ChangeHealth(change);
+        if (health > 0)
+            AlertEnemies();
+    }
+
+    private void AlertEnemies()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, viewDistance, enemies);
+        foreach (var col in colliders)
+        {
+            if (col.CompareTag("Enemy"))
+            {
+                Enemy enemy = col.GetComponent<Enemy>();
+                enemy.SetTarget(transform.position);
+            }
+        }
+    }
+
+    public void SetTarget(Vector3 target)
+    {
+        if (!canSeePlayer)
+        {
+            targetLocation = target;
+        }
+    }
+
     // Generate a random position
     protected virtual Vector3 GenerateRandomTarget()
     {
+        Vector3 position = transform.position;
         return new Vector3(
-            transform.position.x + Random.Range(-idleDistance, idleDistance), 
-            transform.position.y + Random.Range(0, idleDistance),
-            transform.position.z + Random.Range(-idleDistance, idleDistance));
+            position.x + Random.Range(-idleDistance, idleDistance), 
+            position.y + Random.Range(0, idleDistance),
+            position.z + Random.Range(-idleDistance, idleDistance));
     }
 
     protected bool CanSeePlayer(out RaycastHit hitOut)
@@ -70,16 +100,4 @@ public class Enemy : BreakableObject
         hitOut = hit;
         return false;
     }
-
-    /*protected virtual RaycastHit Look()
-    {
-        Vector3 direction = Player.Instance.transform.position + new Vector3(0, 1, 0) - transform.position;
-        Ray ray = new Ray(transform.position, direction);
-        if (Physics.Raycast(ray, out RaycastHit hit, range, visible))
-        {
-            return hit;
-        }
-    
-        return ;
-    }*/
 }

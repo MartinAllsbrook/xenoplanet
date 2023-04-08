@@ -347,11 +347,14 @@ MonoBehaviour:
     drop: {fileID: 3980989105184464102, guid: db866ef7fabeb444da8324188811a247, type: 3}
   deathParticles: {fileID: 6195871198001566187, guid: 5b8ca04c0ed3fed49a823c9ce5d0fa1f, type: 3}
   idleDistance: 20
-  viewDistance: 48
+  viewDistance: 64
   fov: 80
   visible:
     serializedVersion: 2
     m_Bits: 72
+  enemies:
+    serializedVersion: 2
+    m_Bits: 128
   canSeePlayerIndicator: {fileID: 8641439640894998964}
   turret: {fileID: 7782159581896678592}
   range:

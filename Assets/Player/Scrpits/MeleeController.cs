@@ -19,7 +19,7 @@ public class MeleeController : MonoBehaviour
             foreach (var col in colliders)
             {
                 if (col.transform.CompareTag("Enemy") || col.transform.CompareTag("Breakable Environment"))
-                    col.transform.gameObject.GetComponent<BreakableObject>().Health = -meleeDamage;
+                    col.transform.gameObject.GetComponent<BreakableObject>().ChangeHealth(-meleeDamage);
             }
         }
     }

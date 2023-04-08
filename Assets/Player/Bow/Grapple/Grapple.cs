@@ -1,3 +1,4 @@
+/*
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -121,3 +122,4 @@ public class Grapple : MonoBehaviour
         _ropeRenderer.SetPosition(1, _grapplePoint);
     }
 }
+*/
