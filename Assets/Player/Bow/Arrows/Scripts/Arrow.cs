@@ -44,7 +44,7 @@ public class Arrow : MonoBehaviour
             CheckEnemyHit(collision);
         
         if (collision.gameObject.CompareTag("Breakable Environment"))
-            collision.gameObject.GetComponent<BreakableObject>().Health = -(damage / 2); // Deal less damage to breakable objects with arrows
+            collision.gameObject.GetComponent<BreakableObject>().ChangeHealth(-(damage / 2)); // Deal less damage to breakable objects with arrows
         
         Destroy(arrowRigidbody);
         Destroy(this);
@@ -60,11 +60,11 @@ public class Arrow : MonoBehaviour
             if (contactPoint.otherCollider.CompareTag("EnemyCritical"))
             {
                 HUDController.Instance.PlayCriticalMarker();
-                collision.gameObject.GetComponent<Enemy>().Health = -damage * criticalMultiplier;
+                collision.gameObject.GetComponent<Enemy>().ChangeHealth(-damage * criticalMultiplier);
                 return;
             }
         }
         HUDController.Instance.PlayHitMarker();
-        collision.gameObject.GetComponent<Enemy>().Health = -damage;
+        collision.gameObject.GetComponent<Enemy>().ChangeHealth(-damage);
     }
 }

@@ -8,20 +8,14 @@ public class BreakableObject : MonoBehaviour
 {
     [SerializeField] protected float health;
 
-    public virtual float Health
+    public virtual void ChangeHealth(float change)
     {
-        private get { return health; }
-        set
-        {
-            Debug.Log("Damage Taken: " + value);
-            
-            // Loose health
-            health += value;
+        // Loose health
+        health += change;
 
-            // If enemy has no more health destroy it
-            if (health <= 0)
-                Die();
-        }
+        // If enemy has no more health destroy it
+        if (health <= 0)
+            Die();
     }
     
     [Serializable]
@@ -44,7 +38,8 @@ public class BreakableObject : MonoBehaviour
     
     protected virtual void Die()
     {
-        Instantiate(deathParticles, transform.position, transform.rotation);
+        Transform transformRef = transform;
+        Instantiate(deathParticles, transformRef.position, transformRef.rotation);
 
         for (int i = 0; i < itemDrops.Length; i++)
         {

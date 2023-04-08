@@ -17,9 +17,10 @@ public class PlayerUpdatedController : MonoBehaviour
     private MeleeController _meleeController;
     private Player _player;
     private PlayerDash _playerDash;
+    private CrouchController _crouchController;
     #endregion
 
-    #region Player Referances
+    #region Player References
     public CinemachineVirtualCamera moveCamera;
     public CinemachineVirtualCamera aimCamera;
     public Camera mainCamera;
@@ -51,6 +52,7 @@ public class PlayerUpdatedController : MonoBehaviour
         _meleeController = GetComponent<MeleeController>();
         _player = GetComponent<Player>();
         _playerDash = GetComponent<PlayerDash>();
+        _crouchController = GetComponent<CrouchController>();
         
         HUDController.Instance.HideCrossHair();
     }
@@ -190,9 +192,15 @@ public class PlayerUpdatedController : MonoBehaviour
             {
                 Debug.Log("performed");
                 if (_crouchInput)
+                {
                     _crouchInput = false;
+                    _crouchController.ToggleCrouch();
+                }
                 else
+                {
+                    _crouchController.ToggleCrouch();
                     _crouchInput = true;
+                }
             }
             // _crouchInput = context.action.WasPerformedThisFrame();
         }

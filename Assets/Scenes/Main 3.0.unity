@@ -3750,6 +3750,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1215595947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1215595948}
+  m_Layer: 0
+  m_Name: Player Center
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1215595948
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215595947}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 288.60367, y: 61.45712, z: 286.8298}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1220513249
 GameObject:
   m_ObjectHideFlags: 0
@@ -7434,30 +7465,6 @@ PrefabInstance:
       propertyPath: _virtualCamera
       value: 
       objectReference: {fileID: 1641547000}
-    - target: {fileID: 4503177867410755580, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
-      propertyPath: heightOffset
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4503177867410755580, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
-      propertyPath: pushStrength
-      value: 0.36
-      objectReference: {fileID: 0}
-    - target: {fileID: 4503177867410755580, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
-      propertyPath: flattenStrength
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4668082650608908015, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4668082650608908015, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4668082650608908015, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
 --- !u!224 &2625872383839722642

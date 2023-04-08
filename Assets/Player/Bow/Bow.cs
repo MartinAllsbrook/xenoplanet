@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
@@ -146,7 +146,7 @@ public class Bow : MonoBehaviour
         HUDController.Instance.SetArrow(arrows[_selectedArrowIndex].name);
     }
     
-    /*// "Charge" arrow based on how long the player is holding the trigger
+    /#1#/ "Charge" arrow based on how long the player is holding the trigger
     private void ChargeArrow()
     {
         // The longer the player holds the trigger the slower strength builds up
@@ -156,7 +156,7 @@ public class Bow : MonoBehaviour
         // Change fov to match arrow charge
         // thirdPersonCamera.m_Lens.FieldOfView = strength * 4 + 45;
         // ChargeZoom();
-    }*/
+    }#1#
 
     /*private void FireArrow()
     {
@@ -175,7 +175,7 @@ public class Bow : MonoBehaviour
         _chargeTime = 0;
         
         impulseSource.GenerateImpulse(); // Generate an impulse when arrows are fired
-    }*/
+    }#1#
 
     void UpdateNumArrows()
     {
@@ -218,4 +218,4 @@ public class Bow : MonoBehaviour
         Vector3 direction = mainCamera.transform.forward;
         return new Ray(origin, direction);
     }
-}
+}*/

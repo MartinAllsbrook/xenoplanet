@@ -30,7 +30,7 @@ public class ExplosiveArrow : Arrow
                 var distance = (colliders[i].transform.position - transform.position).magnitude;
                 var enemy = colliders[i].gameObject.GetComponent<Enemy>();
                 var damage = (explosionRadius - distance) * maxExplosionDamage / explosionRadius;
-                enemy.Health = -damage;
+                enemy.ChangeHealth(-damage);
             }
         }
         
