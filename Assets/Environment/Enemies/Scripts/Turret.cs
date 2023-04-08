@@ -12,8 +12,9 @@ public class Turret : MonoBehaviour
         weapon.Use();
     }
 
-    public virtual void LookTowards(Vector3 lookDirection)
+    public virtual void LookTowards(Vector3 lookPoint)
     {
+        Vector3 lookDirection = lookPoint - weapon.transform.position;
         var weaponRotation = Quaternion.RotateTowards(
             weapon.transform.rotation,
             Quaternion.LookRotation(lookDirection),

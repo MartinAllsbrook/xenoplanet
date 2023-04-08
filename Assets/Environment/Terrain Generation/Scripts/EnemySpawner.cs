@@ -15,7 +15,7 @@ public class EnemySpawner : MonoBehaviour
         if (distance < minDistance)
             return;
         
-         if (Random.Range(1,101) < spawnChance )
+        if (Random.Range(1,101) > spawnChance )
             return;
 
         var x = Random.Range(1, 65);

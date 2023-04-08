@@ -23,11 +23,11 @@ public class FlyingEnemy : Enemy
         
         if (CanSeePlayer(out RaycastHit hit)) // If the enemy can currently see the player
         {
-            Vector3 lookVector = Player.Instance.transform.position + Vector3.up - transform.position; // Add up so we're not looking at feet
-            turret.LookTowards(lookVector);
+            targetLocation = hit.point;
+            // Vector3 lookVector = targetLocation - transform.position; // Add up so we're not looking at feet
+            turret.LookTowards(targetLocation);
             
-            targetLocation = hit.transform.position; // Store player position
-            if ((hit.transform.position - transform.position).magnitude < range[1]) // If player is within range
+            if ((targetLocation - transform.position).magnitude < range[1]) // If player is within range
                 turret.Attack();
             
             MoveTo(targetLocation); // Move to most recently stored target location, does this need to be in this area?

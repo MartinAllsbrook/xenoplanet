@@ -6,7 +6,11 @@ using UnityEngine;
 public class Laser : MonoBehaviour
 {
     [SerializeField] private float speed;
-    
+    [SerializeField] private AudioSource hitAudio;
+    [SerializeField] private AudioSource ambientAudio;
+    [SerializeField] private float maxTimeAlive;
+
+    private float _timeAlive;
     private LineRenderer laserLineRenderer;
     private Rigidbody laserRigidbody;
     
@@ -20,14 +24,14 @@ public class Laser : MonoBehaviour
     void Update()
     {
         laserRigidbody.MovePosition(transform.position + transform.forward * speed);
-        // var forward = transform.forward * 0.5f;
-        // laserLineRenderer.SetPosition(0, -forward);
-        // laserLineRenderer.SetPosition(1, forward);
+        
+        _timeAlive += Time.deltaTime;
+        if (_timeAlive > maxTimeAlive)
+            Destroy(gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject);
         if (collision.gameObject.CompareTag("Player"))
         {
             Player player = collision.gameObject.GetComponent<Player>();
@@ -39,5 +43,20 @@ public class Laser : MonoBehaviour
             BreakableObject breakableObject = collision.gameObject.GetComponent<BreakableObject>();
             breakableObject.ChangeHealth(-20);
         }
+
+        StartCoroutine(DeathRoutine());
+    }
+
+    IEnumerator DeathRoutine()
+    {
+        
+        speed = 0;
+        Destroy(laserLineRenderer);
+        Destroy(ambientAudio);
+        hitAudio.Play();
+
+        yield return new WaitForSeconds(4f);
+        
+        Destroy(gameObject);
     }
 }
