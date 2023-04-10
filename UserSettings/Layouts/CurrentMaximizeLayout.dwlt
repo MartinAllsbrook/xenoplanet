@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 14817
+  controlID: 24454
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 14818
+  controlID: 24455
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 14819
+  controlID: 24456
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -224,8 +224,8 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: ced10200
-      m_LastClickedID: 184782
+      m_SelectedIDs: 8ed00200
+      m_LastClickedID: 184462
       m_ExpandedIDs: 4e893effb6e93fff94f76cffdef76cfffaf76cff8c296dffce2a6dffd22a6dffe62a6dff28529eff10fbffff70760000f8cf02003cd002008ed00200
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -398,7 +398,7 @@ MonoBehaviour:
       containerId: overlay-container--right
       floating: 0
       collapsed: 0
-      displayed: 0
+      displayed: 1
       snapOffset: {x: 0, y: 0}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
@@ -580,9 +580,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 287.99753, y: 62.72072, z: 287.99884}
+    m_Target: {x: 288.13535, y: 8.3135, z: 288.56064}
     speed: 2
-    m_Value: {x: 287.99753, y: 62.72072, z: 287.99884}
+    m_Value: {x: 288.13535, y: 8.3135, z: 288.56064}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -629,13 +629,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.04750399, y: 0.52330136, z: -0.029239032, w: 0.8503176}
+    m_Target: {x: 0.024531802, y: -0.43913746, z: 0.011995463, w: 0.8980033}
     speed: 2
-    m_Value: {x: 0.047503993, y: 0.52330136, z: -0.029239032, w: 0.8503176}
+    m_Value: {x: -0.024531804, y: 0.43913746, z: -0.011995463, w: -0.8980033}
   m_Size:
-    m_Target: 54.89991
+    m_Target: 82.95248
     speed: 2
-    m_Value: 54.89991
+    m_Value: 82.95248
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -792,22 +792,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Environment/Asset Packs/Toon Fantasy Nature/Textures/LUT
+    - Assets/Environment/Asset Packs/SimpleNaturePack
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Environment/Asset Packs/Toon Fantasy Nature/Textures/LUT
+  - Assets/Environment/Asset Packs/SimpleNaturePack
   m_LastFoldersGridSize: 16
   m_LastProjectPath: /Users/luccachiappetta/Documents/GitHub/capstone-game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 196.49982}
-    m_SelectedIDs: 50dd0200
-    m_LastClickedID: 187728
-    m_ExpandedIDs: 000000008aae02008cae02008eae020090ae020092ae020094ae020096ae020098ae02009aae02009cae02009eae0200a0ae0200a2ae0200a4ae0200a6ae0200a8ae0200aaae0200acae0200aeae0200b0ae0200b2ae0200b4ae0200b6ae0200baae0200d4ae0200f0ae02000aaf020010b0020014b0020006d2020072d2020052dd020000ca9a3b
+    scrollPos: {x: 0, y: 127}
+    m_SelectedIDs: 04d20200
+    m_LastClickedID: 184836
+    m_ExpandedIDs: 000000008aae02008cae02008eae020090ae020092ae020094ae020096ae020098ae02009aae02009cae02009eae0200a0ae0200a2ae0200a4ae0200a6ae0200a8ae0200aaae0200acae0200aeae0200b0ae0200b2ae0200b4ae0200b6ae0200baae0200d4ae0200f0ae02000aaf020010b0020014b0020072d2020000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -835,7 +835,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000008aae02008cae02008eae020090ae020092ae020094ae020096ae020098ae02009aae02009cae02009eae0200a0ae0200a2ae0200a4ae0200a6ae0200a8ae0200aaae0200acae0200aeae0200b0ae0200b2ae0200b4ae0200b6ae0200baae0200d4ae0200f0ae02000aaf020010b0020014b0020006d2020072d2020000ca9a3b
+    m_ExpandedIDs: 000000008aae02008cae02008eae020090ae020092ae020094ae020096ae020098ae02009aae02009cae02009eae0200a0ae0200a2ae0200a4ae0200a6ae0200a8ae0200aaae0200acae0200aeae0200b0ae0200b2ae0200b4ae0200b6ae0200baae0200d4ae0200f0ae02000aaf020010b0020014b0020072d2020000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -860,8 +860,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: ced10200
-    m_LastClickedInstanceID: 184782
+    m_SelectedInstanceIDs: 8ed00200
+    m_LastClickedInstanceID: 184462
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c623000012b20200b6840000dab002004cd20200
     m_RenameOverlay:
@@ -929,7 +929,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: LightingWindow
+  m_Name: InspectorWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -938,14 +938,14 @@ MonoBehaviour:
     y: 0
     width: 541
     height: 866
-  m_MinSize: {x: 391, y: 411}
+  m_MinSize: {x: 276, y: 71}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 15}
+  m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
   - {fileID: 15}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
