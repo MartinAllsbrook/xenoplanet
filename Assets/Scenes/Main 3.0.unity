@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.14779618, g: 0.24520832, b: 0.49991167, a: 1}
+  m_IndirectSpecularColor: {r: 0.36260232, g: 0.35548705, b: 0.25127614, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2548,48 +2548,76 @@ PrefabInstance:
       value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
+      propertyPath: cycleInMinutes
+      value: 0.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
+      propertyPath: skyColorDay.ctime1
+      value: 13493
+      objectReference: {fileID: 0}
+    - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
+      propertyPath: skyColorDay.ctime2
+      value: 52428
+      objectReference: {fileID: 0}
+    - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
+      propertyPath: skyColorDay.ctime3
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
       propertyPath: skyColorDay.key0.b
-      value: 0.771894
+      value: 0.87454087
       objectReference: {fileID: 0}
     - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
       propertyPath: skyColorDay.key0.g
-      value: 0.89997756
+      value: 1.1988715
       objectReference: {fileID: 0}
     - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
       propertyPath: skyColorDay.key0.r
-      value: 0.92452836
+      value: 1.2612426
       objectReference: {fileID: 0}
     - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
       propertyPath: skyColorDay.key1.b
-      value: 3.178115
+      value: 1.4156221
       objectReference: {fileID: 0}
     - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
       propertyPath: skyColorDay.key1.g
-      value: 2.3350022
+      value: 1.0835911
       objectReference: {fileID: 0}
     - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
       propertyPath: skyColorDay.key1.r
-      value: 1.4541374
+      value: 0.72784346
       objectReference: {fileID: 0}
     - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
       propertyPath: skyColorDay.key2.b
-      value: 1.3803922
+      value: 1.4156221
       objectReference: {fileID: 0}
     - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
       propertyPath: skyColorDay.key2.g
-      value: 0.36862746
+      value: 1.0835911
       objectReference: {fileID: 0}
     - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
       propertyPath: skyColorDay.key2.r
-      value: 0.38431373
+      value: 0.72784346
+      objectReference: {fileID: 0}
+    - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
+      propertyPath: skyColorDay.key3.b
+      value: 0.87454087
+      objectReference: {fileID: 0}
+    - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
+      propertyPath: skyColorDay.key3.g
+      value: 1.1988715
+      objectReference: {fileID: 0}
+    - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
+      propertyPath: skyColorDay.key3.r
+      value: 1.2612426
       objectReference: {fileID: 0}
     - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
       propertyPath: skyColorNight.ctime1
-      value: 23901
+      value: 13685
       objectReference: {fileID: 0}
     - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
       propertyPath: skyColorNight.ctime2
-      value: 44525
+      value: 52043
       objectReference: {fileID: 0}
     - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
       propertyPath: skyColorNight.ctime3
@@ -2597,51 +2625,55 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
       propertyPath: skyColorNight.key0.b
-      value: 0.5849056
+      value: 0.87454087
       objectReference: {fileID: 0}
     - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
       propertyPath: skyColorNight.key0.g
-      value: 0.34937537
+      value: 1.1988715
       objectReference: {fileID: 0}
     - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
       propertyPath: skyColorNight.key0.r
-      value: 0.33935562
+      value: 1.2612426
       objectReference: {fileID: 0}
     - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
       propertyPath: skyColorNight.key1.b
-      value: 0.2830189
-      objectReference: {fileID: 0}
-    - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
-      propertyPath: skyColorNight.key1.g
-      value: 0.24697402
-      objectReference: {fileID: 0}
-    - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
-      propertyPath: skyColorNight.key1.r
-      value: 0.24697402
-      objectReference: {fileID: 0}
-    - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
-      propertyPath: skyColorNight.key2.b
       value: 0.3301887
       objectReference: {fileID: 0}
     - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
-      propertyPath: skyColorNight.key2.g
+      propertyPath: skyColorNight.key1.g
       value: 0.26879898
       objectReference: {fileID: 0}
     - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
-      propertyPath: skyColorNight.key2.r
+      propertyPath: skyColorNight.key1.r
       value: 0.26010147
       objectReference: {fileID: 0}
     - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
+      propertyPath: skyColorNight.key2.b
+      value: 0.32941177
+      objectReference: {fileID: 0}
+    - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
+      propertyPath: skyColorNight.key2.g
+      value: 0.27058825
+      objectReference: {fileID: 0}
+    - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
+      propertyPath: skyColorNight.key2.r
+      value: 0.25882354
+      objectReference: {fileID: 0}
+    - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
       propertyPath: skyColorNight.key3.b
-      value: 0.5149964
+      value: 0.87454087
       objectReference: {fileID: 0}
     - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
       propertyPath: skyColorNight.key3.g
-      value: 0.6563884
+      value: 1.1988715
       objectReference: {fileID: 0}
     - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
       propertyPath: skyColorNight.key3.r
-      value: 0.6698113
+      value: 1.2612426
+      objectReference: {fileID: 0}
+    - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
+      propertyPath: skyColorDay.m_NumColorKeys
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
       propertyPath: skyColorNight.m_NumColorKeys

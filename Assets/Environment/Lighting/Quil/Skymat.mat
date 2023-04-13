@@ -104,12 +104,12 @@ Material:
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _Cloud_Distance: 0.4
-    - _Cloud_Far_Tiling: 0
-    - _Cloud_Opacity: 0.75
+    - _Cloud_Distance: 0.81
+    - _Cloud_Far_Tiling: -0.03
+    - _Cloud_Opacity: 0.76
     - _Cloud_Tiling: 0.15
-    - _Clouds_Cutoff: 1.43
-    - _Clouds_Normal_Strength: 0.7
+    - _Clouds_Cutoff: 0.12
+    - _Clouds_Normal_Strength: 0.89
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
@@ -137,23 +137,23 @@ Material:
     - _SrcBlend: 1
     - _SunExponent: 3
     - _SunIntensity: 2
-    - _SunRadiusA: 0.03
-    - _SunRadiusB: 0.05
+    - _SunRadiusA: 0.12
+    - _SunRadiusB: 0.07
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _CloudsOffset: {r: 2511.6816, g: -2511.9856, b: 0, a: 0}
-    - _Clouds_Color: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 0}
+    - _CloudsOffset: {r: 2668.6238, g: -2668.9277, b: 0, a: 0}
+    - _Clouds_Color: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 0}
     - _Clouds_Offset: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _NightSky1: {r: 0.0496618, g: 0.07425655, b: 0.3396226, a: 0}
+    - _NightSky1: {r: 0.72156864, g: 0.96470594, b: 1, a: 1}
     - _NightSky2: {r: 0, g: 0, b: 0, a: 0}
-    - _NightSky3: {r: 0.03613386, g: 0.03694904, b: 0.2641509, a: 0}
-    - _SkyColor: {r: 0, g: 0.8745098, b: 1, a: 1}
-    - _SkyColor2: {r: 0.92452836, g: 0.89997756, b: 0.771894, a: 1}
-    - _SkyColor3: {r: 0.2207636, g: 0.30568743, b: 0.38679245, a: 0.8352941}
+    - _NightSky3: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 0}
+    - _SkyColor: {r: 0.7216981, g: 0.96507585, b: 1, a: 1}
+    - _SkyColor2: {r: 1.2612426, g: 1.1988715, b: 0.87454087, a: 1}
+    - _SkyColor3: {r: 0.42352942, g: 0.42352942, b: 0.42352942, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
