@@ -13,7 +13,7 @@ public class HUDController : MonoBehaviour
     
     [SerializeField] private CrosshaireController crosshaireController;
     [SerializeField] private Inventory inventory;
-    [SerializeField] private GameObject loadingScreen;
+    [SerializeField] private LoadingScreen loadingScreen;
     
     [Header("Displays")]
     [SerializeField] private TextMeshProUGUI intuitionDisplay;
@@ -134,6 +134,6 @@ public class HUDController : MonoBehaviour
 
     public void DoneLoading()
     {
-        loadingScreen.SetActive(false);
+        loadingScreen.DoneLoading();
     }
 }

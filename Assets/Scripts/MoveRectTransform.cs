@@ -12,6 +12,7 @@ public class MoveRectTransform : MonoBehaviour
     [Tooltip("Time between each step")]
     public float stepTime = 0.5f;
 
+
     private IEnumerator MoveDown()
     {
         for (int i = 0; i < numberOfSteps; i++)
