@@ -16,8 +16,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float health;
     [SerializeField] private float shield;
     [SerializeField] private LayerMask interactable;
-    
-    [Header("Audio")]
+
+    [Header("Audio")] 
+    [SerializeField] private AudioListener audioListener;
     [SerializeField] private AudioSource rechargeSound;
     [SerializeField] private AudioSource collectAudio;
     [SerializeField] private AudioSource healSound;
@@ -163,7 +164,7 @@ public class Player : MonoBehaviour
             else
             {
                 health = 0;
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                GameOver();
             }
         }
         else
@@ -228,6 +229,38 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void GameOver()
+    {
+        HUDController.Instance.GameOver();
+        GetComponent<InputManager>().EnableRestart();
+        audioListener.enabled = false;
+        Time.timeScale = 0;
+    }
+
+    public void Restart(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            Time.timeScale = 1;
+        }
+    }
+    
+    public void OnGameStart()
+    {
+        Debug.Log("start");
+        playerRigidbody.useGravity = true;
+        GetComponent<PlayerUpdatedMovement>().enabled = true;
+        GetComponent<PlayerUpdatedController>().enabled = true;
+        audioListener.enabled = true;
+
+        Ray ray = new Ray(transform.position, Vector3.down);
+        if (Physics.Raycast(ray, out RaycastHit hit, 600)) // May want to add a layermask to this
+        {
+            transform.position = hit.point + (Vector3.up * 0.5f);
+        }
+    }
+    
     /*private void LateUpdate()
     {
         if (playerSpotted)
@@ -255,37 +288,5 @@ public class Player : MonoBehaviour
         }
     }
 
-    /*private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Item Pickup"))
-        {
-            Debug.Log("Picked up item");
-            ItemPickup itemPickup = collision.gameObject.GetComponent<ItemPickup>();
-            HUDController.Instance.PickUpItem(itemPickup.Item);
-        }
-    }*/
 
-    public void OnGameStart()
-    {
-        Debug.Log("start");
-        playerRigidbody.useGravity = true;
-        GetComponent<PlayerUpdatedMovement>().enabled = true;
-        GetComponent<PlayerUpdatedController>().enabled = true;
-
-        Ray ray = new Ray(transform.position, Vector3.down);
-        if (Physics.Raycast(ray, out RaycastHit hit, 600)) // May want to add a layermask to this
-        {
-            transform.position = hit.point + (Vector3.up * 0.5f);
-        }
-    }
-
-    /*private void OnSpotted()
-    {
-        Debug.Log("Player Spotted");
-    }
-
-    private void OnHidden()
-    {
-        Debug.Log("Player Hidden");
-    }*/
 }

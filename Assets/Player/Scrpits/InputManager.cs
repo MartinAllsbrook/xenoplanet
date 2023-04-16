@@ -109,7 +109,11 @@ public class InputManager : MonoBehaviour
         if (context.started)
             _playerInput.SwitchCurrentActionMap("Inventory");
     }
-
+    
+    public void EnableRestart()
+    {
+        _playerInput.SwitchCurrentActionMap("GameOver");
+    }
     // Control checks while inventory is open
     /*private void InventoryControlChecks()
     {

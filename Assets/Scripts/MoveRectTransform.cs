@@ -21,7 +21,7 @@ public class MoveRectTransform : MonoBehaviour
             yield return new WaitForSeconds(stepTime);
         }
     }
-
+ 
     private void Start()
     {
         StartCoroutine(MoveDown());

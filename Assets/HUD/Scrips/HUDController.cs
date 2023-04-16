@@ -14,6 +14,8 @@ public class HUDController : MonoBehaviour
     [SerializeField] private CrosshaireController crosshaireController;
     [SerializeField] private Inventory inventory;
     [SerializeField] private LoadingScreen loadingScreen;
+    [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] private InputManager inputManager;
     
     [Header("Displays")]
     [SerializeField] private TextMeshProUGUI intuitionDisplay;
@@ -87,6 +89,11 @@ public class HUDController : MonoBehaviour
     public void SetNumArrows(int numArrows)
     {
         crosshaireController.SetNumArrows(numArrows);
+    }
+
+    public void GameOver()
+    {
+        gameOverScreen.SetActive(true);
     }
 
     public void ToggleInventory(InputAction.CallbackContext context)
