@@ -26,6 +26,9 @@ public class Player : MonoBehaviour
     
     private int _intuition;
     private Rigidbody playerRigidbody;
+    private bool _paused = false;
+    
+    
     /*public UnityEvent playerVisible;
     private bool playerSpotted;
     public bool PlayerSpotted
@@ -245,7 +248,28 @@ public class Player : MonoBehaviour
             Time.timeScale = 1;
         }
     }
-    
+    public void TogglePause(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (_paused)
+            {
+                Time.timeScale = 1;
+                _paused = false;
+                audioListener.enabled = true;
+                HUDController.Instance.SetPause(false);
+                GetComponent<InputManager>().DisableRestart();
+            }
+            else
+            {
+                Time.timeScale = 0;
+                _paused = true;
+                audioListener.enabled = false;
+                HUDController.Instance.SetPause(true);
+                GetComponent<InputManager>().EnableRestart();
+            }
+        }
+    }
     public void OnGameStart()
     {
         Debug.Log("start");

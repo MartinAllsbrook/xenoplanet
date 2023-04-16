@@ -15,6 +15,7 @@ public class HUDController : MonoBehaviour
     [SerializeField] private Inventory inventory;
     [SerializeField] private LoadingScreen loadingScreen;
     [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] private GameObject pauseScreen;
     [SerializeField] private InputManager inputManager;
     
     [Header("Displays")]
@@ -94,6 +95,11 @@ public class HUDController : MonoBehaviour
     public void GameOver()
     {
         gameOverScreen.SetActive(true);
+    }
+    
+    public void SetPause(bool pause)
+    {
+        pauseScreen.SetActive(pause);
     }
 
     public void ToggleInventory(InputAction.CallbackContext context)
