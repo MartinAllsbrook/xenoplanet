@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8272325857882996667
+--- !u!1 &1791322242059779558
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,46 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8415163546761580217}
-  - component: {fileID: 5271654730001624097}
-  - component: {fileID: 7764269995366021239}
+  - component: {fileID: 8012827550123323905}
+  - component: {fileID: 7373719489149007859}
+  - component: {fileID: 6759382356426160842}
   m_Layer: 0
-  m_Name: Explosive
+  m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8415163546761580217
+--- !u!4 &8012827550123323905
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8272325857882996667}
+  m_GameObject: {fileID: 1791322242059779558}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -2.3595428, y: 1.8045115, z: 0}
+  m_LocalPosition: {x: -1.5954739, y: 0, z: 0}
   m_LocalScale: {x: 97, y: 96.999985, z: 96.999985}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5271654730001624097
+--- !u!33 &7373719489149007859
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8272325857882996667}
-  m_Mesh: {fileID: -2166002888209138128, guid: d33062c32a442494daf57da25c71bb75, type: 3}
---- !u!23 &7764269995366021239
+  m_GameObject: {fileID: 1791322242059779558}
+  m_Mesh: {fileID: -8675123887781709808, guid: d33062c32a442494daf57da25c71bb75, type: 3}
+--- !u!23 &6759382356426160842
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8272325857882996667}
+  m_GameObject: {fileID: 1791322242059779558}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
