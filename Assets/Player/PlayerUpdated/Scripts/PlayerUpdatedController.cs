@@ -108,7 +108,7 @@ public class PlayerUpdatedController : MonoBehaviour
     private void Animation()
     {
         _playerAnimations.MoveAnimation();
-        _playerAnimations.DirectionAnimation(_moveInput.x);
+        _playerAnimations.DirectionAnimation(_moveInput);
         _playerAnimations.CrouchAnimation(_crouchInput);
         if (_playerChecks.IsGrounded() && _jumpInput)
         {
