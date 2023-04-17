@@ -16,6 +16,8 @@ public class Inventory : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private AudioSource craftAudio;
     // [SerializeField] private float moveCooldown;
+
+    public UnityEvent firstCraftArrow;
     
     private Dictionary<string, ItemCounter> _itemCounters;
     private Dictionary<string, CraftingRecipe> _craftingRecipes;
@@ -94,6 +96,9 @@ public class Inventory : MonoBehaviour
         }
         
         craftAudio.Play();
+        Debug.Log(itemToCraft);
+        if (itemToCraft == "Arrows")
+            firstCraftArrow.Invoke();
         return true;
     }
 

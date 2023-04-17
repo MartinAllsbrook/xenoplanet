@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerUpdatedBow : MonoBehaviour
 {
@@ -34,6 +35,7 @@ public class PlayerUpdatedBow : MonoBehaviour
     
     /*[SerializeField] private float fovReduction;
     [SerializeField] private float fov;*/
+    public UnityEvent onFire;
     
     private float _aimProgress;
     private float _chargeTime = 0f;
@@ -108,6 +110,7 @@ public class PlayerUpdatedBow : MonoBehaviour
         bowDrawAudio.Play();
         Inventory.Instance.UpdateItemCount(arrows[_selectedArrowIndex].name + 's', -1);  // Remove arrow from inventory
         impulseSource.GenerateImpulse(_strength * maxImpulseForce); // Generate an impulse when arrows are fired
+        onFire.Invoke();
     }
     
     private void ChargeArrow()
