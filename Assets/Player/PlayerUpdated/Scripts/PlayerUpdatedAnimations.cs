@@ -16,6 +16,7 @@ public class PlayerUpdatedAnimations : MonoBehaviour
     private static readonly int Jump = Animator.StringToHash("Jump");
     private static readonly int Strafe = Animator.StringToHash("Strafe");
     private static readonly int X = Animator.StringToHash("xDir");
+    private static readonly int Y = Animator.StringToHash("yDir");
 
     void Start()
     {
@@ -27,9 +28,10 @@ public class PlayerUpdatedAnimations : MonoBehaviour
     {
     }
 
-    public void DirectionAnimation(float dirX)
+    public void DirectionAnimation(Vector2 dir)
     {
-        animator.SetFloat(X, dirX);
+        animator.SetFloat(X, dir.x);
+        animator.SetFloat(Y, dir.y);
     }
 
     public void MoveAnimation()
