@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioSource collectAudio;
     [SerializeField] private AudioSource healSound;
     [SerializeField] private AudioSource damageSound;
+
+    public UnityEvent onItemPickup;
     
     private int _intuition;
     private Rigidbody playerRigidbody;
@@ -55,6 +57,7 @@ public class Player : MonoBehaviour
             {
                 Destroy(item);
                 collectAudio.Play();
+                onItemPickup.Invoke();
             }
         }    
     }

@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MeleeController : MonoBehaviour
 {
     [SerializeField] private float meleeOffset;
     [SerializeField] private float meleeRadius;
     [SerializeField] private float meleeDamage;
+    public UnityEvent tutorialMelee;
     
     public void Melee()
     {
@@ -19,7 +21,10 @@ public class MeleeController : MonoBehaviour
             foreach (var col in colliders)
             {
                 if (col.transform.CompareTag("Enemy") || col.transform.CompareTag("Breakable Environment"))
+                {
                     col.transform.gameObject.GetComponent<BreakableObject>().ChangeHealth(-meleeDamage);
+                    tutorialMelee.Invoke();                    
+                }
             }
         }
     }
