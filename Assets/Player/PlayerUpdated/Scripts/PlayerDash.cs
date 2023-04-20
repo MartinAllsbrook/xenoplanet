@@ -8,6 +8,7 @@ public class PlayerDash : MonoBehaviour
 {
 
     private Rigidbody _rigidbody;
+    private Player _player;
 
     [Header("Dashing")]
     [SerializeField] private float _dashForce;
@@ -29,7 +30,8 @@ public class PlayerDash : MonoBehaviour
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
-
+        _player = GetComponent<Player>();
+        
         startFOV = _virtualCamera.m_Lens.FieldOfView;
         _meshTrailCoroutine = _meshTrail.ActivateTrail(0.4f);
     }
@@ -44,10 +46,11 @@ public class PlayerDash : MonoBehaviour
     {
         if (Input)
         {
-            if (_dashCoolDownTimer > 0) 
+            if (_dashCoolDownTimer > 0 || !_player.ChangeIntuition(-5)) 
                 return;
-            else 
-                _dashCoolDownTimer = _dashCooldown;
+            
+            
+            _dashCoolDownTimer = _dashCooldown;
 
             _isDashing = true;
             

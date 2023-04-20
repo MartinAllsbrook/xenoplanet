@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioSource damageSound;
 
     public UnityEvent onItemPickup;
+    public UnityEvent onCrateUse;
     
     private int _intuition;
     private Rigidbody playerRigidbody;
@@ -130,6 +131,7 @@ public class Player : MonoBehaviour
                 {
                     Inventory.Instance.UpdateItemCount(lootedItem, 1);
                 }
+                onCrateUse.Invoke();
             }
 
             if (hit.collider.CompareTag("Culdron"))
@@ -141,16 +143,38 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void ChangeIntuition(int amount)
+    public bool ChangeIntuition(int amount)
     {
-        if (_intuition >= 0)
-            _intuition += amount;
-        else
-            _intuition = 0;
+        if (amount > 0)
+        {
+            // Adding Intuition
+            if (_intuition >= 0)
+                _intuition += amount;
+            else
+                _intuition = 0;
+            
+            HUDController.Instance.SetIntuition(_intuition);
+            return true;
+        } 
         
-        HUDController.Instance.SetIntuition(_intuition);
-    }
+        if (amount < 0)
+        {
+            // Removing Intuition
+            if (_intuition + amount >= 0)
+            {
+                _intuition += amount;
+                
+                HUDController.Instance.SetIntuition(_intuition);
+                return true;
+            }
+            
+            HUDController.Instance.SetIntuition(_intuition);
+            return false;
+        }
 
+        return false;
+    }
+    
     public void DealDamage(float amount)
     {
         if (amount <= 0)

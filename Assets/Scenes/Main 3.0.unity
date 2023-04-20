@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 782627050}
-  m_IndirectSpecularColor: {r: 0.66339284, g: 0.58314437, b: 0.38062027, a: 1}
+  m_IndirectSpecularColor: {r: 0.6662007, g: 0.58038795, b: 0.37487364, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2833,7 +2833,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
       propertyPath: cycleInMinutes
-      value: 0.5
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 6028113000309075333, guid: 9a572de5f941ef247a3e6b7e7da2d6e6, type: 3}
       propertyPath: skyColorDay.ctime1
@@ -7525,9 +7525,37 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1318790549}
     - target: {fileID: 2593575259806208416, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
+      propertyPath: onCrateUse.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593575259806208416, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
+      propertyPath: onCrateUse.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593575259806208416, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
+      propertyPath: onCrateUse.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3569047394837377201}
+    - target: {fileID: 2593575259806208416, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: onItemPickup.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3569047394837377201}
+    - target: {fileID: 2593575259806208416, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
+      propertyPath: onCrateUse.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593575259806208416, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
+      propertyPath: onCrateUse.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnFirstOpenChest
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593575259806208416, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
+      propertyPath: onCrateUse.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TutorialController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593575259806208416, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
+      propertyPath: onCrateUse.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2593575259806208418, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: tutorialMelee.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -8530,6 +8558,7 @@ MonoBehaviour:
   - Use "Left Trigger" to aim and scan
   - Use "Right Trigger" while aiming to fire an arrow
   - Aim and look around to find a loot crate, open it wiht "X"
+  - Explore...
   tutorialText: {fileID: 2135119019}
 --- !u!1 &3569047394873740009
 GameObject:
