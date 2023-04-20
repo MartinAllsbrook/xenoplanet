@@ -582,7 +582,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monument: {fileID: 8300136093979041033, guid: b9b682971b0cc8441947d878fafae71a, type: 3}
   innerRadius: 32
-  outerRadius: 125
+  outerRadius: 100
   monumentPosition: {x: 32, y: 20, z: 32}
   terraformAuthority:
     serializedVersion: 2
