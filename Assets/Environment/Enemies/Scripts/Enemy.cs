@@ -111,6 +111,7 @@ public class Enemy : BreakableObject
                     // Debug.Log(angle);
                     canSeePlayer = true;
                     AlertEnemies(hit.point);
+                    Player.Instance.SetVisible();
                     hitOut = hit;
                     return true;
                 }

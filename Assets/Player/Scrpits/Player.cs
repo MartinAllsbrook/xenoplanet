@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -26,7 +27,9 @@ public class Player : MonoBehaviour
 
     public UnityEvent onItemPickup;
     public UnityEvent onCrateUse;
-    
+
+    private bool _visible = false;
+    private bool _showingVisible = false;
     private int _intuition;
     private Rigidbody playerRigidbody;
     private bool _paused = false;
@@ -174,7 +177,28 @@ public class Player : MonoBehaviour
 
         return false;
     }
-    
+
+    public void SetVisible()
+    {
+        _visible = true;
+    }
+
+    private void LateUpdate()
+    {
+        if (_visible && !_showingVisible)
+        {
+            HUDController.Instance.SetVisibleIndicator(true);
+            _showingVisible = true;
+        }
+        else if (!_visible && _showingVisible)
+        {
+            HUDController.Instance.SetVisibleIndicator(false);
+            _showingVisible = false;
+        }
+
+        _visible = false;
+    }
+
     public void DealDamage(float amount)
     {
         if (amount <= 0)

@@ -17,6 +17,7 @@ public class HUDController : MonoBehaviour
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private GameObject pauseScreen;
     [SerializeField] private InputManager inputManager;
+    [SerializeField] private GameObject visibleIndicator;
     
     [Header("Displays")]
     [SerializeField] private TextMeshProUGUI intuitionDisplay;
@@ -65,6 +66,11 @@ public class HUDController : MonoBehaviour
         // Debug.Log("Health: " + health);
         var width = shield * 5;
         shieldBar.sizeDelta = new Vector2(width, shieldBar.sizeDelta.y);
+    }
+
+    public void SetVisibleIndicator(bool visible)
+    {
+        visibleIndicator.SetActive(visible);
     }
 
     public void PlayHitMarker()
