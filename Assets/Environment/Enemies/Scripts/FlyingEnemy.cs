@@ -38,7 +38,8 @@ public class FlyingEnemy : Enemy
             Ray ray = new Ray(targetLocation, Vector3.down);
             if (Physics.Raycast(ray, out RaycastHit groundHit, 512, visible))
             {
-                turret.LookTowards(groundHit.point + Vector3.up - transform.position);
+                // turret.LookTowards(groundHit.point + Vector3.up - transform.position);
+                turret.LookTowards(targetLocation);
             }
             Idle();
         }

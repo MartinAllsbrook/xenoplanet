@@ -1133,7 +1133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 7266036960883199518}
-  lookSpeed: 2
+  lookSpeed: 1
 --- !u!1 &4850626197925873925
 GameObject:
   m_ObjectHideFlags: 0
