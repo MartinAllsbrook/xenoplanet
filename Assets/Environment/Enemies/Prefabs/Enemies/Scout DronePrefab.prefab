@@ -75,6 +75,9 @@ MonoBehaviour:
     m_Bits: 128
   canSeePlayerIndicator: {fileID: 0}
   turret: {fileID: 5126537537287604201}
+  beamer: {fileID: 6193800409697637151, guid: f8a08ea71ac625445af0ddb46f1f2a8d, type: 3}
+  beamerSpawnRadius: 100
+  maxBeamerSpawnTime: 45
   range:
   - 20
   - 40

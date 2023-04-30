@@ -16,7 +16,12 @@ public class Enemy : BreakableObject
     [SerializeField] protected IndicatorLight canSeePlayerIndicator;
     
     [SerializeField] protected Turret turret;
-
+    [SerializeField] protected GameObject beamer;
+    [SerializeField] protected float beamerSpawnRadius;
+    [SerializeField] protected float maxBeamerSpawnTime;
+    
+    protected float _beamerTimer;
+    
     protected Vector3 targetLocation;
     protected Vector3 lastPlayerLocation;
     protected bool canSeePlayer;
@@ -25,18 +30,29 @@ public class Enemy : BreakableObject
     protected virtual void Awake()
     {
         base.Awake();
+        _beamerTimer = maxBeamerSpawnTime;
     }
 
     private void Start()
     {
         // Start by generating a random target location to go to
         targetLocation = GenerateRandomTarget();
+        
+        Ray ray = new Ray(transform.position, Vector3.down);
+        if (Physics.Raycast(ray, out RaycastHit hit, 150))
+        {
+            transform.position = hit.point + Vector3.up * 4;
+        }
     }
 
     protected virtual void Update()
     {
         // Make indicator light solid if the player is visible
-        canSeePlayerIndicator.Flashing = !canSeePlayer;
+        // canSeePlayerIndicator.Flashing = !canSeePlayer;
+        if (_beamerTimer > 0)
+        {
+            _beamerTimer -= Time.deltaTime;
+        }
     }
 
     public override void ChangeHealth(float change)
@@ -48,6 +64,7 @@ public class Enemy : BreakableObject
 
     private void AlertEnemies()
     {
+
         Collider[] colliders = Physics.OverlapSphere(transform.position, viewDistance, enemies);
         foreach (var col in colliders)
         {
@@ -61,6 +78,15 @@ public class Enemy : BreakableObject
     
     private void AlertEnemies(Vector3 position)
     {
+        if (_beamerTimer <= 0)
+        {
+            Instantiate(beamer,
+                transform.position + new Vector3(Random.Range(-beamerSpawnRadius, beamerSpawnRadius), 125,
+                    Random.Range(-beamerSpawnRadius, beamerSpawnRadius)), new Quaternion(0, 0, 0, 0));
+
+            _beamerTimer = maxBeamerSpawnTime;
+        }
+
         Collider[] colliders = Physics.OverlapSphere(transform.position, viewDistance, enemies);
         foreach (var col in colliders)
         {
@@ -77,6 +103,7 @@ public class Enemy : BreakableObject
     {
         if (!canSeePlayer)
         {
+            Debug.Log("setTarget");
             targetLocation = target;
         }
     }

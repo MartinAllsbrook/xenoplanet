@@ -21,14 +21,18 @@ public class EnemySpawner : MonoBehaviour
         var x = Random.Range(1, 65);
         var z = Random.Range(1, 65);
 
-        Vector2 randomPoint = new Vector2(transform.position.x + x, transform.position.z + z);
+        Vector3 randomPoint = new Vector3(transform.position.x + x, 125, transform.position.z + z);
+
+        int randomIndex = Random.Range(0, enemys.Length); 
+        Instantiate(enemys[randomIndex], randomPoint, new Quaternion(0,0,0,0));
         
-        Ray ray = new Ray(new Vector3(randomPoint.x, 100f, randomPoint.y), Vector3.down);
-        if (Physics.Raycast(ray, out RaycastHit hit, 150))
-        {
-            Vector3 spawnPosition = hit.point + Vector3.up * 4;
-            int randomIndex = Random.Range(0, enemys.Length);
-            Instantiate(enemys[randomIndex], spawnPosition, new Quaternion(0,0,0,0));
-        }
+        
+        // Ray ray = new Ray(new Vector3(randomPoint.x, 100f, randomPoint.y), Vector3.down);
+        // if (Physics.Raycast(ray, out RaycastHit hit, 150))
+        // {
+        //     Vector3 spawnPosition = hit.point + Vector3.up * 4;
+        //     int randomIndex = Random.Range(0, enemys.Length);
+        //     Instantiate(enemys[randomIndex], spawnPosition, new Quaternion(0,0,0,0));
+        // }
     }
 }
