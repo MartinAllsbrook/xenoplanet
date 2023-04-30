@@ -12,6 +12,8 @@ public class MushroomCircle : MonoBehaviour
 
     [SerializeField] private int dimSteps;
     [SerializeField] private float dimTime;
+
+    [SerializeField] private GameObject locator;
     
     private float _initialLightIntensity;
     private bool _used;
@@ -27,6 +29,8 @@ public class MushroomCircle : MonoBehaviour
             onUseParticles.Play();
             _used = true;
             
+            Player.Instance.ChangeIntuition(10);
+            locator.SetActive(false);
             return healAmount;
         }
 

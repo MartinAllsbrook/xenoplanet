@@ -55,13 +55,10 @@ MonoBehaviour:
   health: 150
   itemDrops:
   - dropChance: 100
-    dropTries: 1
+    dropTries: 2
     drop: {fileID: 3980989105184464102, guid: 3ea26d7b3d2c2e143959505caa9f0fde, type: 3}
   - dropChance: 33
-    dropTries: 1
-    drop: {fileID: 3980989105184464102, guid: d2edf5afa86f63d498c4160a64414116, type: 3}
-  - dropChance: 33
-    dropTries: 1
+    dropTries: 2
     drop: {fileID: 3980989105184464102, guid: db866ef7fabeb444da8324188811a247, type: 3}
   deathParticles: {fileID: 6195871198001566187, guid: 5b8ca04c0ed3fed49a823c9ce5d0fa1f, type: 3}
   idleDistance: 40

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,8 @@ public class IntuitionSource : MonoBehaviour
 {
     // A integer that stores the mana reward value
     [SerializeField] private int manaReward;
-    
+
+    [SerializeField] private GameObject locator;
     // A bool that indicates whether the reward has been used or not
     public bool used;
 
@@ -29,6 +31,6 @@ public class IntuitionSource : MonoBehaviour
 
     protected virtual void Consume()
     {
-        
+        locator.SetActive(false);
     }
 }

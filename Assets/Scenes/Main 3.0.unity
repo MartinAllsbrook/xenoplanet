@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 782627050}
-  m_IndirectSpecularColor: {r: 0.42550254, g: 0.40474477, b: 0.27906436, a: 1}
+  m_IndirectSpecularColor: {r: 0.42572907, g: 0.40493795, b: 0.27941614, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2583,7 +2583,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 128
+  far clip plane: 200
   field of view: 24.144373
   orthographic: 0
   orthographic size: 5
@@ -7216,8 +7216,7 @@ MonoBehaviour:
     result: Flak Arrows
   - requiredItems:
     - Scrap Metal
-    - Tech Trash
-    requiredItemCounts: 0200000001000000
+    requiredItemCounts: 02000000
     result: Repair Packs
   craftAudio: {fileID: 338713355}
   firstCraftArrow:
@@ -7451,6 +7450,10 @@ PrefabInstance:
     - target: {fileID: 479741831789735662, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593575259686905020, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 1104
       objectReference: {fileID: 0}
     - target: {fileID: 2593575259806208085, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: m_RootOrder

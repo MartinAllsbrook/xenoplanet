@@ -2,15 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Culdron : MonoBehaviour
+public class Culdron : IntuitionSource
 {
-    private bool _used = false;
-    public void Use()
+    protected override void Consume()
     {
-        if (!_used)
-        {
-            Player.Instance.AddShield(25);
-            _used = true;
-        }
-    }
+        base.Consume();
+        Player.Instance.AddShield(15);
+    } 
 }

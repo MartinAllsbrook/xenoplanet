@@ -141,7 +141,14 @@ public class Player : MonoBehaviour
             {
                 Culdron culdron = hit.collider.GetComponent<Culdron>();
                 
-                culdron.Use();
+                ChangeIntuition(culdron.UseReward());
+            }
+
+            if (hit.collider.CompareTag("Rock Dude"))
+            {
+                RockDude rockDude = hit.collider.GetComponent<RockDude>();
+
+                ChangeIntuition(rockDude.UseReward());
             }
         }
     }

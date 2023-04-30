@@ -102,11 +102,8 @@ MonoBehaviour:
   health: 100
   itemDrops:
   - dropChance: 50
-    dropTries: 2
+    dropTries: 4
     drop: {fileID: 3980989105184464102, guid: 3ea26d7b3d2c2e143959505caa9f0fde, type: 3}
-  - dropChance: 50
-    dropTries: 2
-    drop: {fileID: 3980989105184464102, guid: d2edf5afa86f63d498c4160a64414116, type: 3}
   deathParticles: {fileID: 6195871198001566187, guid: 5b8ca04c0ed3fed49a823c9ce5d0fa1f, type: 3}
   idleDistance: 30
   viewDistance: 64
@@ -473,7 +470,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2729793261956897294, guid: c4fe319c829d11d4395d5830bc39b101, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3072495918351914326, guid: c4fe319c829d11d4395d5830bc39b101, type: 3}
       propertyPath: m_RootOrder

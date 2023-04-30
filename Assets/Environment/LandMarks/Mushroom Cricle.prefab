@@ -9858,6 +9858,7 @@ MonoBehaviour:
   lightSource: {fileID: 3500520975424688824}
   dimSteps: 50
   dimTime: 7
+  locator: {fileID: 3671867760725547516}
 --- !u!1 &8136977879034733502
 GameObject:
   m_ObjectHideFlags: 0
@@ -11669,5 +11670,10 @@ PrefabInstance:
 --- !u!4 &3671867760725547513 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7562620956601387682, guid: b094d8c3f0e74e04ba81ae50041918f5, type: 3}
+  m_PrefabInstance: {fileID: 6487096575752917851}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3671867760725547516 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7562620956601387687, guid: b094d8c3f0e74e04ba81ae50041918f5, type: 3}
   m_PrefabInstance: {fileID: 6487096575752917851}
   m_PrefabAsset: {fileID: 0}

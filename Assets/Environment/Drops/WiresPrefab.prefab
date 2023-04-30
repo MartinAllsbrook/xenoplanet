@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5094119693053092681}
   - component: {fileID: 8150997780870950124}
   - component: {fileID: 6267565933085038630}
+  - component: {fileID: 7541746666072591119}
   m_Layer: 0
   m_Name: WiresPrefab
   m_TagString: Untagged
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7541746666072591119
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5618841359754476019}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.07507123, y: 0.07494131, z: 0.021807494}
+  m_Center: {x: -0.018363351, y: 0.0076743145, z: 0.0047468906}

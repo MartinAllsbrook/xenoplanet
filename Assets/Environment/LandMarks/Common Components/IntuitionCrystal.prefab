@@ -4995,6 +4995,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manaReward: 10
+  locator: {fileID: 7804796388404233632}
   used: 0
   meshRenderer: {fileID: 4623838612284908276}
   unusedMaterial: {fileID: 2100000, guid: 208e946a76d0ca84d929e3fd1be2a7c5, type: 2}
@@ -10250,7 +10251,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7562620956601387682, guid: b094d8c3f0e74e04ba81ae50041918f5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.561
       objectReference: {fileID: 0}
     - target: {fileID: 7562620956601387682, guid: b094d8c3f0e74e04ba81ae50041918f5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10294,6 +10295,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b094d8c3f0e74e04ba81ae50041918f5, type: 3}
+--- !u!1 &7804796388404233632 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7562620956601387687, guid: b094d8c3f0e74e04ba81ae50041918f5, type: 3}
+  m_PrefabInstance: {fileID: 334365092607987463}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7804796388404233637 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7562620956601387682, guid: b094d8c3f0e74e04ba81ae50041918f5, type: 3}

@@ -12,6 +12,7 @@ public class RockDude : IntuitionSource
     protected override void Consume()
     {
         base.Consume();
+        Player.Instance.AddShield(15);
         unusedParticleSystem.Stop();
         onUseParticleSystem.Play();
     }
