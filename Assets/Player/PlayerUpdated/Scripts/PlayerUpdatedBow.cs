@@ -23,6 +23,7 @@ public class PlayerUpdatedBow : MonoBehaviour
     [Header("References")]
     [SerializeField] private AudioSource bowDrawAudio;
     [SerializeField] private AudioSource bowFireAudio;
+    [SerializeField] private Animator _animator;
     [SerializeField] private GameObject bow;
     [SerializeField] private GameObject backBow;
 
@@ -118,6 +119,8 @@ public class PlayerUpdatedBow : MonoBehaviour
         Inventory.Instance.UpdateItemCount(arrows[_selectedArrowIndex].name + 's', -1);  // Remove arrow from inventory
         impulseSource.GenerateImpulse(_strength * maxImpulseForce); // Generate an impulse when arrows are fired
         onFire.Invoke();
+        
+        _animator.SetTrigger("Fire");
     }
     
     private void ChargeArrow()
