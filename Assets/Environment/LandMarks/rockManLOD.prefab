@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2678146843189385540}
   - component: {fileID: 8415075335165870630}
   - component: {fileID: 1554408638775740728}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RockMan_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 6621946988186134522}
   - component: {fileID: 5858502443331703243}
   - component: {fileID: 8223803980661679782}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RockMan_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 665717619340149884}
   - component: {fileID: 6103933998264711135}
   - component: {fileID: 5438464608906408159}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rockManLOD
   m_TagString: Rock Dude
   m_Icon: {fileID: 0}
@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 2576228358114304976}
   - component: {fileID: 157964359606429463}
   - component: {fileID: 2464785555931292818}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Onuse Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5088,7 +5088,7 @@ GameObject:
   - component: {fileID: 8495792253926357370}
   - component: {fileID: 4010946561038134358}
   - component: {fileID: 5959254972744961687}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RockMan_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5170,7 +5170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8468541976219850421}
   - component: {fileID: 1652138143823155291}
-  m_Layer: 10
+  m_Layer: 6
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5255,7 +5255,7 @@ GameObject:
   - component: {fileID: 266728497784336688}
   - component: {fileID: 1200826002591490726}
   - component: {fileID: 489017784705746893}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Unused Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10114,6 +10114,10 @@ PrefabInstance:
     - target: {fileID: 7562620956601387687, guid: b094d8c3f0e74e04ba81ae50041918f5, type: 3}
       propertyPath: m_Name
       value: Locator
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562620956601387687, guid: b094d8c3f0e74e04ba81ae50041918f5, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b094d8c3f0e74e04ba81ae50041918f5, type: 3}

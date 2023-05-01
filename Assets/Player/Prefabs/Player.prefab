@@ -948,7 +948,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1104
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: cf0d67a54314ab345a74a4fd9f649a94, type: 2}
   m_TargetDisplay: 0
@@ -1152,7 +1152,6 @@ MonoBehaviour:
   arrows:
   - {fileID: 8552387443009401812, guid: eeb0ec5fde229a148a41b776d4a0c62d, type: 3}
   - {fileID: 6564256316830937675, guid: 5774ebc7947634245b4ffb3ddc297906, type: 3}
-  - {fileID: 3416325244853850123, guid: d4e452000a4ebcd458ed2ad2ee3b5b53, type: 3}
   impulseSource: {fileID: 2593575259806208084}
   bowDrawAudio: {fileID: 1713652386}
   bowFireAudio: {fileID: 1164643692}

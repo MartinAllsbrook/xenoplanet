@@ -27,7 +27,7 @@ public class MonumentGenerator : MonoBehaviour
     {
         Vector3 position = monumentPosition + transform.position;
         Quaternion zero = new Quaternion(0, 0, 0, 0);
-        Instantiate(monument, position, zero, transform);
+        Instantiate(monument, position, zero);
     }
 
     private void BlendTerrain(Vector3 relativeOrigin, ChunkData chunkData)

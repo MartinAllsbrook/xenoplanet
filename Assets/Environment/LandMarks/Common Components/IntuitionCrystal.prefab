@@ -4994,7 +4994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099be2ed64231fe44ab5c1fac1354e9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaReward: 10
+  manaReward: 20
   locator: {fileID: 7804796388404233632}
   used: 0
   meshRenderer: {fileID: 4623838612284908276}

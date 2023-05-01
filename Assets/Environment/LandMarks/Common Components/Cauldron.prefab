@@ -316,6 +316,10 @@ PrefabInstance:
       propertyPath: locator
       value: 
       objectReference: {fileID: 3824117532831910012}
+    - target: {fileID: 6593710741034202298, guid: 4fbedc7887b5f7446a42cfb503318642, type: 3}
+      propertyPath: manaReward
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 460871696500015059, guid: 4fbedc7887b5f7446a42cfb503318642, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4fbedc7887b5f7446a42cfb503318642, type: 3}

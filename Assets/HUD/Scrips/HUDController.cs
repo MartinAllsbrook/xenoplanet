@@ -21,7 +21,8 @@ public class HUDController : MonoBehaviour
     
     [Header("Displays")]
     [SerializeField] private TextMeshProUGUI intuitionDisplay;
-    [SerializeField] private TextMeshProUGUI arrowDisplay;
+    [SerializeField] private GameObject arrow;
+    [SerializeField] private GameObject explosiveArrow;
 
     [Header("Health")]
     [SerializeField] private RectTransform healthBar;
@@ -31,7 +32,6 @@ public class HUDController : MonoBehaviour
     [SerializeField] private AudioSource openInventoryAudio;
 
     private bool inventoryOpen = false;
-
     private void Awake()
     {
         // Create singleton
@@ -49,8 +49,16 @@ public class HUDController : MonoBehaviour
     // Set arrow display
     public void SetArrow(string arrow)
     {
-        // Debug.Log(arrow);
-        arrowDisplay.text = arrow;
+        if (this.arrow.activeSelf)
+        {
+            this.arrow.SetActive(false);
+            explosiveArrow.SetActive(true);
+        }
+        else
+        {
+            this.arrow.SetActive(true);
+            explosiveArrow.SetActive(false);
+        }
     }
 
     // Set health bar width
@@ -138,7 +146,7 @@ public class HUDController : MonoBehaviour
         string text = number.ToString();
 
         // Set the text of the TextMeshPro component
-        intuitionDisplay.text = "Intuition: " + text;
+        intuitionDisplay.text = text;
     }
 
     // public void ReadMove(InputAction.CallbackContext context)

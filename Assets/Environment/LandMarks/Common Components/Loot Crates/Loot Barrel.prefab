@@ -55,7 +55,6 @@ MonoBehaviour:
   - Scrap Metal
   - Scrap Metal
   - Explosives
-  - Tech Trash
   maxNumItems: 3
   hudMarker: {fileID: 6819147407839436676}
 --- !u!82 &8108430476923935911

@@ -120,7 +120,6 @@ MonoBehaviour:
   - Arrows
   - Explosive Arrows
   - Explosive Arrows
-  - Flak Arrows
   - Repair Packs
   maxNumItems: 4
   hudMarker: {fileID: 558481748108261221}
