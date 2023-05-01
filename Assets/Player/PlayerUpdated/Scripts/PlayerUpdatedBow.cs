@@ -23,6 +23,8 @@ public class PlayerUpdatedBow : MonoBehaviour
     [Header("References")]
     [SerializeField] private AudioSource bowDrawAudio;
     [SerializeField] private AudioSource bowFireAudio;
+    [SerializeField] private GameObject bow;
+    [SerializeField] private GameObject backBow;
 
     [Header("Values")]
     [SerializeField] private float chargeTimeCoefficient;
@@ -82,6 +84,9 @@ public class PlayerUpdatedBow : MonoBehaviour
                     bowDrawAudio.Play();
             }
             ChargeArrow();
+            bow.SetActive(true);
+            backBow.SetActive(false);
+            
         }
         else if(!input && !moveCamera.activeInHierarchy)
         {
@@ -90,6 +95,8 @@ public class PlayerUpdatedBow : MonoBehaviour
             bowDrawAudio.Stop();
             
             _chargeTime = 0;
+            bow.SetActive(false);
+            backBow.SetActive(true);
         }        
     }
 
