@@ -17,6 +17,7 @@ public class PlayerUpdatedAnimations : MonoBehaviour
     private static readonly int Strafe = Animator.StringToHash("Strafe");
     private static readonly int X = Animator.StringToHash("xDir");
     private static readonly int Y = Animator.StringToHash("yDir");
+    private static readonly int Grounded = Animator.StringToHash("Grounded");
 
     void Start()
     {
@@ -46,6 +47,11 @@ public class PlayerUpdatedAnimations : MonoBehaviour
     public void JumpAnimation()
     {
         animator.SetTrigger(Jump);
+    }
+
+    public void LandAnimation(bool isGrounded)
+    {
+        animator.SetBool(Grounded, isGrounded);
     }
 
     public void StrafeAnimation(bool isAiming)
