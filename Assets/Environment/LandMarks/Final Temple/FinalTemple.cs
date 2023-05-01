@@ -9,7 +9,7 @@ public class FinalTemple : MonoBehaviour
     [SerializeField] private FinalCrystal[] finalCrystals;
     [SerializeField] private MeshRenderer finalCrystalRenderer;
     [SerializeField] private Material chargedMaterial;
-    
+    [SerializeField] private AudioSource winAudio;
     private UnityEvent _onCharge;
     private int _numCrystals;
     private int _numChargedCrystals = 0;
@@ -38,5 +38,6 @@ public class FinalTemple : MonoBehaviour
     private void OnAllCrystalsCharged()
     {
         finalCrystalRenderer.material = chargedMaterial;
+        winAudio.Play();
     }
 }
