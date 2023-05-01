@@ -5170,7 +5170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8468541976219850421}
   - component: {fileID: 1652138143823155291}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

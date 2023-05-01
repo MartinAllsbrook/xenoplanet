@@ -100,8 +100,8 @@ public class MeshTerrainChunk : MonoBehaviour
             _chunkData = chunkData;
             
             // _landMarkGenerator.PlaceLandMark(ref _chunkData, Size);
-            PlaceMonument(monumentRelative);
-            // Create Mesh
+            MonumentGenerator monumentGenerator = gameObject.GetComponent<MonumentGenerator>();
+            monumentGenerator.Generate(monumentRelative, ref _chunkData);            // Create Mesh
             CreateShape();
             UpdateMesh();
 
@@ -118,8 +118,7 @@ public class MeshTerrainChunk : MonoBehaviour
 
     public void PlaceMonument(Vector2Int relativeChunkPosition)
     {
-        MonumentGenerator monumentGenerator = gameObject.GetComponent<MonumentGenerator>();
-        monumentGenerator.Generate(relativeChunkPosition, _chunkData);
+
     }
 
     private void AfterMapsGenerated(ChunkData chunkData)

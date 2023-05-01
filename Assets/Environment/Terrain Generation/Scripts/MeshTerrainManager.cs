@@ -118,7 +118,7 @@ public class MeshTerrainManager : MonoBehaviour
 
     private void CreateFinalMonument()
     {
-        Vector2Int center = new Vector2Int(10, 10);
+        Vector2Int center = new Vector2Int(12, 12);
         for (int x = -1; x <= 1; x++)
         {
             for (int z = -1; z <= 1; z++)

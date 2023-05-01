@@ -10,27 +10,41 @@ public class MonumentGenerator : MonoBehaviour
     [SerializeField] private int outerRadius;
     [SerializeField] private Vector3 monumentPosition;
     [SerializeField] private AnimationCurve terraformAuthority;
-    public void Generate(Vector2Int relativeChunkPosition, ChunkData chunkData)
+    public void Generate(Vector2Int relativeChunkPosition, ref ChunkData chunkData)
     {
         if (relativeChunkPosition.x == 0 && relativeChunkPosition.y == 0)
         {
-            SpawnMonument(chunkData);    
+            SpawnMonument();
         }
 
         Vector3 relativeVector3 = new Vector3(relativeChunkPosition.x, 0, relativeChunkPosition.y);
         Vector3 relativeOrigin = relativeVector3 * (chunkData.GetSize() - 1);
-        BlendTerrain(relativeOrigin, chunkData);
-        
+        for (int x = 0; x < chunkData.GetSize(); x++)
+        {
+            for (int z = 0; z < chunkData.GetSize(); z++)
+            {
+                Vector2 testPoint = new Vector2(relativeOrigin.x + x - monumentPosition.x, relativeOrigin.z + z - monumentPosition.z);
+                float percent = DistanceBetweenCircles(testPoint);
+                
+                float terrainHeight = chunkData.GetHeight(x, z);
+                float newHeight = Mathf.Lerp(terrainHeight, monumentPosition.y, percent);
+
+                chunkData.SetHeight(x, z, newHeight);
+                if (percent >= 0.99)
+                    chunkData.SetMoisture(x, z, 0);
+            }
+        }
+        chunkData.GeneratePlanes();
     }
 
-    private void SpawnMonument(ChunkData chunkData)
+    private void SpawnMonument()
     {
         Vector3 position = monumentPosition + transform.position;
         Quaternion zero = new Quaternion(0, 0, 0, 0);
         Instantiate(monument, position, zero);
     }
 
-    private void BlendTerrain(Vector3 relativeOrigin, ChunkData chunkData)
+    private void BlendTerrain(Vector3 relativeOrigin, ref ChunkData chunkData)
     {
         for (int x = 0; x < chunkData.GetSize(); x++)
         {
