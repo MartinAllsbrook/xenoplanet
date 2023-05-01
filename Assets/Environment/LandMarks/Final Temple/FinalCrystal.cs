@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,6 +7,7 @@ public class FinalCrystal : MonoBehaviour
 {
     [SerializeField] private int requiredIntuition;
     [SerializeField] private Material chargedMaterial;
+    [SerializeField] private GameObject loacator;
     
     private UnityEvent _onCharge;
     private bool _charged;
@@ -25,6 +26,7 @@ public class FinalCrystal : MonoBehaviour
         _onCharge.Invoke();
         MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
         meshRenderer.material = chargedMaterial;
+        loacator.SetActive(false);
     }
 
     public int GetRequiredIntuition()
