@@ -174,7 +174,10 @@ public class PlayerUpdatedController : MonoBehaviour
         {
             // On melee down
             if (context.started)
+            {
                 _meleeController.Melee();
+                _playerAnimations.PunchAnimation();
+            }
         }
         public void GetCycleArrow(InputAction.CallbackContext context)
         {
