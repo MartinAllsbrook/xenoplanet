@@ -75,7 +75,7 @@ public class PlayerUpdatedController : MonoBehaviour
             _playerMovement.Aim(_aimingInput);
         }
 
-        if (_moveInput.magnitude > 0.01f)
+        if (_moveInput.magnitude > 0.01f && _player.isDead)
         {
             _playerMovement.AirControl(_playerChecks.IsGrounded());
             if (!_aimingInput)
