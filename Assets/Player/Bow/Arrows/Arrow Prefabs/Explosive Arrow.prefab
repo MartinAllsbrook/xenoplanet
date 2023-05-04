@@ -83,7 +83,7 @@ MonoBehaviour:
   criticalMultiplier: 3.5
   maxForce: 3000
   arrowLandAudio: {fileID: 1431239359441060432}
-  explodeParticles: {fileID: 5065590562593492601, guid: 6689370d9bf0f6343a0a9b040326513a, type: 3}
+  explodeParticles: {fileID: 7575561226215354279, guid: d42c646fbc0d54fbead7a1224091a457, type: 3}
   enemies:
     serializedVersion: 2
     m_Bits: 128
