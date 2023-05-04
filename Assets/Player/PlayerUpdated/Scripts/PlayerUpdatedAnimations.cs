@@ -18,6 +18,7 @@ public class PlayerUpdatedAnimations : MonoBehaviour
     private static readonly int X = Animator.StringToHash("xDir");
     private static readonly int Y = Animator.StringToHash("yDir");
     private static readonly int Grounded = Animator.StringToHash("Grounded");
+    private static readonly int Death = Animator.StringToHash("Death");
 
     void Start()
     {
@@ -57,6 +58,11 @@ public class PlayerUpdatedAnimations : MonoBehaviour
     public void StrafeAnimation(bool isAiming)
     {
         animator.SetBool(Strafe, isAiming);
+    }
+
+    public void DeathAnimation(bool isDead)
+    {
+        animator.SetBool(Death, isDead);
     }
     
     

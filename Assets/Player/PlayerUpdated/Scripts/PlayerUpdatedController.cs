@@ -66,7 +66,7 @@ public class PlayerUpdatedController : MonoBehaviour
         if(!_aimingInput)
             _playerDash.Dash(_abilityInput, moveCamera);
 
-        if (_playerChecks.IsGrounded())
+        if (_playerChecks.IsGrounded() && !_player.isDead)
         { 
             _playerMovement.Sprint(_sprintInput);
             _playerMovement.Crouch(_crouchInput);
@@ -111,6 +111,7 @@ public class PlayerUpdatedController : MonoBehaviour
         _playerAnimations.DirectionAnimation(_moveInput);
         _playerAnimations.CrouchAnimation(_crouchInput);
         _playerAnimations.LandAnimation(_playerChecks.IsGrounded());
+        _playerAnimations.DeathAnimation(_player.isDead);
         
         if (_playerChecks.IsGrounded() && _jumpInput)
         {

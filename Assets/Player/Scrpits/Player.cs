@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
     private int _intuition;
     private Rigidbody playerRigidbody;
     private bool _paused = false;
+
+    public bool isDead = false;
     
     
     /*public UnityEvent playerVisible;
@@ -206,6 +208,7 @@ public class Player : MonoBehaviour
         _visible = false;
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     public void DealDamage(float amount)
     {
         if (amount <= 0)
@@ -225,7 +228,10 @@ public class Player : MonoBehaviour
             else
             {
                 health = 0;
-                GameOver();
+                isDead = true;
+                StartCoroutine(GameOver());
+                
+                // GameOver();
             }
         }
         else
@@ -290,8 +296,16 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void GameOver()
+    // private void GameOver()
+    // {
+    //     
+    // }
+
+    IEnumerator GameOver()
     {
+        Debug.Log("Death");
+        yield return new WaitForSeconds(8f);
+        
         HUDController.Instance.GameOver();
         GetComponent<InputManager>().EnableRestart();
         audioListener.enabled = false;
