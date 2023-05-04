@@ -144,7 +144,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _CloudsOffset: {r: 4724.48, g: -4724.5767, b: 0, a: 0}
+    - _CloudsOffset: {r: 4733.009, g: -4733.1055, b: 0, a: 0}
     - _Clouds_Color: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 1}
     - _Clouds_Offset: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
