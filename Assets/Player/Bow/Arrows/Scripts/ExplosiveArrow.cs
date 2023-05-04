@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class ExplosiveArrow : Arrow
     [SerializeField] protected float explosionRadius;
     [SerializeField] protected float explosionFalloff;
     [SerializeField] protected float maxExplosionDamage;
+    [SerializeField] private CinemachineImpulseSource impulseSource;
 
     protected override void OnCollisionEnter(Collision collision)
     {
@@ -35,6 +37,8 @@ public class ExplosiveArrow : Arrow
         }
         
         // Create explosion particles where the arrow exploded
+        impulseSource.GenerateImpulse();
         Instantiate(explodeParticles, transform.position, transform.rotation);
+
     }
 }
