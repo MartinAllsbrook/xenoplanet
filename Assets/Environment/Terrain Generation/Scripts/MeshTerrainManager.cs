@@ -19,7 +19,7 @@ public class MeshTerrainManager : MonoBehaviour
 
     private GameObject[,] _activeChunks; // terrainRadius * 2 + 1
     private GameObject[,] _grassChunks;
-    private List<MeshTerrainChunk> _loadedChunks; 
+    private Dictionary<Vector2Int, MeshTerrainChunk> _loadedChunks; 
     private int[] _seeds;
     
     private int _chunkSize;
@@ -46,7 +46,7 @@ public class MeshTerrainManager : MonoBehaviour
         _seeds[1] = Random.Range(2000, 10000);
         _seeds[2] = Random.Range(2000, 10000);
 
-        _loadedChunks = new List<MeshTerrainChunk>();
+        _loadedChunks = new Dictionary<Vector2Int, MeshTerrainChunk>();
         _onChunkLoaded.AddListener(OnChunkLoaded);
 
         CreateInitialChunks();
@@ -346,16 +346,13 @@ public class MeshTerrainManager : MonoBehaviour
     
     private GameObject LoadChunk(Vector2Int chunkPosition)
     {
-        for (int i = 0; i < _loadedChunks.Count; i++)
+        if (_loadedChunks.ContainsKey(chunkPosition))
         {
-            if (chunkPosition == _loadedChunks[i].GetPosition())
-            {
-                MeshTerrainChunk savedChunk = _loadedChunks[i]; // Get Chunk
-                savedChunk.gameObject.SetActive(true);
-                savedChunk.CheckLatePlace();
+            MeshTerrainChunk savedChunk = _loadedChunks[chunkPosition]; // Get Chunk
+            savedChunk.gameObject.SetActive(true);
+            savedChunk.CheckLatePlace();
 
-                return savedChunk.gameObject; // Return the gameObject
-            }
+            return savedChunk.gameObject; // Return the gameObject
         }
         
         GameObject newChunk = Instantiate(terrainChunk, new Vector3(chunkPosition.x * (_chunkSize - 1), 0, chunkPosition.y * (_chunkSize - 1)), _zeroRotation,transform);
@@ -363,7 +360,7 @@ public class MeshTerrainManager : MonoBehaviour
         var chunk = newChunk.GetComponent<MeshTerrainChunk>();
         chunk.SetTerrain(_seeds);
         
-        _loadedChunks.Add(chunk);
+        _loadedChunks.Add(chunkPosition, chunk);
 
         return newChunk;
     }
@@ -382,7 +379,7 @@ public class MeshTerrainManager : MonoBehaviour
         var chunk = newChunk.GetComponent<MeshTerrainChunk>();
         chunk.SetTerrain(_seeds, monumentRelative);
 
-        _loadedChunks.Add(chunk);
+        _loadedChunks.Add(chunkPosition, chunk);
 
         return newChunk;
     }
@@ -394,7 +391,7 @@ public class MeshTerrainManager : MonoBehaviour
         var chunk = newChunk.GetComponent<MeshTerrainChunk>();
         chunk.SetTerrain(_seeds, onLoad);
 
-        _loadedChunks.Add(chunk);
+        _loadedChunks.Add(chunkPosition, chunk);
 
         return newChunk;
     } 
