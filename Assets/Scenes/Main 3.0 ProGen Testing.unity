@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 782627050}
-  m_IndirectSpecularColor: {r: 0.42275298, g: 0.40677828, b: 0.28385952, a: 1}
+  m_IndirectSpecularColor: {r: 0.42504796, g: 0.4035406, b: 0.2778102, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -147,7 +147,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 52180558}
-  m_LocalRotation: {x: 0.036757898, y: 0.00043807825, z: -0.000016113725, w: 0.9993241}
+  m_LocalRotation: {x: 0.036757898, y: 0.00043807828, z: -0.000016113725, w: 0.99932414}
   m_LocalPosition: {x: -0.004760742, y: 0.40000153, z: -0.9199829}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1779,7 +1779,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &512156739
 Transform:
   m_ObjectHideFlags: 0
@@ -2156,8 +2156,9 @@ MonoBehaviour:
   terrainChunk: {fileID: 9051413243473054194, guid: 0786cf3101d53094e84ad9fbd0728927, type: 3}
   grassChunk: {fileID: 5807528289878105957, guid: a573f61475090c048b7c127494f9ce42, type: 3}
   terrainRadius: 5
-  playerTransform: {fileID: 965868798}
+  playerTransform: {fileID: 1935003591}
   loadingScreen: {fileID: 3510262838640629752}
+  visualizationMode: 0
 --- !u!4 &580536431
 Transform:
   m_ObjectHideFlags: 0
@@ -2836,6 +2837,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackdropMountains
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 2156d660c8fcfee40b7fbadbd6d248a5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -190522342460779035, guid: 2156d660c8fcfee40b7fbadbd6d248a5, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -2859,8 +2864,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bad542fd46966f4682aa37300165d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerOffset: 60
-  _playerTransform: {fileID: 965868798}
+  playerOffset: -40
+  _playerTransform: {fileID: 1935003591}
 --- !u!1 &780209921
 GameObject:
   m_ObjectHideFlags: 0
@@ -4160,7 +4165,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1215595948
 Transform:
   m_ObjectHideFlags: 0
@@ -4690,8 +4695,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1318790548}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 352, y: 61.6, z: 347.49}
+  m_LocalRotation: {x: 0.19490503, y: 0.6797147, z: -0.19490503, w: 0.6797147}
+  m_LocalPosition: {x: -98, y: 150, z: 352}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4701,7 +4706,7 @@ Transform:
   - {fileID: 780209922}
   m_Father: {fileID: 843631447}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 32, y: 90, z: 0}
 --- !u!114 &1318790550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5040,6 +5045,10 @@ PrefabInstance:
     - target: {fileID: 7125049284664861533, guid: c83d1f2184379be4b9e41395bd9bb051, type: 3}
       propertyPath: m_Name
       value: TFF_Blowing_Flowers_01A
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125049284664861533, guid: c83d1f2184379be4b9e41395bd9bb051, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c83d1f2184379be4b9e41395bd9bb051, type: 3}
@@ -5453,7 +5462,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1641546997
 Transform:
   m_ObjectHideFlags: 0
@@ -7814,6 +7823,68 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1935003588
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1935003591}
+  - component: {fileID: 1935003590}
+  - component: {fileID: 1935003589}
+  m_Layer: 0
+  m_Name: Pilless Pill Tester
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!54 &1935003589
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935003588}
+  serializedVersion: 2
+  m_Mass: 0.1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1935003590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935003588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecfe6592e0f2a2545a78cb14f5547712, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisRigidbody: {fileID: 1935003589}
+--- !u!4 &1935003591
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935003588}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 352, y: 100, z: 352}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1937912568
 GameObject:
   m_ObjectHideFlags: 0
@@ -7898,7 +7969,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2010190612
 Transform:
   m_ObjectHideFlags: 0
@@ -9050,6 +9121,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2593575259806208086, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2593575259806208416, guid: 33597626c4a4fa84d8dce70b44ebb1cf, type: 3}
       propertyPath: mainCamera
       value: 
@@ -9642,7 +9717,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3569047394837377196
 RectTransform:
   m_ObjectHideFlags: 0

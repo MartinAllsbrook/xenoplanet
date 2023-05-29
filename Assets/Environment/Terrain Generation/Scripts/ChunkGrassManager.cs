@@ -63,7 +63,7 @@ public class ChunkGrassManager : MonoBehaviour
                 grass[i].SetActive(true);
                 grass[i].transform.position = new Vector3(
                     transform.position.x + x + Random.Range(-0.25f, 0.25f), 
-                    height + Random.Range(-0.1f, 0.1f), 
+                    height + Random.Range(-0.15f, 0f), 
                     transform.position.z + z + Random.Range(-0.25f, 0.25f));
                 
                 // Working for upVector

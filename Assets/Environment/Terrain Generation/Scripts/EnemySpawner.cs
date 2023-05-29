@@ -9,9 +9,13 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject[] enemys;
     [SerializeField] private int spawnChance;
     [SerializeField] private int minDistance;
+    [SerializeField] private bool spawnEnemies;
     
     public void SpawnEnemy(float distance)
     {
+        if (!spawnEnemies)
+            return;
+        
         if (distance < minDistance)
             return;
         

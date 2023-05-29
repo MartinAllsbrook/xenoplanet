@@ -14,7 +14,8 @@ public class MeshTerrainManager : MonoBehaviour
     [SerializeField] private int terrainRadius;
     [SerializeField] private Transform playerTransform;
     [SerializeField] private LoadingScreen loadingScreen;
-    
+    [SerializeField] private bool visualizationMode;
+
     private int _terrainSize;
 
     private GameObject[,] _activeChunks; // terrainRadius * 2 + 1
@@ -41,6 +42,7 @@ public class MeshTerrainManager : MonoBehaviour
         _onChunkLoaded = new UnityEvent();
         
         _chunkSize = terrainChunk.GetComponent<MeshTerrainChunk>().GetChunkSize();
+        
         _seeds = new int[3];
         _seeds[0] = Random.Range(2000, 10000);
         _seeds[1] = Random.Range(2000, 10000);
@@ -49,8 +51,15 @@ public class MeshTerrainManager : MonoBehaviour
         _loadedChunks = new Dictionary<Vector2Int, MeshTerrainChunk>();
         _onChunkLoaded.AddListener(OnChunkLoaded);
 
-        CreateInitialChunks();
-        CreateFinalMonument();
+        if (visualizationMode)
+        {
+            StartCoroutine(CreateInitialChunksVisual());
+        }
+        else
+        {
+            CreateInitialChunks();
+            CreateFinalMonument();
+        }
         UpdatePlayerCell();
     }
 
@@ -76,6 +85,7 @@ public class MeshTerrainManager : MonoBehaviour
 
     private void CreateInitialChunks()
     {
+        // Create Chunks
         _activeChunks = new GameObject[_terrainSize, _terrainSize];
         for (int x = 0; x < _terrainSize; x++)
         {
@@ -84,7 +94,8 @@ public class MeshTerrainManager : MonoBehaviour
                 _activeChunks[x, z] = LoadChunk(new Vector2Int(x,z), _onChunkLoaded);
             }
         }
-        
+            
+        // Create Grass
         _grassChunks = new GameObject[_grassArrayLength, _grassArrayLength];
         int radius = (_grassArrayLength - 1) / 2;
         for (int x = 0; x < _grassArrayLength; x++)
@@ -93,15 +104,48 @@ public class MeshTerrainManager : MonoBehaviour
             {
                 // Create Grass Chunk
                 _grassChunks[x,z] = Instantiate(grassChunk, transform);
-                
+                    
                 int terrainCenter = terrainRadius;
                 Vector2Int grassChunkPosition = new Vector2Int(terrainCenter + x - radius, terrainCenter + z - radius);
-                
+                    
                 MeshTerrainChunk chunk = _activeChunks[grassChunkPosition.x, grassChunkPosition.y].GetComponent<MeshTerrainChunk>();
                 chunk.AddGrass(_grassChunks[x,z].GetComponent<ChunkGrassManager>());
             }
         }
     }
+    
+    private IEnumerator CreateInitialChunksVisual()
+        {
+            // Create Chunks
+            _activeChunks = new GameObject[_terrainSize, _terrainSize];
+            for (int x = 0; x < _terrainSize; x++)
+            {
+                for (var z = 0; z < _terrainSize; z++)
+                {
+                    _activeChunks[x, z] = LoadChunk(new Vector2Int(x,z), _onChunkLoaded);
+                    yield return null;
+                }
+            }
+            
+            // Create Grass
+            /*_grassChunks = new GameObject[_grassArrayLength, _grassArrayLength];
+            int radius = (_grassArrayLength - 1) / 2;
+            for (int x = 0; x < _grassArrayLength; x++)
+            {
+                for (int z = 0; z < _grassArrayLength; z++)
+                {
+                    // Create Grass Chunk
+                    _grassChunks[x,z] = Instantiate(grassChunk, transform);
+                    
+                    int terrainCenter = terrainRadius;
+                    Vector2Int grassChunkPosition = new Vector2Int(terrainCenter + x - radius, terrainCenter + z - radius);
+                    
+                    MeshTerrainChunk chunk = _activeChunks[grassChunkPosition.x, grassChunkPosition.y].GetComponent<MeshTerrainChunk>();
+                    chunk.AddGrass(_grassChunks[x,z].GetComponent<ChunkGrassManager>());
+                }
+            }*/
+            yield return null;
+        }
 
     private void OnChunkLoaded()
     {
@@ -128,15 +172,8 @@ public class MeshTerrainManager : MonoBehaviour
             }
         }
     }
-    
-    private void LoadRow(int deltaCell, bool loadZ)
-    {
-        if (loadZ)
-            StartCoroutine(LoadRowZ(deltaCell));
-        else
-            StartCoroutine(LoadRowX(deltaCell));
-    }
-    
+
+    // Move grass chunks to align with player
     private GameObject[,] ShiftGrass(GameObject[,] arr, int size, string direction)
     {
         GameObject[,] newArr = new GameObject[size, size];
@@ -207,6 +244,15 @@ public class MeshTerrainManager : MonoBehaviour
         return newArr;
     }
 
+    // These three methods need to become another switch statement like the shift grass method above
+    private void LoadRow(int deltaCell, bool loadZ)
+    {
+        if (loadZ)
+            StartCoroutine(LoadRowZ(deltaCell));
+        else
+            StartCoroutine(LoadRowX(deltaCell));
+    }
+    
     private IEnumerator LoadRowZ(int deltaCell)
     {
         var length = _terrainSize;
