@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 782627050}
-  m_IndirectSpecularColor: {r: 0.42275298, g: 0.40677828, b: 0.28385952, a: 1}
+  m_IndirectSpecularColor: {r: 0.427637, g: 0.40552753, b: 0.27901584, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -147,7 +147,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 52180558}
-  m_LocalRotation: {x: 0.036757898, y: 0.00043807825, z: -0.000016113725, w: 0.9993241}
+  m_LocalRotation: {x: 0.036757898, y: 0.00043807828, z: -0.000016113725, w: 0.99932414}
   m_LocalPosition: {x: -0.004760742, y: 0.40000153, z: -0.9199829}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1779,7 +1779,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &512156739
 Transform:
   m_ObjectHideFlags: 0
@@ -4709,7 +4709,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1318790548}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75c51caf89ab6c440b79b01dea599b06, type: 3}
   m_Name: 
@@ -8235,8 +8235,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 298.74805, y: 24}
-  m_SizeDelta: {x: 566.9376, y: 50}
+  m_AnchoredPosition: {x: 658.52155, y: 24}
+  m_SizeDelta: {x: 1286.4846, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2135119019
 MonoBehaviour:
@@ -11247,7 +11247,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1001 &8217407896908140746
 PrefabInstance:
   m_ObjectHideFlags: 0
